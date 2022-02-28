@@ -286,7 +286,7 @@ function ProductForm(props) {
                       type="text"
                       className="form-control"
                       name="specificationName"
-                      value={item.specificationName}
+                      value={item.specificationName || ''}
                       placeholder={i18n(
                         'entities.product.fields.specificationName',
                       )}
@@ -300,7 +300,9 @@ function ProductForm(props) {
                       className="form-control"
                       type="text"
                       name="specificationDesciption"
-                      value={item.specificationDesciption}
+                      value={
+                        item.specificationDesciption || ''
+                      }
                       placeholder={i18n(
                         'entities.product.fields.specificationDesciption',
                       )}
