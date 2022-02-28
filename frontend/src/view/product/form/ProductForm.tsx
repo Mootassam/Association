@@ -277,15 +277,16 @@ function ProductForm(props) {
 
               {newForm.map((item, index) => (
                 <div
-                  id="specificationForm"
+                  key={index + `div`}
                   style={{ display: 'flex' }}
+                  className="app__specification"
                 >
                   <div className="col-6">
                     <input
-                      className="form-control"
                       type="text"
+                      className="form-control"
                       name="specificationName"
-                      value={item.specificationName || ''}
+                      value={item.specificationName}
                       placeholder={i18n(
                         'entities.product.fields.specificationName',
                       )}
@@ -296,11 +297,10 @@ function ProductForm(props) {
                   </div>
                   <div className="col-5">
                     <input
+                      className="form-control"
                       type="text"
                       name="specificationDesciption"
-                      value={
-                        item.specificationDesciption || ''
-                      }
+                      value={item.specificationDesciption}
                       placeholder={i18n(
                         'entities.product.fields.specificationDesciption',
                       )}
@@ -311,20 +311,14 @@ function ProductForm(props) {
                   </div>
 
                   {index ? (
-                    <div className="col-2">
-                      <div className="form-group">
-                        <div className="input-group">
-                          <button
-                            className="btn btn-primary"
-                            type="button"
-                            onClick={() =>
-                              removeFields(index)
-                            }
-                          >
-                            <ButtonIcon iconClass="fas fa-minus" />
-                          </button>
-                        </div>
-                      </div>
+                    <div className="input-group">
+                      <button
+                        className="btn btn-primary"
+                        type="button"
+                        onClick={() => removeFields(index)}
+                      >
+                        <ButtonIcon iconClass="fas fa-minus" />
+                      </button>
                     </div>
                   ) : (
                     <div className="input-group">

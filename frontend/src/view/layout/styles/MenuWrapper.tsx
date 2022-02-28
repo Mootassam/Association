@@ -3,9 +3,9 @@ import styled from 'styled-components';
 const MenuWrapper = styled.div`
   .sidebar {
     flex: 0 0 200px;
-    max-width: 170px;
-    min-width: 170px;
-    width: 170px;
+    max-width: 200px;
+    min-width: 200px;
+    width: 200px;
     height: 100%;
     background-color: #061e33;
   }

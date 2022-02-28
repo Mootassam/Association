@@ -145,6 +145,7 @@ function Menu(props) {
                         }`}
                       >
                         <Link
+                          to="#"
                           onClick={() => {
                             onClick(index);
                           }}
