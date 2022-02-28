@@ -76,14 +76,6 @@ class ProductRepository {
       { _id: id },
       {
         ...data,
-        $push: {
-          specifications: {
-            specificationName:
-              data.specifications.specificationName,
-            specificationDesciption:
-              data.specifications.specificationDesciption,
-          },
-        },
         updatedBy:
           MongooseRepository.getCurrentUser(options).id,
       },

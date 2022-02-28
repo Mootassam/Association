@@ -273,16 +273,6 @@ function ProductForm(props) {
                     'entities.product.fields.isSpecification',
                   )}
                 />
-                <div className="input-group">
-                  <button
-                    className="btn btn-primary"
-                    type="button"
-                    onClick={() => addFields()}
-                  >
-                    Add
-                    <ButtonIcon iconClass="fas fa-plus" />
-                  </button>
-                </div>
               </div>
 
               {newForm.map((item, index) => (
@@ -306,7 +296,6 @@ function ProductForm(props) {
                   </div>
                   <div className="col-5">
                     <input
-                      className="form-control"
                       type="text"
                       name="specificationDesciption"
                       value={
@@ -320,6 +309,7 @@ function ProductForm(props) {
                       }
                     />
                   </div>
+
                   {index ? (
                     <div className="col-2">
                       <div className="form-group">
@@ -337,7 +327,15 @@ function ProductForm(props) {
                       </div>
                     </div>
                   ) : (
-                    ''
+                    <div className="input-group">
+                      <button
+                        className="btn btn-primary"
+                        type="button"
+                        onClick={() => addFields()}
+                      >
+                        <ButtonIcon iconClass="fas fa-plus" />
+                      </button>
+                    </div>
                   )}
                 </div>
               ))}
