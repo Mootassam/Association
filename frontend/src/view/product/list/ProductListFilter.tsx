@@ -123,7 +123,7 @@ const emptyValues = {
   subcategory: null,
   childcategory: null,
   brand: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -143,11 +143,15 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   specificationName: {
-    label: i18n('entities.product.fields.specificationName'),
+    label: i18n(
+      'entities.product.fields.specificationName',
+    ),
     render: filterRenders.generic(),
   },
   specificationDesciption: {
-    label: i18n('entities.product.fields.specificationDesciption'),
+    label: i18n(
+      'entities.product.fields.specificationDesciption',
+    ),
     render: filterRenders.generic(),
   },
   isSpecification: {
@@ -159,11 +163,15 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   discountPriceRange: {
-    label: i18n('entities.product.fields.discountPriceRange'),
+    label: i18n(
+      'entities.product.fields.discountPriceRange',
+    ),
     render: filterRenders.decimalRange(),
   },
   previousPriceRange: {
-    label: i18n('entities.product.fields.previousPriceRange'),
+    label: i18n(
+      'entities.product.fields.previousPriceRange',
+    ),
     render: filterRenders.decimalRange(),
   },
   stockRange: {
@@ -180,7 +188,9 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.product.fields.status'),
-    render: filterRenders.enumerator('entities.product.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.product.enumerators.status',
+    ),
   },
   isType: {
     label: i18n('entities.product.fields.isType'),
@@ -192,7 +202,9 @@ const previewRenders = {
   },
   itemType: {
     label: i18n('entities.product.fields.itemType'),
-    render: filterRenders.enumerator('entities.product.enumerators.itemType',),
+    render: filterRenders.enumerator(
+      'entities.product.enumerators.itemType',
+    ),
   },
   link: {
     label: i18n('entities.product.fields.link'),
@@ -200,29 +212,31 @@ const previewRenders = {
   },
   fileType: {
     label: i18n('entities.product.fields.fileType'),
-    render: filterRenders.enumerator('entities.product.enumerators.fileType',),
+    render: filterRenders.enumerator(
+      'entities.product.enumerators.fileType',
+    ),
   },
   taxe: {
-      label: i18n('entities.product.fields.taxe'),
-      render: filterRenders.relationToOne(),
-    },
+    label: i18n('entities.product.fields.taxe'),
+    render: filterRenders.relationToOne(),
+  },
   category: {
-      label: i18n('entities.product.fields.category'),
-      render: filterRenders.relationToOne(),
-    },
+    label: i18n('entities.product.fields.category'),
+    render: filterRenders.relationToOne(),
+  },
   subcategory: {
-      label: i18n('entities.product.fields.subcategory'),
-      render: filterRenders.relationToOne(),
-    },
+    label: i18n('entities.product.fields.subcategory'),
+    render: filterRenders.relationToOne(),
+  },
   childcategory: {
-      label: i18n('entities.product.fields.childcategory'),
-      render: filterRenders.relationToOne(),
-    },
+    label: i18n('entities.product.fields.childcategory'),
+    render: filterRenders.relationToOne(),
+  },
   brand: {
-      label: i18n('entities.product.fields.brand'),
-      render: filterRenders.relationToOne(),
-    },
-}
+    label: i18n('entities.product.fields.brand'),
+    render: filterRenders.relationToOne(),
+  },
+};
 
 function ProductListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -243,7 +257,12 @@ function ProductListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -284,184 +303,232 @@ function ProductListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.product.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="slug"
-                        label={i18n('entities.product.fields.slug')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="tags"
-                        label={i18n('entities.product.fields.tags')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="video"
-                        label={i18n('entities.product.fields.video')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="specificationName"
-                        label={i18n('entities.product.fields.specificationName')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="specificationDesciption"
-                        label={i18n('entities.product.fields.specificationDesciption')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="isSpecification"
-                        label={i18n('entities.product.fields.isSpecification')}
-                        options={[
-                          {
-                            value: true,
-                            label: i18n('common.yes'),
-                          },
-                          {
-                            value: false,
-                            label: i18n('common.no'),
-                          },
-                        ]}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="details"
-                        label={i18n('entities.product.fields.details')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="discountPriceRange"
-                        label={i18n('entities.product.fields.discountPriceRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="previousPriceRange"
-                        label={i18n('entities.product.fields.previousPriceRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputNumberRangeFormItem
-                        name="stockRange"
-                        label={i18n('entities.product.fields.stockRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="metaKeywords"
-                        label={i18n('entities.product.fields.metaKeywords')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="metaDesctiption"
-                        label={i18n('entities.product.fields.metaDesctiption')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.product.fields.status')}
-                        options={productEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.product.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="isType"
-                        label={i18n('entities.product.fields.isType')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="dateRange"
-                        label={i18n('entities.product.fields.dateRange')}    
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="itemType"
-                        label={i18n('entities.product.fields.itemType')}
-                        options={productEnumerators.itemType.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.product.enumerators.itemType.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="link"
-                        label={i18n('entities.product.fields.link')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="fileType"
-                        label={i18n('entities.product.fields.fileType')}
-                        options={productEnumerators.fileType.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.product.enumerators.fileType.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <TaxesAutocompleteFormItem  
-                        name="taxe"
-                        label={i18n('entities.product.fields.taxe')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <CategoryAutocompleteFormItem  
-                        name="category"
-                        label={i18n('entities.product.fields.category')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SubcategoriesAutocompleteFormItem  
-                        name="subcategory"
-                        label={i18n('entities.product.fields.subcategory')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <ChieldCategoriesAutocompleteFormItem  
-                        name="childcategory"
-                        label={i18n('entities.product.fields.childcategory')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <BrandsAutocompleteFormItem  
-                        name="brand"
-                        label={i18n('entities.product.fields.brand')}        
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.product.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="slug"
+                    label={i18n(
+                      'entities.product.fields.slug',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="tags"
+                    label={i18n(
+                      'entities.product.fields.tags',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="video"
+                    label={i18n(
+                      'entities.product.fields.video',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="specificationName"
+                    label={i18n(
+                      'entities.product.fields.specificationName',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="specificationDesciption"
+                    label={i18n(
+                      'entities.product.fields.specificationDesciption',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="isSpecification"
+                    label={i18n(
+                      'entities.product.fields.isSpecification',
+                    )}
+                    options={[
+                      {
+                        value: true,
+                        label: i18n('common.yes'),
+                      },
+                      {
+                        value: false,
+                        label: i18n('common.no'),
+                      },
+                    ]}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="details"
+                    label={i18n(
+                      'entities.product.fields.details',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="discountPriceRange"
+                    label={i18n(
+                      'entities.product.fields.discountPriceRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="previousPriceRange"
+                    label={i18n(
+                      'entities.product.fields.previousPriceRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputNumberRangeFormItem
+                    name="stockRange"
+                    label={i18n(
+                      'entities.product.fields.stockRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="metaKeywords"
+                    label={i18n(
+                      'entities.product.fields.metaKeywords',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="metaDesctiption"
+                    label={i18n(
+                      'entities.product.fields.metaDesctiption',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.product.fields.status',
+                    )}
+                    options={productEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.product.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="isType"
+                    label={i18n(
+                      'entities.product.fields.isType',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="dateRange"
+                    label={i18n(
+                      'entities.product.fields.dateRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="itemType"
+                    label={i18n(
+                      'entities.product.fields.itemType',
+                    )}
+                    options={productEnumerators.itemType.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.product.enumerators.itemType.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="link"
+                    label={i18n(
+                      'entities.product.fields.link',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="fileType"
+                    label={i18n(
+                      'entities.product.fields.fileType',
+                    )}
+                    options={productEnumerators.fileType.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.product.enumerators.fileType.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <TaxesAutocompleteFormItem
+                    name="taxe"
+                    label={i18n(
+                      'entities.product.fields.taxe',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <CategoryAutocompleteFormItem
+                    name="category"
+                    label={i18n(
+                      'entities.product.fields.category',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SubcategoriesAutocompleteFormItem
+                    name="subcategory"
+                    label={i18n(
+                      'entities.product.fields.subcategory',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <ChieldCategoriesAutocompleteFormItem
+                    name="childcategory"
+                    label={i18n(
+                      'entities.product.fields.childcategory',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <BrandsAutocompleteFormItem
+                    name="brand"
+                    label={i18n(
+                      'entities.product.fields.brand',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">

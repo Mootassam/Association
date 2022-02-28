@@ -12,26 +12,31 @@ import AttributeOptions from '../models/attributeOptions';
 import Review from '../models/review';
 
 class ProductRepository {
-  
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    console.log('Product Repository', data);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const [record] = await Product(
-      options.database,
-    ).create(
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
+
+    const [record] = await Product(options.database).create(
       [
         {
           ...data,
+          $push: {
+            specifications: {
+              specificationName:
+                data.specifications.specificationName,
+              specificationDesciption:
+                data.specifications.specificationDesciption,
+            },
+          },
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -43,20 +48,25 @@ class ProductRepository {
       options,
     );
 
-    
-
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Product(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Product(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -66,9 +76,16 @@ class ProductRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        $push: {
+          specifications: {
+            specificationName:
+              data.specifications.specificationName,
+            specificationDesciption:
+              data.specifications.specificationDesciption,
+          },
+        },
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -82,26 +99,30 @@ class ProductRepository {
 
     record = await this.findById(id, options);
 
-
-
     return record;
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Product(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Product(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
     }
 
-    await Product(options.database).deleteOne({ _id: id }, options);
+    await Product(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -172,9 +193,8 @@ class ProductRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Product(options.database).countDocuments({
@@ -186,21 +206,21 @@ class ProductRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Product(options.database)
-        .findOne({_id: id, tenant: currentTenant.id})
-      .populate('taxe')
-      .populate('category')
-      .populate('subcategory')
-      .populate('childcategory')
-      .populate('brand')
-      .populate('gallery'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Product(options.database)
+          .findOne({ _id: id, tenant: currentTenant.id })
+          .populate('taxe')
+          .populate('category')
+          .populate('subcategory')
+          .populate('childcategory')
+          .populate('brand')
+          .populate('gallery'),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -213,12 +233,11 @@ class ProductRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    
+
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
@@ -274,16 +293,16 @@ class ProductRepository {
         });
       }
 
-      if (filter.specificationName) {
-        criteriaAnd.push({
-          specificationName: {
-            $regex: MongooseQueryUtils.escapeRegExp(
-              filter.specificationName,
-            ),
-            $options: 'i',
-          },
-        });
-      }
+      // if (filter.specificationName) {
+      //   criteriaAnd.push({
+      //     specificationName: {
+      //       $regex: MongooseQueryUtils.escapeRegExp(
+      //         filter.specificationName,
+      //       ),
+      //       $options: 'i',
+      //     },
+      //   });
+      // }
 
       if (filter.specificationDesciption) {
         criteriaAnd.push({
@@ -323,7 +342,11 @@ class ProductRepository {
       if (filter.discountPriceRange) {
         const [start, end] = filter.discountPriceRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             discountPrice: {
               $gte: start,
@@ -331,7 +354,11 @@ class ProductRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             discountPrice: {
               $lte: end,
@@ -343,7 +370,11 @@ class ProductRepository {
       if (filter.previousPriceRange) {
         const [start, end] = filter.previousPriceRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             previousPrice: {
               $gte: start,
@@ -351,7 +382,11 @@ class ProductRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             previousPrice: {
               $lte: end,
@@ -363,7 +398,11 @@ class ProductRepository {
       if (filter.stockRange) {
         const [start, end] = filter.stockRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             stock: {
               $gte: start,
@@ -371,7 +410,11 @@ class ProductRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             stock: {
               $lte: end,
@@ -404,7 +447,7 @@ class ProductRepository {
 
       if (filter.status) {
         criteriaAnd.push({
-          status: filter.status
+          status: filter.status,
         });
       }
 
@@ -422,7 +465,11 @@ class ProductRepository {
       if (filter.dateRange) {
         const [start, end] = filter.dateRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             date: {
               $gte: start,
@@ -430,7 +477,11 @@ class ProductRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             date: {
               $lte: end,
@@ -441,7 +492,7 @@ class ProductRepository {
 
       if (filter.itemType) {
         criteriaAnd.push({
-          itemType: filter.itemType
+          itemType: filter.itemType,
         });
       }
 
@@ -458,15 +509,13 @@ class ProductRepository {
 
       if (filter.fileType) {
         criteriaAnd.push({
-          fileType: filter.fileType
+          fileType: filter.fileType,
         });
       }
 
       if (filter.taxe) {
         criteriaAnd.push({
-          taxe: MongooseQueryUtils.uuid(
-            filter.taxe,
-          ),
+          taxe: MongooseQueryUtils.uuid(filter.taxe),
         });
       }
 
@@ -496,9 +545,7 @@ class ProductRepository {
 
       if (filter.brand) {
         criteriaAnd.push({
-          brand: MongooseQueryUtils.uuid(
-            filter.brand,
-          ),
+          brand: MongooseQueryUtils.uuid(filter.brand),
         });
       }
 
@@ -564,14 +611,19 @@ class ProductRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -581,10 +633,11 @@ class ProductRepository {
           },
           {
             name: {
-              $regex: MongooseQueryUtils.escapeRegExp(search),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
-            }
-          },          
+            },
+          },
         ],
       });
     }
@@ -605,7 +658,12 @@ class ProductRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Product(options.database).modelName,
@@ -633,8 +691,6 @@ class ProductRepository {
     output.file = await FileRepository.fillDownloadUrl(
       output.file,
     );
-
-
 
     return output;
   }

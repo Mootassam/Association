@@ -188,14 +188,41 @@ function ProductForm(props) {
     };
   });
 
+  const [newForm, setNewform] = useState([
+    { specificationName: '', specificationDesciption: '' },
+  ]);
+
   const form = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
     defaultValues: initialValues,
   });
 
+  const addFields = () => {
+    setNewform([
+      ...newForm,
+      {
+        specificationName: '',
+        specificationDesciption: '',
+      },
+    ]);
+  };
+
+  const removeFields = (index) => {
+    let formsDelete = [...newForm];
+    formsDelete.splice(index, 1);
+    setNewform(formsDelete);
+  };
+  const handleChange = (e, i) => {
+    let formN = [...newForm];
+    formN[i][e.target.name] = e.target.value;
+    setNewform(formN);
+  };
   const onSubmit = (values) => {
-    props.onSubmit(props.record?.id, values);
+    props.onSubmit(props.record?.id, {
+      ...values,
+      specifications: { ...newForm },
+    });
   };
 
   const onReset = () => {
@@ -246,47 +273,74 @@ function ProductForm(props) {
                     'entities.product.fields.isSpecification',
                   )}
                 />
+                <div className="input-group">
+                  <button
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={() => addFields()}
+                  >
+                    Add
+                    <ButtonIcon iconClass="fas fa-plus" />
+                  </button>
+                </div>
               </div>
-              <div
-                id="specificationForm"
-                style={{ display: 'flex' }}
-              >
-                <div className="col-6">
-                  <InputFormItem
-                    name="specificationName"
-                    label={i18n(
-                      'entities.product.fields.specificationName',
-                    )}
-                    required={false}
-                  />
-                </div>
-                <div className="col-5">
-                  <InputFormItem
-                    name="specificationDesciption"
-                    label={i18n(
-                      'entities.product.fields.specificationDesciption',
-                    )}
-                    required={false}
-                  />
-                </div>
 
-                <div className="col-2">
-                  <div className="form-group">
-                    <div className="input-group">
-                      <label className="col-form-label">
-                        Add
-                      </label>
-                      <button
-                        className="btn btn-primary"
-                        type="button"
-                        id="specificationButton"
-                      >
-                        <ButtonIcon iconClass="fas fa-plus" />
-                      </button>
-                    </div>
+              {newForm.map((item, index) => (
+                <div
+                  id="specificationForm"
+                  style={{ display: 'flex' }}
+                >
+                  <div className="col-6">
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="specificationName"
+                      value={item.specificationName || ''}
+                      placeholder={i18n(
+                        'entities.product.fields.specificationName',
+                      )}
+                      onChange={(e) =>
+                        handleChange(e, index)
+                      }
+                    />
                   </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="specificationDesciption"
+                      value={
+                        item.specificationDesciption || ''
+                      }
+                      placeholder={i18n(
+                        'entities.product.fields.specificationDesciption',
+                      )}
+                      onChange={(e) =>
+                        handleChange(e, index)
+                      }
+                    />
+                  </div>
+                  {index ? (
+                    <div className="col-2">
+                      <div className="form-group">
+                        <div className="input-group">
+                          <button
+                            className="btn btn-primary"
+                            type="button"
+                            onClick={() =>
+                              removeFields(index)
+                            }
+                          >
+                            <ButtonIcon iconClass="fas fa-minus" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    ''
+                  )}
                 </div>
-              </div>
+              ))}
 
               <div id="specificationForm">
                 <div className="">

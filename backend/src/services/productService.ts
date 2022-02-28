@@ -22,12 +22,34 @@ export default class ProductService {
     );
 
     try {
-      data.taxe = await TaxesRepository.filterIdInTenant(data.taxe, { ...this.options, session });
-      data.category = await CategoryRepository.filterIdInTenant(data.category, { ...this.options, session });
-      data.subcategory = await SubcategoriesRepository.filterIdInTenant(data.subcategory, { ...this.options, session });
-      data.childcategory = await ChieldCategoriesRepository.filterIdInTenant(data.childcategory, { ...this.options, session });
-      data.brand = await BrandsRepository.filterIdInTenant(data.brand, { ...this.options, session });
-      data.gallery = await GalleryRepository.filterIdsInTenant(data.gallery, { ...this.options, session });
+      data.taxe = await TaxesRepository.filterIdInTenant(
+        data.taxe,
+        { ...this.options, session },
+      );
+      data.category =
+        await CategoryRepository.filterIdInTenant(
+          data.category,
+          { ...this.options, session },
+        );
+      data.subcategory =
+        await SubcategoriesRepository.filterIdInTenant(
+          data.subcategory,
+          { ...this.options, session },
+        );
+      data.childcategory =
+        await ChieldCategoriesRepository.filterIdInTenant(
+          data.childcategory,
+          { ...this.options, session },
+        );
+      data.brand = await BrandsRepository.filterIdInTenant(
+        data.brand,
+        { ...this.options, session },
+      );
+      data.gallery =
+        await GalleryRepository.filterIdsInTenant(
+          data.gallery,
+          { ...this.options, session },
+        );
 
       const record = await ProductRepository.create(data, {
         ...this.options,
@@ -56,12 +78,34 @@ export default class ProductService {
     );
 
     try {
-      data.taxe = await TaxesRepository.filterIdInTenant(data.taxe, { ...this.options, session });
-      data.category = await CategoryRepository.filterIdInTenant(data.category, { ...this.options, session });
-      data.subcategory = await SubcategoriesRepository.filterIdInTenant(data.subcategory, { ...this.options, session });
-      data.childcategory = await ChieldCategoriesRepository.filterIdInTenant(data.childcategory, { ...this.options, session });
-      data.brand = await BrandsRepository.filterIdInTenant(data.brand, { ...this.options, session });
-      data.gallery = await GalleryRepository.filterIdsInTenant(data.gallery, { ...this.options, session });
+      data.taxe = await TaxesRepository.filterIdInTenant(
+        data.taxe,
+        { ...this.options, session },
+      );
+      data.category =
+        await CategoryRepository.filterIdInTenant(
+          data.category,
+          { ...this.options, session },
+        );
+      data.subcategory =
+        await SubcategoriesRepository.filterIdInTenant(
+          data.subcategory,
+          { ...this.options, session },
+        );
+      data.childcategory =
+        await ChieldCategoriesRepository.filterIdInTenant(
+          data.childcategory,
+          { ...this.options, session },
+        );
+      data.brand = await BrandsRepository.filterIdInTenant(
+        data.brand,
+        { ...this.options, session },
+      );
+      data.gallery =
+        await GalleryRepository.filterIdsInTenant(
+          data.gallery,
+          { ...this.options, session },
+        );
 
       const record = await ProductRepository.update(
         id,

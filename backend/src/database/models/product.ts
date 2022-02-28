@@ -24,15 +24,16 @@ export default (database) => {
       video: {
         type: String,
       },
-      specificationName: {
-        type: String,
-      },
-      specificationDesciption: {
-        type: String,
-      },
+      specifications: [
+        {
+          specificationName: { type: String },
+          specificationDesciption: { type: String },
+        },
+      ],
+
       isSpecification: {
         type: Boolean,
-        default: false
+        default: false,
       },
       details: {
         type: String,
@@ -56,11 +57,7 @@ export default (database) => {
       },
       status: {
         type: String,
-        enum: [
-          "enable",
-          "disable",
-          null
-        ],
+        enum: ['enable', 'disable', null],
       },
       isType: {
         type: String,
@@ -70,11 +67,7 @@ export default (database) => {
       },
       itemType: {
         type: String,
-        enum: [
-          "normal",
-          "digitale",
-          null
-        ],
+        enum: ['normal', 'digitale', null],
       },
       file: [FileSchema],
       link: {
@@ -82,11 +75,7 @@ export default (database) => {
       },
       fileType: {
         type: String,
-        enum: [
-          "file",
-          "link",
-          null
-        ],
+        enum: ['file', 'link', null],
       },
       taxe: {
         type: Schema.Types.ObjectId,
@@ -110,14 +99,16 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'brands',
       },
-      gallery: [{
-        type: Schema.Types.ObjectId,
-        ref: 'gallery',
-      }],
+      gallery: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'gallery',
+        },
+      ],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -141,8 +132,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   ProductSchema.virtual('id').get(function () {
     // @ts-ignore
