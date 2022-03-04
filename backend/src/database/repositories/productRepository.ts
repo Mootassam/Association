@@ -13,7 +13,10 @@ import Review from '../models/review';
 
 class ProductRepository {
   static async create(data, options: IRepositoryOptions) {
-    console.log('Product Repository', data);
+    console.log(
+      'Product Repository',
+      Object.values(data.specifications),
+    );
 
     const currentTenant =
       MongooseRepository.getCurrentTenant(options);
@@ -21,18 +24,15 @@ class ProductRepository {
     const currentUser =
       MongooseRepository.getCurrentUser(options);
 
-    const [record] = await Product(options.database).create(
+    const [record] = await Product(
+      options.database,
+    ).insertMany(
       [
         {
           ...data,
-          $push: {
-            specifications: {
-              specificationName:
-                data.specifications.specificationName,
-              specificationDesciption:
-                data.specifications.specificationDesciption,
-            },
-          },
+          specifications: Object.values(
+            data.specifications,
+          ),
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
