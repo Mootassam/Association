@@ -24,11 +24,15 @@ export default [
   },
   {
     name: 'specificationName',
-    label: i18n('entities.product.fields.specificationName'),
+    label: i18n(
+      'entities.product.fields.specificationName',
+    ),
   },
   {
     name: 'specificationDesciption',
-    label: i18n('entities.product.fields.specificationDesciption'),
+    label: i18n(
+      'entities.product.fields.specificationDesciption',
+    ),
   },
   {
     name: 'isSpecification',
@@ -58,10 +62,7 @@ export default [
     name: 'stock',
     label: i18n('entities.product.fields.stock'),
   },
-  {
-    name: 'metaKeywords',
-    label: i18n('entities.product.fields.metaKeywords'),
-  },
+
   {
     name: 'metaDesctiption',
     label: i18n('entities.product.fields.metaDesctiption'),

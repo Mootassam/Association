@@ -99,13 +99,13 @@ export default [
         icon: 'fas fa-chevron-right',
         label: i18n('entities.campaignItems.menu'),
       },
-      {
-        path: '/attribute-options',
-        permissionRequired:
-          permissions.attributeOptionsRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.attributeOptions.menu'),
-      },
+      // {
+      //   path: '/attribute-options',
+      //   permissionRequired:
+      //     permissions.attributeOptionsRead,
+      //   icon: 'fas fa-chevron-right',
+      //   label: i18n('entities.attributeOptions.menu'),
+      // },
     ],
   },
 
@@ -152,12 +152,12 @@ export default [
         icon: 'fas fa-chevron-right',
         label: i18n('entities.shippingservice.menu'),
       },
-      {
-        path: '/track-order',
-        permissionRequired: permissions.trackOrderRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.trackOrder.menu'),
-      },
+      // {
+      //   path: '/track-order',
+      //   permissionRequired: permissions.trackOrderRead,
+      //   icon: 'fas fa-chevron-right',
+      //   label: i18n('entities.trackOrder.menu'),
+      // },
 
       {
         path: '/state',
@@ -171,12 +171,12 @@ export default [
         icon: 'fas fa-chevron-right',
         label: i18n('entities.paymentsettings.menu'),
       },
-      {
-        path: '/cart',
-        permissionRequired: permissions.cartRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.cart.menu'),
-      },
+      // {
+      //   path: '/cart',
+      //   permissionRequired: permissions.cartRead,
+      //   icon: 'fas fa-chevron-right',
+      //   label: i18n('entities.cart.menu'),
+      // },
     ],
   },
 ].filter(Boolean);

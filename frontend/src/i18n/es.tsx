@@ -35,1209 +35,1111 @@ const es = {
 
   entities: {
     category: {
-        name: 'category',
-        label: 'Categories',
+      name: 'category',
+      label: 'Categories',
+      menu: 'Categories',
+      exporterFileName: 'exportacion_category',
+      list: {
         menu: 'Categories',
-        exporterFileName: 'exportacion_category',
-        list: {
-          menu: 'Categories',
-          title: 'Categories',
-        },
-        create: {
-          success: 'Category guardado con éxito',
-        },
-        update: {
-          success: 'Category guardado con éxito',
-        },
-        destroy: {
-          success: 'Category eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Category(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Category',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'slug': 'Slug',
-          'photo': 'Photo',
-          'metaKeywords': 'MetaKeywords',
-          'metaDescriptions': 'MetaDescriptions',
-          'status': 'Status',
-          'isFeature': 'IsFeature',
-          'serialRange': 'Serial',
-          'serial': 'Serial',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Category',
-        },
-        view: {
-          title: 'Ver Category',
-        },
-        importer: {
-          title: 'Importar Categories',
-          fileName: 'category_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'Categories',
+      },
+      create: {
+        success: 'Category guardado con éxito',
+      },
+      update: {
+        success: 'Category guardado con éxito',
+      },
+      destroy: {
+        success: 'Category eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Category(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Category',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        slug: 'Slug',
+        photo: 'Photo',
+        metaKeywords: 'MetaKeywords',
+        metaDescriptions: 'MetaDescriptions',
+        status: 'Status',
+        isFeature: 'IsFeature',
+        serialRange: 'Serial',
+        serial: 'Serial',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Category',
+      },
+      view: {
+        title: 'Ver Category',
+      },
+      importer: {
+        title: 'Importar Categories',
+        fileName: 'category_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     subcategories: {
-        name: 'subcategories',
-        label: 'Subcategories',
+      name: 'subcategories',
+      label: 'Subcategories',
+      menu: 'Subcategories',
+      exporterFileName: 'exportacion_subcategories',
+      list: {
         menu: 'Subcategories',
-        exporterFileName: 'exportacion_subcategories',
-        list: {
-          menu: 'Subcategories',
-          title: 'Subcategories',
-        },
-        create: {
-          success: 'Subcategories guardado con éxito',
-        },
-        update: {
-          success: 'Subcategories guardado con éxito',
-        },
-        destroy: {
-          success: 'Subcategories eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Subcategories(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Subcategories',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'slug': 'Slug',
-          'status': 'Status',
-          'categoryId': 'CategoryId',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Subcategories',
-        },
-        view: {
-          title: 'Ver Subcategories',
-        },
-        importer: {
-          title: 'Importar Subcategories',
-          fileName: 'subcategories_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'Subcategories',
+      },
+      create: {
+        success: 'Subcategories guardado con éxito',
+      },
+      update: {
+        success: 'Subcategories guardado con éxito',
+      },
+      destroy: {
+        success: 'Subcategories eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Subcategories(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Subcategories',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        slug: 'Slug',
+        status: 'Status',
+        categoryId: 'CategoryId',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Subcategories',
+      },
+      view: {
+        title: 'Ver Subcategories',
+      },
+      importer: {
+        title: 'Importar Subcategories',
+        fileName: 'subcategories_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     chieldCategories: {
-        name: 'chieldCategories',
-        label: 'ChieldCategories',
+      name: 'chieldCategories',
+      label: 'ChieldCategories',
+      menu: 'ChieldCategories',
+      exporterFileName: 'exportacion_chieldCategories',
+      list: {
         menu: 'ChieldCategories',
-        exporterFileName: 'exportacion_chieldCategories',
-        list: {
-          menu: 'ChieldCategories',
-          title: 'ChieldCategories',
-        },
-        create: {
-          success: 'ChieldCategories guardado con éxito',
-        },
-        update: {
-          success: 'ChieldCategories guardado con éxito',
-        },
-        destroy: {
-          success: 'ChieldCategories eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'ChieldCategories(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar ChieldCategories',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'slug': 'Slug',
-          'categoryId': 'CategoryId',
-          'subcategoryId': 'SubcategoryId',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-
-        },
-        placeholders: {
-          'subcategoryId': ' ',
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo ChieldCategories',
-        },
-        view: {
-          title: 'Ver ChieldCategories',
-        },
-        importer: {
-          title: 'Importar ChieldCategories',
-          fileName: 'chieldCategories_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
-        },
+        title: 'ChieldCategories',
       },
+      create: {
+        success: 'ChieldCategories guardado con éxito',
+      },
+      update: {
+        success: 'ChieldCategories guardado con éxito',
+      },
+      destroy: {
+        success: 'ChieldCategories eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'ChieldCategories(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar ChieldCategories',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        slug: 'Slug',
+        categoryId: 'CategoryId',
+        subcategoryId: 'SubcategoryId',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {},
+      placeholders: {
+        subcategoryId: ' ',
+      },
+      hints: {},
+      new: {
+        title: 'Nuevo ChieldCategories',
+      },
+      view: {
+        title: 'Ver ChieldCategories',
+      },
+      importer: {
+        title: 'Importar ChieldCategories',
+        fileName: 'chieldCategories_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     taxes: {
-        name: 'taxes',
-        label: 'Taxes',
+      name: 'taxes',
+      label: 'Taxes',
+      menu: 'Taxes',
+      exporterFileName: 'exportacion_taxes',
+      list: {
         menu: 'Taxes',
-        exporterFileName: 'exportacion_taxes',
-        list: {
-          menu: 'Taxes',
-          title: 'Taxes',
-        },
-        create: {
-          success: 'Taxes guardado con éxito',
-        },
-        update: {
-          success: 'Taxes guardado con éxito',
-        },
-        destroy: {
-          success: 'Taxes eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Taxes(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Taxes',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'valueRange': 'Value',
-          'value': 'Value',
-          'status': 'Status',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Taxes',
-        },
-        view: {
-          title: 'Ver Taxes',
-        },
-        importer: {
-          title: 'Importar Taxes',
-          fileName: 'taxes_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'Taxes',
+      },
+      create: {
+        success: 'Taxes guardado con éxito',
+      },
+      update: {
+        success: 'Taxes guardado con éxito',
+      },
+      destroy: {
+        success: 'Taxes eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Taxes(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Taxes',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        valueRange: 'Value',
+        value: 'Value',
+        status: 'Status',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Taxes',
+      },
+      view: {
+        title: 'Ver Taxes',
+      },
+      importer: {
+        title: 'Importar Taxes',
+        fileName: 'taxes_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     brands: {
-        name: 'brands',
-        label: 'Brands',
+      name: 'brands',
+      label: 'Brands',
+      menu: 'Brands',
+      exporterFileName: 'exportacion_brands',
+      list: {
         menu: 'Brands',
-        exporterFileName: 'exportacion_brands',
-        list: {
-          menu: 'Brands',
-          title: 'Brands',
+        title: 'Brands',
+      },
+      create: {
+        success: 'Brands guardado con éxito',
+      },
+      update: {
+        success: 'Brands guardado con éxito',
+      },
+      destroy: {
+        success: 'Brands eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Brands(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Brands',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        slug: 'Slug',
+        photo: 'Photo',
+        status: 'Status',
+        isPopular: 'IsPopular',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enbale: 'Enbale',
+          disable: 'Disable',
         },
-        create: {
-          success: 'Brands guardado con éxito',
-        },
-        update: {
-          success: 'Brands guardado con éxito',
-        },
-        destroy: {
-          success: 'Brands eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Brands(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Brands',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'slug': 'Slug',
-          'photo': 'Photo',
-          'status': 'Status',
-          'isPopular': 'IsPopular',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enbale': 'Enbale',
-            'disable': 'Disable',
-          },
-          'isPopular': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Brands',
-        },
-        view: {
-          title: 'Ver Brands',
-        },
-        importer: {
-          title: 'Importar Brands',
-          fileName: 'brands_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        isPopular: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Brands',
+      },
+      view: {
+        title: 'Ver Brands',
+      },
+      importer: {
+        title: 'Importar Brands',
+        fileName: 'brands_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     edit: {
-        name: 'edit',
-        label: 'Edits',
+      name: 'edit',
+      label: 'Edits',
+      menu: 'Edits',
+      exporterFileName: 'exportacion_edit',
+      list: {
         menu: 'Edits',
-        exporterFileName: 'exportacion_edit',
-        list: {
-          menu: 'Edits',
-          title: 'Edits',
-        },
-        create: {
-          success: 'Edit guardado con éxito',
-        },
-        update: {
-          success: 'Edit guardado con éxito',
-        },
-        destroy: {
-          success: 'Edit eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Edit(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Edit',
-        },
-        fields: {
-          id: 'Id',
-          'campaignTitle': 'CampaignTitle',
-          'campaignLastDateTimeRange': 'CampaignLastDateTime',
-          'campaignLastDateTime': 'CampaignLastDateTime',
-          'status': 'Status',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Edit',
-        },
-        view: {
-          title: 'Ver Edit',
-        },
-        importer: {
-          title: 'Importar Edits',
-          fileName: 'edit_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'Edits',
+      },
+      create: {
+        success: 'Edit guardado con éxito',
+      },
+      update: {
+        success: 'Edit guardado con éxito',
+      },
+      destroy: {
+        success: 'Edit eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Edit(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Edit',
+      },
+      fields: {
+        id: 'Id',
+        campaignTitle: 'CampaignTitle',
+        campaignLastDateTimeRange: 'CampaignLastDateTime',
+        campaignLastDateTime: 'CampaignLastDateTime',
+        status: 'Status',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Edit',
+      },
+      view: {
+        title: 'Ver Edit',
+      },
+      importer: {
+        title: 'Importar Edits',
+        fileName: 'edit_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     campaignItems: {
-        name: 'campaignItems',
-        label: 'CampaignItems',
+      name: 'campaignItems',
+      label: 'CampaignItems',
+      menu: 'CampaignItems',
+      exporterFileName: 'exportacion_campaignItems',
+      list: {
         menu: 'CampaignItems',
-        exporterFileName: 'exportacion_campaignItems',
-        list: {
-          menu: 'CampaignItems',
-          title: 'CampaignItems',
+        title: 'CampaignItems',
+      },
+      create: {
+        success: 'CampaignItems guardado con éxito',
+      },
+      update: {
+        success: 'CampaignItems guardado con éxito',
+      },
+      destroy: {
+        success: 'CampaignItems eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'CampaignItems(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar CampaignItems',
+      },
+      fields: {
+        id: 'Id',
+        status: 'Status',
+        isFeature: 'IsFeature',
+        itemId: 'ItemId',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
-        create: {
-          success: 'CampaignItems guardado con éxito',
-        },
-        update: {
-          success: 'CampaignItems guardado con éxito',
-        },
-        destroy: {
-          success: 'CampaignItems eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'CampaignItems(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar CampaignItems',
-        },
-        fields: {
-          id: 'Id',
-          'status': 'Status',
-          'isFeature': 'IsFeature',
-          'itemId': 'ItemId',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-          'isFeature': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo CampaignItems',
-        },
-        view: {
-          title: 'Ver CampaignItems',
-        },
-        importer: {
-          title: 'Importar CampaignItems',
-          fileName: 'campaignItems_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        isFeature: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo CampaignItems',
+      },
+      view: {
+        title: 'Ver CampaignItems',
+      },
+      importer: {
+        title: 'Importar CampaignItems',
+        fileName: 'campaignItems_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     gallery: {
-        name: 'gallery',
-        label: 'Galleries',
+      name: 'gallery',
+      label: 'Galleries',
+      menu: 'Galleries',
+      exporterFileName: 'exportacion_gallery',
+      list: {
         menu: 'Galleries',
-        exporterFileName: 'exportacion_gallery',
-        list: {
-          menu: 'Galleries',
-          title: 'Galleries',
-        },
-        create: {
-          success: 'Gallery guardado con éxito',
-        },
-        update: {
-          success: 'Gallery guardado con éxito',
-        },
-        destroy: {
-          success: 'Gallery eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Gallery(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Gallery',
-        },
-        fields: {
-          id: 'Id',
-          'photos': 'Photos',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Gallery',
-        },
-        view: {
-          title: 'Ver Gallery',
-        },
-        importer: {
-          title: 'Importar Galleries',
-          fileName: 'gallery_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
-        },
+        title: 'Galleries',
       },
+      create: {
+        success: 'Gallery guardado con éxito',
+      },
+      update: {
+        success: 'Gallery guardado con éxito',
+      },
+      destroy: {
+        success: 'Gallery eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Gallery(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Gallery',
+      },
+      fields: {
+        id: 'Id',
+        photos: 'Photos',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Gallery',
+      },
+      view: {
+        title: 'Ver Gallery',
+      },
+      importer: {
+        title: 'Importar Galleries',
+        fileName: 'gallery_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     product: {
-        name: 'product',
-        label: 'Products',
+      name: 'product',
+      label: 'Products',
+      menu: 'Products',
+      exporterFileName: 'exportacion_product',
+      list: {
         menu: 'Products',
-        exporterFileName: 'exportacion_product',
-        list: {
-          menu: 'Products',
-          title: 'Products',
+        title: 'Products',
+      },
+      create: {
+        success: 'Product guardado con éxito',
+      },
+      update: {
+        success: 'Product guardado con éxito',
+      },
+      destroy: {
+        success: 'Product eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Product(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Product',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        slug: 'Slug',
+        tags: 'Tags',
+        video: 'Video',
+        specificationName: 'SpecificationName',
+        specificationDesciption: 'SpecificationDesciption',
+        isSpecification: 'IsSpecification',
+        details: 'Details',
+        photo: 'Photo',
+        discountPriceRange: 'DiscountPrice',
+        discountPrice: 'DiscountPrice',
+        previousPriceRange: 'PreviousPrice',
+        previousPrice: 'PreviousPrice',
+        stockRange: 'Stock',
+        stock: 'Stock',
+        metaKeywords: 'MetaKeywords',
+        metaDesctiption: 'MetaDesctiption',
+        status: 'Status',
+        isType: 'IsType',
+        dateRange: 'Date',
+        date: 'Date',
+        itemType: 'ItemType',
+        file: 'File',
+        link: 'Link',
+        fileType: 'FileType',
+        taxe: 'Taxe',
+        category: 'Category',
+        subcategory: 'Subcategory',
+        childcategory: 'Childcategory',
+        brand: 'Brand',
+        gallery: 'Gallery',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
-        create: {
-          success: 'Product guardado con éxito',
+        itemType: {
+          normal: 'Normal',
+          digitale: 'Digitale',
         },
-        update: {
-          success: 'Product guardado con éxito',
+        fileType: {
+          file: 'File',
+          link: 'Link',
         },
-        destroy: {
-          success: 'Product eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Product(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Product',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'slug': 'Slug',
-          'tags': 'Tags',
-          'video': 'Video',
-          'specificationName': 'SpecificationName',
-          'specificationDesciption': 'SpecificationDesciption',
-          'isSpecification': 'IsSpecification',
-          'details': 'Details',
-          'photo': 'Photo',
-          'discountPriceRange': 'DiscountPrice',
-          'discountPrice': 'DiscountPrice',
-          'previousPriceRange': 'PreviousPrice',
-          'previousPrice': 'PreviousPrice',
-          'stockRange': 'Stock',
-          'stock': 'Stock',
-          'metaKeywords': 'MetaKeywords',
-          'metaDesctiption': 'MetaDesctiption',
-          'status': 'Status',
-          'isType': 'IsType',
-          'dateRange': 'Date',
-          'date': 'Date',
-          'itemType': 'ItemType',
-          'file': 'File',
-          'link': 'Link',
-          'fileType': 'FileType',
-          'taxe': 'Taxe',
-          'category': 'Category',
-          'subcategory': 'Subcategory',
-          'childcategory': 'Childcategory',
-          'brand': 'Brand',
-          'gallery': 'Gallery',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-          'itemType': {
-            'normal': 'Normal',
-            'digitale': 'Digitale',
-          },
-          'fileType': {
-            'file': 'File',
-            'link': 'Link',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Product',
-        },
-        view: {
-          title: 'Ver Product',
-        },
-        importer: {
-          title: 'Importar Products',
-          fileName: 'product_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        isType: {
+          new_arrival: 'New Arrival',
+          feature_product: 'Features Product',
+          top_pdroduct: 'Top Product',
+          best_product: 'Best Product',
+          flash_deal_product: 'Flash Deal',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Product',
+      },
+      view: {
+        title: 'Ver Product',
+      },
+      importer: {
+        title: 'Importar Products',
+        fileName: 'product_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     shippingservice: {
-        name: 'shippingservice',
-        label: 'Shippingservices',
+      name: 'shippingservice',
+      label: 'Shippingservices',
+      menu: 'Shippingservices',
+      exporterFileName: 'exportacion_shippingservice',
+      list: {
         menu: 'Shippingservices',
-        exporterFileName: 'exportacion_shippingservice',
-        list: {
-          menu: 'Shippingservices',
-          title: 'Shippingservices',
-        },
-        create: {
-          success: 'Shippingservice guardado con éxito',
-        },
-        update: {
-          success: 'Shippingservice guardado con éxito',
-        },
-        destroy: {
-          success: 'Shippingservice eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Shippingservice(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Shippingservice',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'priceRange': 'Price',
-          'price': 'Price',
-          'status': 'Status',
-          'minimumPriceRange': 'MinimumPrice',
-          'minimumPrice': 'MinimumPrice',
-          'isCondition': 'IsCondition',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Shippingservice',
-        },
-        view: {
-          title: 'Ver Shippingservice',
-        },
-        importer: {
-          title: 'Importar Shippingservices',
-          fileName: 'shippingservice_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'Shippingservices',
+      },
+      create: {
+        success: 'Shippingservice guardado con éxito',
+      },
+      update: {
+        success: 'Shippingservice guardado con éxito',
+      },
+      destroy: {
+        success: 'Shippingservice eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Shippingservice(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Shippingservice',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        priceRange: 'Price',
+        price: 'Price',
+        status: 'Status',
+        minimumPriceRange: 'MinimumPrice',
+        minimumPrice: 'MinimumPrice',
+        isCondition: 'IsCondition',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Shippingservice',
+      },
+      view: {
+        title: 'Ver Shippingservice',
+      },
+      importer: {
+        title: 'Importar Shippingservices',
+        fileName: 'shippingservice_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     coupons: {
-        name: 'coupons',
-        label: 'Coupons',
+      name: 'coupons',
+      label: 'Coupons',
+      menu: 'Coupons',
+      exporterFileName: 'exportacion_coupons',
+      list: {
         menu: 'Coupons',
-        exporterFileName: 'exportacion_coupons',
-        list: {
-          menu: 'Coupons',
-          title: 'Coupons',
+        title: 'Coupons',
+      },
+      create: {
+        success: 'Coupons guardado con éxito',
+      },
+      update: {
+        success: 'Coupons guardado con éxito',
+      },
+      destroy: {
+        success: 'Coupons eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Coupons(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Coupons',
+      },
+      fields: {
+        id: 'Id',
+        title: 'Title',
+        codeName: 'CodeName',
+        discountRange: 'Discount',
+        discount: 'Discount',
+        noOfTimesRange: 'NoOfTimes',
+        noOfTimes: 'NoOfTimes',
+        status: 'Status',
+        type: 'Type',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
-        create: {
-          success: 'Coupons guardado con éxito',
-        },
-        update: {
-          success: 'Coupons guardado con éxito',
-        },
-        destroy: {
-          success: 'Coupons eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Coupons(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Coupons',
-        },
-        fields: {
-          id: 'Id',
-          'title': 'Title',
-          'codeName': 'CodeName',
-          'discountRange': 'Discount',
-          'discount': 'Discount',
-          'noOfTimesRange': 'NoOfTimes',
-          'noOfTimes': 'NoOfTimes',
-          'status': 'Status',
-          'type': 'Type',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-          'type': {
-            'Percentage (%)': 'Percentage (%)',
-            'amount ( TND)': 'Amount ( TND)',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Coupons',
-        },
-        view: {
-          title: 'Ver Coupons',
-        },
-        importer: {
-          title: 'Importar Coupons',
-          fileName: 'coupons_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        type: {
+          'Percentage (%)': 'Percentage (%)',
+          'amount ( TND)': 'Amount ( TND)',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Coupons',
+      },
+      view: {
+        title: 'Ver Coupons',
+      },
+      importer: {
+        title: 'Importar Coupons',
+        fileName: 'coupons_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     transaction: {
-        name: 'transaction',
-        label: 'Transactions',
+      name: 'transaction',
+      label: 'Transactions',
+      menu: 'Transactions',
+      exporterFileName: 'exportacion_transaction',
+      list: {
         menu: 'Transactions',
-        exporterFileName: 'exportacion_transaction',
-        list: {
-          menu: 'Transactions',
-          title: 'Transactions',
-        },
-        create: {
-          success: 'Transaction guardado con éxito',
-        },
-        update: {
-          success: 'Transaction guardado con éxito',
-        },
-        destroy: {
-          success: 'Transaction eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Transaction(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Transaction',
-        },
-        fields: {
-          id: 'Id',
-          'amountRange': 'Amount',
-          'amount': 'Amount',
-          'email': 'Email',
-          'tax': 'Tax',
-          'currencySign': 'CurrencySign',
-          'currencyValue': 'CurrencyValue',
-          'orderId': 'OrderId',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Transaction',
-        },
-        view: {
-          title: 'Ver Transaction',
-        },
-        importer: {
-          title: 'Importar Transactions',
-          fileName: 'transaction_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
-        },
+        title: 'Transactions',
       },
+      create: {
+        success: 'Transaction guardado con éxito',
+      },
+      update: {
+        success: 'Transaction guardado con éxito',
+      },
+      destroy: {
+        success: 'Transaction eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Transaction(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Transaction',
+      },
+      fields: {
+        id: 'Id',
+        amountRange: 'Amount',
+        amount: 'Amount',
+        email: 'Email',
+        tax: 'Tax',
+        currencySign: 'CurrencySign',
+        currencyValue: 'CurrencyValue',
+        orderId: 'OrderId',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Transaction',
+      },
+      view: {
+        title: 'Ver Transaction',
+      },
+      importer: {
+        title: 'Importar Transactions',
+        fileName: 'transaction_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     trackOrder: {
-        name: 'trackOrder',
-        label: 'TrackOrders',
+      name: 'trackOrder',
+      label: 'TrackOrders',
+      menu: 'TrackOrders',
+      exporterFileName: 'exportacion_trackOrder',
+      list: {
         menu: 'TrackOrders',
-        exporterFileName: 'exportacion_trackOrder',
-        list: {
-          menu: 'TrackOrders',
-          title: 'TrackOrders',
-        },
-        create: {
-          success: 'TrackOrder guardado con éxito',
-        },
-        update: {
-          success: 'TrackOrder guardado con éxito',
-        },
-        destroy: {
-          success: 'TrackOrder eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'TrackOrder(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar TrackOrder',
-        },
-        fields: {
-          id: 'Id',
-          'title': 'Title',
-          'item': 'Item',
-          'order': 'Order',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo TrackOrder',
-        },
-        view: {
-          title: 'Ver TrackOrder',
-        },
-        importer: {
-          title: 'Importar TrackOrders',
-          fileName: 'trackOrder_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
-        },
+        title: 'TrackOrders',
       },
+      create: {
+        success: 'TrackOrder guardado con éxito',
+      },
+      update: {
+        success: 'TrackOrder guardado con éxito',
+      },
+      destroy: {
+        success: 'TrackOrder eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'TrackOrder(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar TrackOrder',
+      },
+      fields: {
+        id: 'Id',
+        title: 'Title',
+        item: 'Item',
+        order: 'Order',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo TrackOrder',
+      },
+      view: {
+        title: 'Ver TrackOrder',
+      },
+      importer: {
+        title: 'Importar TrackOrders',
+        fileName: 'trackOrder_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     order: {
-        name: 'order',
-        label: 'Orders',
+      name: 'order',
+      label: 'Orders',
+      menu: 'Orders',
+      exporterFileName: 'exportacion_order',
+      list: {
         menu: 'Orders',
-        exporterFileName: 'exportacion_order',
-        list: {
-          menu: 'Orders',
-          title: 'Orders',
-        },
-        create: {
-          success: 'Order guardado con éxito',
-        },
-        update: {
-          success: 'Order guardado con éxito',
-        },
-        destroy: {
-          success: 'Order eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Order(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Order',
-        },
-        fields: {
-          id: 'Id',
-          'userId': 'UserId',
-          'cart': 'Cart',
-          'shipping': 'Shipping',
-          'discountRange': 'Discount',
-          'discount': 'Discount',
-          'paymentMethod': 'PaymentMethod',
-          'taxe': 'Taxe',
-          'transactionNumber': 'TransactionNumber',
-          'orderStatus': 'OrderStatus',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'orderStatus': {
-            'pending': 'Pending',
-            'in_progress': 'In_progress',
-            'delivered': 'Delivered',
-            'canceled': 'Canceled',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Order',
-        },
-        view: {
-          title: 'Ver Order',
-        },
-        importer: {
-          title: 'Importar Orders',
-          fileName: 'order_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'Orders',
+      },
+      create: {
+        success: 'Order guardado con éxito',
+      },
+      update: {
+        success: 'Order guardado con éxito',
+      },
+      destroy: {
+        success: 'Order eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Order(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Order',
+      },
+      fields: {
+        id: 'Id',
+        userId: 'UserId',
+        cart: 'Cart',
+        shipping: 'Shipping',
+        discountRange: 'Discount',
+        discount: 'Discount',
+        paymentMethod: 'PaymentMethod',
+        taxe: 'Taxe',
+        transactionNumber: 'TransactionNumber',
+        orderStatus: 'OrderStatus',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        orderStatus: {
+          pending: 'Pending',
+          in_progress: 'In_progress',
+          delivered: 'Delivered',
+          canceled: 'Canceled',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Order',
+      },
+      view: {
+        title: 'Ver Order',
+      },
+      importer: {
+        title: 'Importar Orders',
+        fileName: 'order_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     state: {
-        name: 'state',
-        label: 'States',
+      name: 'state',
+      label: 'States',
+      menu: 'States',
+      exporterFileName: 'exportacion_state',
+      list: {
         menu: 'States',
-        exporterFileName: 'exportacion_state',
-        list: {
-          menu: 'States',
-          title: 'States',
-        },
-        create: {
-          success: 'State guardado con éxito',
-        },
-        update: {
-          success: 'State guardado con éxito',
-        },
-        destroy: {
-          success: 'State eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'State(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar State',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'priceRange': 'Price',
-          'price': 'Price',
-          'status': 'Status',
-          'type': 'Type',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo State',
-        },
-        view: {
-          title: 'Ver State',
-        },
-        importer: {
-          title: 'Importar States',
-          fileName: 'state_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'States',
+      },
+      create: {
+        success: 'State guardado con éxito',
+      },
+      update: {
+        success: 'State guardado con éxito',
+      },
+      destroy: {
+        success: 'State eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'State(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar State',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        priceRange: 'Price',
+        price: 'Price',
+        status: 'Status',
+        type: 'Type',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo State',
+      },
+      view: {
+        title: 'Ver State',
+      },
+      importer: {
+        title: 'Importar States',
+        fileName: 'state_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     attributeOptions: {
-        name: 'attributeOptions',
-        label: 'AttributeOptions',
+      name: 'attributeOptions',
+      label: 'AttributeOptions',
+      menu: 'AttributeOptions',
+      exporterFileName: 'exportacion_attributeOptions',
+      list: {
         menu: 'AttributeOptions',
-        exporterFileName: 'exportacion_attributeOptions',
-        list: {
-          menu: 'AttributeOptions',
-          title: 'AttributeOptions',
-        },
-        create: {
-          success: 'AttributeOptions guardado con éxito',
-        },
-        update: {
-          success: 'AttributeOptions guardado con éxito',
-        },
-        destroy: {
-          success: 'AttributeOptions eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'AttributeOptions(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar AttributeOptions',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'priceRange': 'Price',
-          'price': 'Price',
-          'keyword': 'Keyword',
-          'item': 'Item',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo AttributeOptions',
-        },
-        view: {
-          title: 'Ver AttributeOptions',
-        },
-        importer: {
-          title: 'Importar AttributeOptions',
-          fileName: 'attributeOptions_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
-        },
+        title: 'AttributeOptions',
       },
+      create: {
+        success: 'AttributeOptions guardado con éxito',
+      },
+      update: {
+        success: 'AttributeOptions guardado con éxito',
+      },
+      destroy: {
+        success: 'AttributeOptions eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'AttributeOptions(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar AttributeOptions',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        priceRange: 'Price',
+        price: 'Price',
+        keyword: 'Keyword',
+        item: 'Item',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo AttributeOptions',
+      },
+      view: {
+        title: 'Ver AttributeOptions',
+      },
+      importer: {
+        title: 'Importar AttributeOptions',
+        fileName: 'attributeOptions_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     cart: {
-        name: 'cart',
-        label: 'Carts',
+      name: 'cart',
+      label: 'Carts',
+      menu: 'Carts',
+      exporterFileName: 'exportacion_cart',
+      list: {
         menu: 'Carts',
-        exporterFileName: 'exportacion_cart',
-        list: {
-          menu: 'Carts',
-          title: 'Carts',
-        },
-        create: {
-          success: 'Cart guardado con éxito',
-        },
-        update: {
-          success: 'Cart guardado con éxito',
-        },
-        destroy: {
-          success: 'Cart eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Cart(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Cart',
-        },
-        fields: {
-          id: 'Id',
-          'optionsId': 'OptionsId',
-          'attribute': 'Attribute',
-          'name': 'Name',
-          'slug': 'Slug',
-          'qtyRange': 'Qty',
-          'qty': 'Qty',
-          'priceRange': 'Price',
-          'price': 'Price',
-          'mainPriceRange': 'MainPrice',
-          'mainPrice': 'MainPrice',
-          'photo': 'Photo',
-          'itemType': 'ItemType',
-          'itemLN': 'ItemLN',
-          'itemLK': 'ItemLK',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Cart',
-        },
-        view: {
-          title: 'Ver Cart',
-        },
-        importer: {
-          title: 'Importar Carts',
-          fileName: 'cart_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
-        },
+        title: 'Carts',
       },
+      create: {
+        success: 'Cart guardado con éxito',
+      },
+      update: {
+        success: 'Cart guardado con éxito',
+      },
+      destroy: {
+        success: 'Cart eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Cart(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Cart',
+      },
+      fields: {
+        id: 'Id',
+        optionsId: 'OptionsId',
+        attribute: 'Attribute',
+        name: 'Name',
+        slug: 'Slug',
+        qtyRange: 'Qty',
+        qty: 'Qty',
+        priceRange: 'Price',
+        price: 'Price',
+        mainPriceRange: 'MainPrice',
+        mainPrice: 'MainPrice',
+        photo: 'Photo',
+        itemType: 'ItemType',
+        itemLN: 'ItemLN',
+        itemLK: 'ItemLK',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Cart',
+      },
+      view: {
+        title: 'Ver Cart',
+      },
+      importer: {
+        title: 'Importar Carts',
+        fileName: 'cart_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     paymentsettings: {
-        name: 'paymentsettings',
-        label: 'Paymentsettings',
+      name: 'paymentsettings',
+      label: 'Paymentsettings',
+      menu: 'Paymentsettings',
+      exporterFileName: 'exportacion_paymentsettings',
+      list: {
         menu: 'Paymentsettings',
-        exporterFileName: 'exportacion_paymentsettings',
-        list: {
-          menu: 'Paymentsettings',
-          title: 'Paymentsettings',
-        },
-        create: {
-          success: 'Paymentsettings guardado con éxito',
-        },
-        update: {
-          success: 'Paymentsettings guardado con éxito',
-        },
-        destroy: {
-          success: 'Paymentsettings eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Paymentsettings(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Paymentsettings',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'information': 'Information',
-          'uniqueKeywords': 'UniqueKeywords',
-          'photo': 'Photo',
-          'text': 'Text',
-          'status': 'Status',
-          'type': 'Type',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Paymentsettings',
-        },
-        view: {
-          title: 'Ver Paymentsettings',
-        },
-        importer: {
-          title: 'Importar Paymentsettings',
-          fileName: 'paymentsettings_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'Paymentsettings',
+      },
+      create: {
+        success: 'Paymentsettings guardado con éxito',
+      },
+      update: {
+        success: 'Paymentsettings guardado con éxito',
+      },
+      destroy: {
+        success: 'Paymentsettings eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Paymentsettings(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Paymentsettings',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        information: 'Information',
+        uniqueKeywords: 'UniqueKeywords',
+        photo: 'Photo',
+        text: 'Text',
+        status: 'Status',
+        type: 'Type',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Paymentsettings',
+      },
+      view: {
+        title: 'Ver Paymentsettings',
+      },
+      importer: {
+        title: 'Importar Paymentsettings',
+        fileName: 'paymentsettings_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
 
     review: {
-        name: 'review',
-        label: 'Reviews',
+      name: 'review',
+      label: 'Reviews',
+      menu: 'Reviews',
+      exporterFileName: 'exportacion_review',
+      list: {
         menu: 'Reviews',
-        exporterFileName: 'exportacion_review',
-        list: {
-          menu: 'Reviews',
-          title: 'Reviews',
-        },
-        create: {
-          success: 'Review guardado con éxito',
-        },
-        update: {
-          success: 'Review guardado con éxito',
-        },
-        destroy: {
-          success: 'Review eliminado con éxito',
-        },
-        destroyAll: {
-          success: 'Review(s) eliminado con éxito',
-        },
-        edit: {
-          title: 'Editar Review',
-        },
-        fields: {
-          id: 'Id',
-          'review': 'Review',
-          'ratingRange': 'Rating',
-          'rating': 'Rating',
-          'status': 'Status',
-          'subject': 'Subject',
-          'item': 'Item',
-          'user': 'User',
-          createdAt: 'Creado el',
-          updatedAt: 'Actualizado el',
-          createdAtRange: 'Creado el',
-        },
-        enumerators: {
-          'status': {
-            'enable': 'Enable',
-            'disable': 'Disable',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'Nuevo Review',
-        },
-        view: {
-          title: 'Ver Review',
-        },
-        importer: {
-          title: 'Importar Reviews',
-          fileName: 'review_import_template',
-          hint:
-            'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+        title: 'Reviews',
+      },
+      create: {
+        success: 'Review guardado con éxito',
+      },
+      update: {
+        success: 'Review guardado con éxito',
+      },
+      destroy: {
+        success: 'Review eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Review(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Review',
+      },
+      fields: {
+        id: 'Id',
+        review: 'Review',
+        ratingRange: 'Rating',
+        rating: 'Rating',
+        status: 'Status',
+        subject: 'Subject',
+        item: 'Item',
+        user: 'User',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
         },
       },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Review',
+      },
+      view: {
+        title: 'Ver Review',
+      },
+      importer: {
+        title: 'Importar Reviews',
+        fileName: 'review_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
   },
   auth: {
     tenants: 'Espacios de trabajo',
@@ -1348,8 +1250,7 @@ const es = {
     },
     select: 'Seleccionar espacio de trabajo',
     validation: {
-      url:
-        'La URL de su espacio de trabajo solo puede contener letras minúsculas, números y guiones (y debe comenzar con una letra o número).',
+      url: 'La URL de su espacio de trabajo solo puede contener letras minúsculas, números y guiones (y debe comenzar con una letra o número).',
     },
   },
   roles: {
@@ -1431,8 +1332,7 @@ const es = {
     importer: {
       title: 'Importar Usuarios',
       fileName: 'users_import_template',
-      hint:
-        'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio. Las relaciones deben ser la ID de los registros referenciados separados por espacio. Los roles deben ser los identificadores de roles separados por espacio.',
+      hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio. Las relaciones deben ser la ID de los registros referenciados separados por espacio. Los roles deben ser los identificadores de roles separados por espacio.',
     },
     errors: {
       userAlreadyExists:
@@ -1568,7 +1468,7 @@ const es = {
     error:
       'Lo sentimos, esta operación no está permitida en el modo de vista previa.',
   },
-  
+
   /* eslint-disable */
   validation: {
     mixed: {
@@ -1586,8 +1486,7 @@ const es = {
       length:
         '${path} debe tener exactamente ${length} caracteres',
       min: '${path} debe tener al menos ${min} caracteres',
-      max:
-        '${path} debe tener como máximo ${max} caracteres',
+      max: '${path} debe tener como máximo ${max} caracteres',
       matches:
         '${path} debe coincidir con lo siguiente: "${regex}"',
       email:
@@ -1623,15 +1522,13 @@ const es = {
         min === 1
           ? `${path} es obligatorio`
           : `'El campo ${path} debe tener al menos ${min} elementos`,
-      max:
-        'El campo ${path} debe tener elementos menores o iguales a ${max}',
+      max: 'El campo ${path} debe tener elementos menores o iguales a ${max}',
     },
   },
   fileUploader: {
     upload: 'Subir',
     image: 'Debes subir una imagen',
-    size:
-      'El archivo es muy grande. El tamaño máximo permitido es {0}',
+    size: 'El archivo es muy grande. El tamaño máximo permitido es {0}',
     formats: 'Formato inválido. Debe ser uno de: {0}.',
   },
   importer: {
@@ -1654,8 +1551,7 @@ const es = {
     },
     form: {
       downloadTemplate: 'Descargar la plantilla',
-      hint:
-        'Haga clic o arrastre el archivo a esta área para continuar.',
+      hint: 'Haga clic o arrastre el archivo a esta área para continuar.',
     },
     list: {
       discardConfirm:

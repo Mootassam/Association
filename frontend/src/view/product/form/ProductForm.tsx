@@ -78,10 +78,7 @@ const schema = yup.object().shape({
     i18n('entities.product.fields.stock'),
     {},
   ),
-  metaKeywords: yupFormSchemas.string(
-    i18n('entities.product.fields.metaKeywords'),
-    {},
-  ),
+
   metaDesctiption: yupFormSchemas.string(
     i18n('entities.product.fields.metaDesctiption'),
     {},
@@ -90,20 +87,19 @@ const schema = yup.object().shape({
     i18n('entities.product.fields.status'),
     {
       options: productEnumerators.status,
+      required: true,
     },
   ),
   isType: yupFormSchemas.string(
     i18n('entities.product.fields.isType'),
     {},
   ),
-  date: yupFormSchemas.date(
-    i18n('entities.product.fields.date'),
-    {},
-  ),
+
   itemType: yupFormSchemas.enumerator(
     i18n('entities.product.fields.itemType'),
     {
       options: productEnumerators.itemType,
+      required: true,
     },
   ),
   file: yupFormSchemas.files(
@@ -121,12 +117,14 @@ const schema = yup.object().shape({
     },
   ),
   taxe: yupFormSchemas.relationToOne(
-    i18n('entities.product.fields.taxe'),
+    i18n('entities.product.fields.taxes'),
     {},
   ),
   category: yupFormSchemas.relationToOne(
     i18n('entities.product.fields.category'),
-    {},
+    {
+      required: true,
+    },
   ),
   subcategory: yupFormSchemas.relationToOne(
     i18n('entities.product.fields.subcategory'),
@@ -168,13 +166,11 @@ function ProductForm(props) {
       discountPrice: record.discountPrice,
       previousPrice: record.previousPrice,
       stock: record.stock,
-      metaKeywords: record.metaKeywords,
+
       metaDesctiption: record.metaDesctiption,
       status: record.status,
       isType: record.isType,
-      date: record.date
-        ? moment(record.date, 'YYYY-MM-DD').toDate()
-        : null,
+
       itemType: record.itemType,
       file: record.file || [],
       link: record.link,
@@ -315,7 +311,7 @@ function ProductForm(props) {
                   {index ? (
                     <div className="input-group">
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-danger"
                         type="button"
                         onClick={() => removeFields(index)}
                       >
@@ -325,7 +321,7 @@ function ProductForm(props) {
                   ) : (
                     <div className="input-group">
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-success"
                         type="button"
                         onClick={() => addFields()}
                       >
@@ -337,15 +333,6 @@ function ProductForm(props) {
               ))}
 
               <div id="specificationForm">
-                <div className="">
-                  <InputFormItem
-                    name="metaKeywords"
-                    label={i18n(
-                      'entities.product.fields.metaKeywords',
-                    )}
-                    required={false}
-                  />
-                </div>
                 <div className="">
                   <InputFormItem
                     name="metaDesctiption"
@@ -383,7 +370,7 @@ function ProductForm(props) {
                   label={i18n(
                     'entities.product.fields.gallery',
                   )}
-                  required={false}
+                  required={true}
                   showCreate={!props.modal}
                   mode="multiple"
                 />
@@ -440,27 +427,27 @@ function ProductForm(props) {
                       ),
                     }),
                   )}
-                  required={false}
+                  required={true}
                 />
               </div>
               <div className="">
-                <InputFormItem
+                <SelectFormItem
                   name="isType"
                   label={i18n(
                     'entities.product.fields.isType',
                   )}
-                  required={false}
-                />
-              </div>
-              <div className="">
-                <DatePickerFormItem
-                  name="date"
-                  label={i18n(
-                    'entities.product.fields.date',
+                  options={productEnumerators.isType.map(
+                    (value) => ({
+                      value,
+                      label: i18n(
+                        `entities.product.enumerators.isType.${value}`,
+                      ),
+                    }),
                   )}
                   required={false}
                 />
               </div>
+
               <div className="">
                 <SelectFormItem
                   name="itemType"
@@ -475,7 +462,7 @@ function ProductForm(props) {
                       ),
                     }),
                   )}
-                  required={false}
+                  required={true}
                 />
               </div>
             </div>

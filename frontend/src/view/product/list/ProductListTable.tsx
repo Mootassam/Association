@@ -13,13 +13,10 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
-import GalleryListItem from 'src/view/gallery/list/GalleryListItem';
 
 function ProductListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -92,7 +89,7 @@ function ProductListTable(props) {
   return (
     <TableWrapper>
       <div className="table-responsive">
-        <table className="table table-striped     mt-2">
+        <table className="table table-striped mt-2">
           <thead className="thead">
             <tr>
               <TableColumnHeader className="th-checkbox">
@@ -114,62 +111,56 @@ function ProductListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.product.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.product.fields.photo',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'discountPrice'}
-                  label={i18n(
-                    'entities.product.fields.discountPrice',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.product.fields.status',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'isType'}
-                  label={i18n(
-                    'entities.product.fields.isType',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'itemType'}
-                  label={i18n(
-                    'entities.product.fields.itemType',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.product.fields.gallery',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n('entities.product.fields.name')}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.product.fields.photo',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'discountPrice'}
+                label={i18n(
+                  'entities.product.fields.discountPrice',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n(
+                  'entities.product.fields.status',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'isType'}
+                label={i18n(
+                  'entities.product.fields.isType',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'itemType'}
+                label={i18n(
+                  'entities.product.fields.itemType',
+                )}
+              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -236,9 +227,7 @@ function ProductListTable(props) {
                         )
                       : null}
                   </td>
-                  <td>
-                    <GalleryListItem value={row.gallery} />
-                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

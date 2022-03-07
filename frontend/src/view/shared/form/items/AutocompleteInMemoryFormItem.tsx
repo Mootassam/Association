@@ -113,7 +113,10 @@ function AutocompleteInMemoryFormItem(props) {
 
   const handleSelectMultiple = (values) => {
     if (!values) {
-      setValue(name, [], { shouldValidate: true, shouldDirty: true });
+      setValue(name, [], {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
       props.onChange && props.onChange([]);
       return;
     }
@@ -121,19 +124,28 @@ function AutocompleteInMemoryFormItem(props) {
     const newValue = values.map((value) =>
       mapper.toValue(value),
     );
-    setValue(name, newValue, { shouldValidate: true, shouldDirty: true });
+    setValue(name, newValue, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
     props.onChange && props.onChange(newValue);
   };
 
   const handleSelectOne = (value) => {
     if (!value) {
-      setValue(name, null, { shouldValidate: true, shouldDirty: true });
+      setValue(name, null, {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
       props.onChange && props.onChange(null);
       return;
     }
 
     const newValue = mapper.toValue(value);
-    setValue(name, newValue, { shouldValidate: true, shouldDirty: true });
+    setValue(name, newValue, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
     props.onChange && props.onChange(newValue);
   };
 

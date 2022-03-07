@@ -1,5 +1,6 @@
 import schemas from 'src/modules/shared/yup/yupImporterSchemas';
-import { i18n } from 'src/i18n';import productEnumerators from 'src/modules/product/productEnumerators';
+import { i18n } from 'src/i18n';
+import productEnumerators from 'src/modules/product/productEnumerators';
 import moment from 'moment';
 
 export default [
@@ -9,7 +10,7 @@ export default [
     schema: schemas.string(
       i18n('entities.product.fields.name'),
       {
-        "required": true
+        required: true,
       },
     ),
   },
@@ -39,7 +40,9 @@ export default [
   },
   {
     name: 'specificationName',
-    label: i18n('entities.product.fields.specificationName'),
+    label: i18n(
+      'entities.product.fields.specificationName',
+    ),
     schema: schemas.string(
       i18n('entities.product.fields.specificationName'),
       {},
@@ -47,9 +50,13 @@ export default [
   },
   {
     name: 'specificationDesciption',
-    label: i18n('entities.product.fields.specificationDesciption'),
+    label: i18n(
+      'entities.product.fields.specificationDesciption',
+    ),
     schema: schemas.string(
-      i18n('entities.product.fields.specificationDesciption'),
+      i18n(
+        'entities.product.fields.specificationDesciption',
+      ),
       {},
     ),
   },
@@ -67,7 +74,7 @@ export default [
     schema: schemas.string(
       i18n('entities.product.fields.details'),
       {
-        "required": true
+        required: true,
       },
     ),
   },
@@ -77,7 +84,7 @@ export default [
     schema: schemas.images(
       i18n('entities.product.fields.photo'),
       {
-        "required": true
+        required: true,
       },
     ),
   },
@@ -105,14 +112,7 @@ export default [
       {},
     ),
   },
-  {
-    name: 'metaKeywords',
-    label: i18n('entities.product.fields.metaKeywords'),
-    schema: schemas.string(
-      i18n('entities.product.fields.metaKeywords'),
-      {},
-    ),
-  },
+
   {
     name: 'metaDesctiption',
     label: i18n('entities.product.fields.metaDesctiption'),
@@ -127,7 +127,7 @@ export default [
     schema: schemas.enumerator(
       i18n('entities.product.fields.status'),
       {
-        "options": productEnumerators.status
+        options: productEnumerators.status,
       },
     ),
   },
@@ -146,7 +146,10 @@ export default [
       i18n('entities.product.fields.date'),
       {},
     ),
-   render: (value) => value && value instanceof Date ? moment(value).format('YYYY-MM-DD') : value,
+    render: (value) =>
+      value && value instanceof Date
+        ? moment(value).format('YYYY-MM-DD')
+        : value,
   },
   {
     name: 'itemType',
@@ -154,7 +157,7 @@ export default [
     schema: schemas.enumerator(
       i18n('entities.product.fields.itemType'),
       {
-        "options": productEnumerators.itemType
+        options: productEnumerators.itemType,
       },
     ),
   },
@@ -180,7 +183,7 @@ export default [
     schema: schemas.enumerator(
       i18n('entities.product.fields.fileType'),
       {
-        "options": productEnumerators.fileType
+        options: productEnumerators.fileType,
       },
     ),
   },
@@ -206,7 +209,7 @@ export default [
     schema: schemas.relationToOne(
       i18n('entities.product.fields.subcategory'),
       {
-        "required": true
+        required: true,
       },
     ),
   },
@@ -216,7 +219,7 @@ export default [
     schema: schemas.relationToOne(
       i18n('entities.product.fields.childcategory'),
       {
-        "required": true
+        required: true,
       },
     ),
   },

@@ -40,58 +40,56 @@ function ProductView(props) {
         label={i18n('entities.product.fields.video')}
         value={record.video}
       />
-
       <TextViewItem
-        label={i18n('entities.product.fields.specificationName')}
+        label={i18n(
+          'entities.product.fields.specificationName',
+        )}
         value={record.specificationName}
       />
-
       <TextViewItem
-        label={i18n('entities.product.fields.specificationDesciption')}
+        label={i18n(
+          'entities.product.fields.specificationDesciption',
+        )}
         value={record.specificationDesciption}
       />
-
       <TextViewItem
-        label={i18n('entities.product.fields.isSpecification')}
+        label={i18n(
+          'entities.product.fields.isSpecification',
+        )}
         value={
           record.isSpecification
             ? i18n('common.yes')
             : i18n('common.no')
         }
       />
-
       <TextViewItem
         label={i18n('entities.product.fields.details')}
         value={record.details}
       />
-
       <ImagesViewItem
         label={i18n('entities.product.fields.photo')}
         value={record.photo}
       />
-
       <TextViewItem
-        label={i18n('entities.product.fields.discountPrice')}
+        label={i18n(
+          'entities.product.fields.discountPrice',
+        )}
         value={record.discountPrice}
       />
-
       <TextViewItem
-        label={i18n('entities.product.fields.previousPrice')}
+        label={i18n(
+          'entities.product.fields.previousPrice',
+        )}
         value={record.previousPrice}
       />
-
       <TextViewItem
         label={i18n('entities.product.fields.stock')}
         value={record.stock}
       />
-
       <TextViewItem
-        label={i18n('entities.product.fields.metaKeywords')}
-        value={record.metaKeywords}
-      />
-
-      <TextViewItem
-        label={i18n('entities.product.fields.metaDesctiption')}
+        label={i18n(
+          'entities.product.fields.metaDesctiption',
+        )}
         value={record.metaDesctiption}
       />
 
@@ -126,9 +124,7 @@ function ProductView(props) {
       />
 
       <FilesViewItem
-        label={i18n(
-          'entities.product.fields.file',
-        )}
+        label={i18n('entities.product.fields.file')}
         value={record.file}
       />
 
@@ -163,7 +159,9 @@ function ProductView(props) {
       />
 
       <ChieldCategoriesViewItem
-        label={i18n('entities.product.fields.childcategory')}
+        label={i18n(
+          'entities.product.fields.childcategory',
+        )}
         value={record.childcategory}
       />
 

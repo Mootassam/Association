@@ -57,9 +57,7 @@ const schema = yup.object().shape({
   stockRange: yupFilterSchemas.integerRange(
     i18n('entities.product.fields.stockRange'),
   ),
-  metaKeywords: yupFilterSchemas.string(
-    i18n('entities.product.fields.metaKeywords'),
-  ),
+
   metaDesctiption: yupFilterSchemas.string(
     i18n('entities.product.fields.metaDesctiption'),
   ),
@@ -110,7 +108,7 @@ const emptyValues = {
   discountPriceRange: [],
   previousPriceRange: [],
   stockRange: [],
-  metaKeywords: null,
+
   metaDesctiption: null,
   status: null,
   isType: null,
@@ -178,10 +176,7 @@ const previewRenders = {
     label: i18n('entities.product.fields.stockRange'),
     render: filterRenders.range(),
   },
-  metaKeywords: {
-    label: i18n('entities.product.fields.metaKeywords'),
-    render: filterRenders.generic(),
-  },
+
   metaDesctiption: {
     label: i18n('entities.product.fields.metaDesctiption'),
     render: filterRenders.generic(),
@@ -401,14 +396,7 @@ function ProductListFilter(props) {
                     )}
                   />
                 </div>
-                <div className="col-lg-6 col-12">
-                  <InputFormItem
-                    name="metaKeywords"
-                    label={i18n(
-                      'entities.product.fields.metaKeywords',
-                    )}
-                  />
-                </div>
+
                 <div className="col-lg-6 col-12">
                   <InputFormItem
                     name="metaDesctiption"
