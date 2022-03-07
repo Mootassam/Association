@@ -5,7 +5,16 @@ const TableWrapper = styled.div`
     white-space: nowrap;
     border-collapse: collapse;
   }
-
+  .itemType {
+    background-color: #36a3f7;
+    padding: 0.5rem 0.4rem;
+    border-radius: 2rem;
+    color: #fff;
+  }
+  .p_items {
+  padding 0.3rem 1rem ;
+  cursor : pointer ;
+  }
   .table td,
   .table th {
     vertical-align: middle;

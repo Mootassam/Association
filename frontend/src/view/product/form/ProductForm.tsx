@@ -430,7 +430,7 @@ function ProductForm(props) {
                   required={true}
                 />
               </div>
-              {props.record.isType && (
+              {props.record && (
                 <div className="">
                   <SelectFormItem
                     name="isType"

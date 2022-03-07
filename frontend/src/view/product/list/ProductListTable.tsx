@@ -13,6 +13,7 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
+import productEnumerators from 'src/modules/product/productEnumerators';
 
 function ProductListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -213,13 +214,43 @@ function ProductListTable(props) {
                     {row.discountPrice}
                   </td>
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.product.enumerators.status.${row.status}`,
-                        )
-                      : null}
+                    <div className="dropdown show">
+                      <a
+                        className="btn btn-success dropdown-toggle"
+                        href="#"
+                        role="button"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        {row.status
+                          ? i18n(
+                              `entities.product.enumerators.status.${row.status}`,
+                            )
+                          : null}
+                      </a>
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="dropdownMenuLink"
+                      >
+                        {productEnumerators.status.map(
+                          (value) => (
+                            <p className="p_items">
+                              {i18n(
+                                `entities.product.enumerators.status.${value}`,
+                              )}
+                            </p>
+                          ),
+                        )}
+                      </div>
+                    </div>
                   </td>
-                  <td>{row.isType}</td>
+                  <td>
+                    <span className="itemType">
+                      {row.isType}
+                    </span>
+                  </td>
                   <td>
                     {row.itemType
                       ? i18n(
@@ -229,31 +260,67 @@ function ProductListTable(props) {
                   </td>
 
                   <td className="td-actions">
-                    <Link
-                      className="btn btn-link"
-                      to={`/product/${row.id}`}
-                    >
-                      {i18n('common.view')}
-                    </Link>
-                    {hasPermissionToEdit && (
-                      <Link
-                        className="btn btn-link"
-                        to={`/product/${row.id}/edit`}
+                    <div className="dropdown show">
+                      <a
+                        className="btn btn-warning dropdown-toggle"
+                        href="#"
+                        role="button"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
                       >
-                        {i18n('common.edit')}
-                      </Link>
-                    )}
-                    {hasPermissionToDestroy && (
-                      <button
-                        className="btn btn-link"
-                        type="button"
-                        onClick={() =>
-                          doOpenDestroyConfirmModal(row.id)
-                        }
+                        options
+                      </a>
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="dropdownMenuLink"
                       >
-                        {i18n('common.destroy')}
-                      </button>
-                    )}
+                        {hasPermissionToEdit && (
+                          <Link
+                            className="btn btn-link"
+                            to={`/product/${row.id}/edit`}
+                          >
+                            {i18n('common.edit')}
+                          </Link>
+                        )}
+                        <Link
+                          className="btn btn-link"
+                          to={`/product/${row.id}`}
+                        >
+                          {i18n('common.view')}
+                        </Link>
+                        {hasPermissionToEdit && (
+                          <Link
+                            className="btn btn-link"
+                            to={`/product/${row.id}/edit`}
+                          >
+                            {i18n('common.gallery')}
+                          </Link>
+                        )}
+                        {hasPermissionToEdit && (
+                          <Link
+                            className="btn btn-link"
+                            to={`/product/${row.id}/edit`}
+                          >
+                            {i18n('common.hightlight')}
+                          </Link>
+                        )}
+                        {hasPermissionToDestroy && (
+                          <button
+                            className="btn btn-link"
+                            type="button"
+                            onClick={() =>
+                              doOpenDestroyConfirmModal(
+                                row.id,
+                              )
+                            }
+                          >
+                            {i18n('common.destroy')}
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </td>
                 </tr>
               ))}

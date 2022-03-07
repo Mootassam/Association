@@ -23,6 +23,8 @@ const en = {
     select: 'Select',
     continue: 'Continue',
     filters: 'Filters',
+    gallery: 'Gallery Imgaes',
+    hightlight: 'Hightlight',
   },
 
   app: {
