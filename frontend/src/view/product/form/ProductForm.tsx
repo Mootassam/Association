@@ -430,23 +430,25 @@ function ProductForm(props) {
                   required={true}
                 />
               </div>
-              <div className="">
-                <SelectFormItem
-                  name="isType"
-                  label={i18n(
-                    'entities.product.fields.isType',
-                  )}
-                  options={productEnumerators.isType.map(
-                    (value) => ({
-                      value,
-                      label: i18n(
-                        `entities.product.enumerators.isType.${value}`,
-                      ),
-                    }),
-                  )}
-                  required={false}
-                />
-              </div>
+              {props.record.isType && (
+                <div className="">
+                  <SelectFormItem
+                    name="isType"
+                    label={i18n(
+                      'entities.product.fields.isType',
+                    )}
+                    options={productEnumerators.isType.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.product.enumerators.isType.${value}`,
+                        ),
+                      }),
+                    )}
+                    required={false}
+                  />
+                </div>
+              )}
 
               <div className="">
                 <SelectFormItem
