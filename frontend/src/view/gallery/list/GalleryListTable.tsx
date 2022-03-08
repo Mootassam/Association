@@ -15,10 +15,8 @@ import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
 
 function GalleryListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -113,11 +111,11 @@ function GalleryListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.gallery.fields.photos',
-                  )}
-                />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.gallery.fields.photos',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -162,9 +160,12 @@ function GalleryListTable(props) {
                       </label>
                     </div>
                   </th>
+
                   <td>
+                    {row.name} &nbsp; &nbsp; &nbsp;
                     <ImagesListView value={row.photos} />
                   </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
