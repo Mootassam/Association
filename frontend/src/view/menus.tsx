@@ -87,17 +87,23 @@ export default [
         icon: 'fas fa-chevron-right',
         label: i18n('entities.brands.menu'),
       },
-      {
-        path: '/gallery',
-        permissionRequired: permissions.galleryRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.gallery.menu'),
-      },
+      // {
+      //   path: '/gallery',
+      //   permissionRequired: permissions.galleryRead,
+      //   icon: 'fas fa-chevron-right',
+      //   label: i18n('entities.gallery.menu'),
+      // },
       {
         path: '/campaign-items',
         permissionRequired: permissions.campaignItemsRead,
         icon: 'fas fa-chevron-right',
         label: i18n('entities.campaignItems.menu'),
+      },
+      {
+        path: '/edit',
+        permissionRequired: permissions.editRead,
+        icon: 'fas fa-chevron-right',
+        label: i18n('entities.edit.menu'),
       },
       // {
       //   path: '/attribute-options',
@@ -127,12 +133,6 @@ export default [
     icon: 'fas fa-newspaper',
     label: i18n('e-commerce'),
     subMenue: [
-      {
-        path: '/edit',
-        permissionRequired: permissions.editRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.edit.menu'),
-      },
       {
         path: '/coupons',
         permissionRequired: permissions.couponsRead,

@@ -14,7 +14,8 @@ import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
 import productEnumerators from 'src/modules/product/productEnumerators';
-
+import actionsForm from 'src/modules/product/form/productFormActions';
+import selectorsForm from 'src/modules/product/form/productFormSelectors';
 function ProductListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
     useState(null);
@@ -215,37 +216,11 @@ function ProductListTable(props) {
                     {row.discountPrice}
                   </td>
                   <td>
-                    <div className="dropdown show">
-                      <a
-                        className="btn btn-success dropdown-toggle"
-                        href="#"
-                        role="button"
-                        id="dropdownMenuLink"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        {row.status
-                          ? i18n(
-                              `entities.product.enumerators.status.${row.status}`,
-                            )
-                          : null}
-                      </a>
-                      <div
-                        className="dropdown-menu"
-                        aria-labelledby="dropdownMenuLink"
-                      >
-                        {productEnumerators.status.map(
-                          (value) => (
-                            <p className="p_items">
-                              {i18n(
-                                `entities.product.enumerators.status.${value}`,
-                              )}
-                            </p>
-                          ),
-                        )}
-                      </div>
-                    </div>
+                    {row.status
+                      ? i18n(
+                          `entities.product.enumerators.status.${row.status}`,
+                        )
+                      : null}
                   </td>
                   <td>
                     <span className="itemType">
@@ -261,67 +236,35 @@ function ProductListTable(props) {
                   </td>
 
                   <td className="td-actions">
-                    <div className="dropdown show">
-                      <a
-                        className="btn btn-warning dropdown-toggle"
-                        href="#"
-                        role="button"
-                        id="dropdownMenuLink"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
+                    {hasPermissionToEdit && (
+                      <Link
+                        className="btn btn-link"
+                        to={`/product/${row.id}/edit`}
                       >
-                        options
-                      </a>
-                      <div
-                        className="dropdown-menu"
-                        aria-labelledby="dropdownMenuLink"
+                        {i18n('common.edit')}
+                      </Link>
+                    )}
+
+                    {hasPermissionToEdit && (
+                      <Link
+                        className="btn btn-link"
+                        to={`/gallery/${row.gallery.id}`}
                       >
-                        {hasPermissionToEdit && (
-                          <Link
-                            className="btn btn-link"
-                            to={`/product/${row.id}/edit`}
-                          >
-                            {i18n('common.edit')}
-                          </Link>
-                        )}
-                        <Link
-                          className="btn btn-link"
-                          to={`/product/${row.id}`}
-                        >
-                          {i18n('common.view')}
-                        </Link>
-                        {hasPermissionToEdit && (
-                          <Link
-                            className="btn btn-link"
-                            to={`/gallery/${row.gallery.id}`}
-                          >
-                            {i18n('common.gallery')}
-                          </Link>
-                        )}
-                        {hasPermissionToEdit && (
-                          <Link
-                            className="btn btn-link"
-                            to={`/product/${row.id}/edit`}
-                          >
-                            {i18n('common.hightlight')}
-                          </Link>
-                        )}
-                        {hasPermissionToDestroy && (
-                          <button
-                            className="btn btn-link"
-                            type="button"
-                            onClick={() =>
-                              doOpenDestroyConfirmModal(
-                                row.id,
-                              )
-                            }
-                          >
-                            {i18n('common.destroy')}
-                          </button>
-                        )}
-                      </div>
-                    </div>
+                        {i18n('common.gallery')}
+                      </Link>
+                    )}
+
+                    {hasPermissionToDestroy && (
+                      <button
+                        className="btn btn-link"
+                        type="button"
+                        onClick={() =>
+                          doOpenDestroyConfirmModal(row.id)
+                        }
+                      >
+                        {i18n('common.destroy')}
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}

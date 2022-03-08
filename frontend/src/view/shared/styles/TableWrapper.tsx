@@ -7,7 +7,7 @@ const TableWrapper = styled.div`
   }
   .itemType {
     background-color: #36a3f7;
-    padding: 0.5rem 0.4rem;
+    padding: 0.5rem 1rem;
     border-radius: 2rem;
     color: #fff;
     

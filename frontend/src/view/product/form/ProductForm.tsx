@@ -151,15 +151,14 @@ const schema = yup.object().shape({
 function ProductForm(props) {
   const [initialValues] = useState(() => {
     const record = props.record || {};
+    console.log(record);
 
     return {
       name: record.name,
       slug: record.slug,
       tags: record.tags,
       video: record.video,
-      specificationName: record.specificationName,
-      specificationDesciption:
-        record.specificationDesciption,
+      specifications: record.specifications || [],
       isSpecification: record.isSpecification,
       details: record.details,
       photo: record.photo || [],
