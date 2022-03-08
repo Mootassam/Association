@@ -29,6 +29,7 @@ function ProductListTable(props) {
   const loading = findLoading || destroyLoading;
 
   const rows = useSelector(selectors.selectRows);
+
   const pagination = useSelector(
     selectors.selectPagination,
   );
@@ -86,8 +87,6 @@ function ProductListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
-
-  console.log('THis is Rows', rows);
 
   return (
     <TableWrapper>
@@ -295,7 +294,7 @@ function ProductListTable(props) {
                         {hasPermissionToEdit && (
                           <Link
                             className="btn btn-link"
-                            to={`/product/${row.id}/edit`}
+                            to={`/gallery/${row.gallery.id}`}
                           >
                             {i18n('common.gallery')}
                           </Link>

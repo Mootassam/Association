@@ -13,11 +13,6 @@ import Review from '../models/review';
 
 class ProductRepository {
   static async create(data, options: IRepositoryOptions) {
-    console.log(
-      'Product Repository',
-      Object.values(data.specifications),
-    );
-
     const currentTenant =
       MongooseRepository.getCurrentTenant(options);
 
