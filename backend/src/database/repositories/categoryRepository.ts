@@ -11,15 +11,12 @@ import ChieldCategories from '../models/chieldCategories';
 import Product from '../models/product';
 
 class CategoryRepository {
-  
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const [record] = await Category(
       options.database,
@@ -30,7 +27,7 @@ class CategoryRepository {
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -42,20 +39,25 @@ class CategoryRepository {
       options,
     );
 
-    
-
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Category(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Category(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -65,9 +67,8 @@ class CategoryRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -81,26 +82,30 @@ class CategoryRepository {
 
     record = await this.findById(id, options);
 
-
-
     return record;
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Category(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Category(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
     }
 
-    await Category(options.database).deleteOne({ _id: id }, options);
+    await Category(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -164,9 +169,8 @@ class CategoryRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Category(options.database).countDocuments({
@@ -178,15 +182,17 @@ class CategoryRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Category(options.database)
-        .findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Category(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -199,12 +205,11 @@ class CategoryRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    
+
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
@@ -262,7 +267,7 @@ class CategoryRepository {
 
       if (filter.status) {
         criteriaAnd.push({
-          status: filter.status
+          status: filter.status,
         });
       }
 
@@ -335,14 +340,19 @@ class CategoryRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -352,10 +362,11 @@ class CategoryRepository {
           },
           {
             name: {
-              $regex: MongooseQueryUtils.escapeRegExp(search),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
-            }
-          },          
+            },
+          },
         ],
       });
     }
@@ -376,7 +387,12 @@ class CategoryRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Category(options.database).modelName,
@@ -400,8 +416,6 @@ class CategoryRepository {
     output.photo = await FileRepository.fillDownloadUrl(
       output.photo,
     );
-
-
 
     return output;
   }

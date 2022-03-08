@@ -9,26 +9,21 @@ import FileRepository from './fileRepository';
 import Product from '../models/product';
 
 class GalleryRepository {
-  
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
-    const [record] = await Gallery(
-      options.database,
-    ).create(
+    const [record] = await Gallery(options.database).create(
       [
         {
           ...data,
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -40,20 +35,25 @@ class GalleryRepository {
       options,
     );
 
-    
-
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Gallery(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Gallery(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -63,9 +63,8 @@ class GalleryRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -79,26 +78,30 @@ class GalleryRepository {
 
     record = await this.findById(id, options);
 
-
-
     return record;
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Gallery(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Gallery(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
     }
 
-    await Gallery(options.database).deleteOne({ _id: id }, options);
+    await Gallery(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -148,9 +151,8 @@ class GalleryRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Gallery(options.database).countDocuments({
@@ -162,15 +164,17 @@ class GalleryRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Gallery(options.database)
-        .findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Gallery(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -183,12 +187,11 @@ class GalleryRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    
+
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
@@ -199,8 +202,6 @@ class GalleryRepository {
           ['_id']: MongooseQueryUtils.uuid(filter.id),
         });
       }
-
-
 
       if (filter.createdAtRange) {
         const [start, end] = filter.createdAtRange;
@@ -258,14 +259,19 @@ class GalleryRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -273,7 +279,6 @@ class GalleryRepository {
           {
             _id: MongooseQueryUtils.uuid(search),
           },
-          
         ],
       });
     }
@@ -290,11 +295,16 @@ class GalleryRepository {
 
     return records.map((record) => ({
       id: record.id,
-      label: record.id,
+      label: record.name,
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Gallery(options.database).modelName,
@@ -318,8 +328,6 @@ class GalleryRepository {
     output.photos = await FileRepository.fillDownloadUrl(
       output.photos,
     );
-
-
 
     return output;
   }

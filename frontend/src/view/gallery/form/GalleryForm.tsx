@@ -8,12 +8,14 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Storage from 'src/security/storage';
 import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
+import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 
 const schema = yup.object().shape({
+  name: yupFormSchemas.string('name', { required: true }),
   photos: yupFormSchemas.images(
     i18n('entities.gallery.fields.photos'),
     {
-      "required": true
+      required: true,
     },
   ),
 });
@@ -23,6 +25,7 @@ function GalleryForm(props) {
     const record = props.record || {};
 
     return {
+      name: record.name,
       photos: record.photos || [],
     };
   });
@@ -49,9 +52,18 @@ function GalleryForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
+              <InputFormItem
+                name="name"
+                label={i18n('entities.product.fields.slug')}
+                required={true}
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
               <ImagesFormItem
                 name="photos"
-                label={i18n('entities.gallery.fields.photos')}
+                label={i18n(
+                  'entities.gallery.fields.photos',
+                )}
                 required={true}
                 storage={Storage.values.galleryPhotos}
                 max={undefined}

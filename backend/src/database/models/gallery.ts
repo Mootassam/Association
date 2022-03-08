@@ -11,16 +11,21 @@ export default (database) => {
 
   const GallerySchema = new Schema(
     {
+      name: {
+        type: String,
+        required: true,
+      },
       photos: [FileSchema],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'user',
       },
+
       updatedBy: {
         type: Schema.Types.ObjectId,
         ref: 'user',
@@ -39,8 +44,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   GallerySchema.virtual('id').get(function () {
     // @ts-ignore

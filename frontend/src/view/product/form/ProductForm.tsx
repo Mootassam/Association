@@ -142,7 +142,7 @@ const schema = yup.object().shape({
     i18n('entities.product.fields.brand'),
     {},
   ),
-  gallery: yupFormSchemas.relationToMany(
+  gallery: yupFormSchemas.relationToOne(
     i18n('entities.product.fields.gallery'),
     {},
   ),
@@ -372,7 +372,6 @@ function ProductForm(props) {
                   )}
                   required={true}
                   showCreate={!props.modal}
-                  mode="multiple"
                 />
               </div>
               <div className="">
@@ -545,7 +544,6 @@ function ProductForm(props) {
                   )}
                   required={true}
                   showCreate={!props.modal}
-                  mode="multiple"
                 />
               </div>
 

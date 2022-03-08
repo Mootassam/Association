@@ -87,6 +87,8 @@ function ProductListTable(props) {
     dispatch(actions.doToggleOneSelected(id));
   };
 
+  console.log('THis is Rows', rows);
+
   return (
     <TableWrapper>
       <div className="table-responsive">

@@ -28,24 +28,17 @@ export default (database) => {
       },
       status: {
         type: String,
-        enum: [
-          "enable",
-          "disable",
-          null
-        ],
+        enum: ['enable', 'disable', null],
       },
       type: {
         type: String,
         required: true,
-        enum: [
-          "Percentage (%)",
-          "amount ( TND)"
-        ],
+        enum: ['Percentage (%)', 'amount ( TND)'],
       },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -69,8 +62,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   CouponsSchema.virtual('id').get(function () {
     // @ts-ignore

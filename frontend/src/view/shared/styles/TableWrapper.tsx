@@ -10,11 +10,13 @@ const TableWrapper = styled.div`
     padding: 0.5rem 0.4rem;
     border-radius: 2rem;
     color: #fff;
+    
   }
   .p_items {
   padding 0.3rem 1rem ;
   cursor : pointer ;
   }
+
   .table td,
   .table th {
     vertical-align: middle;
