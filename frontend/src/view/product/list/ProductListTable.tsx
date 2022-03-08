@@ -30,6 +30,7 @@ function ProductListTable(props) {
   const loading = findLoading || destroyLoading;
 
   const rows = useSelector(selectors.selectRows);
+  console.log(rows);
 
   const pagination = useSelector(
     selectors.selectPagination,
@@ -248,7 +249,7 @@ function ProductListTable(props) {
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
-                        to={`/gallery/${row.gallery.id}`}
+                        to={`/gallery/${row.gallery?.id}`}
                       >
                         {i18n('common.gallery')}
                       </Link>
