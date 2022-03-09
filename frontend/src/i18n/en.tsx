@@ -179,13 +179,19 @@ const en = {
         id: 'Id',
         name: 'Name',
         slug: 'Slug',
+        status: 'Status',
         categoryId: 'CategoryId',
         subcategoryId: 'SubcategoryId',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',
       },
-      enumerators: {},
+      enumerators: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable',
+        },
+      },
       placeholders: {
         subcategoryId: ' ',
       },

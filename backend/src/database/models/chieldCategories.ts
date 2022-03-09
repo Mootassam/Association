@@ -25,6 +25,11 @@ export default (database) => {
         ref: 'subcategories',
         required: true,
       },
+      status: {
+        type: String,
+        required: true,
+        enum: ['enable', 'disable'],
+      },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',

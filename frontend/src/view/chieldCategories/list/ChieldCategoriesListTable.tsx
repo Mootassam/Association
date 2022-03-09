@@ -16,10 +16,8 @@ import CategoryListItem from 'src/view/category/list/CategoryListItem';
 import SubcategoriesListItem from 'src/view/subcategories/list/SubcategoriesListItem';
 
 function ChieldCategoriesListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -114,25 +112,31 @@ function ChieldCategoriesListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.chieldCategories.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.chieldCategories.fields.categoryId',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.chieldCategories.fields.subcategoryId',
-                  )}
-                />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.chieldCategories.fields.categoryId',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.chieldCategories.fields.subcategoryId',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.chieldCategories.fields.name',
+                )}
+              />
+
+              <TableColumnHeader
+                label={i18n(
+                  'entities.chieldCategories.fields.status',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -177,13 +181,19 @@ function ChieldCategoriesListTable(props) {
                       </label>
                     </div>
                   </th>
+                  <td>
+                    <CategoryListItem
+                      value={row.categoryId}
+                    />
+                  </td>
+                  <td>
+                    <SubcategoriesListItem
+                      value={row.subcategoryId}
+                    />
+                  </td>
                   <td>{row.name}</td>
-                  <td>
-                    <CategoryListItem value={row.categoryId} />
-                  </td>
-                  <td>
-                    <SubcategoriesListItem value={row.subcategoryId} />
-                  </td>
+
+                  <td>{row.status}</td>
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

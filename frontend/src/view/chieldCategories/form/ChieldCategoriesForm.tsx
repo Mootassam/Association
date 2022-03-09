@@ -9,6 +9,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import CategoryAutocompleteFormItem from 'src/view/category/autocomplete/CategoryAutocompleteFormItem';
 import SubcategoriesAutocompleteFormItem from 'src/view/subcategories/autocomplete/SubcategoriesAutocompleteFormItem';
+import subcategoriesEnumerators from 'src/modules/subcategories/subcategoriesEnumerators';
+import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -29,6 +31,12 @@ const schema = yup.object().shape({
       required: true,
     },
   ),
+  status: yupFormSchemas.enumerator(
+    i18n('entities.subcategories.fields.status'),
+    {
+      options: subcategoriesEnumerators.status,
+    },
+  ),
 });
 
 function ChieldCategoriesForm(props) {
@@ -40,6 +48,7 @@ function ChieldCategoriesForm(props) {
       slug: record.slug,
       categoryId: record.categoryId || [],
       subcategoryId: record.subcategoryId || [],
+      status: record.status,
     };
   });
 
@@ -102,6 +111,23 @@ function ChieldCategoriesForm(props) {
                 name="slug"
                 label={i18n(
                   'entities.chieldCategories.fields.slug',
+                )}
+                required={false}
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
+              <SelectFormItem
+                name="status"
+                label={i18n(
+                  'entities.subcategories.fields.status',
+                )}
+                options={subcategoriesEnumerators.status.map(
+                  (value) => ({
+                    value,
+                    label: i18n(
+                      `entities.chieldCategories.enumerators.status.${value}`,
+                    ),
+                  }),
                 )}
                 required={false}
               />

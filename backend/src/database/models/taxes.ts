@@ -21,15 +21,12 @@ export default (database) => {
       status: {
         type: String,
         required: true,
-        enum: [
-          "enable",
-          "disable"
-        ],
+        enum: ['enable', 'disable'],
       },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -53,8 +50,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   TaxesSchema.virtual('id').get(function () {
     // @ts-ignore

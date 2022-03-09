@@ -15,10 +15,8 @@ import Pagination from 'src/view/shared/table/Pagination';
 import CategoryListItem from 'src/view/category/list/CategoryListItem';
 
 function SubcategoriesListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -113,29 +111,30 @@ function SubcategoriesListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.subcategories.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.subcategories.fields.status',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.subcategories.fields.categoryId',
-                  )}
-                />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.subcategories.fields.categoryId',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.subcategories.fields.name',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n(
+                  'entities.subcategories.fields.status',
+                )}
+              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -180,6 +179,11 @@ function SubcategoriesListTable(props) {
                       </label>
                     </div>
                   </th>
+                  <td>
+                    <CategoryListItem
+                      value={row.categoryId}
+                    />
+                  </td>
                   <td>{row.name}</td>
                   <td>
                     {row.status
@@ -188,9 +192,7 @@ function SubcategoriesListTable(props) {
                         )
                       : null}
                   </td>
-                  <td>
-                    <CategoryListItem value={row.categoryId} />
-                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

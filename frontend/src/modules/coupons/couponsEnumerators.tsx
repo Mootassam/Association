@@ -1,12 +1,6 @@
 const couponsEnumerators = {
-  status: [
-    'enable',
-    'disable',
-  ],
-  type: [
-    'Percentage (%)',
-    'amount ( TND)',
-  ],
+  status: ['enable', 'disable'],
+  type: ['Percentage (%)', 'amount ( TND)'],
 };
 
 export default couponsEnumerators;

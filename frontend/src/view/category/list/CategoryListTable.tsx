@@ -15,10 +15,8 @@ import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
 
 function CategoryListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -30,6 +28,7 @@ function CategoryListTable(props) {
   const loading = findLoading || destroyLoading;
 
   const rows = useSelector(selectors.selectRows);
+
   const pagination = useSelector(
     selectors.selectPagination,
   );
@@ -113,20 +112,25 @@ function CategoryListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.category.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.category.fields.photo',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.category.fields.name',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.category.fields.photo',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.category.fields.status',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -171,10 +175,12 @@ function CategoryListTable(props) {
                       </label>
                     </div>
                   </th>
+
                   <td>{row.name}</td>
                   <td>
                     <ImagesListView value={row.photo} />
                   </td>
+                  <td>{row.status}</td>
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
