@@ -151,7 +151,6 @@ const schema = yup.object().shape({
 function ProductForm(props) {
   const [initialValues] = useState(() => {
     const record = props.record || {};
-    console.log(record);
 
     return {
       name: record.name,
@@ -184,14 +183,23 @@ function ProductForm(props) {
   });
 
   const [newForm, setNewform] = useState(() => {
-    return [
+    let item = [
       {
         specificationName: '',
         specificationDesciption: '',
       },
     ];
-  });
 
+    const record = props.record || {};
+    record?.specifications?.map((value) =>
+      item.push(value),
+    );
+
+    return item;
+  });
+  console.log('====================================');
+  console.log(newForm);
+  console.log('====================================');
   const form = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -281,10 +289,6 @@ function ProductForm(props) {
                   style={{ display: 'flex' }}
                   className="app__specification"
                 >
-                  {console.log(
-                    'InitialvaluesSpecifications',
-                    initialValues.specifications,
-                  )}
                   <div className="col-6">
                     <input
                       type="text"

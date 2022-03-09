@@ -138,7 +138,7 @@ function ProductToolbar(props) {
   return (
     <Toolbar>
       {hasPermissionToCreate && (
-        <Link to="/product/new">
+        <Link to="/product/choose">
           <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-plus" />{' '}
             {i18n('common.new')}

@@ -436,6 +436,13 @@ const privateRoutes = [
     exact: true,
   },
   {
+    path: '/product/choose',
+    loader: () =>
+      import('src/view/product/form/ChooseForm'),
+    permissionRequired: permissions.productCreate,
+    exact: true,
+  },
+  {
     path: '/product/new',
     loader: () =>
       import('src/view/product/form/ProductFormPage'),
