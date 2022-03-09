@@ -15,6 +15,7 @@ import * as yup from 'yup';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import ButtonIcon from 'src/view/shared/ButtonIcon';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'src/view/shared/Spinner';
 const schema = yup.object().shape({
   itemType: yupFormSchemas.enumerator(
     i18n('entities.product.fields.itemType'),
@@ -25,28 +26,30 @@ const schema = yup.object().shape({
   ),
 });
 function Highlights() {
+  const [dispatched, setDispatched] = useState(false);
   const dispatch = useDispatch();
   const match = useRouteMatch();
   const { id } = match.params.id;
-  const [dispatched, setDispatched] = useState(false);
-  const record = useSelector(selectors.selectRecord);
-  console.log(record);
-  const initLoading = useSelector(
-    selectors.selectInitLoading,
-  );
-  const saveLoading = useSelector(
-    selectors.selectSaveLoading,
-  );
   useEffect(() => {
     dispatch(actions.doInit(match.params.id));
     setDispatched(true);
   }, [dispatch, match.params.id]);
+
+  const record = useSelector(selectors.selectRecord);
+
   const [initialValues] = useState(() => {
     const item = record || {};
     return {
       isType: item.isType,
     };
   });
+
+  const initLoading = useSelector(
+    selectors.selectInitLoading,
+  );
+  const saveLoading = useSelector(
+    selectors.selectSaveLoading,
+  );
 
   const form = useForm({
     resolver: yupResolver(schema),
@@ -57,47 +60,62 @@ function Highlights() {
     dispatch(actions.doUpdate(id, values));
   };
   return (
-    <FormWrapper>
-      <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="row">
-            <div className="col-8">
-              <div id="specificationForm">
-                <div className="">
-                  <SelectFormItem
-                    name="isType"
-                    label={i18n(
-                      'entities.product.fields.isType',
-                    )}
-                    options={productEnumerators.isType.map(
-                      (value) => ({
-                        value,
-                        label: i18n(
-                          `entities.product.enumerators.isType.${value}`,
-                        ),
-                      }),
-                    )}
-                    required={false}
-                  />
-                </div>
-              </div>
-            </div>
+    <>
+      <Breadcrumb
+        items={[
+          [i18n('dashboard.menu'), '/'],
+          [i18n('entities.product.menu'), '/product'],
+          ['Higlights'],
+        ]}
+      />
 
-            <div className="form-buttons">
-              <button
-                className="btn btn-primary"
-                disabled={saveLoading}
-                type="button"
-                onClick={form.handleSubmit(onSubmit)}
-              >
-                <ButtonIcon
-                  loading={saveLoading}
-                  iconClass="far fa-save"
-                />{' '}
-                {i18n('common.save')}
-              </button>
-            </div>
-            {/* 
+      <ContentWrapper>
+        <PageTitle>{'Higlights'}</PageTitle>
+
+        {initLoading && <Spinner />}
+
+        {dispatched && !initLoading && (
+          <FormWrapper>
+            <FormProvider {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <div className="row">
+                  <div className="col-8">
+                    <div id="specificationForm">
+                      <div className="">
+                        <SelectFormItem
+                          name="isType"
+                          label={i18n(
+                            'entities.product.fields.isType',
+                          )}
+                          options={productEnumerators.isType.map(
+                            (value) => ({
+                              value,
+                              label: i18n(
+                                `entities.product.enumerators.isType.${value}`,
+                              ),
+                            }),
+                          )}
+                          required={false}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="form-buttons">
+                    <button
+                      className="btn btn-primary"
+                      disabled={saveLoading}
+                      type="button"
+                      onClick={form.handleSubmit(onSubmit)}
+                    >
+                      <ButtonIcon
+                        loading={saveLoading}
+                        iconClass="far fa-save"
+                      />{' '}
+                      {i18n('common.save')}
+                    </button>
+                  </div>
+                  {/* 
             <button
               className="btn btn-light"
               type="button"
@@ -107,7 +125,7 @@ function Highlights() {
               <i className="fas fa-undo"></i>{' '}
               {i18n('common.reset')}
             </button> */}
-            {/* 
+                  {/* 
             {props.onCancel ? (
               <button
                 className="btn btn-light"
@@ -119,10 +137,13 @@ function Highlights() {
                 {i18n('common.cancel')}
               </button>
             ) : null} */}
-          </div>
-        </form>
-      </FormProvider>
-    </FormWrapper>
+                </div>
+              </form>
+            </FormProvider>
+          </FormWrapper>
+        )}
+      </ContentWrapper>
+    </>
   );
 }
 

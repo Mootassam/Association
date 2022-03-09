@@ -23,13 +23,13 @@ const schema = yup.object().shape({
   status: yupFormSchemas.enumerator(
     i18n('entities.subcategories.fields.status'),
     {
-      "options": subcategoriesEnumerators.status
+      options: subcategoriesEnumerators.status,
     },
   ),
-  categoryId: yupFormSchemas.relationToMany(
+  categoryId: yupFormSchemas.relationToOne(
     i18n('entities.subcategories.fields.categoryId'),
     {
-      "required": true
+      required: true,
     },
   ),
 });
@@ -68,24 +68,40 @@ function SubcategoriesForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
+              <CategoryAutocompleteFormItem
+                name="categoryId"
+                label={i18n(
+                  'entities.subcategories.fields.categoryId',
+                )}
+                required={true}
+                showCreate={!props.modal}
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="name"
-                label={i18n('entities.subcategories.fields.name')}
+                label={i18n(
+                  'entities.subcategories.fields.name',
+                )}
                 required={false}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="slug"
-                label={i18n('entities.subcategories.fields.slug')}
+                label={i18n(
+                  'entities.subcategories.fields.slug',
+                )}
                 required={false}
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n('entities.subcategories.fields.status')}
+                label={i18n(
+                  'entities.subcategories.fields.status',
+                )}
                 options={subcategoriesEnumerators.status.map(
                   (value) => ({
                     value,
@@ -96,16 +112,7 @@ function SubcategoriesForm(props) {
                 )}
                 required={false}
               />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <CategoryAutocompleteFormItem  
-                name="categoryId"
-                label={i18n('entities.subcategories.fields.categoryId')}
-                required={true}
-                showCreate={!props.modal}
-                mode="multiple"
-              />
-            </div>
+            </div> */}
           </div>
 
           <div className="form-buttons">

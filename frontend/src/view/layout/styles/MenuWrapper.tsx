@@ -7,7 +7,7 @@ const MenuWrapper = styled.div`
     min-width: 200px;
     width: 200px;
     height: 100%;
-    background-color: #061e33;
+    background-color: #ffffff;
   }
   .menu-logo {
     padding: 8px;
@@ -51,7 +51,7 @@ const MenuWrapper = styled.div`
     color: #009efb;
   }
   .sidebar-menu li.active a {
-    color: #009efb;
+    background-color: #f2f2f2;
   }
   .menu-title {
     color: #333;
@@ -64,7 +64,7 @@ const MenuWrapper = styled.div`
     line-height: 40px;
   }
   .sidebar-menu li.menu-title a {
-    color: #009efb;
+    background-color: #f2f2f2;
     display: inline-block;
     float: right;
     padding: 0;
@@ -78,7 +78,7 @@ const MenuWrapper = styled.div`
     margin-bottom: 15px;
   }
   .sidebar-menu ul ul a.active {
-    color: #009efb;
+    background-color: #f2f2f2;
     text-decoration: underline;
   }
   .mobile-user-menu {
@@ -143,7 +143,7 @@ const MenuWrapper = styled.div`
     position: relative;
   }
   .sidebar-menu ul ul {
-    background-color: rgb(9, 40, 68);
+    background-color: #f7f7f7;
     display: none;
   }
   .sidebar-menu ul ul ul a {

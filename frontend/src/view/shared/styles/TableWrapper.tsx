@@ -6,7 +6,7 @@ const TableWrapper = styled.div`
     border-collapse: collapse;
   }
   .itemType {
-    background-color: #36a3f7;
+    background-color: #009efb;
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     color: #fff;

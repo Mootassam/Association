@@ -76,16 +76,16 @@ export default [
     label: i18n('entities.product.menu'),
     subMenue: [
       {
-        path: '/product',
-        permissionRequired: permissions.brandsRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.product.menu'),
-      },
-      {
         path: '/brands',
         permissionRequired: permissions.brandsRead,
         icon: 'fas fa-chevron-right',
         label: i18n('entities.brands.menu'),
+      },
+      {
+        path: '/product',
+        permissionRequired: permissions.brandsRead,
+        icon: 'fas fa-chevron-right',
+        label: i18n('entities.product.menu'),
       },
       // {
       //   path: '/gallery',

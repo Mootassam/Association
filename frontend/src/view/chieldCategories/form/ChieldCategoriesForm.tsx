@@ -26,7 +26,7 @@ const schema = yup.object().shape({
   subcategoryId: yupFormSchemas.relationToMany(
     i18n('entities.chieldCategories.fields.subcategoryId'),
     {
-      "required": true
+      required: true,
     },
   ),
 });
@@ -65,37 +65,47 @@ function ChieldCategoriesForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
+              <CategoryAutocompleteFormItem
+                name="categoryId"
+                label={i18n(
+                  'entities.chieldCategories.fields.categoryId',
+                )}
+                required={false}
+                showCreate={!props.modal}
+                mode="multiple"
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
+              <SubcategoriesAutocompleteFormItem
+                name="subcategoryId"
+                label={i18n(
+                  'entities.chieldCategories.fields.subcategoryId',
+                )}
+                placeholder={i18n(
+                  'entities.chieldCategories.placeholders.subcategoryId',
+                )}
+                required={true}
+                showCreate={!props.modal}
+                mode="multiple"
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="name"
-                label={i18n('entities.chieldCategories.fields.name')}
+                label={i18n(
+                  'entities.chieldCategories.fields.name',
+                )}
                 required={false}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="slug"
-                label={i18n('entities.chieldCategories.fields.slug')}
+                label={i18n(
+                  'entities.chieldCategories.fields.slug',
+                )}
                 required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <CategoryAutocompleteFormItem  
-                name="categoryId"
-                label={i18n('entities.chieldCategories.fields.categoryId')}
-                required={false}
-                showCreate={!props.modal}
-                mode="multiple"
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <SubcategoriesAutocompleteFormItem  
-                name="subcategoryId"
-                label={i18n('entities.chieldCategories.fields.subcategoryId')}
-              placeholder={i18n('entities.chieldCategories.placeholders.subcategoryId')}
-                required={true}
-                showCreate={!props.modal}
-                mode="multiple"
               />
             </div>
           </div>

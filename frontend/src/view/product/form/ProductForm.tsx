@@ -264,6 +264,47 @@ function ProductForm(props) {
                   required={false}
                 />
               </div>
+
+              <div className="">
+                <ImagesFormItem
+                  name="photo"
+                  label={i18n(
+                    'entities.product.fields.photo',
+                  )}
+                  required={true}
+                  storage={Storage.values.productPhoto}
+                  max={undefined}
+                />
+              </div>
+              <div className="">
+                <GalleryAutocompleteFormItem
+                  name="gallery"
+                  label={i18n(
+                    'entities.product.fields.gallery',
+                  )}
+                  required={true}
+                  showCreate={!props.modal}
+                />
+              </div>
+
+              <div className="">
+                <InputFormItem
+                  name="metaDesctiption"
+                  label={i18n(
+                    'entities.product.fields.metaDesctiption',
+                  )}
+                  required={false}
+                />
+              </div>
+
+              <InputFormItem
+                name="details"
+                label={i18n(
+                  'entities.product.fields.details',
+                )}
+                required={true}
+              />
+
               <div className="">
                 <InputFormItem
                   name="tags"
@@ -343,47 +384,6 @@ function ProductForm(props) {
                   )}
                 </div>
               ))}
-
-              <div className="">
-                <InputFormItem
-                  name="metaDesctiption"
-                  label={i18n(
-                    'entities.product.fields.metaDesctiption',
-                  )}
-                  required={false}
-                />
-              </div>
-
-              <InputFormItem
-                name="details"
-                label={i18n(
-                  'entities.product.fields.details',
-                )}
-                required={true}
-              />
-
-              <div className="">
-                <ImagesFormItem
-                  name="photo"
-                  label={i18n(
-                    'entities.product.fields.photo',
-                  )}
-                  required={true}
-                  storage={Storage.values.productPhoto}
-                  max={undefined}
-                />
-              </div>
-
-              <div className="">
-                <GalleryAutocompleteFormItem
-                  name="gallery"
-                  label={i18n(
-                    'entities.product.fields.gallery',
-                  )}
-                  required={true}
-                  showCreate={!props.modal}
-                />
-              </div>
               <div className="">
                 <SelectFormItem
                   name="fileType"

@@ -16,7 +16,7 @@ const schema = yup.object().shape({
   name: yupFormSchemas.string(
     i18n('entities.brands.fields.name'),
     {
-      "required": true
+      required: true,
     },
   ),
   slug: yupFormSchemas.string(
@@ -26,20 +26,20 @@ const schema = yup.object().shape({
   photo: yupFormSchemas.images(
     i18n('entities.brands.fields.photo'),
     {
-      "required": true
+      required: true,
     },
   ),
   status: yupFormSchemas.enumerator(
     i18n('entities.brands.fields.status'),
     {
-      "required": true,
-      "options": brandsEnumerators.status
+      required: true,
+      options: brandsEnumerators.status,
     },
   ),
   isPopular: yupFormSchemas.enumerator(
     i18n('entities.brands.fields.isPopular'),
     {
-      "options": brandsEnumerators.isPopular
+      options: brandsEnumerators.isPopular,
     },
   ),
 });
@@ -79,21 +79,6 @@ function BrandsForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="name"
-                label={i18n('entities.brands.fields.name')}
-                required={true}
-              autoFocus
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="slug"
-                label={i18n('entities.brands.fields.slug')}
-                required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
               <ImagesFormItem
                 name="photo"
                 label={i18n('entities.brands.fields.photo')}
@@ -103,9 +88,27 @@ function BrandsForm(props) {
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
+              <InputFormItem
+                name="name"
+                label={i18n('entities.brands.fields.name')}
+                required={true}
+                autoFocus
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
+              <InputFormItem
+                name="slug"
+                label={i18n('entities.brands.fields.slug')}
+                required={false}
+              />
+            </div>
+
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n('entities.brands.fields.status')}
+                label={i18n(
+                  'entities.brands.fields.status',
+                )}
                 options={brandsEnumerators.status.map(
                   (value) => ({
                     value,
@@ -120,7 +123,9 @@ function BrandsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="isPopular"
-                label={i18n('entities.brands.fields.isPopular')}
+                label={i18n(
+                  'entities.brands.fields.isPopular',
+                )}
                 options={brandsEnumerators.isPopular.map(
                   (value) => ({
                     value,
@@ -131,7 +136,7 @@ function BrandsForm(props) {
                 )}
                 required={false}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="form-buttons">

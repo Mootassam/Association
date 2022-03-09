@@ -38,7 +38,7 @@ const schema = yup.object().shape({
   status: yupFormSchemas.enumerator(
     i18n('entities.category.fields.status'),
     {
-      "options": categoryEnumerators.status
+      options: categoryEnumerators.status,
     },
   ),
   isFeature: yupFormSchemas.boolean(
@@ -89,24 +89,11 @@ function CategoryForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="name"
-                label={i18n('entities.category.fields.name')}
-                required={false}
-              autoFocus
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="slug"
-                label={i18n('entities.category.fields.slug')}
-                required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
               <ImagesFormItem
                 name="photo"
-                label={i18n('entities.category.fields.photo')}
+                label={i18n(
+                  'entities.category.fields.photo',
+                )}
                 required={false}
                 storage={Storage.values.categoryPhoto}
                 max={undefined}
@@ -114,22 +101,30 @@ function CategoryForm(props) {
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
-                name="metaKeywords"
-                label={i18n('entities.category.fields.metaKeywords')}
+                name="name"
+                label={i18n(
+                  'entities.category.fields.name',
+                )}
                 required={false}
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
-                name="metaDescriptions"
-                label={i18n('entities.category.fields.metaDescriptions')}
+                name="slug"
+                label={i18n(
+                  'entities.category.fields.slug',
+                )}
                 required={false}
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n('entities.category.fields.status')}
+                label={i18n(
+                  'entities.category.fields.status',
+                )}
                 options={categoryEnumerators.status.map(
                   (value) => ({
                     value,
@@ -144,13 +139,18 @@ function CategoryForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <SwitchFormItem
                 name="isFeature"
-                label={i18n('entities.category.fields.isFeature')}
+                label={i18n(
+                  'entities.category.fields.isFeature',
+                )}
               />
-            </div>
+            </div> */}
             <div className="col-lg-7 col-md-8 col-12">
               <InputNumberFormItem
                 name="serial"
-                label={i18n('entities.category.fields.serial')}  
+                placeholder={'1'}
+                label={i18n(
+                  'entities.category.fields.serial',
+                )}
                 required={false}
               />
             </div>

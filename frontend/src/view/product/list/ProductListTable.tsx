@@ -224,7 +224,11 @@ function ProductListTable(props) {
                   </td>
                   <td>
                     <span className="itemType">
-                      {row.isType}
+                      <Link
+                        to={`/highlights/${row.id}/edit`}
+                      >
+                        {row.isType}
+                      </Link>
                     </span>
                   </td>
                   <td>
