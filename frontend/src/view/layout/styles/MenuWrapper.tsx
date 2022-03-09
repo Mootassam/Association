@@ -13,12 +13,13 @@ const MenuWrapper = styled.div`
     padding: 8px;
     width: 100%;
     text-align: center;
-    height: 61px;
+    height: 60px;
     font-weight: 500;
     font-size: 1.5em;
   }
 
   .menu-logo a {
+    color: black;
     text-decoration: none;
   }
   .sidebar.opened {
