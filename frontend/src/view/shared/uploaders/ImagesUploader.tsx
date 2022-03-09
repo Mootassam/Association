@@ -14,6 +14,7 @@ function ImagesUploader(props) {
 
   const value = () => {
     const { value } = props;
+    console.log(value);
 
     if (!value) {
       return [];

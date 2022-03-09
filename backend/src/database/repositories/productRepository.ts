@@ -67,10 +67,11 @@ class ProductRepository {
       throw new Error404();
     }
 
-    await Product(options.database).updateOne(
+    await Product(options.database).updateMany(
       { _id: id },
       {
         ...data,
+        specifications: Object.values(data.specifications),
         updatedBy:
           MongooseRepository.getCurrentUser(options).id,
       },

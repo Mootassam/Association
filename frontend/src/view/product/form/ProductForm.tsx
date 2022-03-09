@@ -183,9 +183,14 @@ function ProductForm(props) {
     };
   });
 
-  const [newForm, setNewform] = useState([
-    { specificationName: '', specificationDesciption: '' },
-  ]);
+  const [newForm, setNewform] = useState(() => {
+    return [
+      {
+        specificationName: '',
+        specificationDesciption: '',
+      },
+    ];
+  });
 
   const form = useForm({
     resolver: yupResolver(schema),
@@ -276,6 +281,10 @@ function ProductForm(props) {
                   style={{ display: 'flex' }}
                   className="app__specification"
                 >
+                  {console.log(
+                    'InitialvaluesSpecifications',
+                    initialValues.specifications,
+                  )}
                   <div className="col-6">
                     <input
                       type="text"
@@ -331,36 +340,34 @@ function ProductForm(props) {
                 </div>
               ))}
 
-              <div id="specificationForm">
-                <div className="">
-                  <InputFormItem
-                    name="metaDesctiption"
-                    label={i18n(
-                      'entities.product.fields.metaDesctiption',
-                    )}
-                    required={false}
-                  />
-                </div>
-
+              <div className="">
                 <InputFormItem
-                  name="details"
+                  name="metaDesctiption"
                   label={i18n(
-                    'entities.product.fields.details',
+                    'entities.product.fields.metaDesctiption',
+                  )}
+                  required={false}
+                />
+              </div>
+
+              <InputFormItem
+                name="details"
+                label={i18n(
+                  'entities.product.fields.details',
+                )}
+                required={true}
+              />
+
+              <div className="">
+                <ImagesFormItem
+                  name="photo"
+                  label={i18n(
+                    'entities.product.fields.photo',
                   )}
                   required={true}
+                  storage={Storage.values.productPhoto}
+                  max={undefined}
                 />
-
-                <div className="">
-                  <ImagesFormItem
-                    name="photo"
-                    label={i18n(
-                      'entities.product.fields.photo',
-                    )}
-                    required={true}
-                    storage={Storage.values.productPhoto}
-                    max={undefined}
-                  />
-                </div>
               </div>
 
               <div className="">
