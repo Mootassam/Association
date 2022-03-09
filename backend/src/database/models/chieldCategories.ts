@@ -16,19 +16,19 @@ export default (database) => {
       slug: {
         type: String,
       },
-      categoryId: [{
+      categoryId: {
         type: Schema.Types.ObjectId,
         ref: 'category',
-      }],
-      subcategoryId: [{
+      },
+      subcategoryId: {
         type: Schema.Types.ObjectId,
         ref: 'subcategories',
         required: true,
-      }],
+      },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -53,8 +53,6 @@ export default (database) => {
     },
   );
 
-  
-
   ChieldCategoriesSchema.virtual('id').get(function () {
     // @ts-ignore
     return this._id.toHexString();
@@ -68,5 +66,8 @@ export default (database) => {
     getters: true,
   });
 
-  return database.model('chieldCategories', ChieldCategoriesSchema);
+  return database.model(
+    'chieldCategories',
+    ChieldCategoriesSchema,
+  );
 };

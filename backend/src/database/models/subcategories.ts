@@ -18,21 +18,17 @@ export default (database) => {
       },
       status: {
         type: String,
-        enum: [
-          "enable",
-          "disable",
-          null
-        ],
+        enum: ['enable', 'disable', null],
       },
-      categoryId: [{
+      categoryId: {
         type: Schema.Types.ObjectId,
         ref: 'category',
         required: true,
-      }],
+      },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -57,8 +53,6 @@ export default (database) => {
     },
   );
 
-  
-
   SubcategoriesSchema.virtual('id').get(function () {
     // @ts-ignore
     return this._id.toHexString();
@@ -72,5 +66,8 @@ export default (database) => {
     getters: true,
   });
 
-  return database.model('subcategories', SubcategoriesSchema);
+  return database.model(
+    'subcategories',
+    SubcategoriesSchema,
+  );
 };

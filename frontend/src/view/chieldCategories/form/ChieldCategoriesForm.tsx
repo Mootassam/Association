@@ -19,11 +19,11 @@ const schema = yup.object().shape({
     i18n('entities.chieldCategories.fields.slug'),
     {},
   ),
-  categoryId: yupFormSchemas.relationToMany(
+  categoryId: yupFormSchemas.relationToOne(
     i18n('entities.chieldCategories.fields.categoryId'),
     {},
   ),
-  subcategoryId: yupFormSchemas.relationToMany(
+  subcategoryId: yupFormSchemas.relationToOne(
     i18n('entities.chieldCategories.fields.subcategoryId'),
     {
       required: true,
@@ -72,7 +72,6 @@ function ChieldCategoriesForm(props) {
                 )}
                 required={false}
                 showCreate={!props.modal}
-                mode="multiple"
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
@@ -86,7 +85,6 @@ function ChieldCategoriesForm(props) {
                 )}
                 required={true}
                 showCreate={!props.modal}
-                mode="multiple"
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
