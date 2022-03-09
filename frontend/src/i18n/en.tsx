@@ -97,28 +97,28 @@ const en = {
     },
 
     subcategories: {
-      name: 'subcategories',
-      label: 'Subcategories',
-      menu: 'Subcategories',
-      exporterFileName: 'subcategories_export',
+      name: 'Sub Categories',
+      label: 'Sub Categories',
+      menu: 'Sub Categories',
+      exporterFileName: 'Sub Categories_export',
       list: {
-        menu: 'Subcategories',
-        title: 'Subcategories',
+        menu: 'Sub Categories',
+        title: 'Sub Categories',
       },
       create: {
-        success: 'Subcategories successfully saved',
+        success: 'Sub Categories successfully saved',
       },
       update: {
-        success: 'Subcategories successfully saved',
+        success: 'Sub Categories successfully saved',
       },
       destroy: {
-        success: 'Subcategories successfully deleted',
+        success: 'Sub Categories successfully deleted',
       },
       destroyAll: {
-        success: 'Subcategories(s) successfully deleted',
+        success: 'Sub Categories(s) successfully deleted',
       },
       edit: {
-        title: 'Edit Subcategories',
+        title: 'Edit Sub Categories',
       },
       fields: {
         id: 'Id',
@@ -139,49 +139,50 @@ const en = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New Subcategories',
+        title: 'New Sub Categories',
       },
       view: {
-        title: 'View Subcategories',
+        title: 'View Sub Categories',
       },
       importer: {
-        title: 'Import Subcategories',
-        fileName: 'subcategories_import_template',
+        title: 'Import Sub Categories',
+        fileName: 'Sub Categories_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
 
     chieldCategories: {
-      name: 'chieldCategories',
-      label: 'ChieldCategories',
-      menu: 'ChieldCategories',
-      exporterFileName: 'chieldCategories_export',
+      name: 'Chield Categories',
+      label: 'Chield Categories',
+      menu: 'Chield Categories',
+      exporterFileName: 'Chield Categories_export',
       list: {
-        menu: 'ChieldCategories',
-        title: 'ChieldCategories',
+        menu: 'Chield Categories',
+        title: 'Chield Categories',
       },
       create: {
-        success: 'ChieldCategories successfully saved',
+        success: 'Chield Categories successfully saved',
       },
       update: {
-        success: 'ChieldCategories successfully saved',
+        success: 'Chield Categories successfully saved',
       },
       destroy: {
-        success: 'ChieldCategories successfully deleted',
+        success: 'Chield Categories successfully deleted',
       },
       destroyAll: {
-        success: 'ChieldCategories(s) successfully deleted',
+        success:
+          'Chield Categories(s) successfully deleted',
       },
       edit: {
-        title: 'Edit ChieldCategories',
+        title: 'Edit Chield Categories',
       },
       fields: {
         id: 'Id',
         name: 'Name',
         slug: 'Slug',
         status: 'Status',
-        categoryId: 'CategoryId',
-        subcategoryId: 'SubcategoryId',
+        categoryId: 'Category',
+        subcategoryId: 'Sub Category',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',
@@ -197,14 +198,14 @@ const en = {
       },
       hints: {},
       new: {
-        title: 'New ChieldCategories',
+        title: 'New Chield Categories',
       },
       view: {
-        title: 'View ChieldCategories',
+        title: 'View Chield Categories',
       },
       importer: {
-        title: 'Import ChieldCategories',
-        fileName: 'chieldCategories_import_template',
+        title: 'Import Chield Categories',
+        fileName: 'Chield Categories_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
@@ -380,28 +381,28 @@ const en = {
     },
 
     campaignItems: {
-      name: 'campaignItems',
-      label: 'CampaignItems',
-      menu: 'CampaignItems',
-      exporterFileName: 'campaignItems_export',
+      name: 'Campaign Offres',
+      label: 'Campaign Offres',
+      menu: 'Campaign Offres',
+      exporterFileName: 'Campaign Offres_export',
       list: {
-        menu: 'CampaignItems',
-        title: 'CampaignItems',
+        menu: 'Campaign Offres',
+        title: 'Campaign Offres',
       },
       create: {
-        success: 'CampaignItems successfully saved',
+        success: 'Campaign Offres successfully saved',
       },
       update: {
-        success: 'CampaignItems successfully saved',
+        success: 'Campaign Offres successfully saved',
       },
       destroy: {
-        success: 'CampaignItems successfully deleted',
+        success: 'Campaign Offres successfully deleted',
       },
       destroyAll: {
-        success: 'CampaignItems(s) successfully deleted',
+        success: 'Campaign Offres(s) successfully deleted',
       },
       edit: {
-        title: 'Edit CampaignItems',
+        title: 'Edit Campaign Offres',
       },
       fields: {
         id: 'Id',
@@ -425,14 +426,14 @@ const en = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New CampaignItems',
+        title: 'New Campaign Offres',
       },
       view: {
-        title: 'View CampaignItems',
+        title: 'View Campaign Offres',
       },
       importer: {
-        title: 'Import CampaignItems',
-        fileName: 'campaignItems_import_template',
+        title: 'Import Campaign Offres',
+        fileName: 'Campaign Offres_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
@@ -538,7 +539,7 @@ const en = {
         taxe: 'Taxe',
         category: 'Category',
         subcategory: 'Subcategory',
-        childcategory: 'Childcategory',
+        childcategory: 'Child Category',
         brand: 'Brand',
         gallery: 'Gallery',
         createdAt: 'Created at',
@@ -582,13 +583,13 @@ const en = {
     },
 
     shippingservice: {
-      name: 'shippingservice',
-      label: 'Shippingservices',
-      menu: 'Shippingservices',
+      name: 'Shipping',
+      label: 'Shipping',
+      menu: 'Shipping',
       exporterFileName: 'shippingservice_export',
       list: {
-        menu: 'Shippingservices',
-        title: 'Shippingservices',
+        menu: 'Shipping',
+        title: 'Shipping',
       },
       create: {
         success: 'Shippingservice successfully saved',
@@ -603,7 +604,7 @@ const en = {
         success: 'Shippingservice(s) successfully deleted',
       },
       edit: {
-        title: 'Edit Shippingservice',
+        title: 'Edit Shipping',
       },
       fields: {
         id: 'Id',
@@ -627,13 +628,13 @@ const en = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New Shippingservice',
+        title: 'New Shipping',
       },
       view: {
-        title: 'View Shippingservice',
+        title: 'View Shipping',
       },
       importer: {
-        title: 'Import Shippingservices',
+        title: 'Import Shipping',
         fileName: 'shippingservice_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
