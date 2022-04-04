@@ -82,7 +82,10 @@ function SelectFormItem(props) {
 
   const handleSelectMultiple = (values) => {
     if (!values) {
-      setValue(name, [], { shouldValidate: true, shouldDirty: true });
+      setValue(name, [], {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
       props.onChange && props.onChange([]);
       return;
     }
@@ -91,18 +94,27 @@ function SelectFormItem(props) {
       .map((data) => (data ? data.value : data))
       .filter((value) => value != null);
 
-    setValue(name, newValue, { shouldValidate: true, shouldDirty: true });
+    setValue(name, newValue, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
     props.onChange && props.onChange(newValue);
   };
 
   const handleSelectOne = (data) => {
     if (!data) {
-      setValue(name, null, { shouldValidate: true, shouldDirty: true });
+      setValue(name, null, {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
       props.onChange && props.onChange(null);
       return;
     }
 
-    setValue(name, data.value, { shouldValidate: true, shouldDirty: true });
+    setValue(name, data.value, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
     props.onChange && props.onChange(data.value);
   };
 

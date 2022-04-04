@@ -24,7 +24,7 @@ export default (database) => {
       video: {
         type: String,
       },
-      specifications: [
+      detailspecification: [
         {
           specificationName: { type: String },
           specificationDesciption: { type: String },

@@ -149,26 +149,31 @@ const schema = yup.object().shape({
 });
 
 function ProductForm(props) {
+  const [newForm, setNewform] = useState([
+    {
+      specificationName: '',
+      specificationDesciption: '',
+    },
+  ]);
   const [initialValues] = useState(() => {
     const record = props.record || {};
-
+    if (props.isEditing) {
+      setNewform(record.detailspecification);
+    }
     return {
       name: record.name,
       slug: record.slug,
       tags: record.tags,
       video: record.video,
-      specifications: record.specifications || [],
       isSpecification: record.isSpecification,
       details: record.details,
       photo: record.photo || [],
       discountPrice: record.discountPrice,
       previousPrice: record.previousPrice,
       stock: record.stock,
-
       metaDesctiption: record.metaDesctiption,
       status: record.status,
       isType: record.isType,
-
       itemType: record.itemType,
       file: record.file || [],
       link: record.link,
@@ -182,24 +187,6 @@ function ProductForm(props) {
     };
   });
 
-  const [newForm, setNewform] = useState(() => {
-    let item = [
-      {
-        specificationName: '',
-        specificationDesciption: '',
-      },
-    ];
-
-    const record = props.record || {};
-    record?.specifications?.map((value) =>
-      item.push(value),
-    );
-
-    return item;
-  });
-  console.log('====================================');
-  console.log(newForm);
-  console.log('====================================');
   const form = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -229,7 +216,7 @@ function ProductForm(props) {
   const onSubmit = (values) => {
     props.onSubmit(props.record?.id, {
       ...values,
-      specifications: { ...newForm },
+      detailspecification: { ...newForm },
     });
   };
 
