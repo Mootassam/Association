@@ -47,7 +47,10 @@ function AttributeOptionsFormPage(props) {
       <Breadcrumb
         items={[
           [i18n('dashboard.menu'), '/'],
-          [i18n('entities.attributeOptions.menu'), '/attribute-options'],
+          [
+            i18n('entities.attributeOptions.menu'),
+            '/attribute-options',
+          ],
           [title],
         ]}
       />
@@ -64,7 +67,9 @@ function AttributeOptionsFormPage(props) {
             record={record}
             isEditing={isEditing}
             onSubmit={doSubmit}
-            onCancel={() => getHistory().push('/attribute-options')}
+            onCancel={() =>
+              getHistory().push('/attribute-options')
+            }
           />
         )}
       </ContentWrapper>

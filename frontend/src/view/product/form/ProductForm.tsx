@@ -371,44 +371,50 @@ function ProductForm(props) {
                   )}
                 </div>
               ))}
-              <div className="">
-                <SelectFormItem
-                  name="fileType"
-                  label={i18n(
-                    'entities.product.fields.fileType',
-                  )}
-                  options={productEnumerators.fileType.map(
-                    (value) => ({
-                      value,
-                      label: i18n(
-                        `entities.product.enumerators.fileType.${value}`,
-                      ),
-                    }),
-                  )}
-                  required={false}
-                />
-              </div>
-              <div className="">
-                <InputFormItem
-                  name="link"
-                  label={i18n(
-                    'entities.product.fields.link',
-                  )}
-                  required={false}
-                />
-              </div>
-              <div className="">
-                <FilesFormItem
-                  name="file"
-                  label={i18n(
-                    'entities.product.fields.file',
-                  )}
-                  required={false}
-                  storage={Storage.values.productFile}
-                  max={undefined}
-                  formats={undefined}
-                />
-              </div>
+
+              {props.nameForm === 'digital' && (
+                <>
+                  <div className="">
+                    <SelectFormItem
+                      name="fileType"
+                      label={i18n(
+                        'entities.product.fields.fileType',
+                      )}
+                      options={productEnumerators.fileType.map(
+                        (value) => ({
+                          value,
+                          label: i18n(
+                            `entities.product.enumerators.fileType.${value}`,
+                          ),
+                        }),
+                      )}
+                      required={false}
+                    />
+                  </div>
+                  <div className="">
+                    <InputFormItem
+                      name="link"
+                      label={i18n(
+                        'entities.product.fields.link',
+                      )}
+                      required={false}
+                    />
+                  </div>
+                  <div className="">
+                    <FilesFormItem
+                      name="file"
+                      label={i18n(
+                        'entities.product.fields.file',
+                      )}
+                      required={false}
+                      storage={Storage.values.productFile}
+                      max={undefined}
+                      formats={undefined}
+                    />
+                  </div>
+                </>
+              )}
+
               <div className="">
                 <SelectFormItem
                   name="status"

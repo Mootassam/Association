@@ -10,11 +10,12 @@ import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import Spinner from 'src/view/shared/Spinner';
 import PageTitle from 'src/view/shared/styles/PageTitle';
-
 function ProductFormPage(props) {
   const [dispatched, setDispatched] = useState(false);
   const dispatch = useDispatch();
   const match = useRouteMatch();
+
+  const name = match.params?.name;
 
   const initLoading = useSelector(
     selectors.selectInitLoading,
@@ -63,6 +64,7 @@ function ProductFormPage(props) {
             initLoading={initLoading}
             record={record}
             isEditing={isEditing}
+            nameForm={name}
             onSubmit={doSubmit}
             onCancel={() => getHistory().push('/product')}
           />

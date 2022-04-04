@@ -5,6 +5,9 @@ import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
 import { Link } from 'react-router-dom';
 const ChooseForm = () => {
+  let physical = 'physical';
+  let digital = 'digital';
+
   return (
     <>
       <Breadcrumb
@@ -19,7 +22,7 @@ const ChooseForm = () => {
 
         <div className="row">
           <div className="col-sm-6 col-md-6">
-            <Link to="/product/new">
+            <Link to={`/product/new/${physical}`}>
               <a className="card card-stats card-round">
                 <div className="card-body">
                   <div className="text-center py-3">
@@ -41,7 +44,7 @@ const ChooseForm = () => {
             </Link>
           </div>
           <div className="col-sm-6 col-md-6">
-            <Link to="/product/new">
+            <Link to={`/product/new/${digital}`}>
               <a className="card card-stats card-round">
                 <div className="card-body">
                   <div className="text-center py-3">
