@@ -149,6 +149,10 @@ const schema = yup.object().shape({
 });
 
 function ProductForm(props) {
+  var checkboxes = document.querySelectorAll(
+    'input[type=checkbox][name=isSpecification]',
+  );
+
   const [newForm, setNewform] = useState([
     {
       specificationName: '',
@@ -310,67 +314,70 @@ function ProductForm(props) {
                   )}
                 />
               </div>
-
-              {newForm.map((item, index) => (
-                <div
-                  key={index + `div`}
-                  style={{ display: 'flex' }}
-                  className="app__specification"
-                >
-                  <div className="col-6">
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="specificationName"
-                      value={item.specificationName || ''}
-                      placeholder={i18n(
-                        'entities.product.fields.specificationName',
-                      )}
-                      onChange={(e) =>
-                        handleChange(e, index)
-                      }
-                    />
-                  </div>
-                  <div className="col-5">
-                    <input
-                      className="form-control"
-                      type="text"
-                      name="specificationDesciption"
-                      value={
-                        item.specificationDesciption || ''
-                      }
-                      placeholder={i18n(
-                        'entities.product.fields.specificationDesciption',
-                      )}
-                      onChange={(e) =>
-                        handleChange(e, index)
-                      }
-                    />
-                  </div>
-
-                  {index ? (
-                    <div className="input-group">
-                      <button
-                        className="btn btn-danger"
-                        type="button"
-                        onClick={() => removeFields(index)}
-                      >
-                        <ButtonIcon iconClass="fas fa-minus" />
-                      </button>
+              {props.record.isSpecification &&
+                newForm.map((item, index) => (
+                  <div
+                    key={index + `div`}
+                    style={{ display: 'flex' }}
+                    className="app__specification"
+                  >
+                    <div className="col-6">
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="specificationName"
+                        value={item.specificationName || ''}
+                        placeholder={i18n(
+                          'entities.product.fields.specificationName',
+                        )}
+                        onChange={(e) =>
+                          handleChange(e, index)
+                        }
+                      />
                     </div>
-                  ) : (
-                    <div className="input-group">
-                      <button
-                        className="btn btn-success"
-                        type="button"
-                        onClick={() => addFields()}
-                      >
-                        <ButtonIcon iconClass="fas fa-plus" />
-                      </button>
+                    <div className="col-5">
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="specificationDesciption"
+                        value={
+                          item.specificationDesciption || ''
+                        }
+                        placeholder={i18n(
+                          'entities.product.fields.specificationDesciption',
+                        )}
+                        onChange={(e) =>
+                          handleChange(e, index)
+                        }
+                      />
                     </div>
-                  )}
-                </div>
-              ))}
+
+                    {index ? (
+                      <div className="input-group">
+                        <button
+                          className="btn btn-danger"
+                          type="button"
+                          onClick={() =>
+                            removeFields(index)
+                          }
+                        >
+                          <ButtonIcon iconClass="fas fa-minus" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="input-group">
+                        <button
+                          className="btn btn-success"
+                          type="button"
+                          onClick={() => addFields()}
+                        >
+                          <ButtonIcon iconClass="fas fa-plus" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              {}
 
               {props.nameForm === 'digital' && (
                 <>
