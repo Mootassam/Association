@@ -194,12 +194,12 @@ function SubcategoriesListTable(props) {
                   </td>
 
                   <td className="td-actions">
-                    <Link
+                    {/* <Link
                       className="btn btn-link"
                       to={`/subcategories/${row.id}`}
                     >
                       {i18n('common.view')}
-                    </Link>
+                    </Link> */}
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"

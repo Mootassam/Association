@@ -123,7 +123,7 @@ const es = {
         name: 'Name',
         slug: 'Slug',
         status: 'Status',
-        categoryId: 'CategoryId',
+        categoryId: 'Category',
         createdAt: 'Creado el',
         updatedAt: 'Actualizado el',
         createdAtRange: 'Creado el',

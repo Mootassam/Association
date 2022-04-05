@@ -125,7 +125,7 @@ const en = {
         name: 'Name',
         slug: 'Slug',
         status: 'Status',
-        categoryId: 'CategoryId',
+        categoryId: 'Category',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',

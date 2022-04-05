@@ -13,6 +13,7 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
+import actionsForm from 'src/modules/category/form/categoryFormActions';
 
 function CategoryListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -87,6 +88,10 @@ function CategoryListTable(props) {
     dispatch(actions.doToggleOneSelected(id));
   };
 
+  const formSubmit = (id, e) => {
+    let data = { status: e.target.value };
+    dispatch(actionsForm.doUpdate(id, data));
+  };
   return (
     <TableWrapper>
       <div className="table-responsive">
@@ -113,17 +118,17 @@ function CategoryListTable(props) {
                 )}
               </TableColumnHeader>
               <TableColumnHeader
+                label={i18n(
+                  'entities.category.fields.photo',
+                )}
+              />
+              <TableColumnHeader
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
                 name={'name'}
                 label={i18n(
                   'entities.category.fields.name',
-                )}
-              />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.category.fields.photo',
                 )}
               />
               <TableColumnHeader
@@ -175,19 +180,33 @@ function CategoryListTable(props) {
                       </label>
                     </div>
                   </th>
-
-                  <td>{row.name}</td>
                   <td>
                     <ImagesListView value={row.photo} />
                   </td>
-                  <td>{row.status}</td>
+                  <td>{row.name}</td>
+
+                  <td>
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      <option value="Enable">Enable</option>
+                      <option value="Disable">
+                        Disable
+                      </option>
+                    </select>
+                    {/* {row.status} */}
+                  </td>
                   <td className="td-actions">
-                    <Link
+                    {/* <Link
                       className="btn btn-link"
                       to={`/category/${row.id}`}
                     >
                       {i18n('common.view')}
-                    </Link>
+                    </Link> */}
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"

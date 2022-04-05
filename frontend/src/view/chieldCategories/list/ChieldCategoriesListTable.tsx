@@ -195,12 +195,12 @@ function ChieldCategoriesListTable(props) {
 
                   <td>{row.status}</td>
                   <td className="td-actions">
-                    <Link
+                    {/* <Link
                       className="btn btn-link"
                       to={`/chield-categories/${row.id}`}
                     >
                       {i18n('common.view')}
-                    </Link>
+                    </Link> */}
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"

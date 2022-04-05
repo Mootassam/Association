@@ -20,7 +20,9 @@ export default [
   },
   {
     name: 'categoryId',
-    label: i18n('entities.chieldCategories.fields.categoryId'),
+    label: i18n(
+      'entities.chieldCategories.fields.categoryId',
+    ),
     schema: schemas.relationToMany(
       i18n('entities.chieldCategories.fields.categoryId'),
       {},
@@ -28,11 +30,15 @@ export default [
   },
   {
     name: 'subcategoryId',
-    label: i18n('entities.chieldCategories.fields.subcategoryId'),
+    label: i18n(
+      'entities.chieldCategories.fields.subcategoryId',
+    ),
     schema: schemas.relationToMany(
-      i18n('entities.chieldCategories.fields.subcategoryId'),
+      i18n(
+        'entities.chieldCategories.fields.subcategoryId',
+      ),
       {
-        "required": true
+        required: true,
       },
     ),
   },
