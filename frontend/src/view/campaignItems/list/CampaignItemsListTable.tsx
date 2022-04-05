@@ -13,12 +13,12 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ProductListItem from 'src/view/product/list/ProductListItem';
+import ImagesListView from 'src/view/shared/table/ImagesListView';
+import actionsForm from 'src/modules/campaignItems/form/campaignItemsFormActions';
 
 function CampaignItemsListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -87,6 +87,15 @@ function CampaignItemsListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
+  const formSubmit = (id, e) => {
+    if (['publish', 'unpblish'].includes(e.target.value)) {
+      let data = { isFeature: e.target.value };
+      dispatch(actionsForm.doUpdate(id, data));
+    } else {
+      let data = { status: e.target.value };
+      dispatch(actionsForm.doUpdate(id, data));
+    }
+  };
 
   return (
     <TableWrapper>
@@ -113,29 +122,45 @@ function CampaignItemsListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.campaignItems.fields.status',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'isFeature'}
-                  label={i18n(
-                    'entities.campaignItems.fields.isFeature',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.campaignItems.fields.itemId',
-                  )}
-                />
+              <TableColumnHeader
+                sorter={sorter}
+                name={'photo'}
+                label={i18n(
+                  'entities.campaignItems.fields.photo',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.campaignItems.fields.name',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'price'}
+                label={i18n(
+                  'entities.campaignItems.fields.price',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'isFeature'}
+                label={i18n(
+                  'entities.campaignItems.fields.isFeature',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.campaignItems.fields.status',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -180,23 +205,77 @@ function CampaignItemsListTable(props) {
                       </label>
                     </div>
                   </th>
+                  {console.log(row)}
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.campaignItems.enumerators.status.${row.status}`,
-                        )
-                      : null}
-                  </td>
-                  <td>
-                    {row.isFeature
-                      ? i18n(
-                          `entities.campaignItems.enumerators.isFeature.${row.isFeature}`,
-                        )
-                      : null}
+                    <ImagesListView
+                      value={row.itemId.photo}
+                    />
                   </td>
                   <td>
                     <ProductListItem value={row.itemId} />
                   </td>
+                  <td>{row.itemId.discountPrice}</td>
+                  <td>
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'publish' && (
+                        <>
+                          <option value="publish">
+                            Publish
+                          </option>
+                          <option value="unpublish">
+                            Unpublish
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'unpublish' && (
+                        <>
+                          <option value="unpublish">
+                            Unpublish
+                          </option>
+                          <option value="publish">
+                            Publish
+                          </option>
+                        </>
+                      )}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
+                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

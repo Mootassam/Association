@@ -14,6 +14,7 @@ import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import CategoryListItem from 'src/view/category/list/CategoryListItem';
 import SubcategoriesListItem from 'src/view/subcategories/list/SubcategoriesListItem';
+import actionsForm from 'src/modules/chieldCategories/form/chieldCategoriesFormActions';
 
 function ChieldCategoriesListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -87,6 +88,12 @@ function ChieldCategoriesListTable(props) {
     dispatch(actions.doToggleOneSelected(id));
   };
 
+  const formSubmit = (id, e) => {
+    let data = {
+      status: e.target.value,
+    };
+    dispatch(actionsForm.doUpdate(id, data));
+  };
   return (
     <TableWrapper>
       <div className="table-responsive">
@@ -193,14 +200,47 @@ function ChieldCategoriesListTable(props) {
                   </td>
                   <td>{row.name}</td>
 
-                  <td>{row.status}</td>
+                  <td>
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      <option value="enable">Enable</option>
+                      <option value="disable">
+                        Disable
+                      </option>
+                      {/* {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )} */}
+                    </select>
+                  </td>
                   <td className="td-actions">
-                    <Link
+                    {/* <Link
                       className="btn btn-link"
                       to={`/chield-categories/${row.id}`}
                     >
                       {i18n('common.view')}
-                    </Link>
+                    </Link> */}
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"

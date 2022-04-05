@@ -12,29 +12,24 @@ export default (database) => {
     {
       status: {
         type: String,
-        enum: [
-          "enable",
-          "disable",
-          null
-        ],
+        enum: ['enable', 'disable', null],
       },
       isFeature: {
         type: String,
-        enum: [
-          "enable",
-          "disable",
-          null
-        ],
+        enum: ['publish', 'unpublish'],
+        default: 'publish',
       },
-      itemId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'product',
-        required: true,
-      }],
+      itemId: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'product',
+          required: true,
+        },
+      ],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -59,8 +54,6 @@ export default (database) => {
     },
   );
 
-  
-
   CampaignItemsSchema.virtual('id').get(function () {
     // @ts-ignore
     return this._id.toHexString();
@@ -74,5 +67,8 @@ export default (database) => {
     getters: true,
   });
 
-  return database.model('campaignItems', CampaignItemsSchema);
+  return database.model(
+    'campaignItems',
+    CampaignItemsSchema,
+  );
 };

@@ -443,7 +443,7 @@ const privateRoutes = [
     exact: true,
   },
   {
-    path: '/product/new',
+    path: '/product/new/:name',
     loader: () =>
       import('src/view/product/form/ProductFormPage'),
     permissionRequired: permissions.productCreate,

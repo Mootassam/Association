@@ -15,18 +15,16 @@ class ProductRepository {
   static async create(data, options: IRepositoryOptions) {
     const currentTenant =
       MongooseRepository.getCurrentTenant(options);
-
     const currentUser =
       MongooseRepository.getCurrentUser(options);
-
     const [record] = await Product(
       options.database,
     ).insertMany(
       [
         {
           ...data,
-          specifications: Object.values(
-            data.specifications,
+          detailspecification: Object.values(
+            data.detailspecification,
           ),
           tenant: currentTenant.id,
           createdBy: currentUser.id,
@@ -71,7 +69,9 @@ class ProductRepository {
       { _id: id },
       {
         ...data,
-        specifications: Object.values(data.specifications),
+        // detailspecification: Object.values(
+        //   data.detailspecification,
+        // ),
         updatedBy:
           MongooseRepository.getCurrentUser(options).id,
       },

@@ -149,26 +149,35 @@ const schema = yup.object().shape({
 });
 
 function ProductForm(props) {
+  var checkboxes = document.querySelectorAll(
+    'input[type=checkbox][name=isSpecification]',
+  );
+
+  const [newForm, setNewform] = useState([
+    {
+      specificationName: '',
+      specificationDesciption: '',
+    },
+  ]);
   const [initialValues] = useState(() => {
     const record = props.record || {};
-
+    if (props.isEditing) {
+      setNewform(record.detailspecification);
+    }
     return {
       name: record.name,
       slug: record.slug,
       tags: record.tags,
       video: record.video,
-      specifications: record.specifications || [],
       isSpecification: record.isSpecification,
       details: record.details,
       photo: record.photo || [],
       discountPrice: record.discountPrice,
       previousPrice: record.previousPrice,
       stock: record.stock,
-
       metaDesctiption: record.metaDesctiption,
       status: record.status,
       isType: record.isType,
-
       itemType: record.itemType,
       file: record.file || [],
       link: record.link,
@@ -182,24 +191,6 @@ function ProductForm(props) {
     };
   });
 
-  const [newForm, setNewform] = useState(() => {
-    let item = [
-      {
-        specificationName: '',
-        specificationDesciption: '',
-      },
-    ];
-
-    const record = props.record || {};
-    record?.specifications?.map((value) =>
-      item.push(value),
-    );
-
-    return item;
-  });
-  console.log('====================================');
-  console.log(newForm);
-  console.log('====================================');
   const form = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -229,7 +220,7 @@ function ProductForm(props) {
   const onSubmit = (values) => {
     props.onSubmit(props.record?.id, {
       ...values,
-      specifications: { ...newForm },
+      detailspecification: { ...newForm },
     });
   };
 
@@ -282,7 +273,6 @@ function ProductForm(props) {
                   label={i18n(
                     'entities.product.fields.gallery',
                   )}
-                  required={true}
                   showCreate={!props.modal}
                 />
               </div>
@@ -323,105 +313,114 @@ function ProductForm(props) {
                   )}
                 />
               </div>
+              {props.record.isSpecification &&
+                newForm.map((item, index) => (
+                  <div
+                    key={index + `div`}
+                    style={{ display: 'flex' }}
+                    className="app__specification"
+                  >
+                    <div className="col-6">
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="specificationName"
+                        value={item.specificationName || ''}
+                        placeholder={i18n(
+                          'entities.product.fields.specificationName',
+                        )}
+                        onChange={(e) =>
+                          handleChange(e, index)
+                        }
+                      />
+                    </div>
+                    <div className="col-5">
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="specificationDesciption"
+                        value={
+                          item.specificationDesciption || ''
+                        }
+                        placeholder={i18n(
+                          'entities.product.fields.specificationDesciption',
+                        )}
+                        onChange={(e) =>
+                          handleChange(e, index)
+                        }
+                      />
+                    </div>
 
-              {newForm.map((item, index) => (
-                <div
-                  key={index + `div`}
-                  style={{ display: 'flex' }}
-                  className="app__specification"
-                >
-                  <div className="col-6">
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="specificationName"
-                      value={item.specificationName || ''}
-                      placeholder={i18n(
-                        'entities.product.fields.specificationName',
+                    {index ? (
+                      <div className="input-group">
+                        <button
+                          className="btn btn-danger"
+                          type="button"
+                          onClick={() =>
+                            removeFields(index)
+                          }
+                        >
+                          <ButtonIcon iconClass="fas fa-minus" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="input-group">
+                        <button
+                          className="btn btn-success"
+                          type="button"
+                          onClick={() => addFields()}
+                        >
+                          <ButtonIcon iconClass="fas fa-plus" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              {}
+
+              {props.nameForm === 'digital' && (
+                <>
+                  <div className="">
+                    <SelectFormItem
+                      name="fileType"
+                      label={i18n(
+                        'entities.product.fields.fileType',
                       )}
-                      onChange={(e) =>
-                        handleChange(e, index)
-                      }
+                      options={productEnumerators.fileType.map(
+                        (value) => ({
+                          value,
+                          label: i18n(
+                            `entities.product.enumerators.fileType.${value}`,
+                          ),
+                        }),
+                      )}
+                      required={false}
                     />
                   </div>
-                  <div className="col-5">
-                    <input
-                      className="form-control"
-                      type="text"
-                      name="specificationDesciption"
-                      value={
-                        item.specificationDesciption || ''
-                      }
-                      placeholder={i18n(
-                        'entities.product.fields.specificationDesciption',
+                  <div className="">
+                    <InputFormItem
+                      name="link"
+                      label={i18n(
+                        'entities.product.fields.link',
                       )}
-                      onChange={(e) =>
-                        handleChange(e, index)
-                      }
+                      required={false}
                     />
                   </div>
+                  <div className="">
+                    <FilesFormItem
+                      name="file"
+                      label={i18n(
+                        'entities.product.fields.file',
+                      )}
+                      required={false}
+                      storage={Storage.values.productFile}
+                      max={undefined}
+                      formats={undefined}
+                    />
+                  </div>
+                </>
+              )}
 
-                  {index ? (
-                    <div className="input-group">
-                      <button
-                        className="btn btn-danger"
-                        type="button"
-                        onClick={() => removeFields(index)}
-                      >
-                        <ButtonIcon iconClass="fas fa-minus" />
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="input-group">
-                      <button
-                        className="btn btn-success"
-                        type="button"
-                        onClick={() => addFields()}
-                      >
-                        <ButtonIcon iconClass="fas fa-plus" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-              <div className="">
-                <SelectFormItem
-                  name="fileType"
-                  label={i18n(
-                    'entities.product.fields.fileType',
-                  )}
-                  options={productEnumerators.fileType.map(
-                    (value) => ({
-                      value,
-                      label: i18n(
-                        `entities.product.enumerators.fileType.${value}`,
-                      ),
-                    }),
-                  )}
-                  required={false}
-                />
-              </div>
-              <div className="">
-                <InputFormItem
-                  name="link"
-                  label={i18n(
-                    'entities.product.fields.link',
-                  )}
-                  required={false}
-                />
-              </div>
-              <div className="">
-                <FilesFormItem
-                  name="file"
-                  label={i18n(
-                    'entities.product.fields.file',
-                  )}
-                  required={false}
-                  storage={Storage.values.productFile}
-                  max={undefined}
-                  formats={undefined}
-                />
-              </div>
               <div className="">
                 <SelectFormItem
                   name="status"

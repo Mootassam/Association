@@ -125,7 +125,7 @@ const en = {
         name: 'Name',
         slug: 'Slug',
         status: 'Status',
-        categoryId: 'CategoryId',
+        categoryId: 'Category',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',
@@ -407,11 +407,14 @@ const en = {
       fields: {
         id: 'Id',
         status: 'Status',
-        isFeature: 'IsFeature',
+        isFeature: 'Show Home Page',
         itemId: 'ItemId',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',
+        photo: 'photo',
+        name: 'name',
+        price: 'price',
       },
       enumerators: {
         status: {
@@ -529,7 +532,7 @@ const en = {
         metaKeywords: 'MetaKeywords',
         metaDesctiption: 'Short Description',
         status: 'Status',
-        isType: 'IsType',
+        isType: 'Type',
         dateRange: 'Date',
         date: 'Date',
         itemType: 'Item Type',
