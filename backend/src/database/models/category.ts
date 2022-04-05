@@ -26,15 +26,12 @@ export default (database) => {
       },
       status: {
         type: String,
-        enum: [
-          "enable",
-          "disable",
-          null
-        ],
+        enum: ['enable', 'disable', null],
+        default: 'enable',
       },
       isFeature: {
         type: Boolean,
-        default: false
+        default: false,
       },
       serial: {
         type: Number,
@@ -42,7 +39,7 @@ export default (database) => {
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -66,8 +63,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   CategorySchema.virtual('id').get(function () {
     // @ts-ignore

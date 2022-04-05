@@ -19,6 +19,7 @@ export default (database) => {
       status: {
         type: String,
         enum: ['enable', 'disable'],
+        default: 'enable',
       },
       categoryId: {
         type: Schema.Types.ObjectId,

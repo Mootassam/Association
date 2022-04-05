@@ -29,6 +29,7 @@ export default (database) => {
         type: String,
         required: true,
         enum: ['enable', 'disable'],
+        default: 'enable',
       },
       tenant: {
         type: Schema.Types.ObjectId,
