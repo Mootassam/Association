@@ -14,19 +14,19 @@ const schema = yup.object().shape({
   status: yupFormSchemas.enumerator(
     i18n('entities.campaignItems.fields.status'),
     {
-      "options": campaignItemsEnumerators.status
+      options: campaignItemsEnumerators.status,
     },
   ),
   isFeature: yupFormSchemas.enumerator(
     i18n('entities.campaignItems.fields.isFeature'),
     {
-      "options": campaignItemsEnumerators.isFeature
+      options: campaignItemsEnumerators.isFeature,
     },
   ),
-  itemId: yupFormSchemas.relationToMany(
+  itemId: yupFormSchemas.relationToOne(
     i18n('entities.campaignItems.fields.itemId'),
     {
-      "required": true
+      required: true,
     },
   ),
 });
@@ -38,7 +38,7 @@ function CampaignItemsForm(props) {
     return {
       status: record.status,
       isFeature: record.isFeature,
-      itemId: record.itemId || [],
+      itemId: record.itemId,
     };
   });
 
@@ -66,7 +66,9 @@ function CampaignItemsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n('entities.campaignItems.fields.status')}
+                label={i18n(
+                  'entities.campaignItems.fields.status',
+                )}
                 options={campaignItemsEnumerators.status.map(
                   (value) => ({
                     value,
@@ -81,7 +83,9 @@ function CampaignItemsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="isFeature"
-                label={i18n('entities.campaignItems.fields.isFeature')}
+                label={i18n(
+                  'entities.campaignItems.fields.isFeature',
+                )}
                 options={campaignItemsEnumerators.isFeature.map(
                   (value) => ({
                     value,
@@ -94,12 +98,13 @@ function CampaignItemsForm(props) {
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <ProductAutocompleteFormItem  
+              <ProductAutocompleteFormItem
                 name="itemId"
-                label={i18n('entities.campaignItems.fields.itemId')}
+                label={i18n(
+                  'entities.campaignItems.fields.itemId',
+                )}
                 required={true}
                 showCreate={!props.modal}
-                mode="multiple"
               />
             </div>
           </div>
