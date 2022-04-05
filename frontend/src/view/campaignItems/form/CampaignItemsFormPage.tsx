@@ -47,7 +47,10 @@ function CampaignItemsFormPage(props) {
       <Breadcrumb
         items={[
           [i18n('dashboard.menu'), '/'],
-          [i18n('entities.campaignItems.menu'), '/campaign-items'],
+          [
+            i18n('entities.campaignItems.menu'),
+            '/campaign-items',
+          ],
           [title],
         ]}
       />
@@ -64,7 +67,9 @@ function CampaignItemsFormPage(props) {
             record={record}
             isEditing={isEditing}
             onSubmit={doSubmit}
-            onCancel={() => getHistory().push('/campaign-items')}
+            onCancel={() =>
+              getHistory().push('/campaign-items')
+            }
           />
         )}
       </ContentWrapper>

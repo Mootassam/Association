@@ -14,6 +14,7 @@ import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ProductListItem from 'src/view/product/list/ProductListItem';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
+import actionsForm from 'src/modules/campaignItems/form/campaignItemsFormActions';
 
 function CampaignItemsListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -85,6 +86,15 @@ function CampaignItemsListTable(props) {
 
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
+  };
+  const formSubmit = (id, e) => {
+    if (['publish', 'unpblish'].includes(e.target.value)) {
+      let data = { isFeature: e.target.value };
+      dispatch(actionsForm.doUpdate(id, data));
+    } else {
+      let data = { status: e.target.value };
+      dispatch(actionsForm.doUpdate(id, data));
+    }
   };
 
   return (
@@ -206,18 +216,64 @@ function CampaignItemsListTable(props) {
                   </td>
                   <td>{row.itemId.discountPrice}</td>
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.campaignItems.enumerators.status.${row.status}`,
-                        )
-                      : null}
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'publish' && (
+                        <>
+                          <option value="publish">
+                            Publish
+                          </option>
+                          <option value="unpublish">
+                            Unpublish
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'unpublish' && (
+                        <>
+                          <option value="unpublish">
+                            Unpublish
+                          </option>
+                          <option value="publish">
+                            Publish
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
                   <td>
-                    {row.isFeature
-                      ? i18n(
-                          `entities.campaignItems.enumerators.isFeature.${row.isFeature}`,
-                        )
-                      : null}
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
 
                   <td className="td-actions">
