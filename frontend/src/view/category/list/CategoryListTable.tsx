@@ -193,10 +193,26 @@ function CategoryListTable(props) {
                         formSubmit(row.id, e)
                       }
                     >
-                      <option value="Enable">Enable</option>
-                      <option value="Disable">
-                        Disable
-                      </option>
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
                     </select>
                     {/* {row.status} */}
                   </td>
