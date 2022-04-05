@@ -407,11 +407,14 @@ const en = {
       fields: {
         id: 'Id',
         status: 'Status',
-        isFeature: 'IsFeature',
+        isFeature: 'Show Home Page',
         itemId: 'ItemId',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',
+        photo: 'photo',
+        name: 'name',
+        price: 'price',
       },
       enumerators: {
         status: {

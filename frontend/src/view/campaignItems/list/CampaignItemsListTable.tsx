@@ -13,12 +13,11 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ProductListItem from 'src/view/product/list/ProductListItem';
+import ImagesListView from 'src/view/shared/table/ImagesListView';
 
 function CampaignItemsListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -113,29 +112,45 @@ function CampaignItemsListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.campaignItems.fields.status',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'isFeature'}
-                  label={i18n(
-                    'entities.campaignItems.fields.isFeature',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.campaignItems.fields.itemId',
-                  )}
-                />
+              <TableColumnHeader
+                sorter={sorter}
+                name={'photo'}
+                label={i18n(
+                  'entities.campaignItems.fields.photo',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.campaignItems.fields.name',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'price'}
+                label={i18n(
+                  'entities.campaignItems.fields.price',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'isFeature'}
+                label={i18n(
+                  'entities.campaignItems.fields.isFeature',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.campaignItems.fields.status',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -180,6 +195,16 @@ function CampaignItemsListTable(props) {
                       </label>
                     </div>
                   </th>
+                  {console.log(row)}
+                  <td>
+                    <ImagesListView
+                      value={row.itemId.photo}
+                    />
+                  </td>
+                  <td>
+                    <ProductListItem value={row.itemId} />
+                  </td>
+                  <td>{row.itemId.discountPrice}</td>
                   <td>
                     {row.status
                       ? i18n(
@@ -194,9 +219,7 @@ function CampaignItemsListTable(props) {
                         )
                       : null}
                   </td>
-                  <td>
-                    <ProductListItem value={row.itemId} />
-                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
