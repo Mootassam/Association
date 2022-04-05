@@ -9,8 +9,11 @@ const TableWrapper = styled.div`
     background-color: #009efb;
     padding: 0.5rem 1rem;
     border-radius: 2rem;
-    color: #fff;
+
     
+  }
+  .itemType  span { 
+    color :#fff
   }
   .p_items {
   padding 0.3rem 1rem ;

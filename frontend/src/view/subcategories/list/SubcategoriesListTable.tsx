@@ -13,6 +13,7 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import CategoryListItem from 'src/view/category/list/CategoryListItem';
+import actionsForm from 'src/modules/subcategories/form/subcategoriesFormActions';
 
 function SubcategoriesListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -85,7 +86,10 @@ function SubcategoriesListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
-
+  const formSubmit = (id, e) => {
+    let data = { status: e.target.value };
+    dispatch(actionsForm.doUpdate(id, data));
+  };
   return (
     <TableWrapper>
       <div className="table-responsive">
@@ -186,13 +190,35 @@ function SubcategoriesListTable(props) {
                   </td>
                   <td>{row.name}</td>
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.subcategories.enumerators.status.${row.status}`,
-                        )
-                      : null}
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
-
                   <td className="td-actions">
                     {/* <Link
                       className="btn btn-link"

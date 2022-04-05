@@ -214,7 +214,6 @@ function CategoryListTable(props) {
                         </>
                       )}
                     </select>
-                    {/* {row.status} */}
                   </td>
                   <td className="td-actions">
                     {/* <Link

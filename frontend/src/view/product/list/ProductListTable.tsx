@@ -13,24 +13,19 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
-import productEnumerators from 'src/modules/product/productEnumerators';
+
 import actionsForm from 'src/modules/product/form/productFormActions';
-import selectorsForm from 'src/modules/product/form/productFormSelectors';
+
 function ProductListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
     useState(null);
   const dispatch = useDispatch();
-
   const findLoading = useSelector(selectors.selectLoading);
-
   const destroyLoading = useSelector(
     destroySelectors.selectLoading,
   );
-
   const loading = findLoading || destroyLoading;
-
   const rows = useSelector(selectors.selectRows);
-
   const pagination = useSelector(
     selectors.selectPagination,
   );
@@ -77,7 +72,6 @@ function ProductListTable(props) {
 
   const doDestroy = (id) => {
     doCloseDestroyConfirmModal();
-
     dispatch(destroyActions.doDestroy(id));
   };
 
@@ -88,7 +82,12 @@ function ProductListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
-
+  const formSubmit = (row, e) => {
+    let data = {
+      status: e.target.value,
+    };
+    dispatch(actionsForm.doUpdate(row.id, data));
+  };
   return (
     <TableWrapper>
       <div className="table-responsive">
@@ -115,17 +114,18 @@ function ProductListTable(props) {
                 )}
               </TableColumnHeader>
               <TableColumnHeader
+                label={i18n(
+                  'entities.product.fields.photo',
+                )}
+              />
+              <TableColumnHeader
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
                 name={'name'}
                 label={i18n('entities.product.fields.name')}
               />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.product.fields.photo',
-                )}
-              />
+
               <TableColumnHeader
                 onSort={doChangeSort}
                 hasRows={hasRows}
@@ -208,26 +208,49 @@ function ProductListTable(props) {
                       </label>
                     </div>
                   </th>
-                  <td>{row.name}</td>
                   <td>
                     <ImagesListView value={row.photo} />
                   </td>
+                  <td>{row.name}</td>
+
                   <td style={{ textAlign: 'right' }}>
                     {row.discountPrice}
                   </td>
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.product.enumerators.status.${row.status}`,
-                        )
-                      : null}
+                    {console.log(row)}
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) => formSubmit(row, e)}
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
                   <td>
                     <span className="itemType">
                       <Link
                         to={`/highlights/${row.id}/edit`}
                       >
-                        {row.isType}
+                        <span>{row.isType}</span>
                       </Link>
                     </span>
                   </td>

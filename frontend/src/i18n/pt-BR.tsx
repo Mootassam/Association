@@ -520,7 +520,7 @@ const ptBR = {
         metaKeywords: 'MetaKeywords',
         metaDesctiption: 'MetaDesctiption',
         status: 'Status',
-        isType: 'IsType',
+        isType: 'Type',
         dateRange: 'Date',
         date: 'Date',
         itemType: 'ItemType',

@@ -273,7 +273,6 @@ function ProductForm(props) {
                   label={i18n(
                     'entities.product.fields.gallery',
                   )}
-                  required={true}
                   showCreate={!props.modal}
                 />
               </div>

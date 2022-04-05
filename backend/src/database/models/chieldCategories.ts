@@ -23,11 +23,9 @@ export default (database) => {
       subcategoryId: {
         type: Schema.Types.ObjectId,
         ref: 'subcategories',
-        required: true,
       },
       status: {
         type: String,
-        required: true,
         enum: ['enable', 'disable'],
         default: 'enable',
       },

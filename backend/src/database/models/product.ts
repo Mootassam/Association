@@ -57,7 +57,8 @@ export default (database) => {
       },
       status: {
         type: String,
-        enum: ['enable', 'disable', null],
+        enum: ['enable', 'disable'],
+        default: 'enable',
       },
       isType: {
         type: String,
@@ -99,10 +100,10 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'brands',
       },
-      gallery: {
-        type: Schema.Types.ObjectId,
-        ref: 'gallery',
-      },
+      // gallery: {
+      //   type: Schema.Types.ObjectId,
+      //   ref: 'gallery',
+      // },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',

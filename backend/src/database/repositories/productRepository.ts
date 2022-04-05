@@ -69,9 +69,9 @@ class ProductRepository {
       { _id: id },
       {
         ...data,
-        detailspecification: Object.values(
-          data.detailspecification,
-        ),
+        // detailspecification: Object.values(
+        //   data.detailspecification,
+        // ),
         updatedBy:
           MongooseRepository.getCurrentUser(options).id,
       },
