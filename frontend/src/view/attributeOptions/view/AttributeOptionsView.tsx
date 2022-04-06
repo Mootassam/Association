@@ -4,6 +4,7 @@ import ViewWrapper from 'src/view/shared/styles/ViewWrapper';
 import { i18n } from 'src/i18n';
 import TextViewItem from 'src/view/shared/view/TextViewItem';
 import ProductViewItem from 'src/view/product/view/ProductViewItem';
+import AttributesViewItem from 'src/view/attributes/view/AttributesViewItem';
 
 function AttributeOptionsView(props) {
   const { record, loading } = props;
@@ -32,6 +33,11 @@ function AttributeOptionsView(props) {
       <ProductViewItem
         label={i18n('entities.attributeOptions.fields.item')}
         value={record.item}
+      />
+
+      <AttributesViewItem
+        label={i18n('entities.attributeOptions.fields.attributeId')}
+        value={record.attributeId}
       />
     </ViewWrapper>
   );

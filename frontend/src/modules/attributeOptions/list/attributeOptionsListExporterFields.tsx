@@ -25,6 +25,11 @@ export default [
     render: exporterRenders.relationToOne(),
   },
   {
+    name: 'attributeId',
+    label: i18n('entities.attributeOptions.fields.attributeId'),
+    render: exporterRenders.relationToOne(),
+  },
+  {
     name: 'createdAt',
     label: i18n('entities.attributeOptions.fields.createdAt'),
     render: exporterRenders.datetime(),

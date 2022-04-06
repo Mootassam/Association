@@ -23,7 +23,7 @@ const ChooseForm = () => {
         <div className="row">
           <div className="col-sm-6 col-md-6">
             <Link to={`/product/new/${physical}`}>
-              <a className="card card-stats card-round">
+              <div className="card card-stats card-round">
                 <div className="card-body">
                   <div className="text-center py-3">
                     <div className="d-inline-block">
@@ -40,12 +40,12 @@ const ChooseForm = () => {
                     </div>
                   </div>
                 </div>
-              </a>
+              </div>
             </Link>
           </div>
           <div className="col-sm-6 col-md-6">
             <Link to={`/product/new/${digital}`}>
-              <a className="card card-stats card-round">
+              <div className="card card-stats card-round">
                 <div className="card-body">
                   <div className="text-center py-3">
                     <div className="d-inline-block">
@@ -62,7 +62,7 @@ const ChooseForm = () => {
                     </div>
                   </div>
                 </div>
-              </a>
+              </div>
             </Link>
           </div>
         </div>

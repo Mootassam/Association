@@ -1140,6 +1140,53 @@ const es = {
         hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
       },
     },
+    attributes: {
+      name: 'attributes',
+      label: 'Attributes',
+      menu: 'Attributes',
+      exporterFileName: 'exportacion_attributes',
+      list: {
+        menu: 'Attributes',
+        title: 'Attributes',
+      },
+      create: {
+        success: 'Attributes guardado con éxito',
+      },
+      update: {
+        success: 'Attributes guardado con éxito',
+      },
+      destroy: {
+        success: 'Attributes eliminado con éxito',
+      },
+      destroyAll: {
+        success: 'Attributes(s) eliminado con éxito',
+      },
+      edit: {
+        title: 'Editar Attributes',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        itemId: 'ItemId',
+        createdAt: 'Creado el',
+        updatedAt: 'Actualizado el',
+        createdAtRange: 'Creado el',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'Nuevo Attributes',
+      },
+      view: {
+        title: 'Ver Attributes',
+      },
+      importer: {
+        title: 'Importar Attributes',
+        fileName: 'attributes_import_template',
+        hint: 'Las columnas Archivos/Imágenes deben ser las URL de los archivos separados por espacio.',
+      },
+    },
   },
   auth: {
     tenants: 'Espacios de trabajo',

@@ -87,6 +87,7 @@ require('./attributeOptions').default(routes);
 require('./cart').default(routes);
 require('./paymentsettings').default(routes);
 require('./review').default(routes);
+require('./attributes').default(routes);
 
 // Loads the Tenant if the :tenantId param is passed
 routes.param('tenantId', tenantMiddleware);

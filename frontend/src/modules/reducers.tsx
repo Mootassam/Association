@@ -25,6 +25,7 @@ import attributeOptions from 'src/modules/attributeOptions/attributeOptionsReduc
 import cart from 'src/modules/cart/cartReducers';
 import paymentsettings from 'src/modules/paymentsettings/paymentsettingsReducers';
 import review from 'src/modules/review/reviewReducers';
+import attributes from 'src/modules/attributes/attributesReducers';
 import { combineReducers } from 'redux';
 
 export default (history) =>
@@ -56,4 +57,5 @@ export default (history) =>
     cart,
     paymentsettings,
     review,
+    attributes,
   });

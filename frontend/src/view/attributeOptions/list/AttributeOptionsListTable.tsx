@@ -13,6 +13,7 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ProductListItem from 'src/view/product/list/ProductListItem';
+import AttributesListItem from 'src/view/attributes/list/AttributesListItem';
 
 function AttributeOptionsListTable(props) {
   const [
@@ -146,6 +147,11 @@ function AttributeOptionsListTable(props) {
                     'entities.attributeOptions.fields.item',
                   )}
                 />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.attributeOptions.fields.attributeId',
+                  )}
+                />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -197,6 +203,9 @@ function AttributeOptionsListTable(props) {
                   <td>{row.keyword}</td>
                   <td>
                     <ProductListItem value={row.item} />
+                  </td>
+                  <td>
+                    <AttributesListItem value={row.attributeId} />
                   </td>
                   <td className="td-actions">
                     <Link

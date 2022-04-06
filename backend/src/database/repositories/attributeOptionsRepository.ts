@@ -168,7 +168,8 @@ class AttributeOptionsRepository {
     let record = await MongooseRepository.wrapWithSessionIfExists(
       AttributeOptions(options.database)
         .findOne({_id: id, tenant: currentTenant.id})
-      .populate('item'),
+      .populate('item')
+      .populate('attributeId'),
       options,
     );
 
@@ -250,6 +251,14 @@ class AttributeOptionsRepository {
         });
       }
 
+      if (filter.attributeId) {
+        criteriaAnd.push({
+          attributeId: MongooseQueryUtils.uuid(
+            filter.attributeId,
+          ),
+        });
+      }
+
       if (filter.createdAtRange) {
         const [start, end] = filter.createdAtRange;
 
@@ -294,7 +303,8 @@ class AttributeOptionsRepository {
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)
-      .populate('item');
+      .populate('item')
+      .populate('attributeId');
 
     const count = await AttributeOptions(
       options.database,

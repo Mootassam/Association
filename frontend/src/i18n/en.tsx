@@ -1152,6 +1152,53 @@ const en = {
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
+    attributes: {
+      name: 'attributes',
+      label: 'Attributes',
+      menu: 'Attributes',
+      exporterFileName: 'attributes_export',
+      list: {
+        menu: 'Attributes',
+        title: 'Attributes',
+      },
+      create: {
+        success: 'Attributes successfully saved',
+      },
+      update: {
+        success: 'Attributes successfully saved',
+      },
+      destroy: {
+        success: 'Attributes successfully deleted',
+      },
+      destroyAll: {
+        success: 'Attributes(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Attributes',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        itemId: 'ItemId',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Attributes',
+      },
+      view: {
+        title: 'View Attributes',
+      },
+      importer: {
+        title: 'Import Attributes',
+        fileName: 'attributes_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
   },
 
   auth: {

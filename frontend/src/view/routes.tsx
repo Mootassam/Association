@@ -872,6 +872,43 @@ const privateRoutes = [
     permissionRequired: permissions.reviewRead,
     exact: true,
   },
+  {
+    path: '/attributes',
+    loader: () =>
+      import('src/view/attributes/list/AttributesListPage'),
+    permissionRequired: permissions.attributesRead,
+    exact: true,
+  },
+  {
+    path: '/attributes/new',
+    loader: () =>
+      import('src/view/attributes/form/AttributesFormPage'),
+    permissionRequired: permissions.attributesCreate,
+    exact: true,
+  },
+  {
+    path: '/attributes/importer',
+    loader: () =>
+      import(
+        'src/view/attributes/importer/AttributesImporterPage'
+      ),
+    permissionRequired: permissions.attributesImport,
+    exact: true,
+  },
+  {
+    path: '/attributes/:id/edit',
+    loader: () =>
+      import('src/view/attributes/form/AttributesFormPage'),
+    permissionRequired: permissions.attributesEdit,
+    exact: true,
+  },
+  {
+    path: '/attributes/:id',
+    loader: () =>
+      import('src/view/attributes/view/AttributesViewPage'),
+    permissionRequired: permissions.attributesRead,
+    exact: true,
+  },
 ].filter(Boolean);
 
 const publicRoutes = [

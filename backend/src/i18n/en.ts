@@ -90,138 +90,105 @@ const en = {
   entities: {
     category: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     subcategories: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     chieldCategories: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     taxes: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     brands: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     edit: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     campaignItems: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     gallery: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     product: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     shippingservice: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     coupons: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     transaction: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     trackOrder: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     order: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     state: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     attributeOptions: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     cart: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     paymentsettings: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
     review: {
       errors: {
-        unique: {
-
-        }
-      }
+        unique: {},
+      },
     },
-  }
+    attributes: {
+      errors: {
+        unique: {},
+      },
+    },
+  },
 };
 
 export default en;

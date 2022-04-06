@@ -14,6 +14,7 @@ import filterRenders from 'src/modules/shared/filter/filterRenders';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import ProductAutocompleteFormItem from 'src/view/product/autocomplete/ProductAutocompleteFormItem';
+import AttributesAutocompleteFormItem from 'src/view/attributes/autocomplete/AttributesAutocompleteFormItem';
 
 const schema = yup.object().shape({
   name: yupFilterSchemas.string(
@@ -28,6 +29,9 @@ const schema = yup.object().shape({
   item: yupFilterSchemas.relationToOne(
     i18n('entities.attributeOptions.fields.item'),
   ),
+  attributeId: yupFilterSchemas.relationToOne(
+    i18n('entities.attributeOptions.fields.attributeId'),
+  ),
 });
 
 const emptyValues = {
@@ -35,6 +39,7 @@ const emptyValues = {
   priceRange: [],
   keyword: null,
   item: null,
+  attributeId: null,
 }
 
 const previewRenders = {
@@ -52,6 +57,10 @@ const previewRenders = {
   },
   item: {
       label: i18n('entities.attributeOptions.fields.item'),
+      render: filterRenders.relationToOne(),
+    },
+  attributeId: {
+      label: i18n('entities.attributeOptions.fields.attributeId'),
       render: filterRenders.relationToOne(),
     },
 }
@@ -138,6 +147,12 @@ function AttributeOptionsListFilter(props) {
                       <ProductAutocompleteFormItem  
                         name="item"
                         label={i18n('entities.attributeOptions.fields.item')}        
+                      />
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <AttributesAutocompleteFormItem  
+                        name="attributeId"
+                        label={i18n('entities.attributeOptions.fields.attributeId')}        
                       />
                     </div>
               </div>

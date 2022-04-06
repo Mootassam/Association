@@ -3,6 +3,7 @@ import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
 import AttributeOptionsRepository from '../database/repositories/attributeOptionsRepository';
 import ProductRepository from '../database/repositories/productRepository';
+import AttributesRepository from '../database/repositories/attributesRepository';
 
 export default class AttributeOptionsService {
   options: IServiceOptions;
@@ -18,6 +19,7 @@ export default class AttributeOptionsService {
 
     try {
       data.item = await ProductRepository.filterIdInTenant(data.item, { ...this.options, session });
+      data.attributeId = await AttributesRepository.filterIdInTenant(data.attributeId, { ...this.options, session });
 
       const record = await AttributeOptionsRepository.create(data, {
         ...this.options,
@@ -47,6 +49,7 @@ export default class AttributeOptionsService {
 
     try {
       data.item = await ProductRepository.filterIdInTenant(data.item, { ...this.options, session });
+      data.attributeId = await AttributesRepository.filterIdInTenant(data.attributeId, { ...this.options, session });
 
       const record = await AttributeOptionsRepository.update(
         id,

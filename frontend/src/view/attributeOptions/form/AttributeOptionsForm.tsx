@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import ProductAutocompleteFormItem from 'src/view/product/autocomplete/ProductAutocompleteFormItem';
+import AttributesAutocompleteFormItem from 'src/view/attributes/autocomplete/AttributesAutocompleteFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -26,6 +27,10 @@ const schema = yup.object().shape({
     i18n('entities.attributeOptions.fields.item'),
     {},
   ),
+  attributeId: yupFormSchemas.relationToOne(
+    i18n('entities.attributeOptions.fields.attributeId'),
+    {},
+  ),
 });
 
 function AttributeOptionsForm(props) {
@@ -37,6 +42,7 @@ function AttributeOptionsForm(props) {
       price: record.price,
       keyword: record.keyword,
       item: record.item,
+      attributeId: record.attributeId,
     };
   });
 
@@ -87,6 +93,14 @@ function AttributeOptionsForm(props) {
               <ProductAutocompleteFormItem  
                 name="item"
                 label={i18n('entities.attributeOptions.fields.item')}
+                required={false}
+                showCreate={!props.modal}
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
+              <AttributesAutocompleteFormItem  
+                name="attributeId"
+                label={i18n('entities.attributeOptions.fields.attributeId')}
                 required={false}
                 showCreate={!props.modal}
               />
