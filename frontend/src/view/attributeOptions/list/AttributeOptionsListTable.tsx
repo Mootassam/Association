@@ -16,10 +16,8 @@ import ProductListItem from 'src/view/product/list/ProductListItem';
 import AttributesListItem from 'src/view/attributes/list/AttributesListItem';
 
 function AttributeOptionsListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -114,44 +112,38 @@ function AttributeOptionsListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.attributeOptions.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'price'}
-                  label={i18n(
-                    'entities.attributeOptions.fields.price',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'keyword'}
-                  label={i18n(
-                    'entities.attributeOptions.fields.keyword',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.attributeOptions.fields.item',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.attributeOptions.fields.attributeId',
-                  )}
-                />
+
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.attributeOptions.fields.name',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.attributeOptions.fields.attributeId',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'price'}
+                label={i18n(
+                  'entities.attributeOptions.fields.price',
+                )}
+                align="right"
+              />
+
+              <TableColumnHeader
+                label={i18n(
+                  'entities.attributeOptions.fields.stock',
+                )}
+              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -197,16 +189,15 @@ function AttributeOptionsListTable(props) {
                     </div>
                   </th>
                   <td>{row.name}</td>
+                  <td>
+                    <AttributesListItem
+                      value={row.attributeId}
+                    />
+                  </td>
                   <td style={{ textAlign: 'right' }}>
                     {row.price}
                   </td>
-                  <td>{row.keyword}</td>
-                  <td>
-                    <ProductListItem value={row.item} />
-                  </td>
-                  <td>
-                    <AttributesListItem value={row.attributeId} />
-                  </td>
+                  <td>{row.stock} </td>
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

@@ -19,9 +19,8 @@ export default (database) => {
       keyword: {
         type: String,
       },
-      item: {
-        type: Schema.Types.ObjectId,
-        ref: 'product',
+      stock: {
+        type: Number,
       },
       attributeId: {
         type: Schema.Types.ObjectId,
@@ -30,7 +29,7 @@ export default (database) => {
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -55,8 +54,6 @@ export default (database) => {
     },
   );
 
-  
-
   AttributeOptionsSchema.virtual('id').get(function () {
     // @ts-ignore
     return this._id.toHexString();
@@ -70,5 +67,8 @@ export default (database) => {
     getters: true,
   });
 
-  return database.model('attributeOptions', AttributeOptionsSchema);
+  return database.model(
+    'attributeOptions',
+    AttributeOptionsSchema,
+  );
 };

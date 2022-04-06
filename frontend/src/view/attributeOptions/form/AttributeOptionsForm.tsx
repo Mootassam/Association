@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import ProductAutocompleteFormItem from 'src/view/product/autocomplete/ProductAutocompleteFormItem';
 import AttributesAutocompleteFormItem from 'src/view/attributes/autocomplete/AttributesAutocompleteFormItem';
+import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -23,8 +24,8 @@ const schema = yup.object().shape({
     i18n('entities.attributeOptions.fields.keyword'),
     {},
   ),
-  item: yupFormSchemas.relationToOne(
-    i18n('entities.attributeOptions.fields.item'),
+  stock: yupFormSchemas.integer(
+    i18n('entities.attributeOptions.fields.stock'),
     {},
   ),
   attributeId: yupFormSchemas.relationToOne(
@@ -41,7 +42,7 @@ function AttributeOptionsForm(props) {
       name: record.name,
       price: record.price,
       keyword: record.keyword,
-      item: record.item,
+      stock: record.stock,
       attributeId: record.attributeId,
     };
   });
@@ -70,37 +71,46 @@ function AttributeOptionsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="name"
-                label={i18n('entities.attributeOptions.fields.name')}
+                label={i18n(
+                  'entities.attributeOptions.fields.name',
+                )}
                 required={false}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="price"
-                label={i18n('entities.attributeOptions.fields.price')}  
+                label={i18n(
+                  'entities.attributeOptions.fields.price',
+                )}
                 required={false}
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="keyword"
-                label={i18n('entities.attributeOptions.fields.keyword')}
+                label={i18n(
+                  'entities.attributeOptions.fields.keyword',
+                )}
+                required={false}
+              />
+            </div> */}
+            <div className="col-lg-7 col-md-8 col-12">
+              <InputNumberFormItem
+                name="stock"
+                label={i18n(
+                  'entities.attributeOptions.fields.stock',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <ProductAutocompleteFormItem  
-                name="item"
-                label={i18n('entities.attributeOptions.fields.item')}
-                required={false}
-                showCreate={!props.modal}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <AttributesAutocompleteFormItem  
+              <AttributesAutocompleteFormItem
                 name="attributeId"
-                label={i18n('entities.attributeOptions.fields.attributeId')}
+                label={i18n(
+                  'entities.attributeOptions.fields.attributeId',
+                )}
                 required={false}
                 showCreate={!props.modal}
               />
