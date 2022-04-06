@@ -217,7 +217,7 @@ function ProductListTable(props) {
                     {row.discountPrice}
                   </td>
                   <td>
-                    {console.log(row)}
+
                     <select
                       className="form-control"
                       name="status"

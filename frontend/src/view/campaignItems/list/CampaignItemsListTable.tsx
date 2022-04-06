@@ -87,14 +87,19 @@ function CampaignItemsListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
-  const formSubmit = (id, e) => {
-    if (['publish', 'unpblish'].includes(e.target.value)) {
-      let data = { isFeature: e.target.value };
-      dispatch(actionsForm.doUpdate(id, data));
-    } else {
-      let data = { status: e.target.value };
-      dispatch(actionsForm.doUpdate(id, data));
-    }
+  const formSubmit = (row, e) => {
+    let data = {
+      itemId: row.itemId[0].id,
+      status: e.target.value,
+    };
+    dispatch(actionsForm.doUpdate(row.id, data));
+  };
+  const changeIsFeature = (row, e) => {
+    let data = {
+      itemId: row.itemId[0].id,
+      isFeature: e.target.value,
+    };
+    dispatch(actionsForm.doUpdate(row.id, data));
   };
 
   return (
@@ -214,13 +219,14 @@ function CampaignItemsListTable(props) {
                   <td>
                     <ProductListItem value={row.itemId} />
                   </td>
-                  <td>{row.itemId[0].discountPrice}</td>
+                  {console.log(row)}
+                  <td>{row.itemId[0]?.discountPrice}</td>
                   <td>
                     <select
                       className="form-control"
-                      name="status"
+                      name="isFeature"
                       onChange={(e) =>
-                        formSubmit(row.id, e)
+                        changeIsFeature(row, e)
                       }
                     >
                       <option value="publish">
@@ -229,42 +235,18 @@ function CampaignItemsListTable(props) {
                       <option value="unpublish">
                         Unpublish
                       </option>
-
-                      {row.status === 'unpublish' && (
-                        <>
-                          <option value="unpublish">
-                            Unpublish
-                          </option>
-                          <option value="publish">
-                            Publish
-                          </option>
-                        </>
-                      )}
                     </select>
                   </td>
                   <td>
                     <select
                       className="form-control"
                       name="status"
-                      onChange={(e) =>
-                        formSubmit(row.id, e)
-                      }
+                      onChange={(e) => formSubmit(row, e)}
                     >
                       <option value="enable">Enable</option>
                       <option value="disable">
                         Disable
                       </option>
-
-                      {row.status === 'disable' && (
-                        <>
-                          <option value="disable">
-                            Disable
-                          </option>
-                          <option value="enable">
-                            Enable
-                          </option>
-                        </>
-                      )}
                     </select>
                   </td>
 
