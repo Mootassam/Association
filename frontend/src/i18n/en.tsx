@@ -896,7 +896,7 @@ const en = {
       },
       fields: {
         id: 'Id',
-        name: 'Name',
+        name: 'State',
         priceRange: 'Price',
         price: 'Price',
         status: 'Status',

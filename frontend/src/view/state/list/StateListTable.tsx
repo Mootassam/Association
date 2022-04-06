@@ -12,13 +12,11 @@ import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
-
+import actionsForm from 'src/modules/state/form/stateFormActions';
 
 function StateListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -87,7 +85,10 @@ function StateListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
-
+  const formSubmit = (id, e) => {
+    let data = { status: e.target.value };
+    dispatch(actionsForm.doUpdate(id, data));
+  };
   return (
     <TableWrapper>
       <div className="table-responsive">
@@ -113,35 +114,29 @@ function StateListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.state.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'price'}
-                  label={i18n(
-                    'entities.state.fields.price',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.state.fields.status',
-                  )}
-                />
-                <TableColumnHeader
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n('entities.state.fields.name')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'price'}
+                label={i18n('entities.state.fields.price')}
+                align="right"
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n('entities.state.fields.status')}
+              />
+              {/* <TableColumnHeader
                   onSort={doChangeSort}
                   hasRows={hasRows}
                   sorter={sorter}
@@ -149,7 +144,7 @@ function StateListTable(props) {
                   label={i18n(
                     'entities.state.fields.type',
                   )}
-                />
+                /> */}
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -199,13 +194,36 @@ function StateListTable(props) {
                     {row.price}
                   </td>
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.state.enumerators.status.${row.status}`,
-                        )
-                      : null}
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
-                  <td>{row.type}</td>
+                  {/* <td>{row.type}</td> */}
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
