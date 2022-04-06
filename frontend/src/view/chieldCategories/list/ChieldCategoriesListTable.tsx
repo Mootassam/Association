@@ -88,11 +88,14 @@ function ChieldCategoriesListTable(props) {
     dispatch(actions.doToggleOneSelected(id));
   };
 
-  const formSubmit = (id, e) => {
+  const formSubmit = (row, e) => {
+    console.log(row);
     let data = {
+      categoryId: row.categoryId.id,
+      subcategoryId: row.subcategoryId.id,
       status: e.target.value,
     };
-    dispatch(actionsForm.doUpdate(id, data));
+    dispatch(actionsForm.doUpdate(row.id, data));
   };
   return (
     <TableWrapper>
@@ -204,9 +207,7 @@ function ChieldCategoriesListTable(props) {
                     <select
                       className="form-control"
                       name="status"
-                      onChange={(e) =>
-                        formSubmit(row.id, e)
-                      }
+                      onChange={(e) => formSubmit(row, e)}
                     >
                       <option value="enable">Enable</option>
                       <option value="disable">

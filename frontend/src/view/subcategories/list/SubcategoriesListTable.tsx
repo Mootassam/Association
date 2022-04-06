@@ -86,9 +86,14 @@ function SubcategoriesListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
-  const formSubmit = (id, e) => {
-    let data = { status: e.target.value };
-    dispatch(actionsForm.doUpdate(id, data));
+  const formSubmit = (row, e) => {
+    console.log(row);
+
+    let data = {
+      categoryId: row.categoryId.id,
+      status: e.target.value,
+    };
+    dispatch(actionsForm.doUpdate(row.id, data));
   };
   return (
     <TableWrapper>
@@ -193,9 +198,7 @@ function SubcategoriesListTable(props) {
                     <select
                       className="form-control"
                       name="status"
-                      onChange={(e) =>
-                        formSubmit(row.id, e)
-                      }
+                      onChange={(e) => formSubmit(row, e)}
                     >
                       {row.status === 'enable' && (
                         <>
