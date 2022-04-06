@@ -89,7 +89,6 @@ function ChieldCategoriesListTable(props) {
   };
 
   const formSubmit = (row, e) => {
-    console.log(row);
     let data = {
       categoryId: row.categoryId.id,
       subcategoryId: row.subcategoryId.id,

@@ -217,29 +217,28 @@ function ProductListTable(props) {
                     {row.discountPrice}
                   </td>
                   <td>
-
                     <select
                       className="form-control"
                       name="status"
                       onChange={(e) => formSubmit(row, e)}
                     >
-                      {row.status === 'enable' && (
+                      {row.status === 'publish' && (
                         <>
-                          <option value="enable">
-                            Enable
+                          <option value="publish">
+                            Publish
                           </option>
-                          <option value="disable">
-                            Disable
+                          <option value="unpublish">
+                            Unpublish
                           </option>
                         </>
                       )}
-                      {row.status === 'disable' && (
+                      {row.status === 'unpublish' && (
                         <>
-                          <option value="disable">
-                            Disable
+                          <option value="unpublish">
+                            Publish
                           </option>
-                          <option value="enable">
-                            Enable
+                          <option value="publish">
+                            Unpublish
                           </option>
                         </>
                       )}

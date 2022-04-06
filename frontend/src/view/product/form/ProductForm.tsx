@@ -87,7 +87,6 @@ const schema = yup.object().shape({
     i18n('entities.product.fields.status'),
     {
       options: productEnumerators.status,
-      required: true,
     },
   ),
   isType: yupFormSchemas.string(
@@ -421,7 +420,7 @@ function ProductForm(props) {
                 </>
               )}
 
-              <div className="">
+              {/* <div className="">
                 <SelectFormItem
                   name="status"
                   label={i18n(
@@ -437,7 +436,7 @@ function ProductForm(props) {
                   )}
                   required={true}
                 />
-              </div>
+              </div> */}
               {props.record && (
                 <div className="">
                   <SelectFormItem

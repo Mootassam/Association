@@ -6,14 +6,17 @@ const TableWrapper = styled.div`
     border-collapse: collapse;
   }
   .itemType {
+    cursor:pointer;
     background-color: #009efb;
     padding: 0.5rem 1rem;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
 
     
   }
   .itemType  span { 
-    color :#fff
+   
+    color :#fff;
+
   }
   .p_items {
   padding 0.3rem 1rem ;

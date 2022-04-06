@@ -87,8 +87,6 @@ function SubcategoriesListTable(props) {
     dispatch(actions.doToggleOneSelected(id));
   };
   const formSubmit = (row, e) => {
-    console.log(row);
-
     let data = {
       categoryId: row.categoryId.id,
       status: e.target.value,

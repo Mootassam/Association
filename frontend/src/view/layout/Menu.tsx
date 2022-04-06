@@ -9,7 +9,6 @@ import layoutSelectors from 'src/modules/layout/layoutSelectors';
 import MenuWrapper from 'src/view/layout/styles/MenuWrapper';
 import menus from 'src/view/menus';
 import selectors from 'src/modules/auth/authSelectors';
-import { indexOf } from 'lodash';
 
 function Menu(props) {
   const dispatch = useDispatch();
@@ -112,80 +111,78 @@ function Menu(props) {
                 .filter((menu) =>
                   match(menu.permissionRequired),
                 )
-                .map((menu, index) => (
-                  <>
-                    {!menu.subMenue ? (
-                      <li
-                        key={menu.path}
-                        className={`submenu ${
-                          selectedKeys().includes(menu.path)
-                            ? 'active'
-                            : ''
-                        }`}
+                .map((menu, index) =>
+                  !menu.subMenue ? (
+                    <li
+                      key={menu.path}
+                      className={`submenu ${
+                        selectedKeys().includes(menu.path)
+                          ? 'active'
+                          : ''
+                      }`}
+                    >
+                      <Link
+                        to={menu.path}
+                        onClick={() => {
+                          onClick(index);
+                        }}
                       >
-                        <Link
-                          to={menu.path}
-                          onClick={() => {
-                            onClick(index);
+                        <i
+                          className={`menu-icon ${menu.icon}`}
+                        ></i>
+                        <span>{menu.label}</span>
+                      </Link>
+                    </li>
+                  ) : (
+                    <li
+                      key={menu.path + index}
+                      className={`menu-li text-nowrap ${
+                        selectedKeys().includes(menu.path)
+                          ? 'active'
+                          : ''
+                      }`}
+                    >
+                      <Link
+                        to="#"
+                        onClick={() => {
+                          onClick(index);
+                        }}
+                      >
+                        <i
+                          className={`menu-icon ${menu.icon}`}
+                        ></i>
+                        <span>{menu.label}</span>
+                      </Link>
+                      {menu.subMenue?.map((item) => (
+                        <ul
+                          key={item.path}
+                          style={{
+                            display:
+                              subMenue && index === pathUrl
+                                ? 'block'
+                                : 'none',
                           }}
                         >
-                          <i
-                            className={`menu-icon ${menu.icon}`}
-                          ></i>
-                          <span>{menu.label}</span>
-                        </Link>
-                      </li>
-                    ) : (
-                      <li
-                        key={menu.path}
-                        className={`menu-li text-nowrap ${
-                          selectedKeys().includes(menu.path)
-                            ? 'active'
-                            : ''
-                        }`}
-                      >
-                        <Link
-                          to="#"
-                          onClick={() => {
-                            onClick(index);
-                          }}
-                        >
-                          <i
-                            className={`menu-icon ${menu.icon}`}
-                          ></i>
-                          <span>{menu.label}</span>
-                        </Link>
-                        {menu.subMenue?.map((item) => (
-                          <ul
-                            style={{
-                              display:
-                                subMenue &&
-                                index === pathUrl
-                                  ? 'block'
-                                  : 'none',
-                            }}
-                          >
-                            <li key={item.path}>
-                              <Link to={item.path}>
-                                <span
-                                  className={`${
-                                    props.url.includes(
-                                      item.path,
-                                    )
-                                      ? 'active'
-                                      : ''
-                                  }`}
-                                >
-                                  {item.label}
-                                </span>
-                              </Link>
-                            </li>
-                          </ul>
-                        ))}
-                      </li>
-                    )}
-                  </>
-                ))}
+                          <li>
+                            <Link to={item.path}>
+                              <span
+                                className={`${
+                                  props.url.includes(
+                                    item.path,
+                                  )
+                                    ? 'active'
+                                    : ''
+                                }`}
+                              >
+                                {item.label}
+                              </span>
+                            </Link>
+                          </li>
+                        </ul>
+                      ))}
+                    </li>
+                  ),
+                )}
 
               {menus
                 .filter((menu) =>

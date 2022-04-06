@@ -219,7 +219,6 @@ function CampaignItemsListTable(props) {
                   <td>
                     <ProductListItem value={row.itemId} />
                   </td>
-                  {console.log(row)}
                   <td>{row.itemId[0]?.discountPrice}</td>
                   <td>
                     <select
