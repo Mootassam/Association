@@ -6,6 +6,7 @@ import FormErrors from 'src/view/shared/form/formErrors';
 export function InputFormItem(props) {
   const {
     label,
+    description,
     name,
     hint,
     type,
@@ -44,7 +45,8 @@ export function InputFormItem(props) {
           >
             {label}
           </label>
-        )}
+        )}{' '}
+        {description}
         <input
           id={name}
           name={name}
@@ -93,6 +95,7 @@ InputFormItem.propTypes = {
   required: PropTypes.bool,
   type: PropTypes.string,
   label: PropTypes.string,
+  description: PropTypes.string,
   hint: PropTypes.string,
   autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,

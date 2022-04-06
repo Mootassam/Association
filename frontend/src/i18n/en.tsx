@@ -611,9 +611,9 @@ const en = {
       },
       fields: {
         id: 'Id',
-        name: 'Name',
+        name: 'Title',
         priceRange: 'Price',
-        price: 'Price',
+        price: 'Shipping Cost',
         status: 'Status',
         minimumPriceRange: 'Minimum Price',
         minimumPrice: 'Minimum Price',

@@ -15,19 +15,19 @@ const schema = yup.object().shape({
   name: yupFormSchemas.string(
     i18n('entities.shippingservice.fields.name'),
     {
-      "required": true
+      required: true,
     },
   ),
   price: yupFormSchemas.decimal(
     i18n('entities.shippingservice.fields.price'),
     {
-      "required": true
+      required: true,
     },
   ),
   status: yupFormSchemas.enumerator(
     i18n('entities.shippingservice.fields.status'),
     {
-      "options": shippingserviceEnumerators.status
+      options: shippingserviceEnumerators.status,
     },
   ),
   minimumPrice: yupFormSchemas.decimal(
@@ -77,22 +77,28 @@ function ShippingserviceForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="name"
-                label={i18n('entities.shippingservice.fields.name')}
+                label={i18n(
+                  'entities.shippingservice.fields.name',
+                )}
                 required={true}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="price"
-                label={i18n('entities.shippingservice.fields.price')}  
+                label={i18n(
+                  'entities.shippingservice.fields.price',
+                )}
                 required={true}
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n('entities.shippingservice.fields.status')}
+                label={i18n(
+                  'entities.shippingservice.fields.status',
+                )}
                 options={shippingserviceEnumerators.status.map(
                   (value) => ({
                     value,
@@ -103,20 +109,24 @@ function ShippingserviceForm(props) {
                 )}
                 required={false}
               />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            </div> */}
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="minimumPrice"
-                label={i18n('entities.shippingservice.fields.minimumPrice')}  
+                label={i18n(
+                  'entities.shippingservice.fields.minimumPrice',
+                )}
                 required={false}
               />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            </div> */}
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <SwitchFormItem
                 name="isCondition"
-                label={i18n('entities.shippingservice.fields.isCondition')}
+                label={i18n(
+                  'entities.shippingservice.fields.isCondition',
+                )}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="form-buttons">
@@ -129,7 +139,7 @@ function ShippingserviceForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 

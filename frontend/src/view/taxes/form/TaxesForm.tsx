@@ -14,20 +14,20 @@ const schema = yup.object().shape({
   name: yupFormSchemas.string(
     i18n('entities.taxes.fields.name'),
     {
-      "required": true
+      required: true,
     },
   ),
   value: yupFormSchemas.decimal(
     i18n('entities.taxes.fields.value'),
     {
-      "required": true
+      required: true,
     },
   ),
   status: yupFormSchemas.enumerator(
     i18n('entities.taxes.fields.status'),
     {
-      "required": true,
-      "options": taxesEnumerators.status
+      required: true,
+      options: taxesEnumerators.status,
     },
   ),
 });
@@ -39,7 +39,7 @@ function TaxesForm(props) {
     return {
       name: record.name,
       value: record.value,
-      status: record.status,
+      // status: record.status,
     };
   });
 
@@ -69,17 +69,18 @@ function TaxesForm(props) {
                 name="name"
                 label={i18n('entities.taxes.fields.name')}
                 required={true}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="value"
-                label={i18n('entities.taxes.fields.value')}  
+                label={i18n('entities.taxes.fields.value')}
                 required={true}
+                description="(Set 0 to make it free)"
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
                 label={i18n('entities.taxes.fields.status')}
@@ -93,7 +94,7 @@ function TaxesForm(props) {
                 )}
                 required={true}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="form-buttons">
