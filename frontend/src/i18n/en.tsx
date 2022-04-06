@@ -236,9 +236,9 @@ const en = {
       },
       fields: {
         id: 'Id',
-        name: 'Name',
+        name: 'Title',
         valueRange: 'Value',
-        value: 'Value',
+        value: 'Tax',
         status: 'Status',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
