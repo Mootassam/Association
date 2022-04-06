@@ -205,7 +205,7 @@ function CampaignItemsListTable(props) {
                       </label>
                     </div>
                   </th>
-                  {console.log(row)}
+
                   <td>
                     <ImagesListView
                       value={row.itemId.photo}
@@ -214,7 +214,7 @@ function CampaignItemsListTable(props) {
                   <td>
                     <ProductListItem value={row.itemId} />
                   </td>
-                  <td>{row.itemId.discountPrice}</td>
+                  <td>{row.itemId[0].discountPrice}</td>
                   <td>
                     <select
                       className="form-control"
@@ -223,16 +223,13 @@ function CampaignItemsListTable(props) {
                         formSubmit(row.id, e)
                       }
                     >
-                      {row.status === 'publish' && (
-                        <>
-                          <option value="publish">
-                            Publish
-                          </option>
-                          <option value="unpublish">
-                            Unpublish
-                          </option>
-                        </>
-                      )}
+                      <option value="publish">
+                        Publish
+                      </option>
+                      <option value="unpublish">
+                        Unpublish
+                      </option>
+
                       {row.status === 'unpublish' && (
                         <>
                           <option value="unpublish">
@@ -253,16 +250,11 @@ function CampaignItemsListTable(props) {
                         formSubmit(row.id, e)
                       }
                     >
-                      {row.status === 'enable' && (
-                        <>
-                          <option value="enable">
-                            Enable
-                          </option>
-                          <option value="disable">
-                            Disable
-                          </option>
-                        </>
-                      )}
+                      <option value="enable">Enable</option>
+                      <option value="disable">
+                        Disable
+                      </option>
+
                       {row.status === 'disable' && (
                         <>
                           <option value="disable">
