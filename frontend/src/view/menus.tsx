@@ -139,19 +139,25 @@ export default [
         icon: 'fas fa-chevron-right',
         label: i18n('entities.coupons.menu'),
       },
-
-      {
-        path: '/taxes',
-        permissionRequired: permissions.taxesRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.taxes.menu'),
-      },
       {
         path: '/shippingservice',
         permissionRequired: permissions.shippingserviceRead,
         icon: 'fas fa-chevron-right',
         label: i18n('entities.shippingservice.menu'),
       },
+      {
+        path: '/state',
+        permissionRequired: permissions.stateRead,
+        icon: 'fas fa-chevron-right',
+        label: i18n('entities.state.menu'),
+      },
+      {
+        path: '/taxes',
+        permissionRequired: permissions.taxesRead,
+        icon: 'fas fa-chevron-right',
+        label: i18n('entities.taxes.menu'),
+      },
+
       // {
       //   path: '/track-order',
       //   permissionRequired: permissions.trackOrderRead,
@@ -159,12 +165,6 @@ export default [
       //   label: i18n('entities.trackOrder.menu'),
       // },
 
-      {
-        path: '/state',
-        permissionRequired: permissions.stateRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.state.menu'),
-      },
       {
         path: '/paymentsettings',
         permissionRequired: permissions.paymentsettingsRead,

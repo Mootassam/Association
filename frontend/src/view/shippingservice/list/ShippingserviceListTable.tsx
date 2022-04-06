@@ -12,13 +12,11 @@ import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
-
+import actionsForm from 'src/modules/shippingservice/form/shippingserviceFormActions';
 
 function ShippingserviceListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -87,7 +85,10 @@ function ShippingserviceListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
-
+  const formSubmit = (id, e) => {
+    let data = { status: e.target.value };
+    dispatch(actionsForm.doUpdate(id, data));
+  };
   return (
     <TableWrapper>
       <div className="table-responsive">
@@ -113,53 +114,53 @@ function ShippingserviceListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.shippingservice.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'price'}
-                  label={i18n(
-                    'entities.shippingservice.fields.price',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.shippingservice.fields.status',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'minimumPrice'}
-                  label={i18n(
-                    'entities.shippingservice.fields.minimumPrice',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'isCondition'}
-                  label={i18n(
-                    'entities.shippingservice.fields.isCondition',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.shippingservice.fields.name',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'price'}
+                label={i18n(
+                  'entities.shippingservice.fields.price',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n(
+                  'entities.shippingservice.fields.status',
+                )}
+              />
+              {/* <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'minimumPrice'}
+                label={i18n(
+                  'entities.shippingservice.fields.minimumPrice',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'isCondition'}
+                label={i18n(
+                  'entities.shippingservice.fields.isCondition',
+                )}
+              /> */}
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -209,20 +210,43 @@ function ShippingserviceListTable(props) {
                     {row.price}
                   </td>
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.shippingservice.enumerators.status.${row.status}`,
-                        )
-                      : null}
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
-                  <td style={{ textAlign: 'right' }}>
+                  {/* <td style={{ textAlign: 'right' }}>
                     {row.minimumPrice}
                   </td>
                   <td>
                     {row.isCondition
                       ? i18n('common.yes')
                       : i18n('common.no')}
-                  </td>
+                  </td> */}
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

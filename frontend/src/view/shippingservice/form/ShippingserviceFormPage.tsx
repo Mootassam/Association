@@ -47,7 +47,10 @@ function ShippingserviceFormPage(props) {
       <Breadcrumb
         items={[
           [i18n('dashboard.menu'), '/'],
-          [i18n('entities.shippingservice.menu'), '/shippingservice'],
+          [
+            i18n('entities.shippingservice.menu'),
+            '/shippingservice',
+          ],
           [title],
         ]}
       />
@@ -64,7 +67,9 @@ function ShippingserviceFormPage(props) {
             record={record}
             isEditing={isEditing}
             onSubmit={doSubmit}
-            onCancel={() => getHistory().push('/shippingservice')}
+            onCancel={() =>
+              getHistory().push('/shippingservice')
+            }
           />
         )}
       </ContentWrapper>
