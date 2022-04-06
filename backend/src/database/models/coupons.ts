@@ -29,6 +29,7 @@ export default (database) => {
       status: {
         type: String,
         enum: ['enable', 'disable'],
+        default: 'enable',
       },
       type: {
         type: String,

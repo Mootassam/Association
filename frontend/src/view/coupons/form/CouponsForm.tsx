@@ -15,38 +15,38 @@ const schema = yup.object().shape({
   title: yupFormSchemas.string(
     i18n('entities.coupons.fields.title'),
     {
-      "required": true
+      required: true,
     },
   ),
   codeName: yupFormSchemas.string(
     i18n('entities.coupons.fields.codeName'),
     {
-      "required": true
+      required: true,
     },
   ),
   discount: yupFormSchemas.decimal(
     i18n('entities.coupons.fields.discount'),
     {
-      "required": true
+      required: true,
     },
   ),
   noOfTimes: yupFormSchemas.integer(
     i18n('entities.coupons.fields.noOfTimes'),
     {
-      "required": true
+      required: true,
     },
   ),
   status: yupFormSchemas.enumerator(
     i18n('entities.coupons.fields.status'),
     {
-      "options": couponsEnumerators.status
+      options: couponsEnumerators.status,
     },
   ),
   type: yupFormSchemas.enumerator(
     i18n('entities.coupons.fields.type'),
     {
-      "required": true,
-      "options": couponsEnumerators.type
+      required: true,
+      options: couponsEnumerators.type,
     },
   ),
 });
@@ -60,7 +60,7 @@ function CouponsForm(props) {
       codeName: record.codeName,
       discount: record.discount,
       noOfTimes: record.noOfTimes,
-      status: record.status,
+      // status: record.status,
       type: record.type,
     };
   });
@@ -89,36 +89,38 @@ function CouponsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="title"
-                label={i18n('entities.coupons.fields.title')}
+                label={i18n(
+                  'entities.coupons.fields.title',
+                )}
                 required={true}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="codeName"
-                label={i18n('entities.coupons.fields.codeName')}
+                label={i18n(
+                  'entities.coupons.fields.codeName',
+                )}
                 required={true}
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="discount"
-                label={i18n('entities.coupons.fields.discount')}  
-                required={true}
-              />
-            </div>
+
             <div className="col-lg-7 col-md-8 col-12">
               <InputNumberFormItem
                 name="noOfTimes"
-                label={i18n('entities.coupons.fields.noOfTimes')}  
+                label={i18n(
+                  'entities.coupons.fields.noOfTimes',
+                )}
                 required={true}
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n('entities.coupons.fields.status')}
+                label={i18n(
+                  'entities.coupons.fields.status',
+                )}
                 options={couponsEnumerators.status.map(
                   (value) => ({
                     value,
@@ -129,7 +131,8 @@ function CouponsForm(props) {
                 )}
                 required={false}
               />
-            </div>
+            </div> */}
+
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="type"
@@ -141,6 +144,15 @@ function CouponsForm(props) {
                       `entities.coupons.enumerators.type.${value}`,
                     ),
                   }),
+                )}
+                required={true}
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
+              <InputFormItem
+                name="discount"
+                label={i18n(
+                  'entities.coupons.fields.discount',
                 )}
                 required={true}
               />

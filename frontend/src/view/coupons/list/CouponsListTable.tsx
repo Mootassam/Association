@@ -12,13 +12,11 @@ import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
-
+import actionsForm from 'src/modules/coupons/form/couponsFormActions';
 
 function CouponsListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -87,7 +85,10 @@ function CouponsListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
-
+  const formSubmit = (id, e) => {
+    let data = { status: e.target.value };
+    dispatch(actionsForm.doUpdate(id, data));
+  };
   return (
     <TableWrapper>
       <div className="table-responsive">
@@ -113,53 +114,54 @@ function CouponsListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'title'}
-                  label={i18n(
-                    'entities.coupons.fields.title',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'codeName'}
-                  label={i18n(
-                    'entities.coupons.fields.codeName',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'discount'}
-                  label={i18n(
-                    'entities.coupons.fields.discount',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'noOfTimes'}
-                  label={i18n(
-                    'entities.coupons.fields.noOfTimes',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.coupons.fields.status',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'title'}
+                label={i18n(
+                  'entities.coupons.fields.title',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'codeName'}
+                label={i18n(
+                  'entities.coupons.fields.codeName',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'noOfTimes'}
+                label={i18n(
+                  'entities.coupons.fields.noOfTimes',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'discount'}
+                label={i18n(
+                  'entities.coupons.fields.discount',
+                )}
+                align="right"
+              />
+
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n(
+                  'entities.coupons.fields.status',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -206,16 +208,42 @@ function CouponsListTable(props) {
                   </th>
                   <td>{row.title}</td>
                   <td>{row.codeName}</td>
+
+                  <td style={{ textAlign: 'right' }}>
+                    {row.noOfTimes}
+                  </td>
                   <td style={{ textAlign: 'right' }}>
                     {row.discount}
                   </td>
-                  <td style={{ textAlign: 'right' }}>{row.noOfTimes}</td>
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.coupons.enumerators.status.${row.status}`,
-                        )
-                      : null}
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
                   <td className="td-actions">
                     <Link
