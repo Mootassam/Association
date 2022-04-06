@@ -229,12 +229,25 @@ function CampaignItemsListTable(props) {
                         changeIsFeature(row, e)
                       }
                     >
-                      <option value="publish">
-                        Publish
-                      </option>
-                      <option value="unpublish">
-                        Unpublish
-                      </option>
+                      {row.isFeature === 'publish' ? (
+                        <>
+                          <option value="publish">
+                            Publish
+                          </option>
+                          <option value="unpublish">
+                            Unpublish
+                          </option>
+                        </>
+                      ) : (
+                        <>
+                          <option value="unpublish">
+                            Unpublish
+                          </option>
+                          <option value="publish">
+                            Publish
+                          </option>
+                        </>
+                      )}
                     </select>
                   </td>
                   <td>
@@ -243,10 +256,25 @@ function CampaignItemsListTable(props) {
                       name="status"
                       onChange={(e) => formSubmit(row, e)}
                     >
-                      <option value="enable">Enable</option>
-                      <option value="disable">
-                        Disable
-                      </option>
+                      {row.status === 'enable' ? (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      ) : (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
                     </select>
                   </td>
 
