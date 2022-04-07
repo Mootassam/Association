@@ -14,11 +14,11 @@ import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem'
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
     i18n('entities.attributeOptions.fields.name'),
-    {},
+    { required: true },
   ),
   price: yupFormSchemas.decimal(
     i18n('entities.attributeOptions.fields.price'),
-    {},
+    { required: true },
   ),
   keyword: yupFormSchemas.string(
     i18n('entities.attributeOptions.fields.keyword'),
@@ -26,11 +26,11 @@ const schema = yup.object().shape({
   ),
   stock: yupFormSchemas.integer(
     i18n('entities.attributeOptions.fields.stock'),
-    {},
+    { required: true },
   ),
   attributeId: yupFormSchemas.relationToOne(
     i18n('entities.attributeOptions.fields.attributeId'),
-    {},
+    { required: true },
   ),
 });
 
@@ -69,24 +69,26 @@ function AttributeOptionsForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
+              <AttributesAutocompleteFormItem
+                name="attributeId"
+                label={i18n(
+                  'entities.attributeOptions.fields.attributeId',
+                )}
+                required={true}
+                showCreate={!props.modal}
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="name"
                 label={i18n(
                   'entities.attributeOptions.fields.name',
                 )}
-                required={false}
+                required={true}
                 autoFocus
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="price"
-                label={i18n(
-                  'entities.attributeOptions.fields.price',
-                )}
-                required={false}
-              />
-            </div>
+
             {/* <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="keyword"
@@ -102,17 +104,16 @@ function AttributeOptionsForm(props) {
                 label={i18n(
                   'entities.attributeOptions.fields.stock',
                 )}
-                required={false}
+                required={true}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <AttributesAutocompleteFormItem
-                name="attributeId"
+              <InputFormItem
+                name="price"
                 label={i18n(
-                  'entities.attributeOptions.fields.attributeId',
+                  'entities.attributeOptions.fields.price',
                 )}
-                required={false}
-                showCreate={!props.modal}
+                required={true}
               />
             </div>
           </div>

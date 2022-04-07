@@ -28,12 +28,13 @@ function AttributesListItem(props) {
     if (hasPermissionToRead) {
       return (
         <div key={record.id}>
-          <Link
+          {record.name}
+          {/* <Link
             className="btn btn-link"
             to={`/attributes/${record.id}`}
-          >
-            {record.name}
-          </Link>
+          > */}
+          {/* {record.name}
+          </Link> */}
         </div>
       );
     }
