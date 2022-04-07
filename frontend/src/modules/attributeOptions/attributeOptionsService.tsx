@@ -76,8 +76,15 @@ export default class AttributeOptionsService {
     return response.data;
   }
 
-  static async list(filter, orderBy, limit, offset) {
+  static async list(
+    productName,
+    filter,
+    orderBy,
+    limit,
+    offset,
+  ) {
     const params = {
+      productName,
       filter,
       orderBy,
       limit,

@@ -712,16 +712,6 @@ const privateRoutes = [
     permissionRequired: permissions.stateRead,
     exact: true,
   },
-
-  {
-    path: '/attribute-options',
-    loader: () =>
-      import(
-        'src/view/attributeOptions/list/AttributeOptionsListPage'
-      ),
-    permissionRequired: permissions.attributeOptionsRead,
-    exact: true,
-  },
   {
     path: '/attribute-options/new',
     loader: () =>
@@ -731,6 +721,16 @@ const privateRoutes = [
     permissionRequired: permissions.attributeOptionsCreate,
     exact: true,
   },
+  {
+    path: '/attribute-options/:name',
+    loader: () =>
+      import(
+        'src/view/attributeOptions/list/AttributeOptionsListPage'
+      ),
+    permissionRequired: permissions.attributeOptionsRead,
+    exact: true,
+  },
+
   {
     path: '/attribute-options/importer',
     loader: () =>

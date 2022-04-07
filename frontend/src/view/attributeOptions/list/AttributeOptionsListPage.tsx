@@ -6,8 +6,12 @@ import AttributeOptionsListToolbar from 'src/view/attributeOptions/list/Attribut
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { useRouteMatch } from 'react-router-dom';
 
 function AttributeOptionsListPage(props) {
+  const match = useRouteMatch();
+  const nameProduct = match.params.name;
+
   return (
     <>
       <Breadcrumb
@@ -21,9 +25,10 @@ function AttributeOptionsListPage(props) {
         <PageTitle>
           {i18n('entities.attributeOptions.list.title')}
         </PageTitle>
-
         <AttributeOptionsListToolbar />
-        <AttributeOptionsListFilter />
+        <AttributeOptionsListFilter
+          productName={nameProduct}
+        />
         <AttributeOptionsListTable />
       </ContentWrapper>
     </>

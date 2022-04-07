@@ -12,7 +12,6 @@ import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
-import ProductListItem from 'src/view/product/list/ProductListItem';
 import AttributesListItem from 'src/view/attributes/list/AttributesListItem';
 
 function AttributeOptionsListTable(props) {

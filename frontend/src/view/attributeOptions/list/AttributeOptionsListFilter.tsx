@@ -13,7 +13,6 @@ import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
-import ProductAutocompleteFormItem from 'src/view/product/autocomplete/ProductAutocompleteFormItem';
 import AttributesAutocompleteFormItem from 'src/view/attributes/autocomplete/AttributesAutocompleteFormItem';
 
 const schema = yup.object().shape({
@@ -40,7 +39,7 @@ const emptyValues = {
   keyword: null,
   item: null,
   attributeId: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -48,22 +47,23 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   priceRange: {
-    label: i18n('entities.attributeOptions.fields.priceRange'),
+    label: i18n(
+      'entities.attributeOptions.fields.priceRange',
+    ),
     render: filterRenders.decimalRange(),
   },
   keyword: {
     label: i18n('entities.attributeOptions.fields.keyword'),
     render: filterRenders.generic(),
   },
-  item: {
-      label: i18n('entities.attributeOptions.fields.item'),
-      render: filterRenders.relationToOne(),
-    },
+
   attributeId: {
-      label: i18n('entities.attributeOptions.fields.attributeId'),
-      render: filterRenders.relationToOne(),
-    },
-}
+    label: i18n(
+      'entities.attributeOptions.fields.attributeId',
+    ),
+    render: filterRenders.relationToOne(),
+  },
+};
 
 function AttributeOptionsListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -84,7 +84,13 @@ function AttributeOptionsListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        props.productName,
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -125,36 +131,46 @@ function AttributeOptionsListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.attributeOptions.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="priceRange"
-                        label={i18n('entities.attributeOptions.fields.priceRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="keyword"
-                        label={i18n('entities.attributeOptions.fields.keyword')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <ProductAutocompleteFormItem  
-                        name="item"
-                        label={i18n('entities.attributeOptions.fields.item')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <AttributesAutocompleteFormItem  
-                        name="attributeId"
-                        label={i18n('entities.attributeOptions.fields.attributeId')}        
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.attributeOptions.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="priceRange"
+                    label={i18n(
+                      'entities.attributeOptions.fields.priceRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="keyword"
+                    label={i18n(
+                      'entities.attributeOptions.fields.keyword',
+                    )}
+                  />
+                </div>
+                {/* <div className="col-lg-6 col-12">
+                  <ProductAutocompleteFormItem
+                    name="item"
+                    label={i18n(
+                      'entities.attributeOptions.fields.item',
+                    )}
+                  />
+                </div> */}
+                <div className="col-lg-6 col-12">
+                  <AttributesAutocompleteFormItem
+                    name="attributeId"
+                    label={i18n(
+                      'entities.attributeOptions.fields.attributeId',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">

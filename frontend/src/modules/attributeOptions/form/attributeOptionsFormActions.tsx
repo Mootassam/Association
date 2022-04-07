@@ -44,7 +44,7 @@ const attributeOptionsFormActions = {
         type: attributeOptionsFormActions.INIT_ERROR,
       });
 
-      getHistory().push('/attribute-options');
+      getHistory().push('/product');
     }
   },
 
@@ -64,7 +64,7 @@ const attributeOptionsFormActions = {
         i18n('entities.attributeOptions.create.success'),
       );
 
-      getHistory().push('/attribute-options');
+      getHistory().push('/product');
     } catch (error) {
       Errors.handle(error);
 
@@ -90,7 +90,7 @@ const attributeOptionsFormActions = {
         i18n('entities.attributeOptions.update.success'),
       );
 
-      getHistory().push('/attribute-options');
+      getHistory().push('/product');
     } catch (error) {
       Errors.handle(error);
 

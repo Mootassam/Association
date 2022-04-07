@@ -48,7 +48,7 @@ const attributeOptionsListActions = {
       type: attributeOptionsListActions.RESETED,
     });
 
-    dispatch(attributeOptionsListActions.doFetch());
+    // dispatch(attributeOptionsListActions.doFetch());
   },
 
   doExport: () => async (dispatch, getState) => {
@@ -62,17 +62,17 @@ const attributeOptionsListActions = {
       });
 
       const filter = selectors.selectFilter(getState());
-      const response = await AttributeOptionsService.list(
-        filter,
-        selectors.selectOrderBy(getState()),
-        null,
-        null,
-      );
+      // const response = await AttributeOptionsService.list(
+      //   filter,
+      //   selectors.selectOrderBy(getState()),
+      //   null,
+      //   null,
+      // );
 
-      new Exporter(
-        exporterFields,
-        i18n('entities.attributeOptions.exporterFileName'),
-      ).transformAndExportAsExcelFile(response.rows);
+      // new Exporter(
+      //   exporterFields,
+      //   i18n('entities.attributeOptions.exporterFileName'),
+      // ).transformAndExportAsExcelFile(response.rows);
 
       dispatch({
         type: attributeOptionsListActions.EXPORT_SUCCESS,
@@ -86,17 +86,17 @@ const attributeOptionsListActions = {
     }
   },
 
-  doChangePagination: (pagination) => async (
-    dispatch,
-    getState,
-  ) => {
-    dispatch({
-      type: attributeOptionsListActions.PAGINATION_CHANGED,
-      payload: pagination,
-    });
+  doChangePagination:
+    (pagination) => async (dispatch, getState) => {
+      dispatch({
+        type: attributeOptionsListActions.PAGINATION_CHANGED,
+        payload: pagination,
+      });
 
-    dispatch(attributeOptionsListActions.doFetchCurrentFilter());
-  },
+      dispatch(
+        attributeOptionsListActions.doFetchCurrentFilter(),
+      );
+    },
 
   doChangeSort: (sorter) => async (dispatch, getState) => {
     dispatch({
@@ -104,50 +104,63 @@ const attributeOptionsListActions = {
       payload: sorter,
     });
 
-    dispatch(attributeOptionsListActions.doFetchCurrentFilter());
+    dispatch(
+      attributeOptionsListActions.doFetchCurrentFilter(),
+    );
   },
 
-  doFetchCurrentFilter: () => async (
-    dispatch,
-    getState,
-  ) => {
-    const filter = selectors.selectFilter(getState());
-    const rawFilter = selectors.selectRawFilter(getState());
-    dispatch(attributeOptionsListActions.doFetch(filter, rawFilter, true));
-  },
-
-  doFetch: (filter?, rawFilter?, keepPagination = false) => async (
-    dispatch,
-    getState,
-  ) => {
-    try {
-      dispatch({
-        type: attributeOptionsListActions.FETCH_STARTED,
-        payload: { filter, rawFilter, keepPagination },
-      });
-
-      const response = await AttributeOptionsService.list(
-        filter,
-        selectors.selectOrderBy(getState()),
-        selectors.selectLimit(getState()),
-        selectors.selectOffset(getState()),
+  doFetchCurrentFilter:
+    () => async (dispatch, getState) => {
+      const filter = selectors.selectFilter(getState());
+      const rawFilter = selectors.selectRawFilter(
+        getState(),
       );
+      dispatch(
+        attributeOptionsListActions.doFetch(
+          filter,
+          rawFilter,
+          true,
+        ),
+      );
+    },
 
-      dispatch({
-        type: attributeOptionsListActions.FETCH_SUCCESS,
-        payload: {
-          rows: response.rows,
-          count: response.count,
-        },
-      });
-    } catch (error) {
-      Errors.handle(error);
+  doFetch:
+    (
+      productName,
+      filter?,
+      rawFilter?,
+      keepPagination = false,
+    ) =>
+    async (dispatch, getState) => {
+      try {
+        dispatch({
+          type: attributeOptionsListActions.FETCH_STARTED,
+          payload: { filter, rawFilter, keepPagination },
+        });
 
-      dispatch({
-        type: attributeOptionsListActions.FETCH_ERROR,
-      });
-    }
-  },
+        const response = await AttributeOptionsService.list(
+          productName,
+          filter,
+          selectors.selectOrderBy(getState()),
+          selectors.selectLimit(getState()),
+          selectors.selectOffset(getState()),
+        );
+
+        dispatch({
+          type: attributeOptionsListActions.FETCH_SUCCESS,
+          payload: {
+            rows: response.rows,
+            count: response.count,
+          },
+        });
+      } catch (error) {
+        Errors.handle(error);
+
+        dispatch({
+          type: attributeOptionsListActions.FETCH_ERROR,
+        });
+      }
+    },
 };
 
 export default attributeOptionsListActions;

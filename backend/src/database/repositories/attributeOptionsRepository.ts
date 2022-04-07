@@ -6,17 +6,15 @@ import { IRepositoryOptions } from './IRepositoryOptions';
 import lodash from 'lodash';
 import AttributeOptions from '../models/attributeOptions';
 import Cart from '../models/cart';
+import Attributes from '../models/attributes';
 
 class AttributeOptionsRepository {
-  
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const [record] = await AttributeOptions(
       options.database,
@@ -27,7 +25,7 @@ class AttributeOptionsRepository {
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -39,20 +37,25 @@ class AttributeOptionsRepository {
       options,
     );
 
-    
-
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      AttributeOptions(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        AttributeOptions(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -62,9 +65,8 @@ class AttributeOptionsRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -78,26 +80,30 @@ class AttributeOptionsRepository {
 
     record = await this.findById(id, options);
 
-
-
     return record;
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      AttributeOptions(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        AttributeOptions(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
     }
 
-    await AttributeOptions(options.database).deleteOne({ _id: id }, options);
+    await AttributeOptions(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -147,9 +153,8 @@ class AttributeOptionsRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       AttributeOptions(options.database).countDocuments({
@@ -161,17 +166,17 @@ class AttributeOptionsRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      AttributeOptions(options.database)
-        .findOne({_id: id, tenant: currentTenant.id})
-      .populate('item')
-      .populate('attributeId'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        AttributeOptions(options.database)
+          .findOne({ _id: id, tenant: currentTenant.id })
+          .populate('item')
+          .populate('attributeId'),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -181,17 +186,32 @@ class AttributeOptionsRepository {
   }
 
   static async findAndCountAll(
-    { filter, limit = 0, offset = 0, orderBy = '' },
+    {
+      productName,
+      filter,
+      limit = 0,
+      offset = 0,
+      orderBy = '',
+    },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    
+
     criteriaAnd.push({
       tenant: currentTenant.id,
+    });
+
+    let data = await Attributes(options.database).find({
+      itemId: productName,
+    });
+
+    data.forEach((element) => {
+      criteriaAnd.push({
+        attributeId: element.id,
+      });
     });
 
     if (filter) {
@@ -215,7 +235,11 @@ class AttributeOptionsRepository {
       if (filter.priceRange) {
         const [start, end] = filter.priceRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             price: {
               $gte: start,
@@ -223,7 +247,11 @@ class AttributeOptionsRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             price: {
               $lte: end,
@@ -245,9 +273,7 @@ class AttributeOptionsRepository {
 
       if (filter.item) {
         criteriaAnd.push({
-          item: MongooseQueryUtils.uuid(
-            filter.item,
-          ),
+          item: MongooseQueryUtils.uuid(filter.item),
         });
       }
 
@@ -317,14 +343,19 @@ class AttributeOptionsRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -332,7 +363,6 @@ class AttributeOptionsRepository {
           {
             _id: MongooseQueryUtils.uuid(search),
           },
-          
         ],
       });
     }
@@ -353,10 +383,16 @@ class AttributeOptionsRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
-        entityName: AttributeOptions(options.database).modelName,
+        entityName: AttributeOptions(options.database)
+          .modelName,
         entityId: id,
         action,
         values: data,
@@ -373,10 +409,6 @@ class AttributeOptionsRepository {
     const output = record.toObject
       ? record.toObject()
       : record;
-
-
-
-
 
     return output;
   }
