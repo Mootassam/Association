@@ -40,8 +40,12 @@ function AttributesForm(props) {
   });
 
   const onSubmit = (values) => {
-    let data = { ...values, itemId };
-    props.onSubmit(props.record?.id, data);
+    if (!props.record?.id) {
+      let data = { ...values, itemId };
+      props.onSubmit(props.record?.id, data);
+    } else {
+      props.onSubmit(props.record?.id, values);
+    }
   };
 
   const onReset = () => {
