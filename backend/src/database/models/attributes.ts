@@ -21,7 +21,7 @@ export default (database) => {
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -45,8 +45,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   AttributesSchema.virtual('id').get(function () {
     // @ts-ignore

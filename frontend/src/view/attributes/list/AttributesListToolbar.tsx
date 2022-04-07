@@ -14,6 +14,9 @@ import Toolbar from 'src/view/shared/styles/Toolbar';
 import ReactTooltip from 'react-tooltip';
 
 function AttributesToolbar(props) {
+  {
+    console.log(props.ProductId);
+  }
   const [
     destroyAllConfirmVisible,
     setDestroyAllConfirmVisible,
@@ -138,7 +141,7 @@ function AttributesToolbar(props) {
   return (
     <Toolbar>
       {hasPermissionToCreate && (
-        <Link to="/attributes/new">
+        <Link to={`/attributes/new/${props?.ProductId}`}>
           <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-plus" />{' '}
             {i18n('common.new')}

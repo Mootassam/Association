@@ -44,7 +44,7 @@ const attributesFormActions = {
         type: attributesFormActions.INIT_ERROR,
       });
 
-      getHistory().push('/attributes');
+      getHistory().push('/product');
     }
   },
 
@@ -64,7 +64,7 @@ const attributesFormActions = {
         i18n('entities.attributes.create.success'),
       );
 
-      getHistory().push('/attributes');
+      getHistory().push('/product');
     } catch (error) {
       Errors.handle(error);
 
@@ -90,7 +90,7 @@ const attributesFormActions = {
         i18n('entities.attributes.update.success'),
       );
 
-      getHistory().push('/attributes');
+      getHistory().push('/product');
     } catch (error) {
       Errors.handle(error);
 

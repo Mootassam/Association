@@ -272,7 +272,7 @@ function ProductListTable(props) {
                     )}
                     <Link
                       className="btn btn-link"
-                      to={`/attributes`}
+                      to={`/attributes/${row.id}`}
                     >
                       {i18n('common.attributes')}
                     </Link>

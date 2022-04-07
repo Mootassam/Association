@@ -26,7 +26,10 @@ function AttributeOptionsPage() {
       <Breadcrumb
         items={[
           [i18n('dashboard.menu'), '/'],
-          [i18n('entities.attributeOptions.menu'), '/attribute-options'],
+          [
+            i18n('entities.attributeOptions.menu'),
+            '/attribute-options',
+          ],
           [i18n('entities.attributeOptions.view.title')],
         ]}
       />
@@ -38,7 +41,10 @@ function AttributeOptionsPage() {
 
         <AttributeOptionsViewToolbar match={match} />
 
-        <AttributeOptionsView loading={loading} record={record} />
+        <AttributeOptionsView
+          loading={loading}
+          record={record}
+        />
       </ContentWrapper>
     </>
   );

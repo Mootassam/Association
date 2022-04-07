@@ -8,7 +8,6 @@ export default async (req, res, next) => {
     new PermissionChecker(req).validateHas(
       Permissions.values.attributesRead,
     );
-
     const payload = await new AttributesService(
       req,
     ).findAndCountAll(req.query);

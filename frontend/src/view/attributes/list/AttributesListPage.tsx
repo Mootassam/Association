@@ -6,8 +6,12 @@ import AttributesListToolbar from 'src/view/attributes/list/AttributesListToolba
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { useRouteMatch } from 'react-router-dom';
 
 function AttributesListPage(props) {
+  const match = useRouteMatch();
+  const idProdcut = match.params?.id;
+
   return (
     <>
       <Breadcrumb
@@ -22,8 +26,8 @@ function AttributesListPage(props) {
           {i18n('entities.attributes.list.title')}
         </PageTitle>
 
-        <AttributesListToolbar />
-        <AttributesListFilter />
+        <AttributesListToolbar ProductId={idProdcut} />
+        <AttributesListFilter ProductId={idProdcut} />
         <AttributesListTable />
       </ContentWrapper>
     </>

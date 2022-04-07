@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   name: yupFormSchemas.string(
     i18n('entities.attributes.fields.name'),
     {
-      "required": true
+      required: true,
     },
   ),
   itemId: yupFormSchemas.relationToOne(
@@ -23,12 +23,13 @@ const schema = yup.object().shape({
 });
 
 function AttributesForm(props) {
+  const { itemId } = props;
   const [initialValues] = useState(() => {
     const record = props.record || {};
 
     return {
       name: record.name,
-      itemId: record.itemId,
+      itemId: itemId || record.itemId,
     };
   });
 
@@ -39,7 +40,8 @@ function AttributesForm(props) {
   });
 
   const onSubmit = (values) => {
-    props.onSubmit(props.record?.id, values);
+    let data = { ...values, itemId };
+    props.onSubmit(props.record?.id, data);
   };
 
   const onReset = () => {
@@ -56,19 +58,25 @@ function AttributesForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="name"
-                label={i18n('entities.attributes.fields.name')}
+                label={i18n(
+                  'entities.attributes.fields.name',
+                )}
                 required={true}
-              autoFocus
+                autoFocus
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <ProductAutocompleteFormItem  
-                name="itemId"
-                label={i18n('entities.attributes.fields.itemId')}
-                required={false}
-                showCreate={!props.modal}
-              />
-            </div>
+            {props.record?.id && (
+              <div className="col-lg-7 col-md-8 col-12">
+                <ProductAutocompleteFormItem
+                  name="itemId"
+                  label={i18n(
+                    'entities.attributes.fields.itemId',
+                  )}
+                  required={false}
+                  showCreate={!props.modal}
+                />
+              </div>
+            )}
           </div>
 
           <div className="form-buttons">

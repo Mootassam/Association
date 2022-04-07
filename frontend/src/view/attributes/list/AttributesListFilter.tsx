@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 const emptyValues = {
   name: null,
   itemId: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -34,10 +34,10 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   itemId: {
-      label: i18n('entities.attributes.fields.itemId'),
-      render: filterRenders.relationToOne(),
-    },
-}
+    label: i18n('entities.attributes.fields.itemId'),
+    render: filterRenders.relationToOne(),
+  },
+};
 
 function AttributesListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -58,7 +58,13 @@ function AttributesListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        props.ProductId,
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -99,18 +105,22 @@ function AttributesListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.attributes.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <ProductAutocompleteFormItem  
-                        name="itemId"
-                        label={i18n('entities.attributes.fields.itemId')}        
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.attributes.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <ProductAutocompleteFormItem
+                    name="itemId"
+                    label={i18n(
+                      'entities.attributes.fields.itemId',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">

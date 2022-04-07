@@ -873,14 +873,14 @@ const privateRoutes = [
     exact: true,
   },
   {
-    path: '/attributes',
+    path: '/attributes/:id',
     loader: () =>
       import('src/view/attributes/list/AttributesListPage'),
     permissionRequired: permissions.attributesRead,
     exact: true,
   },
   {
-    path: '/attributes/new',
+    path: '/attributes/new/:name',
     loader: () =>
       import('src/view/attributes/form/AttributesFormPage'),
     permissionRequired: permissions.attributesCreate,

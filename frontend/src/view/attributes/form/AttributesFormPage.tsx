@@ -10,11 +10,12 @@ import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import Spinner from 'src/view/shared/Spinner';
 import PageTitle from 'src/view/shared/styles/PageTitle';
-
+// import {useRouteMatch}
 function AttributesFormPage(props) {
   const [dispatched, setDispatched] = useState(false);
   const dispatch = useDispatch();
   const match = useRouteMatch();
+  const ProductId = match.params?.name;
 
   const initLoading = useSelector(
     selectors.selectInitLoading,
@@ -23,12 +24,10 @@ function AttributesFormPage(props) {
     selectors.selectSaveLoading,
   );
   const record = useSelector(selectors.selectRecord);
-
   const isEditing = Boolean(match.params.id);
   const title = isEditing
     ? i18n('entities.attributes.edit.title')
     : i18n('entities.attributes.new.title');
-
   useEffect(() => {
     dispatch(actions.doInit(match.params.id));
     setDispatched(true);
@@ -54,9 +53,7 @@ function AttributesFormPage(props) {
 
       <ContentWrapper>
         <PageTitle>{title}</PageTitle>
-
         {initLoading && <Spinner />}
-
         {dispatched && !initLoading && (
           <AttributesForm
             saveLoading={saveLoading}
@@ -64,7 +61,10 @@ function AttributesFormPage(props) {
             record={record}
             isEditing={isEditing}
             onSubmit={doSubmit}
-            onCancel={() => getHistory().push('/attributes')}
+            onCancel={() =>
+              getHistory().push('/attributes')
+            }
+            itemId={ProductId}
           />
         )}
       </ContentWrapper>

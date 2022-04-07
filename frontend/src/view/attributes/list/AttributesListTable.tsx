@@ -15,10 +15,8 @@ import Pagination from 'src/view/shared/table/Pagination';
 import ProductListItem from 'src/view/product/list/ProductListItem';
 
 function AttributesListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -113,20 +111,16 @@ function AttributesListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.attributes.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.attributes.fields.itemId',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.attributes.fields.name',
+                )}
+              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -172,9 +166,6 @@ function AttributesListTable(props) {
                     </div>
                   </th>
                   <td>{row.name}</td>
-                  <td>
-                    <ProductListItem value={row.itemId} />
-                  </td>
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
