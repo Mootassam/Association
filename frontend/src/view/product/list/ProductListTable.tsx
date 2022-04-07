@@ -270,7 +270,18 @@ function ProductListTable(props) {
                         {i18n('common.edit')}
                       </Link>
                     )}
-
+                    <Link
+                      className="btn btn-link"
+                      to={`/attributes`}
+                    >
+                      {i18n('common.attributes')}
+                    </Link>
+                    <Link
+                      className="btn btn-link"
+                      to={`/attribute-options`}
+                    >
+                      {i18n('common.attributeoptions')}
+                    </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"

@@ -25,6 +25,8 @@ const en = {
     filters: 'Filters',
     gallery: 'Gallery Imgaes',
     hightlight: 'Hightlight',
+    attributes: 'Attributes',
+    attributeoptions: 'Attribute options',
   },
 
   app: {
