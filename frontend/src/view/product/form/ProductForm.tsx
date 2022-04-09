@@ -11,8 +11,6 @@ import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem'
 import SwitchFormItem from 'src/view/shared/form/items/SwitchFormItem';
 import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import productEnumerators from 'src/modules/product/productEnumerators';
-import moment from 'moment';
-import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
 import Storage from 'src/security/storage';
 import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
 import FilesFormItem from 'src/view/shared/form/items/FilesFormItem';
@@ -98,7 +96,6 @@ const schema = yup.object().shape({
     i18n('entities.product.fields.itemType'),
     {
       options: productEnumerators.itemType,
-      required: true,
     },
   ),
   file: yupFormSchemas.files(
@@ -148,10 +145,6 @@ const schema = yup.object().shape({
 });
 
 function ProductForm(props) {
-  var checkboxes = document.querySelectorAll(
-    'input[type=checkbox][name=isSpecification]',
-  );
-
   const [newForm, setNewform] = useState([
     {
       specificationName: '',
@@ -168,7 +161,7 @@ function ProductForm(props) {
       slug: record.slug,
       tags: record.tags,
       video: record.video,
-      isSpecification: record.isSpecification,
+
       details: record.details,
       photo: record.photo || [],
       discountPrice: record.discountPrice,
@@ -177,7 +170,7 @@ function ProductForm(props) {
       metaDesctiption: record.metaDesctiption,
       status: record.status,
       isType: record.isType,
-      itemType: record.itemType,
+      itemType: record.itemType || props.nameForm,
       file: record.file || [],
       link: record.link,
       fileType: record.fileType,
@@ -304,77 +297,67 @@ function ProductForm(props) {
                 />
               </div>
 
-              <div className="">
-                <SwitchFormItem
-                  name="isSpecification"
-                  label={i18n(
-                    'entities.product.fields.isSpecification',
-                  )}
-                />
-              </div>
-              {props.record.isSpecification &&
-                newForm.map((item, index) => (
-                  <div
-                    key={index + `div`}
-                    style={{ display: 'flex' }}
-                    className="app__specification"
-                  >
-                    <div className="col-6">
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="specificationName"
-                        value={item.specificationName || ''}
-                        placeholder={i18n(
-                          'entities.product.fields.specificationName',
-                        )}
-                        onChange={(e) =>
-                          handleChange(e, index)
-                        }
-                      />
-                    </div>
-                    <div className="col-5">
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="specificationDesciption"
-                        value={
-                          item.specificationDesciption || ''
-                        }
-                        placeholder={i18n(
-                          'entities.product.fields.specificationDesciption',
-                        )}
-                        onChange={(e) =>
-                          handleChange(e, index)
-                        }
-                      />
-                    </div>
-
-                    {index ? (
-                      <div className="input-group">
-                        <button
-                          className="btn btn-danger"
-                          type="button"
-                          onClick={() =>
-                            removeFields(index)
-                          }
-                        >
-                          <ButtonIcon iconClass="fas fa-minus" />
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="input-group">
-                        <button
-                          className="btn btn-success"
-                          type="button"
-                          onClick={() => addFields()}
-                        >
-                          <ButtonIcon iconClass="fas fa-plus" />
-                        </button>
-                      </div>
-                    )}
+              <br />
+              {newForm.map((item, index) => (
+                <div
+                  key={index + `div`}
+                  style={{ display: 'flex' }}
+                  className="app__specification"
+                >
+                  <div className="col-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="specificationName"
+                      value={item.specificationName || ''}
+                      placeholder={i18n(
+                        'entities.product.fields.specificationName',
+                      )}
+                      onChange={(e) =>
+                        handleChange(e, index)
+                      }
+                    />
                   </div>
-                ))}
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="specificationDesciption"
+                      value={
+                        item.specificationDesciption || ''
+                      }
+                      placeholder={i18n(
+                        'entities.product.fields.specificationDesciption',
+                      )}
+                      onChange={(e) =>
+                        handleChange(e, index)
+                      }
+                    />
+                  </div>
+
+                  {index ? (
+                    <div className="input-group">
+                      <button
+                        className="btn btn-danger"
+                        type="button"
+                        onClick={() => removeFields(index)}
+                      >
+                        <ButtonIcon iconClass="fas fa-minus" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="input-group">
+                      <button
+                        className="btn btn-success"
+                        type="button"
+                        onClick={() => addFields()}
+                      >
+                        <ButtonIcon iconClass="fas fa-plus" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
               {}
 
               {props.nameForm === 'digital' && (
@@ -456,24 +439,6 @@ function ProductForm(props) {
                   />
                 </div>
               )}
-
-              <div className="">
-                <SelectFormItem
-                  name="itemType"
-                  label={i18n(
-                    'entities.product.fields.itemType',
-                  )}
-                  options={productEnumerators.itemType.map(
-                    (value) => ({
-                      value,
-                      label: i18n(
-                        `entities.product.enumerators.itemType.${value}`,
-                      ),
-                    }),
-                  )}
-                  required={true}
-                />
-              </div>
             </div>
 
             <div className="col-4">

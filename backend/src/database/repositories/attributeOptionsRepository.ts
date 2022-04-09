@@ -199,20 +199,20 @@ class AttributeOptionsRepository {
       MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-
+    let cirteriaOr: any = [];
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
 
-    let data = await Attributes(options.database).find({
-      itemId: productName,
-    });
+    // let data = await Attributes(options.database).find({
+    //   itemId: productName,
+    // });
 
-    data.forEach((element) => {
-      criteriaAnd.push({
-        attributeId: element.id,
-      });
-    });
+    // data.forEach((element) => {
+    //   cirteriaOr.push({
+    //     attributeId: MongooseQueryUtils.uuid(element.id),
+    //   });
+    // });
 
     if (filter) {
       if (filter.id) {
@@ -323,7 +323,9 @@ class AttributeOptionsRepository {
     const criteria = criteriaAnd.length
       ? { $and: criteriaAnd }
       : null;
-
+    const criteriaOr = cirteriaOr.length
+      ? { $or: cirteriaOr }
+      : null;
     let rows = await AttributeOptions(options.database)
       .find(criteria)
       .skip(skip)

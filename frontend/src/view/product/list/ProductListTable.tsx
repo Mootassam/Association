@@ -244,15 +244,7 @@ function ProductListTable(props) {
                       )}
                     </select>
                   </td>
-                  <td>
-                    <span className="itemType">
-                      <Link
-                        to={`/highlights/${row.id}/edit`}
-                      >
-                        <span>{row.isType}</span>
-                      </Link>
-                    </span>
-                  </td>
+                  <td>{row.isType}</td>
                   <td>
                     {row.itemType
                       ? i18n(
