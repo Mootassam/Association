@@ -20,6 +20,7 @@ import SubcategoriesAutocompleteFormItem from 'src/view/subcategories/autocomple
 import ChieldCategoriesAutocompleteFormItem from 'src/view/chieldCategories/autocomplete/ChieldCategoriesAutocompleteFormItem';
 import BrandsAutocompleteFormItem from 'src/view/brands/autocomplete/BrandsAutocompleteFormItem';
 import GalleryAutocompleteFormItem from 'src/view/gallery/autocomplete/GalleryAutocompleteFormItem';
+import TextAreaFormItem from 'src/view/shared/form/items/TextAreaFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -128,8 +129,6 @@ const schema = yup.object().shape({
 });
 
 function ProductForm(props) {
-  console.log(props.nameForm);
-
   const [newForm, setNewform] = useState([
     {
       specificationName: '',
@@ -253,7 +252,7 @@ function ProductForm(props) {
               </div>
 
               <div className="">
-                <InputFormItem
+                <TextAreaFormItem
                   name="metaDesctiption"
                   label={i18n(
                     'entities.product.fields.metaDesctiption',
@@ -262,7 +261,7 @@ function ProductForm(props) {
                 />
               </div>
 
-              <InputFormItem
+              <TextAreaFormItem
                 name="details"
                 label={i18n(
                   'entities.product.fields.details',

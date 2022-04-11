@@ -14,9 +14,6 @@ import Toolbar from 'src/view/shared/styles/Toolbar';
 import ReactTooltip from 'react-tooltip';
 
 function AttributesToolbar(props) {
-  {
-    console.log(props.ProductId);
-  }
   const [
     destroyAllConfirmVisible,
     setDestroyAllConfirmVisible,

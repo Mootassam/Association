@@ -93,10 +93,10 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'brands',
       },
-      // gallery: {
-      //   type: Schema.Types.ObjectId,
-      //   ref: 'gallery',
-      // },
+      gallery: {
+        type: Schema.Types.ObjectId,
+        ref: 'gallery',
+      },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',

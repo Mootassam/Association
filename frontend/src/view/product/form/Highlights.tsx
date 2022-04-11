@@ -57,9 +57,6 @@ function Highlights() {
     defaultValues: initialValues,
   });
   const onSubmit = (values) => {
-    console.log('====================================');
-    console.log(values);
-    console.log('====================================');
     dispatch(actions.doUpdate(id, values));
   };
   return (

@@ -13,12 +13,11 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
+import actionsForm from 'src/modules/brands/form/brandsFormActions';
 
 function BrandsListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -87,6 +86,14 @@ function BrandsListTable(props) {
   const doToggleOneSelected = (id) => {
     dispatch(actions.doToggleOneSelected(id));
   };
+  const formSubmit = (id, e) => {
+    let data = { status: e.target.value };
+    dispatch(actionsForm.doUpdate(id, data));
+  };
+  const formChange = (id, e) => {
+    let data = { isPopular: e.target.value };
+    dispatch(actionsForm.doUpdate(id, data));
+  };
 
   return (
     <TableWrapper>
@@ -113,47 +120,41 @@ function BrandsListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.brands.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'slug'}
-                  label={i18n(
-                    'entities.brands.fields.slug',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.brands.fields.photo',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.brands.fields.status',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'isPopular'}
-                  label={i18n(
-                    'entities.brands.fields.isPopular',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n('entities.brands.fields.name')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'slug'}
+                label={i18n('entities.brands.fields.slug')}
+              />
+              <TableColumnHeader
+                label={i18n('entities.brands.fields.photo')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n(
+                  'entities.brands.fields.status',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'isPopular'}
+                label={i18n(
+                  'entities.brands.fields.isPopular',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -204,18 +205,64 @@ function BrandsListTable(props) {
                     <ImagesListView value={row.photo} />
                   </td>
                   <td>
-                    {row.status
-                      ? i18n(
-                          `entities.brands.enumerators.status.${row.status}`,
-                        )
-                      : null}
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={(e) =>
+                        formSubmit(row.id, e)
+                      }
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
                   <td>
-                    {row.isPopular
-                      ? i18n(
-                          `entities.brands.enumerators.isPopular.${row.isPopular}`,
-                        )
-                      : null}
+                    <select
+                      className="form-control"
+                      name="isPopular"
+                      onChange={(e) =>
+                        formChange(row.id, e)
+                      }
+                    >
+                      {row.status === 'enable' && (
+                        <>
+                          <option value="enable">
+                            Enable
+                          </option>
+                          <option value="disable">
+                            Disable
+                          </option>
+                        </>
+                      )}
+                      {row.status === 'disable' && (
+                        <>
+                          <option value="disable">
+                            Disable
+                          </option>
+                          <option value="enable">
+                            Enable
+                          </option>
+                        </>
+                      )}
+                    </select>
                   </td>
                   <td className="td-actions">
                     <Link
