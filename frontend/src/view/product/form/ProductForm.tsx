@@ -48,10 +48,7 @@ const schema = yup.object().shape({
     i18n('entities.product.fields.specificationDesciption'),
     {},
   ),
-  isSpecification: yupFormSchemas.boolean(
-    i18n('entities.product.fields.isSpecification'),
-    {},
-  ),
+
   details: yupFormSchemas.string(
     i18n('entities.product.fields.details'),
     {
@@ -106,12 +103,7 @@ const schema = yup.object().shape({
     i18n('entities.product.fields.link'),
     {},
   ),
-  fileType: yupFormSchemas.enumerator(
-    i18n('entities.product.fields.fileType'),
-    {
-      options: productEnumerators.fileType,
-    },
-  ),
+
   taxe: yupFormSchemas.relationToOne(
     i18n('entities.product.fields.taxes'),
     {},
@@ -173,7 +165,7 @@ function ProductForm(props) {
       itemType: record.itemType || props.nameForm,
       file: record.file || [],
       link: record.link,
-      fileType: record.fileType,
+
       taxe: record.taxe,
       category: record.category,
       subcategory: record.subcategory,
@@ -362,23 +354,6 @@ function ProductForm(props) {
 
               {props.nameForm === 'digital' && (
                 <>
-                  <div className="">
-                    <SelectFormItem
-                      name="fileType"
-                      label={i18n(
-                        'entities.product.fields.fileType',
-                      )}
-                      options={productEnumerators.fileType.map(
-                        (value) => ({
-                          value,
-                          label: i18n(
-                            `entities.product.enumerators.fileType.${value}`,
-                          ),
-                        }),
-                      )}
-                      required={false}
-                    />
-                  </div>
                   <div className="">
                     <InputFormItem
                       name="link"

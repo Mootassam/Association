@@ -31,10 +31,6 @@ export default (database) => {
         },
       ],
 
-      isSpecification: {
-        type: Boolean,
-        default: false,
-      },
       details: {
         type: String,
         required: true,
@@ -68,15 +64,11 @@ export default (database) => {
       },
       itemType: {
         type: String,
-        enum: ['normal', 'digitale', null],
+        enum: ['normal', 'digitale'],
       },
       file: [FileSchema],
       link: {
         type: String,
-      },
-      fileType: {
-        type: String,
-        enum: ['file', 'link', null],
       },
       taxe: {
         type: Schema.Types.ObjectId,

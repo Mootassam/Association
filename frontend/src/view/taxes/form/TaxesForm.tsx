@@ -26,7 +26,6 @@ const schema = yup.object().shape({
   status: yupFormSchemas.enumerator(
     i18n('entities.taxes.fields.status'),
     {
-      required: true,
       options: taxesEnumerators.status,
     },
   ),

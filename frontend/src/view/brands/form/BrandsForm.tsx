@@ -32,7 +32,6 @@ const schema = yup.object().shape({
   status: yupFormSchemas.enumerator(
     i18n('entities.brands.fields.status'),
     {
-      required: true,
       options: brandsEnumerators.status,
     },
   ),

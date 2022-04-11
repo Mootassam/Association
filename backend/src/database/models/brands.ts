@@ -21,24 +21,18 @@ export default (database) => {
       photo: [FileSchema],
       status: {
         type: String,
-        required: true,
-        enum: [
-          "enbale",
-          "disable"
-        ],
+        enum: ['enable', 'disable'],
+        default: 'enable',
       },
       isPopular: {
         type: String,
-        enum: [
-          "enable",
-          "disable",
-          null
-        ],
+        enum: ['enable', 'disable'],
+        default: 'enable',
       },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -62,8 +56,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   BrandsSchema.virtual('id').get(function () {
     // @ts-ignore

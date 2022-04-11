@@ -304,7 +304,7 @@ const en = {
       },
       enumerators: {
         status: {
-          enbale: 'Enbale',
+          enable: 'Enable',
           disable: 'Disable',
         },
         isPopular: {
