@@ -424,8 +424,8 @@ const en = {
           disable: 'Disable',
         },
         isFeature: {
-          enable: 'Enable',
-          disable: 'Disable',
+          publish: 'Publish',
+          unpublish: 'Unpublish',
         },
       },
       placeholders: {},
