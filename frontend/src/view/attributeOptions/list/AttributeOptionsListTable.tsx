@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { i18n } from 'src/i18n';
@@ -13,7 +13,21 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import AttributesListItem from 'src/view/attributes/list/AttributesListItem';
+import yupFilterSchemas from 'src/modules/shared/yup/yupFilterSchemas';
+import * as yup from 'yup';
 
+const schema = yup.object().shape({
+  name: yupFilterSchemas.string(
+    i18n('entities.attributeOptions.fields.name'),
+  ),
+  priceRange: yupFilterSchemas.decimalRange(
+    i18n('entities.attributeOptions.fields.priceRange'),
+  ),
+
+  attributeId: yupFilterSchemas.relationToOne(
+    i18n('entities.attributeOptions.fields.attributeId'),
+  ),
+});
 function AttributeOptionsListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
     useState(null);
@@ -45,6 +59,28 @@ function AttributeOptionsListTable(props) {
   const hasPermissionToDestroy = useSelector(
     attributeOptionsSelectors.selectPermissionToDestroy,
   );
+  const rawFilter = useSelector(selectors.selectRawFilter);
+  const emptyValues = {
+    name: null,
+    priceRange: [],
+    attributeId: null,
+  };
+  const [initialValues] = useState(() => {
+    return {
+      ...emptyValues,
+      ...rawFilter,
+    };
+  });
+  useEffect(() => {
+    dispatch(
+      actions.doFetch(
+        props.productName,
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   const doOpenDestroyConfirmModal = (id) => {
     setRecordIdToDestroy(id);

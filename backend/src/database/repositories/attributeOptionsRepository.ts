@@ -204,15 +204,15 @@ class AttributeOptionsRepository {
       tenant: currentTenant.id,
     });
 
-    // let data = await Attributes(options.database).find({
-    //   itemId: productName,
-    // });
+    let data = await Attributes(options.database).find({
+      itemId: productName,
+    });
 
-    // data.forEach((element) => {
-    //   cirteriaOr.push({
-    //     attributeId: MongooseQueryUtils.uuid(element.id),
-    //   });
-    // });
+    data.forEach((element) => {
+      cirteriaOr.push({
+        attributeId: MongooseQueryUtils.uuid(element.id),
+      });
+    });
 
     if (filter) {
       if (filter.id) {
@@ -327,7 +327,7 @@ class AttributeOptionsRepository {
       ? { $or: cirteriaOr }
       : null;
     let rows = await AttributeOptions(options.database)
-      .find(criteria)
+      .find(criteriaOr)
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)
