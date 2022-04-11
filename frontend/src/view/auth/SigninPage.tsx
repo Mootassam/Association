@@ -116,7 +116,7 @@ function SigninPage() {
                   href="http://blog.stackfindover.com/"
                   rel="dofollow"
                 >
-                  Stackfindover
+                  Association
                 </a>
               </h1>
             </div>

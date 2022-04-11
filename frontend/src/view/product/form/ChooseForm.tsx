@@ -6,7 +6,7 @@ import PageTitle from 'src/view/shared/styles/PageTitle';
 import { Link } from 'react-router-dom';
 const ChooseForm = () => {
   let physical = 'physical';
-  let digital = 'digital';
+  let digital = 'digitale';
 
   return (
     <>

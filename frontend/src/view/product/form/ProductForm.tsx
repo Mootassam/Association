@@ -40,15 +40,6 @@ const schema = yup.object().shape({
     i18n('entities.product.fields.video'),
     {},
   ),
-  specificationName: yupFormSchemas.string(
-    i18n('entities.product.fields.specificationName'),
-    {},
-  ),
-  specificationDesciption: yupFormSchemas.string(
-    i18n('entities.product.fields.specificationDesciption'),
-    {},
-  ),
-
   details: yupFormSchemas.string(
     i18n('entities.product.fields.details'),
     {
@@ -137,6 +128,8 @@ const schema = yup.object().shape({
 });
 
 function ProductForm(props) {
+  console.log(props.nameForm);
+
   const [newForm, setNewform] = useState([
     {
       specificationName: '',
@@ -153,7 +146,6 @@ function ProductForm(props) {
       slug: record.slug,
       tags: record.tags,
       video: record.video,
-
       details: record.details,
       photo: record.photo || [],
       discountPrice: record.discountPrice,
@@ -165,7 +157,6 @@ function ProductForm(props) {
       itemType: record.itemType || props.nameForm,
       file: record.file || [],
       link: record.link,
-
       taxe: record.taxe,
       category: record.category,
       subcategory: record.subcategory,
@@ -301,7 +292,7 @@ function ProductForm(props) {
                       type="text"
                       className="form-control"
                       name="specificationName"
-                      value={item.specificationName || ''}
+                      value={item.specificationName}
                       placeholder={i18n(
                         'entities.product.fields.specificationName',
                       )}
@@ -315,9 +306,7 @@ function ProductForm(props) {
                       className="form-control"
                       type="text"
                       name="specificationDesciption"
-                      value={
-                        item.specificationDesciption || ''
-                      }
+                      value={item.specificationDesciption}
                       placeholder={i18n(
                         'entities.product.fields.specificationDesciption',
                       )}
