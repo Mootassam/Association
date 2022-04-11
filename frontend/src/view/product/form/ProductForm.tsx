@@ -161,7 +161,7 @@ function ProductForm(props) {
       subcategory: record.subcategory,
       childcategory: record.childcategory,
       brand: record.brand,
-      gallery: record.gallery || [],
+      gallery: record.gallery,
     };
   });
 
@@ -247,6 +247,7 @@ function ProductForm(props) {
                   label={i18n(
                     'entities.product.fields.gallery',
                   )}
+                  required={false}
                   showCreate={!props.modal}
                 />
               </div>
@@ -340,7 +341,7 @@ function ProductForm(props) {
               ))}
               {}
 
-              {props.nameForm === 'digital' && (
+              {props.nameForm === 'digitale' && (
                 <>
                   <div className="">
                     <InputFormItem

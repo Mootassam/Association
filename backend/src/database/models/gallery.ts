@@ -11,11 +11,11 @@ export default (database) => {
 
   const GallerySchema = new Schema(
     {
+      photos: [FileSchema],
       name: {
         type: String,
         required: true,
       },
-      photos: [FileSchema],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
@@ -25,7 +25,6 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'user',
       },
-
       updatedBy: {
         type: Schema.Types.ObjectId,
         ref: 'user',

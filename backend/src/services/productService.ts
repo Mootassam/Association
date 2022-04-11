@@ -46,7 +46,7 @@ export default class ProductService {
         { ...this.options, session },
       );
       data.gallery =
-        await GalleryRepository.filterIdsInTenant(
+        await GalleryRepository.filterIdInTenant(
           data.gallery,
           { ...this.options, session },
         );
@@ -102,7 +102,7 @@ export default class ProductService {
         { ...this.options, session },
       );
       data.gallery =
-        await GalleryRepository.filterIdsInTenant(
+        await GalleryRepository.filterIdInTenant(
           data.gallery,
           { ...this.options, session },
         );
