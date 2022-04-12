@@ -26,6 +26,7 @@ class ProductRepository {
           detailspecification: Object.values(
             data.detailspecification,
           ),
+          itemType: data.itemType,
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,

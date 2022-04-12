@@ -193,6 +193,7 @@ function ProductForm(props) {
   const onSubmit = (values) => {
     props.onSubmit(props.record?.id, {
       ...values,
+      itemType: props?.nameForm,
       detailspecification: { ...newForm },
     });
   };

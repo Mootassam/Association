@@ -297,7 +297,7 @@ const en = {
         slug: 'Slug',
         photo: 'Photo',
         status: 'Status',
-        isPopular: 'IsPopular',
+        isPopular: 'Popular',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',
