@@ -17,12 +17,19 @@ export default class AttributesService {
     );
 
     try {
-      data.itemId = await ProductRepository.filterIdInTenant(data.itemId, { ...this.options, session });
+      data.itemId =
+        await ProductRepository.filterIdInTenant(
+          data.itemId,
+          { ...this.options, session },
+        );
 
-      const record = await AttributesRepository.create(data, {
-        ...this.options,
-        session,
-      });
+      const record = await AttributesRepository.create(
+        data,
+        {
+          ...this.options,
+          session,
+        },
+      );
 
       await MongooseRepository.commitTransaction(session);
 
@@ -46,7 +53,11 @@ export default class AttributesService {
     );
 
     try {
-      data.itemId = await ProductRepository.filterIdInTenant(data.itemId, { ...this.options, session });
+      data.itemId =
+        await ProductRepository.filterIdInTenant(
+          data.itemId,
+          { ...this.options, session },
+        );
 
       const record = await AttributesRepository.update(
         id,

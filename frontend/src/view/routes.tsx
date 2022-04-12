@@ -713,7 +713,7 @@ const privateRoutes = [
     exact: true,
   },
   {
-    path: '/attribute-options/new',
+    path: '/attribute-options/new/:name',
     loader: () =>
       import(
         'src/view/attributeOptions/form/AttributeOptionsFormPage'

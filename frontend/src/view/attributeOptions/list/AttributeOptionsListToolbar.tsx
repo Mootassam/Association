@@ -138,7 +138,9 @@ function AttributeOptionsToolbar(props) {
   return (
     <Toolbar>
       {hasPermissionToCreate && (
-        <Link to="/attribute-options/new">
+        <Link
+          to={`/attribute-options/new/${props?.ProductId}`}
+        >
           <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-plus" />{' '}
             {i18n('common.new')}

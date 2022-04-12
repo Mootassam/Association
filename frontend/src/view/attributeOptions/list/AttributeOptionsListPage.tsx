@@ -25,11 +25,13 @@ function AttributeOptionsListPage(props) {
         <PageTitle>
           {i18n('entities.attributeOptions.list.title')}
         </PageTitle>
-        <AttributeOptionsListToolbar />
-        {/* <AttributeOptionsListFilter /> */}
-        <AttributeOptionsListTable
+        <AttributeOptionsListToolbar
+          ProductId={nameProduct}
+        />
+        <AttributeOptionsListFilter
           productName={nameProduct}
         />
+        <AttributeOptionsListTable />
       </ContentWrapper>
     </>
   );

@@ -76,7 +76,7 @@ function AttributesToolbar(props) {
         <ButtonIcon
           loading={exportLoading}
           iconClass="far fa-file-excel"
-        />{' '}
+        />
         {i18n('common.export')}
       </button>
     );
@@ -114,7 +114,7 @@ function AttributesToolbar(props) {
         <ButtonIcon
           loading={destroyLoading}
           iconClass="far fa-trash-alt"
-        />{' '}
+        />
         {i18n('common.destroy')}
       </button>
     );
@@ -140,7 +140,7 @@ function AttributesToolbar(props) {
       {hasPermissionToCreate && (
         <Link to={`/attributes/new/${props?.ProductId}`}>
           <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-plus" />{' '}
+            <ButtonIcon iconClass="fas fa-plus" />
             {i18n('common.new')}
           </button>
         </Link>
@@ -149,7 +149,7 @@ function AttributesToolbar(props) {
       {hasPermissionToImport && (
         <Link to="/attributes/importer">
           <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-upload" />{' '}
+            <ButtonIcon iconClass="fas fa-upload" />
             {i18n('common.import')}
           </button>
         </Link>
@@ -160,7 +160,7 @@ function AttributesToolbar(props) {
       {hasPermissionToAuditLogs && (
         <Link to="/audit-logs?entityNames=attributes">
           <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="fas fa-history" />{' '}
+            <ButtonIcon iconClass="fas fa-history" />
             {i18n('auditLog.menu')}
           </button>
         </Link>

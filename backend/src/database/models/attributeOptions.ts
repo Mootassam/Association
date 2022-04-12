@@ -26,6 +26,10 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'attributes',
       },
+      itemId: {
+        type: Schema.Types.ObjectId,
+        ref: 'product',
+      },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',

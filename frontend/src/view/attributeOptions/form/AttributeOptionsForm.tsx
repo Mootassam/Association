@@ -32,9 +32,17 @@ const schema = yup.object().shape({
     i18n('entities.attributeOptions.fields.attributeId'),
     { required: true },
   ),
+  itemId: yupFormSchemas.relationToOne(
+    i18n('entities.attributes.fields.itemId'),
+    {},
+  ),
 });
 
 function AttributeOptionsForm(props) {
+  const { itemId } = props;
+  console.log('====================================');
+  console.log(itemId);
+  console.log('====================================');
   const [initialValues] = useState(() => {
     const record = props.record || {};
 
@@ -44,6 +52,7 @@ function AttributeOptionsForm(props) {
       keyword: record.keyword,
       stock: record.stock,
       attributeId: record.attributeId,
+      itemId: itemId || record.itemId,
     };
   });
 
@@ -54,7 +63,12 @@ function AttributeOptionsForm(props) {
   });
 
   const onSubmit = (values) => {
-    props.onSubmit(props.record?.id, values);
+    if (!props.record?.id) {
+      let data = { ...values, itemId };
+      props.onSubmit(props.record?.id, data);
+    } else {
+      props.onSubmit(props.record?.id, values);
+    }
   };
 
   const onReset = () => {
@@ -88,15 +102,18 @@ function AttributeOptionsForm(props) {
                 autoFocus
               />
             </div>
-            {/* <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="keyword"
-                label={i18n(
-                  'entities.attributeOptions.fields.keyword',
-                )}
-                required={false}
-              />
-            </div> */}
+            {props.record?.id && (
+              <div className="col-lg-7 col-md-8 col-12">
+                <ProductAutocompleteFormItem
+                  name="itemId"
+                  label={i18n(
+                    'entities.attributes.fields.itemId',
+                  )}
+                  required={false}
+                  showCreate={!props.modal}
+                />
+              </div>
+            )}
             <div className="col-lg-7 col-md-8 col-12">
               <InputNumberFormItem
                 name="stock"

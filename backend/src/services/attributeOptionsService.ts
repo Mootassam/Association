@@ -18,13 +18,22 @@ export default class AttributeOptionsService {
     );
 
     try {
-      data.item = await ProductRepository.filterIdInTenant(data.item, { ...this.options, session });
-      data.attributeId = await AttributesRepository.filterIdInTenant(data.attributeId, { ...this.options, session });
+      data.attributeId =
+        await AttributesRepository.filterIdInTenant(
+          data.attributeId,
+          { ...this.options, session },
+        );
+      data.itemId =
+        await ProductRepository.filterIdInTenant(
+          data.itemId,
+          { ...this.options, session },
+        );
 
-      const record = await AttributeOptionsRepository.create(data, {
-        ...this.options,
-        session,
-      });
+      const record =
+        await AttributeOptionsRepository.create(data, {
+          ...this.options,
+          session,
+        });
 
       await MongooseRepository.commitTransaction(session);
 
@@ -48,17 +57,21 @@ export default class AttributeOptionsService {
     );
 
     try {
-      data.item = await ProductRepository.filterIdInTenant(data.item, { ...this.options, session });
-      data.attributeId = await AttributesRepository.filterIdInTenant(data.attributeId, { ...this.options, session });
+      data.item = await ProductRepository.filterIdInTenant(
+        data.item,
+        { ...this.options, session },
+      );
+      data.attributeId =
+        await AttributesRepository.filterIdInTenant(
+          data.attributeId,
+          { ...this.options, session },
+        );
 
-      const record = await AttributeOptionsRepository.update(
-        id,
-        data,
-        {
+      const record =
+        await AttributeOptionsRepository.update(id, data, {
           ...this.options,
           session,
-        },
-      );
+        });
 
       await MongooseRepository.commitTransaction(session);
 
@@ -97,7 +110,10 @@ export default class AttributeOptionsService {
   }
 
   async findById(id) {
-    return AttributeOptionsRepository.findById(id, this.options);
+    return AttributeOptionsRepository.findById(
+      id,
+      this.options,
+    );
   }
 
   async findAllAutocomplete(search, limit) {

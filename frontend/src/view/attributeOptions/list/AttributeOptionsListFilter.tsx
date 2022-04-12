@@ -32,6 +32,7 @@ const emptyValues = {
   name: null,
   priceRange: [],
   attributeId: null,
+  itemId: null,
 };
 
 const previewRenders = {
@@ -57,7 +58,7 @@ function AttributeOptionsListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
-  
+
   const [initialValues] = useState(() => {
     return {
       ...emptyValues,
