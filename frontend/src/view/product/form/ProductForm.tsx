@@ -54,7 +54,7 @@ const schema = yup.object().shape({
   ),
   discountPrice: yupFormSchemas.decimal(
     i18n('entities.product.fields.discountPrice'),
-    {},
+    { required: true },
   ),
   previousPrice: yupFormSchemas.decimal(
     i18n('entities.product.fields.previousPrice'),
@@ -438,7 +438,7 @@ function ProductForm(props) {
                   label={i18n(
                     'entities.product.fields.discountPrice',
                   )}
-                  required={false}
+                  required={true}
                 />
               </div>
               <div className="">

@@ -323,6 +323,7 @@ class AttributeOptionsRepository {
     const criteria = criteriaAnd.length
       ? { $and: criteriaAnd }
       : null;
+
     const criteriaOr = cirteriaOr.length
       ? { $or: cirteriaOr }
       : null;

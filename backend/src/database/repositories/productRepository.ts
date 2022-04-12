@@ -65,19 +65,30 @@ class ProductRepository {
     if (!record) {
       throw new Error404();
     }
-
-    await Product(options.database).updateMany(
-      { _id: id },
-      {
-        ...data,
-        detailspecification: Object.values(
-          data.detailspecification,
-        ),
-        updatedBy:
-          MongooseRepository.getCurrentUser(options).id,
-      },
-      options,
-    );
+    if (data?.detailspecification) {
+      await Product(options.database).updateMany(
+        { _id: id },
+        {
+          ...data,
+          detailspecification: Object.values(
+            data.detailspecification,
+          ),
+          updatedBy:
+            MongooseRepository.getCurrentUser(options).id,
+        },
+        options,
+      );
+    } else {
+      await Product(options.database).updateMany(
+        { _id: id },
+        {
+          ...data,
+          updatedBy:
+            MongooseRepository.getCurrentUser(options).id,
+        },
+        options,
+      );
+    }
 
     await this._createAuditLog(
       AuditLogRepository.UPDATE,
