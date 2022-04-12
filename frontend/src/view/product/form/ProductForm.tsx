@@ -8,7 +8,6 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem';
-import SwitchFormItem from 'src/view/shared/form/items/SwitchFormItem';
 import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import productEnumerators from 'src/modules/product/productEnumerators';
 import Storage from 'src/security/storage';
@@ -279,6 +278,25 @@ function ProductForm(props) {
                   required={false}
                 />
               </div>
+              {props.record?.id && (
+                <div className="">
+                  <SelectFormItem
+                    name="itemType"
+                    label={i18n(
+                      'entities.product.fields.itemType',
+                    )}
+                    options={productEnumerators.itemType.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.product.enumerators.itemType.${value}`,
+                        ),
+                      }),
+                    )}
+                    required={true}
+                  />
+                </div>
+              )}
 
               <br />
               {newForm.map((item, index) => (

@@ -7,7 +7,6 @@ import FormWrapper from 'src/view/shared/styles/FormWrapper';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import brandsEnumerators from 'src/modules/brands/brandsEnumerators';
 import Storage from 'src/security/storage';
 import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';

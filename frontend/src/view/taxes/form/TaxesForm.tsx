@@ -7,7 +7,6 @@ import FormWrapper from 'src/view/shared/styles/FormWrapper';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import taxesEnumerators from 'src/modules/taxes/taxesEnumerators';
 
 const schema = yup.object().shape({
