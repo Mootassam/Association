@@ -191,11 +191,18 @@ function ProductForm(props) {
     setNewform(formN);
   };
   const onSubmit = (values) => {
-    props.onSubmit(props.record?.id, {
-      ...values,
-      itemType: props?.nameForm,
-      detailspecification: { ...newForm },
-    });
+    if (props.record?.id) {
+      props.onSubmit(props.record?.id, {
+        ...values,
+        detailspecification: { ...newForm },
+      });
+    } else {
+      props.onSubmit(props.record?.id, {
+        ...values,
+        itemType: props?.nameForm,
+        detailspecification: { ...newForm },
+      });
+    }
   };
 
   const onReset = () => {
