@@ -202,6 +202,7 @@ class AttributeOptionsRepository {
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
+
     criteriaAnd.push({
       itemId: MongooseQueryUtils.uuid(productName),
     });

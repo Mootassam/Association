@@ -15,7 +15,7 @@ function AttributeOptionsFormPage(props) {
   const [dispatched, setDispatched] = useState(false);
   const dispatch = useDispatch();
   const match = useRouteMatch();
-
+  const ProductId = match.params?.name;
   const initLoading = useSelector(
     selectors.selectInitLoading,
   );
@@ -47,7 +47,10 @@ function AttributeOptionsFormPage(props) {
       <Breadcrumb
         items={[
           [i18n('dashboard.menu'), '/'],
-          [i18n('entities.attributeOptions.menu'), '/attribute-options'],
+          [
+            i18n('entities.attributeOptions.menu'),
+            '/attribute-options',
+          ],
           [title],
         ]}
       />
@@ -64,7 +67,10 @@ function AttributeOptionsFormPage(props) {
             record={record}
             isEditing={isEditing}
             onSubmit={doSubmit}
-            onCancel={() => getHistory().push('/attribute-options')}
+            onCancel={() =>
+              getHistory().push('/attribute-options')
+            }
+            itemId={ProductId}
           />
         )}
       </ContentWrapper>

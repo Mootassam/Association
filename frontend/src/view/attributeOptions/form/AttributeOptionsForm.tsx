@@ -20,10 +20,6 @@ const schema = yup.object().shape({
     i18n('entities.attributeOptions.fields.price'),
     { required: true },
   ),
-  keyword: yupFormSchemas.string(
-    i18n('entities.attributeOptions.fields.keyword'),
-    {},
-  ),
   stock: yupFormSchemas.integer(
     i18n('entities.attributeOptions.fields.stock'),
     { required: true },
@@ -49,7 +45,6 @@ function AttributeOptionsForm(props) {
     return {
       name: record.name,
       price: record.price,
-      keyword: record.keyword,
       stock: record.stock,
       attributeId: record.attributeId,
       itemId: itemId || record.itemId,

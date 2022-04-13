@@ -84,6 +84,9 @@ function ProductListTable(props) {
   };
   const formSubmit = (row, e) => {
     let data = {
+      category: row.category.id,
+      subcategory: row.subcategory.id,
+      childcategory: row.childcategory.id,
       status: e.target.value,
     };
     dispatch(actionsForm.doUpdate(row.id, data));
