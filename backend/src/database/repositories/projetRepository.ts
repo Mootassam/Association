@@ -12,26 +12,21 @@ import VotesRepository from './votesRepository';
 import DonsRepository from './donsRepository';
 
 class ProjetRepository {
-
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
-    const [record] = await Projet(
-      options.database,
-    ).create(
+    const [record] = await Projet(options.database).create(
       [
         {
           ...data,
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -64,15 +59,19 @@ class ProjetRepository {
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Projet(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Projet(options.database).findById(id),
+        options,
+      );
 
     if (
       !record ||
@@ -85,9 +84,8 @@ class ProjetRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -123,22 +121,22 @@ class ProjetRepository {
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Projet(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Projet(options.database).findById(id),
+        options,
+      );
     if (record.votes) {
-      record.votes.forEach(vote => {
-        VotesRepository.destroy(vote._id, options)
+      record.votes.forEach((vote) => {
+        VotesRepository.destroy(vote._id, options);
       });
     }
     if (record.dons) {
-      record.dons.forEach(don => {
-        DonsRepository.destroy(don._id, options)
+      record.dons.forEach((don) => {
+        DonsRepository.destroy(don._id, options);
       });
     }
 
@@ -149,7 +147,10 @@ class ProjetRepository {
       throw new Error404();
     }
 
-    await Projet(options.database).deleteOne({ _id: id }, options);
+    await Projet(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -157,14 +158,11 @@ class ProjetRepository {
       record,
       options,
     );
-
-
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Projet(options.database).countDocuments({
@@ -176,17 +174,17 @@ class ProjetRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Projet(options.database)
-        .findById(id)
-        .populate('votes')
-        .populate('dons'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Projet(options.database)
+          .findById(id)
+          .populate('vote')
+          .populate('don'),
+        options,
+      );
 
     if (
       !record ||
@@ -202,9 +200,8 @@ class ProjetRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
 
@@ -254,20 +251,24 @@ class ProjetRepository {
 
       if (filter.typeProjet) {
         criteriaAnd.push({
-          typeProjet: filter.typeProjet
+          typeProjet: filter.typeProjet,
         });
       }
 
       if (filter.statutProjet) {
         criteriaAnd.push({
-          statutProjet: filter.statutProjet
+          statutProjet: filter.statutProjet,
         });
       }
 
       if (filter.budgetRange) {
         const [start, end] = filter.budgetRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             budget: {
               $gte: start,
@@ -275,7 +276,11 @@ class ProjetRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             budget: {
               $lte: end,
@@ -298,7 +303,11 @@ class ProjetRepository {
       if (filter.dateDebutProjetRange) {
         const [start, end] = filter.dateDebutProjetRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             dateDebutProjet: {
               $gte: start,
@@ -306,7 +315,11 @@ class ProjetRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             dateDebutProjet: {
               $lte: end,
@@ -318,7 +331,11 @@ class ProjetRepository {
       if (filter.dateFinProjetRange) {
         const [start, end] = filter.dateFinProjetRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             dateFinProjet: {
               $gte: start,
@@ -326,7 +343,11 @@ class ProjetRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             dateFinProjet: {
               $lte: end,
@@ -338,7 +359,11 @@ class ProjetRepository {
       if (filter.dateDebutDonRange) {
         const [start, end] = filter.dateDebutDonRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             dateDebutDon: {
               $gte: start,
@@ -346,7 +371,11 @@ class ProjetRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             dateDebutDon: {
               $lte: end,
@@ -358,7 +387,11 @@ class ProjetRepository {
       if (filter.dateFinDonRange) {
         const [start, end] = filter.dateFinDonRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             dateFinDon: {
               $gte: start,
@@ -366,7 +399,11 @@ class ProjetRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             dateFinDon: {
               $lte: end,
@@ -419,8 +456,8 @@ class ProjetRepository {
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)
-      .populate('votes')
-      .populate('dons');
+      .populate('vote')
+      .populate('don');
 
     const count = await Projet(
       options.database,
@@ -433,14 +470,19 @@ class ProjetRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -450,9 +492,10 @@ class ProjetRepository {
           },
           {
             titre: {
-              $regex: MongooseQueryUtils.escapeRegExp(search),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
-            }
+            },
           },
         ],
       });
@@ -474,7 +517,12 @@ class ProjetRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Projet(options.database).modelName,
@@ -495,17 +543,19 @@ class ProjetRepository {
       ? record.toObject()
       : record;
 
-    output.photoPrincipal = await FileRepository.fillDownloadUrl(
-      output.photoPrincipal,
-    );
+    output.photoPrincipal =
+      await FileRepository.fillDownloadUrl(
+        output.photoPrincipal,
+      );
 
     output.photos = await FileRepository.fillDownloadUrl(
       output.photos,
     );
 
-    output.attachements = await FileRepository.fillDownloadUrl(
-      output.attachements,
-    );
+    output.attachements =
+      await FileRepository.fillDownloadUrl(
+        output.attachements,
+      );
 
     return output;
   }

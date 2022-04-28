@@ -26,21 +26,12 @@ export default (database) => {
       typeProjet: {
         type: String,
         required: true,
-        enum: [
-          "idee",
-          "projet_ligue",
-          "projet_ca"
-        ],
+        enum: ['idee', 'projet_ligue', 'projet_ca'],
       },
       statutProjet: {
         type: String,
         required: true,
-        enum: [
-          "draft",
-          "actif",
-          "canceled",
-          "closed"
-        ],
+        enum: ['draft', 'actif', 'canceled', 'closed'],
       },
       photoPrincipal: [FileSchema],
       budget: {
@@ -63,14 +54,18 @@ export default (database) => {
       },
       photos: [FileSchema],
       attachements: [FileSchema],
-      votes: [{
-        type: Schema.Types.ObjectId,
-        ref: 'votes',
-      }],
-      dons: [{
-        type: Schema.Types.ObjectId,
-        ref: 'dons',
-      }],
+      vote: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'votes',
+        },
+      ],
+      don: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'dons',
+        },
+      ],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
@@ -97,8 +92,6 @@ export default (database) => {
       },
     },
   );
-
-
 
   ProjetSchema.virtual('id').get(function () {
     // @ts-ignore
