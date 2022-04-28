@@ -8,26 +8,33 @@ import Projet from '../models/projet';
 import mongoose from 'mongoose';
 
 class VotesRepository {
-
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
+    const rows = await this.extractIds(
+      data.projet,
       options,
     );
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
-
-    const [record] = await Votes(
-      options.database,
-    ).create(
+    if (rows.count > 0) {
+      try {
+        for (const id of rows.record) {
+          await VotesRepository.destroy(id, options);
+        }
+      } catch (error) {
+        throw error;
+      }
+    }
+    const [record] = await Votes(options.database).create(
       [
         {
           ...data,
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -50,15 +57,19 @@ class VotesRepository {
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Votes(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Votes(options.database).findById(id),
+        options,
+      );
 
     if (
       !record ||
@@ -71,9 +82,8 @@ class VotesRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -99,14 +109,14 @@ class VotesRepository {
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Votes(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Votes(options.database).findById(id),
+        options,
+      );
 
     if (
       !record ||
@@ -115,7 +125,10 @@ class VotesRepository {
       throw new Error404();
     }
 
-    await Votes(options.database).deleteOne({ _id: id }, options);
+    await Votes(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -133,9 +146,8 @@ class VotesRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Votes(options.database).countDocuments({
@@ -147,16 +159,16 @@ class VotesRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Votes(options.database)
-        .findById(id)
-        .populate('adherent'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Votes(options.database)
+          .findById(id)
+          .populate('adherent'),
+        options,
+      );
 
     if (
       !record ||
@@ -172,12 +184,13 @@ class VotesRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    let idprojet = new mongoose.Types.ObjectId(filter.projet)
+    let idprojet = new mongoose.Types.ObjectId(
+      filter.projet,
+    );
 
     criteriaAnd.push({
       tenant: currentTenant.id,
@@ -193,10 +206,9 @@ class VotesRepository {
 
       if (filter.projet) {
         criteriaAnd.push({
-          projet: idprojet
+          projet: idprojet,
         });
       }
-
 
       if (filter.adherent) {
         criteriaAnd.push({
@@ -209,7 +221,11 @@ class VotesRepository {
       if (filter.votesRange) {
         const [start, end] = filter.votesRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             votes: {
               $gte: start,
@@ -217,7 +233,11 @@ class VotesRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             votes: {
               $lte: end,
@@ -287,12 +307,11 @@ class VotesRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    let iduser = new mongoose.Types.ObjectId(filter.iduser)
+    let iduser = new mongoose.Types.ObjectId(filter.iduser);
 
     criteriaAnd.push({
       tenant: currentTenant.id,
@@ -306,11 +325,14 @@ class VotesRepository {
         });
       }
 
-
       if (filter.votesRange) {
         const [start, end] = filter.votesRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             votes: {
               $gte: start,
@@ -318,7 +340,11 @@ class VotesRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             votes: {
               $lte: end,
@@ -370,7 +396,7 @@ class VotesRepository {
       .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
-      .sort(sort)
+      .sort(sort);
 
     const count = await Votes(
       options.database,
@@ -383,14 +409,19 @@ class VotesRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -398,7 +429,6 @@ class VotesRepository {
           {
             _id: MongooseQueryUtils.uuid(search),
           },
-
         ],
       });
     }
@@ -419,7 +449,12 @@ class VotesRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Votes(options.database).modelName,
@@ -440,9 +475,53 @@ class VotesRepository {
       ? record.toObject()
       : record;
 
-
-
     return output;
+  }
+  // !api for mobile   //
+  // !list Dons for the currentUser //
+  static async extractIds(
+    Projectid,
+    options: IRepositoryOptions,
+  ) {
+    const currentUSer =
+      MongooseRepository.getCurrentUser(options);
+    const record = await Votes(options.database).find(
+      {
+        adherent: currentUSer.id,
+        projet: Projectid,
+      },
+      { id: 1 },
+    );
+
+    const count = await Votes(options.database)
+      .find(
+        {
+          adherent: currentUSer.id,
+          projet: Projectid,
+        },
+        { id: 1 },
+      )
+      .countDocuments();
+    return { record, count };
+  }
+  static async findVotes(options: IRepositoryOptions) {
+    const currentUSer =
+      MongooseRepository.getCurrentUser(options);
+    const record = await Votes(options.database).find(
+      {
+        adherent: currentUSer.id,
+      },
+      { titre: 1, votes: 1 },
+    );
+    const count = await Votes(options.database)
+      .find(
+        {
+          adherent: currentUSer.id,
+        },
+        { titre: 1, votes: 1 },
+      )
+      .countDocuments();
+    return { record, count };
   }
 }
 
