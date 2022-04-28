@@ -128,6 +128,12 @@ export default [
     label: i18n('entities.transaction.menu'),
   },
   {
+    path: '/projet',
+    permissionRequired: permissions.projetRead,
+    icon: 'fas fa-chevron-right',
+    label: i18n('entities.projet.menu'),
+  },
+  {
     path: '**',
     permissionRequired: permissions.attributeOptionsRead,
     icon: 'fas fa-newspaper',

@@ -26,6 +26,12 @@ import cart from 'src/modules/cart/cartReducers';
 import paymentsettings from 'src/modules/paymentsettings/paymentsettingsReducers';
 import review from 'src/modules/review/reviewReducers';
 import attributes from 'src/modules/attributes/attributesReducers';
+import campagne from 'src/modules/campagne/campagneReducers';
+import detailsCampagne from 'src/modules/detailsCampagne/detailsCampagneReducers';
+import projet from 'src/modules/projet/projetReducers';
+import votes from 'src/modules/votes/votesReducers';
+import dons from 'src/modules/dons/donsReducers';
+import palier from 'src/modules/palier/palierReducers';
 import { combineReducers } from 'redux';
 
 export default (history) =>
@@ -58,4 +64,10 @@ export default (history) =>
     paymentsettings,
     review,
     attributes,
+    campagne,
+    detailsCampagne,
+    projet,
+    votes,
+    dons,
+    palier,
   });

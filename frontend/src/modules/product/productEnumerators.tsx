@@ -1,6 +1,6 @@
 const productEnumerators = {
   status: ['enable', 'disable'],
-  itemType: ['normal', 'digitale'],
+  itemType: ['physical', 'digitale'],
   fileType: ['file', 'link'],
   isType: [
     'new_arrival',

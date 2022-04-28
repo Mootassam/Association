@@ -10,6 +10,7 @@ import userSelectors from 'src/modules/user/userSelectors';
 import ButtonIcon from 'src/view/shared/ButtonIcon';
 import Toolbar from 'src/view/shared/styles/Toolbar';
 
+
 function UserToolbar(props) {
   const dispatch = useDispatch();
 
@@ -113,6 +114,8 @@ function UserToolbar(props) {
 
   return (
     <Toolbar>
+    
+      
       {hasPermissionToCreate && (
         <Link to="/user/new">
           <button className="btn btn-primary" type="button">

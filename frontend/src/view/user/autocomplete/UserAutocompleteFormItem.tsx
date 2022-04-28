@@ -21,9 +21,9 @@ function UserAutocompleteFormItem(props) {
       setValue(name, [
         ...(getValues()[name] || []),
         record,
-      ], {shouldValidate: true, shouldDirty: true});
+      ]);
     } else {
-      setValue(name, record, {shouldValidate: true, shouldDirty: true});
+      setValue(name, record);
     }
 
     setModalVisible(false);

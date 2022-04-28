@@ -3,6 +3,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { i18n } from 'src/i18n';
 import actions from 'src/modules/user/form/userFormActions';
+import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem';
+import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
 import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import FormWrapper from 'src/view/shared/styles/FormWrapper';
 import ButtonIcon from 'src/view/shared/ButtonIcon';
@@ -10,18 +12,121 @@ import * as yup from 'yup';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import userEnumerators from 'src/modules/user/userEnumerators';
 import { yupResolver } from '@hookform/resolvers/yup';
+import userSecteur from 'src/modules/user/userSecteur';
+import userEtat from 'src/modules/user/userEtat';
+import userStatus from 'src/modules/user/userStatus';
+import UserAdherantAutocompleteFormItem from 'src/view/user/autocomplete/UserAdherantAutocompleteFormItem';
+import InputFormItem from 'src/view/shared/form/items/InputFormItem';
+import moment from 'moment';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const schema = yup.object().shape({
   roles: yupFormSchemas.stringArray(
     i18n('user.fields.roles'),
+    {
+      "min": 1
+    },
+  ),
+  phoneNumber: yupFormSchemas.string(
+    i18n('phoneNumber'),
+    {
+      "max": 24,
+    },
+  ),
+
+  secteur: yupFormSchemas.enumerator(
+    i18n('secteur'),
+    {
+
+      "options": userSecteur.secteur
+    },
+  ),
+
+  employeur: yupFormSchemas.string(i18n('Employeur'),
+    {
+      "required": false
+    },
+  ),
+  profession: yupFormSchemas.string(i18n('Profession'),
+    {
+      "required": false
+    },
+  ),
+  adresse: yupFormSchemas.string(i18n('adresse'),
+    {
+      "required": false
+    },
+  ),
+  fullName: yupFormSchemas.string(i18n('fullName'),
+    {
+      "required": false
+    },
+  ),
+  cin: yupFormSchemas.integer(i18n('cin'),
+    {
+
+
+      maxlength: 8
+    },
+  ),
+  date_naissance: yupFormSchemas.date(
+    i18n('Date Naissance'),
+    {
+      "required": false
+    },
+  ),
+  etat_civil: yupFormSchemas.enumerator(
+    i18n('user.fields.Etat_Civil'),
+    {
+
+      "options": userEtat.Etat
+
+    },
+  ),
+  status: yupFormSchemas.enumerator(
+    i18n('user.fields.status'),
+    {
+
+      "options": userEnumerators.status,
+    }
+  ),
+  lien_facebook: yupFormSchemas.string(i18n('Lien Facebook'),
+    {
+      "required": false
+    },
+  ),
+  parrain: yupFormSchemas.relationToOne(
+    i18n('user.fields.parrain'),
+    {
+      "required": false
+    }
+
   ),
 });
 
 function UserEditForm(props) {
   const dispatch = useDispatch();
+  // const [initialValues] = useState(() => props.user || {});
+  const [initialValues] = useState(() => {
+    const record = props.user || {};
 
-  const [initialValues] = useState(() => props.user || {});
-
+    return {
+      roles: record.roles[0],
+      phoneNumber: record.phoneNumber,
+      secteur: record.secteur,
+      employeur: record.employeur,
+      profession: record.profession,
+      adresse: record.adresse,
+      fullName: record.fullName,
+      cin: record.cin,
+      etat_civil: record.etat_civil,
+      date_naissance: record.date_naissance ? moment(record.date_naissance).toDate() : null,
+      status: record.status,
+      lien_facebook: record.lien_facebook,
+      parrain: record.parrain,
+    };
+  });
   const form = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -47,8 +152,8 @@ function UserEditForm(props) {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="row">
-            <div className="col-lg-7 col-md-8 col-12">
+          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+            <Col sm={4}>
               <div className="form-group">
                 <label
                   className="col-form-label"
@@ -65,23 +170,135 @@ function UserEditForm(props) {
                   value={props.user.email}
                 />
               </div>
-            </div>
-
-            <div className="col-lg-7 col-md-8 col-12">
+            </Col>
+            <Col sm={4}>
               <SelectFormItem
                 name="roles"
                 label={i18n('user.fields.roles')}
+                required={true}
                 options={userEnumerators.roles.map(
                   (value) => ({
                     value,
-                    label: i18n(`roles.${value}.label`),
+                    label: i18n(`${value}`),
                   }),
                 )}
-                mode="multiple"
               />
-            </div>
-          </div>
+            </Col>
+            <Col sm={4}>
+              <SelectFormItem
+                name="status"
+                label={i18n('user.fields.status')}
 
+                options={userEnumerators.status.map(
+                  (value) => ({
+                    value,
+                    label: i18n(`user.status.${value}`),
+                  }),
+                )}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={4}>
+              <InputFormItem
+                name="fullName"
+                label={i18n('user.fields.fullName')}
+                required={true}
+              />
+            </Col>
+            <Col sm={4}>
+              <InputNumberFormItem
+                name="phoneNumber"
+                label={i18n('user.fields.phoneNumber')}
+
+              />
+            </Col>
+            <Col sm={4}>
+              <InputFormItem
+                name="adresse"
+                label={i18n('user.fields.address')}
+
+              />
+            </Col>
+          </Row>
+          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+            <Col sm={4}>
+              <SelectFormItem
+                name="secteur"
+                label={i18n('user.fields.sector')}
+
+                options={userSecteur.secteur.map(
+                  (value) => ({
+                    value,
+                    label: i18n(`user.sector.${value}`),
+                  }),
+                )}
+              />
+            </Col>
+            <Col sm={4}>
+              <InputFormItem
+                name="employeur"
+                label={i18n('user.fields.employer')}
+
+              />
+            </Col>
+            <Col sm={4}>
+              <InputFormItem
+                name="profession"
+                label={i18n('user.fields.profession')}
+
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col sm={4}>
+              <DatePickerFormItem
+                name="date_naissance"
+                label={i18n('user.fields.birthDate')}
+              />
+            </Col>
+            <Col sm={4}>
+              <SelectFormItem
+                name="etat_civil"
+                label={i18n('user.fields.maritalStatus')}
+
+                options={userEtat.Etat.map(
+                  (value) => ({
+                    value,
+                    label: i18n(`user.maritalStatus.${value}`),
+                  }),
+                )}
+              />
+            </Col>
+            <Col sm={4}>
+              <InputNumberFormItem
+                name="cin"
+                label={i18n('C.I.N')}
+
+              />
+            </Col>
+          </Row>
+          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+            <Col sm={4}>
+              <InputFormItem
+                name="lien_facebook"
+                label={i18n('user.fields.facebookLink')}
+
+              />
+            </Col>
+            <Col sm={4}>
+              <UserAdherantAutocompleteFormItem
+                name="parrain"
+                label={i18n('user.fields.sponsor')}
+
+                showCreate={!props.modal}
+              />
+            </Col>
+            <Col sm={4}>
+
+            </Col>
+          </Row>
           <div className="form-buttons">
             <button
               className="btn btn-primary"

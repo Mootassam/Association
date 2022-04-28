@@ -35,22 +35,39 @@ export default class Storage {
         folder: 'tenant/:tenantId/category/photo',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
+      detailsCampagneFacture: {
+        id: 'detailsCampagneFacture',
+        folder: 'tenant/:tenantId/detailsCampagne/facture',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
 
+      projetPhotoPrincipal: {
+        id: 'projetPhotoPrincipal',
+        folder: 'tenant/:tenantId/projet/photoPrincipal',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+      projetPhotos: {
+        id: 'projetPhotos',
+        folder: 'tenant/:tenantId/projet/photos',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+      projetAttachements: {
+        id: 'projetAttachements',
+        folder: 'tenant/:tenantId/projet/attachements',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
 
-
-
-
-
+      donsAttachements: {
+        id: 'donsAttachements',
+        folder: 'tenant/:tenantId/dons/attachements',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
 
       brandsPhoto: {
         id: 'brandsPhoto',
         folder: 'tenant/:tenantId/brands/photo',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
-
-
-
-
 
       galleryPhotos: {
         id: 'galleryPhotos',
@@ -69,20 +86,6 @@ export default class Storage {
         maxSizeInBytes: 100 * 1024 * 1024,
       },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       cartPhoto: {
         id: 'cartPhoto',
         folder: 'tenant/:tenantId/cart/photo',
@@ -94,8 +97,6 @@ export default class Storage {
         folder: 'tenant/:tenantId/paymentsettings/photo',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
-
-
     };
   }
 }

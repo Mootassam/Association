@@ -24,6 +24,14 @@ function UserStatusView(props) {
     );
   }
 
+  if (value === 'inactive') {
+    return (
+      <span className={`badge badge-dark`}>
+        {i18n('user.status.inactive')}
+      </span>
+    );
+  }
+
   return (
     <span className={`badge badge-warning`}>
       {i18n('user.status.invited')}

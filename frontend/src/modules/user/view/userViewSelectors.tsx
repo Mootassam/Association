@@ -6,9 +6,9 @@ const selectUser = createSelector(
   [selectRaw],
   (raw) => raw.user,
 );
-
 const selectLoading = createSelector([selectRaw], (raw) =>
   Boolean(raw.loading),
+  
 );
 
 const userViewSelectors = {

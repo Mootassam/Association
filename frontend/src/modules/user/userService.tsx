@@ -17,6 +17,7 @@ export default class UserService {
     return response.data;
   }
 
+
   static async destroy(ids) {
     const params = {
       ids,
@@ -49,6 +50,39 @@ export default class UserService {
     return response.data;
   }
 
+  static async listAdherantAutocomplete(query, limit) {
+    const params = {
+      query,
+      limit,
+    };
+
+    const tenantId = AuthCurrentTenant.get();
+    const response = await authAxios.get(
+      `/tenant/${tenantId}/userAdherantAutocomplete`,
+      {
+        params,
+      },
+    );
+
+    return response.data;
+  }
+  static async userAdhesionList(query, limit) {
+    const params = {
+      query,
+      limit,
+    };
+
+    const tenantId = AuthCurrentTenant.get();
+    const response = await authAxios.get(
+      `/tenant/${tenantId}/userAdhesionList`,
+      {
+        params,
+      },
+    );
+
+    return response.data;
+  }
+
   static async import(values, importHash) {
     const body = {
       data: {
@@ -65,6 +99,9 @@ export default class UserService {
     );
 
     return response.data;
+  }
+  static async get_adherent(email) {
+    return email.roles.filter(u => u == 'adhérent');
   }
 
   static async find(id) {

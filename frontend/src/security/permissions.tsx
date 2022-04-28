@@ -1288,6 +1288,364 @@ class Permissions {
           plans.enterprise,
         ],
       },
+      palierImport: {
+        id: 'palierImport',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      palierCreate: {
+        id: 'palierCreate',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      palierEdit: {
+        id: 'palierEdit',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      palierDestroy: {
+        id: 'palierDestroy',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      palierRead: {
+        id: 'palierRead',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      palierAutocomplete: {
+        id: 'palierAutocomplete',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      campagneImport: {
+        id: 'campagneImport',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      campagneCreate: {
+        id: 'campagneCreate',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      campagneEdit: {
+        id: 'campagneEdit',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      campagneDestroy: {
+        id: 'campagneDestroy',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      campagneRead: {
+        id: 'campagneRead',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      campagneAutocomplete: {
+        id: 'campagneAutocomplete',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+
+      detailsCampagneImport: {
+        id: 'detailsCampagneImport',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      detailsCampagneCreate: {
+        id: 'detailsCampagneCreate',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [storage.detailsCampagneFacture],
+      },
+      detailsCampagneEdit: {
+        id: 'detailsCampagneEdit',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [storage.detailsCampagneFacture],
+      },
+      detailsCampagneDestroy: {
+        id: 'detailsCampagneDestroy',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [storage.detailsCampagneFacture],
+      },
+      detailsCampagneRead: {
+        id: 'detailsCampagneRead',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      detailsCampagneAutocomplete: {
+        id: 'detailsCampagneAutocomplete',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+
+      projetImport: {
+        id: 'projetImport',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      projetCreate: {
+        id: 'projetCreate',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [
+          storage.projetPhotoPrincipal,
+          storage.projetPhotos,
+          storage.projetAttachements,
+        ],
+      },
+      projetEdit: {
+        id: 'projetEdit',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [
+          storage.projetPhotoPrincipal,
+          storage.projetPhotos,
+          storage.projetAttachements,
+        ],
+      },
+      projetDestroy: {
+        id: 'projetDestroy',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [
+          storage.projetPhotoPrincipal,
+          storage.projetPhotos,
+          storage.projetAttachements,
+        ],
+      },
+      projetRead: {
+        id: 'projetRead',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      projetAutocomplete: {
+        id: 'projetAutocomplete',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+
+      votesImport: {
+        id: 'votesImport',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      votesCreate: {
+        id: 'votesCreate',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      votesEdit: {
+        id: 'votesEdit',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      votesDestroy: {
+        id: 'votesDestroy',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      votesRead: {
+        id: 'votesRead',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      votesAutocomplete: {
+        id: 'votesAutocomplete',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+
+      donsImport: {
+        id: 'donsImport',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      donsCreate: {
+        id: 'donsCreate',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [storage.donsAttachements],
+      },
+      donsEdit: {
+        id: 'donsEdit',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [storage.donsAttachements],
+      },
+      donsDestroy: {
+        id: 'donsDestroy',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [storage.donsAttachements],
+      },
+      donsRead: {
+        id: 'donsRead',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      donsAutocomplete: {
+        id: 'donsAutocomplete',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
     };
   }
 

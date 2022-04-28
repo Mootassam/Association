@@ -64,8 +64,8 @@ export default (database) => {
       },
       itemType: {
         type: String,
-        enum: ['normal', 'digitale'],
-        default: 'normal',
+        enum: ['physical', 'digitale'],
+        default: 'physical',
       },
       file: [FileSchema],
       link: {

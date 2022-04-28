@@ -88,7 +88,12 @@ require('./cart').default(routes);
 require('./paymentsettings').default(routes);
 require('./review').default(routes);
 require('./attributes').default(routes);
-
+require('./projet').default(routes);
+require('./votes').default(routes);
+require('./dons').default(routes);
+require('./detailsCampagne').default(routes);
+require('./campagne').default(routes);
+require('./palier').default(routes);
 // Loads the Tenant if the :tenantId param is passed
 routes.param('tenantId', tenantMiddleware);
 

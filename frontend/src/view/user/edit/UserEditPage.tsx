@@ -22,10 +22,11 @@ function UserEditPage(props) {
   const saveLoading = useSelector(
     selectors.selectSaveLoading,
   );
-
+  
   const user = useSelector(selectors.selectUser);
 
   const match = useRouteMatch();
+  const isEditing = Boolean(match.params.id);
 
   useEffect(() => {
     dispatch(actions.doInit(match.params.id));
@@ -51,6 +52,7 @@ function UserEditPage(props) {
           <UserEditForm
             user={user}
             saveLoading={saveLoading}
+            isEditing={isEditing}
             onCancel={() => getHistory().push('/user')}
           />
         )}

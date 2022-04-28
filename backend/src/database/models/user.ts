@@ -12,6 +12,61 @@ export default (database) => {
 
   const UserSchema = new Schema(
     {
+      employeur: { type: String, maxlength: 24 },
+      date_naissance: { type: Date },
+      secteur: {
+        type: String,
+        enum: [
+          "AGRO_ALIMENTAIRE",
+          "ASSURANCES",
+          "AUDIOVISUEL",
+          "BANCAIRE",
+          "CHIMIE",
+          "COMPOSANTS_AUTOMOBILES",
+          "DISTRIBUTION",
+          "DISTRIBUTION_AUTOMOBILE",
+          "DIVERS",
+          "FINANCIER",
+          "HOLDING",
+          "IMMOBILIER",
+          "INDUSTRIEL",
+          "LEASING",
+          "LOGISTIQUE_TRANSPORT",
+          "PHARMACEUTIQUE",
+          "SANTÉ",
+          "TOURSIME",
+          "INFORMATION_TECHNOLOGY",
+          null
+        ],
+      },
+      profession: {
+        type: String,
+        maxlength: 24
+      },
+      adresse: {
+        type: String,
+        maxlength: 24
+      },
+      cin: {
+        type: String,
+        maxlength: 8
+      },
+      etat_civil: {
+        type: String,
+        enum: [
+          "marié",
+          "célébataire",
+          null
+        ],
+      },
+      lien_facebook: {
+        type: String,
+      },
+      parrain: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: false,
+      },
       fullName: { type: String, maxlength: 255 },
       firstName: { type: String, maxlength: 80 },
       lastName: { type: String, maxlength: 175 },
@@ -22,7 +77,6 @@ export default (database) => {
         type: String,
         maxlength: 255,
         index: { unique: true },
-        required: true
       },
       password: {
         type: String,

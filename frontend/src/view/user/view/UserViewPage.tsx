@@ -23,19 +23,7 @@ function UserViewPage(props) {
 
   return (
     <>
-      <Breadcrumb
-        items={[
-          [i18n('dashboard.menu'), '/'],
-          [i18n('user.menu'), '/user'],
-          [i18n('user.view.title')],
-        ]}
-      />
-
       <ContentWrapper>
-        <PageTitle>{i18n('user.view.title')}</PageTitle>
-
-        <UserViewToolbar match={match} />
-
         <UserView loading={loading} user={user} />
       </ContentWrapper>
     </>

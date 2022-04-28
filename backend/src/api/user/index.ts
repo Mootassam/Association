@@ -27,4 +27,20 @@ export default (app) => {
     `/tenant/:tenantId/user/:id`,
     require('./userFind').default,
   );
+  app.get(
+    `/tenant/:tenantId/userAdherantAutocomplete`,
+    require('./userAdherantAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/userAdhesionList`,
+    require('./userAdhesionList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/userDonsList`,
+    require('./userDonsList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/userVotesList`,
+    require('./userVotesList').default,
+  );
 };

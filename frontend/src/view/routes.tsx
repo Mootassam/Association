@@ -909,6 +909,210 @@ const privateRoutes = [
     permissionRequired: permissions.attributesRead,
     exact: true,
   },
+  {
+    path: '/projet',
+    loader: () =>
+      import('src/view/projet/list/ProjetListPage'),
+    permissionRequired: permissions.projetRead,
+    exact: true,
+  },
+  {
+    path: '/projet/new',
+    loader: () =>
+      import('src/view/projet/form/ProjetFormPage'),
+    permissionRequired: permissions.projetCreate,
+    exact: true,
+  },
+  {
+    path: '/projet/importer',
+    loader: () =>
+      import('src/view/projet/importer/ProjetImporterPage'),
+    permissionRequired: permissions.projetImport,
+    exact: true,
+  },
+  {
+    path: '/projet/:id/edit',
+    loader: () =>
+      import('src/view/projet/form/ProjetFormPage'),
+    permissionRequired: permissions.projetEdit,
+    exact: true,
+  },
+  {
+    path: '/projet/:id',
+    loader: () =>
+      import('src/view/projet/view/ProjetDetails'),
+    permissionRequired: permissions.projetRead,
+    exact: true,
+  },
+
+  {
+    path: '/votes',
+    loader: () =>
+      import('src/view/votes/list/VotesListPage'),
+    permissionRequired: permissions.votesRead,
+    exact: true,
+  },
+  {
+    path: '/votes/new',
+    loader: () =>
+      import('src/view/votes/form/VotesFormPage'),
+    permissionRequired: permissions.votesCreate,
+    exact: true,
+  },
+  {
+    path: '/votes/importer',
+    loader: () =>
+      import('src/view/votes/importer/VotesImporterPage'),
+    permissionRequired: permissions.votesImport,
+    exact: true,
+  },
+  {
+    path: '/votes/:id/edit',
+    loader: () =>
+      import('src/view/votes/form/VotesFormPage'),
+    permissionRequired: permissions.votesEdit,
+    exact: true,
+  },
+  {
+    path: '/votes/:id',
+    loader: () =>
+      import('src/view/votes/view/VotesViewPage'),
+    permissionRequired: permissions.votesRead,
+    exact: true,
+  },
+
+  {
+    path: '/dons',
+    loader: () => import('src/view/dons/list/DonsListPage'),
+    permissionRequired: permissions.donsRead,
+    exact: true,
+  },
+
+  {
+    path: '/dons/new',
+    loader: () => import('src/view/dons/form/DonsFormPage'),
+    permissionRequired: permissions.donsCreate,
+    exact: true,
+  },
+  {
+    path: '/dons/:id/new',
+    loader: () =>
+      import('src/view/dons/form/DonsFormModal'),
+    permissionRequired: permissions.detailsCampagneCreate,
+    exact: true,
+  },
+  {
+    path: '/dons/importer',
+    loader: () =>
+      import('src/view/dons/importer/DonsImporterPage'),
+    permissionRequired: permissions.donsImport,
+    exact: true,
+  },
+  {
+    path: '/dons/:id/edit',
+    loader: () => import('src/view/dons/form/DonsFormPage'),
+    permissionRequired: permissions.donsEdit,
+    exact: true,
+  },
+  {
+    path: '/dons/:id',
+    loader: () => import('src/view/dons/view/DonsViewPage'),
+    permissionRequired: permissions.donsRead,
+    exact: true,
+  },
+  {
+    path: '/campagne',
+    loader: () =>
+      import('src/view/campagne/list/CampagneListPage'),
+    permissionRequired: permissions.campagneRead,
+    exact: true,
+  },
+  {
+    path: '/campagne/new',
+    loader: () =>
+      import('src/view/campagne/form/CampagneFormPage'),
+    permissionRequired: permissions.campagneCreate,
+    exact: true,
+  },
+  {
+    path: '/campagne/importer',
+    loader: () =>
+      import(
+        'src/view/campagne/importer/CampagneImporterPage'
+      ),
+    permissionRequired: permissions.campagneImport,
+    exact: true,
+  },
+  {
+    path: '/campagne/:id/edit',
+    loader: () =>
+      import('src/view/campagne/form/CampagneFormPage'),
+    permissionRequired: permissions.campagneEdit,
+    exact: true,
+  },
+  {
+    path: '/campagne/:id',
+    loader: () =>
+      import('src/view/campagne/view/CampagneViewPage'),
+    permissionRequired: permissions.campagneRead,
+    exact: true,
+  },
+
+  {
+    path: '/details-campagne',
+    loader: () =>
+      import(
+        'src/view/detailsCampagne/list/DetailsCampagneListPage'
+      ),
+    permissionRequired: permissions.detailsCampagneRead,
+    exact: true,
+  },
+
+  {
+    path: '/details-campagne/:id',
+    loader: () =>
+      import(
+        'src/view/detailsCampagne/view/DetailsCampagneViewPage'
+      ),
+    permissionRequired: permissions.detailsCampagneRead,
+    exact: true,
+  },
+  {
+    path: '/details-campagne/new',
+    loader: () =>
+      import(
+        'src/view/detailsCampagne/form/DetailsCampagneFormPage'
+      ),
+    permissionRequired: permissions.detailsCampagneCreate,
+    exact: true,
+  },
+  {
+    path: '/details-campagne/:id/new',
+    loader: () =>
+      import(
+        'src/view/detailsCampagne/form/DetailsCampagneFormModal'
+      ),
+    permissionRequired: permissions.detailsCampagneCreate,
+    exact: true,
+  },
+  {
+    path: '/details-campagne/importer',
+    loader: () =>
+      import(
+        'src/view/detailsCampagne/importer/DetailsCampagneImporterPage'
+      ),
+    permissionRequired: permissions.detailsCampagneImport,
+    exact: true,
+  },
+  {
+    path: '/details-campagne/:id/edit',
+    loader: () =>
+      import(
+        'src/view/detailsCampagne/form/DetailsCampagneFormPage'
+      ),
+    permissionRequired: permissions.detailsCampagneEdit,
+    exact: true,
+  },
 ].filter(Boolean);
 
 const publicRoutes = [

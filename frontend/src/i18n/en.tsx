@@ -97,7 +97,240 @@ const en = {
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
+    palier: {
+      name: 'Level',
+      label: 'Levels',
+      menu: 'Levels',
+      exporterFileName: 'Level_export',
+      list: {
+        menu: 'Levels',
+        title: 'Levels',
+      },
+      create: {
+        success: 'Level successfully saved',
+      },
+      update: {
+        success: 'Level successfully saved',
+      },
+      destroy: {
+        success: 'Level successfully deleted',
+      },
+      destroyAll: {
+        success: 'Level(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Level',
+      },
+      fields: {
+        id: 'Id',
+        title: 'Title',
+        montantRange: 'Amount',
+        montant: 'Amount',
+        details: 'Details',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Level',
+      },
+      view: {
+        title: 'View Level',
+      },
+      importer: {
+        title: 'Import Levels',
+        fileName: 'Level_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+    projet: {
+      name: 'Project',
+      label: 'Projects',
+      menu: 'Projects',
+      exporterFileName: 'project_export',
+      list: {
+        menu: 'Projects',
+        title: 'Projects',
+      },
+      create: {
+        success: 'Project successfully saved',
+      },
+      update: {
+        success: 'Project successfully saved',
+      },
+      destroy: {
+        success: 'Project successfully deleted',
+      },
+      destroyAll: {
+        success: 'Project(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Project',
+      },
+      fields: {
+        id: 'Id',
+        titre: 'Title',
+        description: 'Description',
+        details: 'Details',
+        typeProjet: 'Type',
+        statutProjet: 'Status',
+        photoPrincipal: 'Main Photo',
+        budgetRange: 'Budget',
+        budget: 'Budget',
+        lieu: 'Place',
+        dateDebutProjetRange: 'Project Start Date',
+        dateDebutProjet: 'Project Start Date',
+        dateFinProjetRange: 'Project End Date',
+        dateFinProjet: 'Project End Date',
+        dateDebutDonRange: 'Donation Start Date',
+        dateDebutDon: 'Donation Start Date',
+        dateFinDonRange: 'Donation End Date',
+        dateFinDon: 'Donation End Date',
+        photos: 'Pictures',
+        attachements: 'Attachments',
+        votes: 'Votes',
+        dons: 'Donation',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        typeProjet: {
+          idee: 'Idea',
+          projet_ligue: 'League Project',
+          projet_ca: 'CA Project',
+        },
+        statutProjet: {
+          draft: 'Draft',
+          actif: 'Active',
+          canceled: 'Canceled',
+          closed: 'Closed',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Project',
+      },
+      view: {
+        title: 'View Project',
+      },
+      importer: {
+        title: 'Import Projects',
+        fileName: 'project_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
 
+    votes: {
+      name: 'Votes',
+      label: 'Votes',
+      menu: 'Votes',
+      exporterFileName: 'votes_export',
+      list: {
+        menu: 'Votes',
+        title: 'Votes',
+      },
+      create: {
+        success: 'Votes successfully saved',
+      },
+      update: {
+        success: 'Votes successfully saved',
+      },
+      destroy: {
+        success: 'Votes successfully deleted',
+      },
+      destroyAll: {
+        success: 'Votes(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Votes',
+      },
+      fields: {
+        id: 'Id',
+        adherent: 'Member',
+        votesRange: 'Votes',
+        votes: 'Votes',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Votes',
+      },
+      view: {
+        title: 'View Votes',
+      },
+      importer: {
+        title: 'Import Votes',
+        fileName: 'votes_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    dons: {
+      name: 'Donations',
+      label: 'Donations',
+      menu: 'Donations',
+      exporterFileName: 'Donations_export',
+      list: {
+        menu: 'Donations',
+        title: 'Donations',
+      },
+      create: {
+        success: 'Donations successfully saved',
+      },
+      update: {
+        success: 'Donations successfully saved',
+      },
+      destroy: {
+        success: 'Donations successfully deleted',
+      },
+      destroyAll: {
+        success: 'Donations(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Donations',
+      },
+      fields: {
+        id: 'Id',
+        adherent: 'Member',
+        montantRange: 'Amount',
+        montant: 'Amount',
+        typePaiement: 'Payment type',
+        attachements: 'Attachments',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        typePaiement: {
+          paymee: 'Paymee',
+          cb: 'Bank card',
+          virement: 'Transfer',
+          especes: 'Cash',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Donations',
+      },
+      view: {
+        title: 'View Donations',
+      },
+      importer: {
+        title: 'Import Donations',
+        fileName: 'Donations_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
     subcategories: {
       name: 'Sub Categories',
       label: 'Sub Categories',
@@ -557,7 +790,7 @@ const en = {
           disable: 'Disable',
         },
         itemType: {
-          normal: 'Normal',
+          physical: 'physical',
           digitale: 'Digitale',
         },
         fileType: {
@@ -1281,6 +1514,14 @@ const en = {
       lastName: 'Last Name',
       status: 'Status',
       phoneNumber: 'Phone Number',
+      sector: 'Sector',
+      employer: 'Employer',
+      profession: 'Profession',
+      address: 'Address',
+      birthDate: 'Birth Date',
+      maritalStatus: 'Marital Status',
+      facebookLink: 'Facebook Link',
+      sponsor: 'Sponsor',
       role: 'Role',
       createdAt: 'Created at',
       updatedAt: 'Updated at',
@@ -1293,10 +1534,36 @@ const en = {
       newPasswordConfirmation: 'New Password Confirmation',
       rememberMe: 'Remember me',
     },
+    sector: {
+      AGRO_ALIMENTAIRE: 'Food industry',
+      ASSURANCES: 'Assurance',
+      AUDIOVISUEL: 'Audio-visual',
+      BANCAIRE: 'Banking',
+      CHIMIE: 'Chemistry',
+      COMPOSANTS_AUTOMOBILES: 'Automotive components',
+      DISTRIBUTION: 'Distribution',
+      DISTRIBUTION_AUTOMOBILE: 'Automotive Distribution',
+      DIVERS: 'Various',
+      FINANCIER: 'Financial',
+      HOLDING: 'Holding',
+      IMMOBILIER: 'Real estate',
+      INDUSTRIEL: 'Industrial',
+      LEASING: 'Leasing',
+      LOGISTIQUE_TRANSPORT: 'Logistics and transport',
+      PHARMACEUTIQUE: 'Pharmaceutical',
+      SANTÉ: 'Health',
+      TOURSIME: 'Tourism',
+      INFORMATION_TECHNOLOGY: 'Information Technology',
+    },
+    maritalStatus: {
+      célébataire: 'Single',
+      marié: 'Married',
+    },
     status: {
       active: 'Active',
       invited: 'Invited',
       'empty-permissions': 'Waiting for Permissions',
+      inactive: 'Inactive',
     },
     invite: 'Invite',
     validations: {

@@ -8,7 +8,10 @@ import Error404 from '../../errors/Error404';
 import SettingsRepository from './settingsRepository';
 import { isUserInTenant } from '../utils/userTenantUtils';
 import { IRepositoryOptions } from './IRepositoryOptions';
+import { databaseInit } from '../databaseConnection';
+
 import lodash from 'lodash';
+
 export default class UserRepository {
   static async create(data, options: IRepositoryOptions) {
     const currentUser = MongooseRepository.getCurrentUser(
@@ -25,7 +28,17 @@ export default class UserRepository {
           lastName: data.lastName || null,
           fullName: data.fullName || null,
           phoneNumber: data.phoneNumber || null,
-          importHash: data.importHash || null,
+          employeur: data.employeur || null,
+          secteur: data.secteur || null,
+          profession: data.profession || null,
+          adresse: data.adresse || null,
+          cin: data.cin || null,
+          etat_civil: data.etat_civil || null,
+          // stat:data.stat || null,
+          lien_facebook: data.lien_facebook || null,
+          date_naissance: data.date_naissance || null,
+          parrain: data.parrain || null,
+          // importHash: data.importHash || null,
           avatars: data.avatars || [],
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
@@ -48,6 +61,47 @@ export default class UserRepository {
       ...options,
       bypassPermissionValidation: true,
     });
+  }
+
+  static async updateUser(tenantId,
+    id,
+    fullName,
+    phoneNumber,
+    employeur,
+    profession,
+    date_naissance,
+    secteur,
+    adresse,
+    cin,
+    etat_civil,
+    lien_facebook,
+    parrain,
+    options) {
+    const user = await MongooseRepository.wrapWithSessionIfExists(
+      User(options.database)
+        .findById(id),
+      options,
+    );
+
+    await User(options.database).updateOne(
+      { _id: id },
+      {
+        $set: {
+          'fullName': fullName,
+          'phoneNumber': phoneNumber,
+          'employeur': employeur,
+          'profession': profession,
+          'date_naissance': date_naissance,
+          'secteur': secteur,
+          'adresse': adresse,
+          'cin': cin,
+          'etat_civil': etat_civil,
+          'lien_facebook': lien_facebook,
+          'parrain': parrain,
+        },
+      },
+      options,
+    );
   }
 
   static async createFromAuth(
@@ -97,7 +151,7 @@ export default class UserRepository {
 
     const data: any = {
       password,
-      updatedBy: currentUser.id,
+      updatedBy: id,
     };
 
     if (invalidateOldTokens) {
@@ -145,6 +199,15 @@ export default class UserRepository {
         phoneNumber: data.phoneNumber || null,
         updatedBy: currentUser.id,
         avatars: data.avatars || [],
+        adresse: data.adresse || null,
+        cin: data.cin || null,
+        date_naissance: data.date_naissance || null,
+        employeur: data.employeur || null,
+        etat_civil: data.etat_civil || null,
+        lien_facebook: data.lien_facebook || null,
+        parrain: data.parrain || null,
+        profession: data.profession || null,
+        secteur: data.secteur || null,
       },
       options,
     );
@@ -455,6 +518,68 @@ export default class UserRepository {
     return { rows, count };
   }
 
+  static async filterIdInTenant(
+    id,
+    options: IRepositoryOptions,
+  ) {
+    return lodash.get(
+      await this.filterIdsInTenant([id], options),
+      '[0]',
+      null,
+    );
+  }
+
+  static async filterIdsInTenant(
+    ids,
+    options: IRepositoryOptions,
+  ) {
+    if (!ids || !ids.length) {
+      return ids;
+    }
+
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
+
+    let users = await User(options.database)
+      .find({
+        _id: {
+          $in: ids,
+        },
+        tenants: {
+          $elemMatch: { tenant: currentTenant.id },
+        },
+      })
+      .select(['_id']);
+
+    return users.map((user) => user._id);
+  }
+
+  static cleanupForRelationships(userOrUsers) {
+    if (!userOrUsers) {
+      return userOrUsers;
+    }
+
+    if (Array.isArray(userOrUsers)) {
+      return userOrUsers.map((user) =>
+        lodash.pick(user, [
+          '_id',
+          'id',
+          'firstName',
+          'lastName',
+          'email',
+        ]),
+      );
+    }
+
+    return lodash.pick(userOrUsers, [
+      '_id',
+      'id',
+      'firstName',
+      'lastName',
+      'email',
+    ]);
+  }
+
   static async findAllAutocomplete(
     search,
     limit,
@@ -527,42 +652,6 @@ export default class UserRepository {
     }));
   }
 
-  static async filterIdInTenant(
-    id,
-    options: IRepositoryOptions,
-  ) {
-    return lodash.get(
-      await this.filterIdsInTenant([id], options),
-      '[0]',
-      null,
-    );
-  }
-
-  static async filterIdsInTenant(
-    ids,
-    options: IRepositoryOptions,
-  ) {
-    if (!ids || !ids.length) {
-      return ids;
-    }
-
-    const currentTenant =
-      MongooseRepository.getCurrentTenant(options);
-
-    let users = await User(options.database)
-      .find({
-        _id: {
-          $in: ids,
-        },
-        tenants: {
-          $elemMatch: { tenant: currentTenant.id },
-        },
-      })
-      .select(['_id']);
-
-    return users.map((user) => user._id);
-  }
-
   static async findByIdWithPassword(
     id,
     options: IRepositoryOptions,
@@ -579,7 +668,8 @@ export default class UserRepository {
     let record = await MongooseRepository.wrapWithSessionIfExists(
       User(options.database)
         .findById(id)
-        .populate('tenants.tenant'),
+        .populate('tenants.tenant')
+        .populate('parrain'),
       options,
     );
 
@@ -764,6 +854,7 @@ export default class UserRepository {
     const status = tenantUser ? tenantUser.status : null;
     const roles = tenantUser ? tenantUser.roles : [];
 
+
     // If the user is only invited,
     // tenant members can only see its email
     const otherData =
@@ -773,9 +864,88 @@ export default class UserRepository {
       ...otherData,
       id: user.id,
       email: user.email,
+      phoneNumber: user.phoneNumber,
+      // firstName: user.email.split('@')[0],
+      fullName: user.fullName,
+      employeur: user.employeur,
+      secteur: user.secteur,
+      profession: user.profession,
+      etat_civil: user.etat_civil,
+      date_naissance: user.date_naissance,
+      lien_facebook: user.lien_facebook,
+      parrain: user.parrain,
+      adresse: user.adresse,
+      cin: user.cin,
       roles,
       status,
     };
+  }
+  static async findByRoleAutocomplete(search, limit, options: IRepositoryOptions) {
+    const currentTenant1 = MongooseRepository.getCurrentTenant(
+      options,
+    );
+
+    let criteriaAnd: Array<any> = [
+      {
+        tenants: {
+          $elemMatch: { tenant: currentTenant1.id }
+        },
+      },
+    ];
+    if (search) {
+      criteriaAnd.push({
+        $or: [
+          {
+            _id: MongooseQueryUtils.uuid(search),
+          },
+          {
+            fullName: {
+              $regex: MongooseQueryUtils.escapeRegExp(
+                search,
+              ),
+              $options: 'i',
+            },
+          },
+          {
+            email: {
+              $regex: MongooseQueryUtils.escapeRegExp(
+                search,
+              ),
+              $options: 'i',
+            },
+          },
+        ],
+      });
+    }
+
+    const sort = MongooseQueryUtils.sort('fullName_ASC');
+    const limitEscaped = Number(limit || 0) || undefined;
+
+    const criteria = { $and: criteriaAnd };
+
+    let users = await User(options.database)
+      .find(criteria)
+      .limit(limitEscaped)
+      .sort(sort);
+
+    users = this._mapUserForTenantForRows(
+      users,
+      currentTenant1,
+    );
+
+    const buildText = (user) => {
+      if (!user.fullName) {
+        return user.email;
+      }
+
+      return `${user.fullName} <${user.email}>`;
+    };
+
+    return users.map((user) => ({
+      id: user.id,
+      label: buildText(user),
+    }));
+
   }
 
   static async _fillRelationsAndFileDownloadUrls(
@@ -849,31 +1019,5 @@ export default class UserRepository {
       ...options,
       bypassPermissionValidation: true,
     });
-  }
-
-  static cleanupForRelationships(userOrUsers) {
-    if (!userOrUsers) {
-      return userOrUsers;
-    }
-
-    if (Array.isArray(userOrUsers)) {
-      return userOrUsers.map((user) =>
-        lodash.pick(user, [
-          '_id',
-          'id',
-          'firstName',
-          'lastName',
-          'email',
-        ]),
-      );
-    }
-
-    return lodash.pick(userOrUsers, [
-      '_id',
-      'id',
-      'firstName',
-      'lastName',
-      'email',
-    ]);
   }
 }
