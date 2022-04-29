@@ -1113,6 +1113,576 @@ const privateRoutes = [
     permissionRequired: permissions.detailsCampagneEdit,
     exact: true,
   },
+  {
+    path: '/election',
+    loader: () =>
+      import('src/view/election/list/ElectionListPage'),
+    permissionRequired: permissions.electionRead,
+    exact: true,
+  },
+  {
+    path: '/election/new',
+    loader: () =>
+      import('src/view/election/form/ElectionFormPage'),
+    permissionRequired: permissions.electionCreate,
+    exact: true,
+  },
+  {
+    path: '/election/importer',
+    loader: () =>
+      import(
+        'src/view/election/importer/ElectionImporterPage'
+      ),
+    permissionRequired: permissions.electionImport,
+    exact: true,
+  },
+  {
+    path: '/election/:id/edit',
+    loader: () =>
+      import('src/view/election/form/ElectionFormPage'),
+    permissionRequired: permissions.electionEdit,
+    exact: true,
+  },
+  {
+    path: '/election/:id',
+    loader: () =>
+      import('src/view/election/view/ElectionViewPage'),
+    permissionRequired: permissions.electionRead,
+    exact: true,
+  },
+
+  {
+    path: '/association',
+    loader: () =>
+      import(
+        'src/view/association/list/AssociationListPage'
+      ),
+    permissionRequired: permissions.associationRead,
+    exact: true,
+  },
+  {
+    path: '/association/new',
+    loader: () =>
+      import(
+        'src/view/association/form/AssociationFormPage'
+      ),
+    permissionRequired: permissions.associationCreate,
+    exact: true,
+  },
+  {
+    path: '/association/importer',
+    loader: () =>
+      import(
+        'src/view/association/importer/AssociationImporterPage'
+      ),
+    permissionRequired: permissions.associationImport,
+    exact: true,
+  },
+  {
+    path: '/association/:id/edit',
+    loader: () =>
+      import(
+        'src/view/association/form/AssociationFormPage'
+      ),
+    permissionRequired: permissions.associationEdit,
+    exact: true,
+  },
+  {
+    path: '/association/:id',
+    loader: () =>
+      import(
+        'src/view/association/view/AssociationViewPage'
+      ),
+    permissionRequired: permissions.associationRead,
+    exact: true,
+  },
+
+  {
+    path: '/news-category',
+    loader: () =>
+      import(
+        'src/view/newsCategory/list/NewsCategoryListPage'
+      ),
+    permissionRequired: permissions.newsCategoryRead,
+    exact: true,
+  },
+  {
+    path: '/news-category/new',
+    loader: () =>
+      import(
+        'src/view/newsCategory/form/NewsCategoryFormPage'
+      ),
+    permissionRequired: permissions.newsCategoryCreate,
+    exact: true,
+  },
+  {
+    path: '/news-category/importer',
+    loader: () =>
+      import(
+        'src/view/newsCategory/importer/NewsCategoryImporterPage'
+      ),
+    permissionRequired: permissions.newsCategoryImport,
+    exact: true,
+  },
+  {
+    path: '/news-category/:id/edit',
+    loader: () =>
+      import(
+        'src/view/newsCategory/form/NewsCategoryFormPage'
+      ),
+    permissionRequired: permissions.newsCategoryEdit,
+    exact: true,
+  },
+  {
+    path: '/news-category/:id',
+    loader: () =>
+      import(
+        'src/view/newsCategory/view/NewsCategoryViewPage'
+      ),
+    permissionRequired: permissions.newsCategoryRead,
+    exact: true,
+  },
+
+  {
+    path: '/news-tag',
+    loader: () =>
+      import('src/view/newsTag/list/NewsTagListPage'),
+    permissionRequired: permissions.newsTagRead,
+    exact: true,
+  },
+  {
+    path: '/news-tag/new',
+    loader: () =>
+      import('src/view/newsTag/form/NewsTagFormPage'),
+    permissionRequired: permissions.newsTagCreate,
+    exact: true,
+  },
+  {
+    path: '/news-tag/importer',
+    loader: () =>
+      import(
+        'src/view/newsTag/importer/NewsTagImporterPage'
+      ),
+    permissionRequired: permissions.newsTagImport,
+    exact: true,
+  },
+  {
+    path: '/news-tag/:id/edit',
+    loader: () =>
+      import('src/view/newsTag/form/NewsTagFormPage'),
+    permissionRequired: permissions.newsTagEdit,
+    exact: true,
+  },
+  {
+    path: '/news-tag/:id',
+    loader: () =>
+      import('src/view/newsTag/view/NewsTagViewPage'),
+    permissionRequired: permissions.newsTagRead,
+    exact: true,
+  },
+
+  {
+    path: '/news',
+    loader: () => import('src/view/news/list/NewsListPage'),
+    permissionRequired: permissions.newsRead,
+    exact: true,
+  },
+  {
+    path: '/news/new',
+    loader: () => import('src/view/news/form/NewsFormPage'),
+    permissionRequired: permissions.newsCreate,
+    exact: true,
+  },
+  {
+    path: '/news/importer',
+    loader: () =>
+      import('src/view/news/importer/NewsImporterPage'),
+    permissionRequired: permissions.newsImport,
+    exact: true,
+  },
+  {
+    path: '/news/:id/edit',
+    loader: () => import('src/view/news/form/NewsFormPage'),
+    permissionRequired: permissions.newsEdit,
+    exact: true,
+  },
+  {
+    path: '/news/:id',
+    loader: () => import('src/view/news/view/NewsViewPage'),
+    permissionRequired: permissions.newsRead,
+    exact: true,
+  },
+
+  {
+    path: '/partner',
+    loader: () =>
+      import('src/view/partner/list/PartnerListPage'),
+    permissionRequired: permissions.partnerRead,
+    exact: true,
+  },
+  {
+    path: '/partner/new',
+    loader: () =>
+      import('src/view/partner/form/PartnerFormPage'),
+    permissionRequired: permissions.partnerCreate,
+    exact: true,
+  },
+  {
+    path: '/partner/importer',
+    loader: () =>
+      import(
+        'src/view/partner/importer/PartnerImporterPage'
+      ),
+    permissionRequired: permissions.partnerImport,
+    exact: true,
+  },
+  {
+    path: '/partner/:id/edit',
+    loader: () =>
+      import('src/view/partner/form/PartnerFormPage'),
+    permissionRequired: permissions.partnerEdit,
+    exact: true,
+  },
+  {
+    path: '/partner/:id',
+    loader: () =>
+      import('src/view/partner/view/PartnerViewPage'),
+    permissionRequired: permissions.partnerRead,
+    exact: true,
+  },
+
+  {
+    path: '/group',
+    loader: () =>
+      import('src/view/group/list/GroupListPage'),
+    permissionRequired: permissions.groupRead,
+    exact: true,
+  },
+  {
+    path: '/group/new',
+    loader: () =>
+      import('src/view/group/form/GroupFormPage'),
+    permissionRequired: permissions.groupCreate,
+    exact: true,
+  },
+  {
+    path: '/group/importer',
+    loader: () =>
+      import('src/view/group/importer/GroupImporterPage'),
+    permissionRequired: permissions.groupImport,
+    exact: true,
+  },
+  {
+    path: '/group/:id/edit',
+    loader: () =>
+      import('src/view/group/form/GroupFormPage'),
+    permissionRequired: permissions.groupEdit,
+    exact: true,
+  },
+  {
+    path: '/group/:id',
+    loader: () =>
+      import('src/view/group/view/GroupViewPage'),
+    permissionRequired: permissions.groupRead,
+    exact: true,
+  },
+
+  {
+    path: '/formule',
+    loader: () =>
+      import('src/view/formule/list/FormuleListPage'),
+    permissionRequired: permissions.formuleRead,
+    exact: true,
+  },
+  {
+    path: '/formule/new',
+    loader: () =>
+      import('src/view/formule/form/FormuleFormPage'),
+    permissionRequired: permissions.formuleCreate,
+    exact: true,
+  },
+  {
+    path: '/formule/importer',
+    loader: () =>
+      import(
+        'src/view/formule/importer/FormuleImporterPage'
+      ),
+    permissionRequired: permissions.formuleImport,
+    exact: true,
+  },
+  {
+    path: '/formule/:id/edit',
+    loader: () =>
+      import('src/view/formule/form/FormuleFormPage'),
+    permissionRequired: permissions.formuleEdit,
+    exact: true,
+  },
+  {
+    path: '/formule/:id',
+    loader: () =>
+      import('src/view/formule/view/FormuleViewPage'),
+    permissionRequired: permissions.formuleRead,
+    exact: true,
+  },
+
+  {
+    path: '/membership',
+    loader: () =>
+      import('src/view/membership/list/MembershipListPage'),
+    permissionRequired: permissions.membershipRead,
+    exact: true,
+  },
+  {
+    path: '/membership/new',
+    loader: () =>
+      import('src/view/membership/form/MembershipFormPage'),
+    permissionRequired: permissions.membershipCreate,
+    exact: true,
+  },
+  {
+    path: '/membership/importer',
+    loader: () =>
+      import(
+        'src/view/membership/importer/MembershipImporterPage'
+      ),
+    permissionRequired: permissions.membershipImport,
+    exact: true,
+  },
+  {
+    path: '/membership/:id/edit',
+    loader: () =>
+      import('src/view/membership/form/MembershipFormPage'),
+    permissionRequired: permissions.membershipEdit,
+    exact: true,
+  },
+  {
+    path: '/membership/:id',
+    loader: () =>
+      import('src/view/membership/view/MembershipViewPage'),
+    permissionRequired: permissions.membershipRead,
+    exact: true,
+  },
+
+  {
+    path: '/campaign',
+    loader: () =>
+      import('src/view/campaign/list/CampaignListPage'),
+    permissionRequired: permissions.campaignRead,
+    exact: true,
+  },
+  {
+    path: '/campaign/new',
+    loader: () =>
+      import('src/view/campaign/form/CampaignFormPage'),
+    permissionRequired: permissions.campaignCreate,
+    exact: true,
+  },
+  {
+    path: '/campaign/importer',
+    loader: () =>
+      import(
+        'src/view/campaign/importer/CampaignImporterPage'
+      ),
+    permissionRequired: permissions.campaignImport,
+    exact: true,
+  },
+  {
+    path: '/campaign/:id/edit',
+    loader: () =>
+      import('src/view/campaign/form/CampaignFormPage'),
+    permissionRequired: permissions.campaignEdit,
+    exact: true,
+  },
+  {
+    path: '/campaign/:id',
+    loader: () =>
+      import('src/view/campaign/view/CampaignViewPage'),
+    permissionRequired: permissions.campaignRead,
+    exact: true,
+  },
+  {
+    path: '/objectif',
+    loader: () =>
+      import('src/view/objectif/list/ObjectifListPage'),
+    permissionRequired: permissions.objectifRead,
+    exact: true,
+  },
+  {
+    path: '/objectif/new',
+    loader: () =>
+      import('src/view/objectif/form/ObjectifFormPage'),
+    permissionRequired: permissions.objectifCreate,
+    exact: true,
+  },
+  {
+    path: '/objectif/importer',
+    loader: () =>
+      import(
+        'src/view/objectif/importer/ObjectifImporterPage'
+      ),
+    permissionRequired: permissions.objectifImport,
+    exact: true,
+  },
+  {
+    path: '/objectif/:id/edit',
+    loader: () =>
+      import('src/view/objectif/form/ObjectifFormPage'),
+    permissionRequired: permissions.objectifEdit,
+    exact: true,
+  },
+  {
+    path: '/objectif/:id',
+    loader: () =>
+      import('src/view/objectif/view/ObjectifViewPage'),
+    permissionRequired: permissions.objectifRead,
+    exact: true,
+  },
+  {
+    path: '/entree',
+    loader: () =>
+      import('src/view/entree/list/EntreeListPage'),
+    permissionRequired: permissions.entreeRead,
+    exact: true,
+  },
+  {
+    path: '/entree/new',
+    loader: () =>
+      import('src/view/entree/form/EntreeFormPage'),
+    permissionRequired: permissions.entreeCreate,
+    exact: true,
+  },
+  {
+    path: '/entree/importer',
+    loader: () =>
+      import('src/view/entree/importer/EntreeImporterPage'),
+    permissionRequired: permissions.entreeImport,
+    exact: true,
+  },
+  {
+    path: '/entree/:id/edit',
+    loader: () =>
+      import('src/view/entree/form/EntreeFormPage'),
+    permissionRequired: permissions.entreeEdit,
+    exact: true,
+  },
+  {
+    path: '/entree/:id',
+    loader: () =>
+      import('src/view/entree/view/EntreeViewPage'),
+    permissionRequired: permissions.entreeRead,
+    exact: true,
+  },
+
+  {
+    path: '/depense',
+    loader: () =>
+      import('src/view/depense/list/DepenseListPage'),
+    permissionRequired: permissions.depenseRead,
+    exact: true,
+  },
+  {
+    path: '/depense/new',
+    loader: () =>
+      import('src/view/depense/form/DepenseFormPage'),
+    permissionRequired: permissions.depenseCreate,
+    exact: true,
+  },
+  {
+    path: '/depense/importer',
+    loader: () =>
+      import(
+        'src/view/depense/importer/DepenseImporterPage'
+      ),
+    permissionRequired: permissions.depenseImport,
+    exact: true,
+  },
+  {
+    path: '/depense/:id/edit',
+    loader: () =>
+      import('src/view/depense/form/DepenseFormPage'),
+    permissionRequired: permissions.depenseEdit,
+    exact: true,
+  },
+  {
+    path: '/depense/:id',
+    loader: () =>
+      import('src/view/depense/view/DepenseViewPage'),
+    permissionRequired: permissions.depenseRead,
+    exact: true,
+  },
+
+  {
+    path: '/charge',
+    loader: () =>
+      import('src/view/charge/list/ChargeListPage'),
+    permissionRequired: permissions.chargeRead,
+    exact: true,
+  },
+  {
+    path: '/charge/new',
+    loader: () =>
+      import('src/view/charge/form/ChargeFormPage'),
+    permissionRequired: permissions.chargeCreate,
+    exact: true,
+  },
+  {
+    path: '/charge/importer',
+    loader: () =>
+      import('src/view/charge/importer/ChargeImporterPage'),
+    permissionRequired: permissions.chargeImport,
+    exact: true,
+  },
+  {
+    path: '/charge/:id/edit',
+    loader: () =>
+      import('src/view/charge/form/ChargeFormPage'),
+    permissionRequired: permissions.chargeEdit,
+    exact: true,
+  },
+  {
+    path: '/charge/:id',
+    loader: () =>
+      import('src/view/charge/view/ChargeViewPage'),
+    permissionRequired: permissions.chargeRead,
+    exact: true,
+  },
+  {
+    path: '/category',
+    loader: () =>
+      import('src/view/category/list/CategoryListPage'),
+    permissionRequired: permissions.categoryRead,
+    exact: true,
+  },
+  {
+    path: '/category/new',
+    loader: () =>
+      import('src/view/category/form/CategoryFormPage'),
+    permissionRequired: permissions.categoryCreate,
+    exact: true,
+  },
+  {
+    path: '/category/importer',
+    loader: () =>
+      import(
+        'src/view/category/importer/CategoryImporterPage'
+      ),
+    permissionRequired: permissions.categoryImport,
+    exact: true,
+  },
+  {
+    path: '/category/:id/edit',
+    loader: () =>
+      import('src/view/category/form/CategoryFormPage'),
+    permissionRequired: permissions.categoryEdit,
+    exact: true,
+  },
+  {
+    path: '/category/:id',
+    loader: () =>
+      import('src/view/category/view/CategoryViewPage'),
+    permissionRequired: permissions.categoryRead,
+    exact: true,
+  },
 ].filter(Boolean);
 
 const publicRoutes = [

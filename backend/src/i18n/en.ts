@@ -188,6 +188,71 @@ const en = {
         unique: {},
       },
     },
+    association: {
+      errors: {
+        unique: {},
+      },
+    },
+    newsCategory: {
+      errors: {
+        unique: {},
+      },
+    },
+    newsTag: {
+      errors: {
+        unique: {},
+      },
+    },
+    news: {
+      errors: {
+        unique: {},
+      },
+    },
+    partner: {
+      errors: {
+        unique: {},
+      },
+    },
+    group: {
+      errors: {
+        unique: {},
+      },
+    },
+    formule: {
+      errors: {
+        unique: {},
+      },
+    },
+    membership: {
+      errors: {
+        unique: {},
+      },
+    },
+    campaign: {
+      errors: {
+        unique: {},
+      },
+    },
+    objectif: {
+      errors: {
+        unique: {},
+      },
+    },
+    entree: {
+      errors: {
+        unique: {},
+      },
+    },
+    depense: {
+      errors: {
+        unique: {},
+      },
+    },
+    charge: {
+      errors: {
+        unique: {},
+      },
+    },
   },
 };
 

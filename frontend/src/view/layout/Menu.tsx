@@ -10,9 +10,13 @@ import MenuWrapper from 'src/view/layout/styles/MenuWrapper';
 import menus from 'src/view/menus';
 import selectors from 'src/modules/auth/authSelectors';
 
+import Accordion from 'react-bootstrap/Accordion';
+
 function Menu(props) {
   const dispatch = useDispatch();
+
   const logoUrl = useSelector(selectors.selectLogoUrl);
+
   const currentTenant = useSelector(
     authSelectors.selectCurrentTenant,
   );
@@ -22,17 +26,11 @@ function Menu(props) {
   const menuVisible = useSelector(
     layoutSelectors.selectMenuVisible,
   );
+
   const permissionChecker = new PermissionChecker(
     currentTenant,
     currentUser,
   );
-  const subMenue = useSelector(
-    layoutSelectors.selectSubMenu,
-  );
-  const pathUrl = useSelector(layoutSelectors.selectPath);
-  const onClick = (path) => {
-    dispatch(actions.dosubMenu(path));
-  };
 
   useLayoutEffect(() => {
     const toggleMenuOnResize = () => {
@@ -55,24 +53,10 @@ function Menu(props) {
 
   const selectedKeys = () => {
     const url = props.url;
-
-    const match = menus.find((option) => {
-      if (option.exact) {
-        return url === option.path;
-      }
-      return (
-        url === option.path ||
-        url.startsWith(option.path + '/')
-      );
-    });
-
-    if (match) {
-      return [match.path];
-    }
-
-    return [];
+    var token = url.split('/').slice(0, 2),
+      res = token.join('/');
+    return res;
   };
-
   const match = (permission) => {
     return permissionChecker.match(permission);
   };
@@ -89,130 +73,98 @@ function Menu(props) {
         display: menuVisible ? 'block' : 'none',
       }}
     >
-      <div className="sidebar" id="sidebar">
-        <div className="sidebar-inner slimscroll">
-          <div id="sidebar-menu" className="sidebar-menu">
-            <div className="menu-logo">
-              <Link to="/">
-                {logoUrl ? (
-                  <img
-                    src={logoUrl}
-                    width="164px"
-                    alt={i18n('app.title')}
-                    style={{ verticalAlign: 'middle' }}
-                  />
-                ) : (
-                  <>{i18n('app.title')}</>
-                )}
-              </Link>
-            </div>
-            <ul className="menu-ul">
-              {menus
-                .filter((menu) =>
-                  match(menu.permissionRequired),
-                )
-                .map((menu, index) =>
-                  !menu.subMenue ? (
-                    <li
-                      key={menu.path}
-                      className={`submenu ${
-                        selectedKeys().includes(menu.path)
-                          ? 'active'
-                          : ''
-                      }`}
-                    >
-                      <Link
-                        to={menu.path}
-                        onClick={() => {
-                          onClick(index);
-                        }}
-                      >
-                        <i
-                          className={`menu-icon ${menu.icon}`}
-                        ></i>
-                        <span>{menu.label}</span>
-                      </Link>
-                    </li>
-                  ) : (
-                    <li
-                      key={menu.path + index}
-                      className={`menu-li text-nowrap ${
-                        selectedKeys().includes(menu.path)
-                          ? 'active'
-                          : ''
-                      }`}
-                    >
-                      <Link
-                        to="#"
-                        onClick={() => {
-                          onClick(index);
-                        }}
-                      >
-                        <i
-                          className={`menu-icon ${menu.icon}`}
-                        ></i>
-                        <span>{menu.label}</span>
-                      </Link>
-                      {menu.subMenue?.map((item) => (
-                        <ul
-                          key={item.path}
-                          style={{
-                            display:
-                              subMenue && index === pathUrl
-                                ? 'block'
-                                : 'none',
-                          }}
-                        >
-                          <li>
-                            <Link to={item.path}>
-                              <span
-                                className={`${
-                                  props.url.includes(
-                                    item.path,
-                                  )
-                                    ? 'active'
-                                    : ''
-                                }`}
-                              >
-                                {item.label}
-                              </span>
-                            </Link>
-                          </li>
-                        </ul>
-                      ))}
-                    </li>
-                  ),
-                )}
-
-              {menus
-                .filter((menu) =>
-                  lockedForCurrentPlan(
-                    menu.permissionRequired,
-                  ),
-                )
-                .map((menu) => (
-                  <li
-                    key={menu.path}
-                    className={`menu-li text-nowrap`}
-                    style={{
-                      cursor: 'auto',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      opacity: 0.5,
-                    }}
-                  >
-                    <div className="menu-li-locked">
-                      <i
-                        className={`menu-icon ${menu.icon}`}
-                      ></i>
-                      <span>{menu.label}</span>
-                    </div>
-                  </li>
-                ))}
-            </ul>
-          </div>
+      <div className="menu-nav border-right">
+        <div className="menu-logo">
+          <Link to="/">
+            {logoUrl ? (
+              <img
+                src={logoUrl}
+                width="164px"
+                alt={i18n('app.title')}
+                style={{ verticalAlign: 'middle' }}
+              />
+            ) : (
+              <>{i18n('app.title')}</>
+            )}
+          </Link>
         </div>
+        <ul className="menu-ul">
+          {menus
+            .filter((menu) =>
+              match(menu.permissionRequired),
+            )
+            .map((menu, index) => (
+              <li
+                key={index + 'item'}
+                className={`menu-li text-nowrap`}
+              >
+                {menu.subMenu ? (
+                  <Accordion
+                    className={'panel-header text-nowrap'}
+                    style={{ marginLeft: '24px' }}
+                    defaultActiveKey={
+                      menu.subPaths.includes(selectedKeys())
+                        ? menu.id
+                        : '0'
+                    }
+                    alwaysOpen
+                  >
+                    <Accordion.Item eventKey={menu.id}>
+                      <div className="panel-header text-nowrap">
+                        <Accordion.Header>
+                          {menu.label}
+                        </Accordion.Header>
+                      </div>
+                      {menu.subMenu.map((sub) => (
+                        <Accordion.Body>
+                          <div
+                            className={
+                              selectedKeys() === sub.path
+                                ? 'selected'
+                                : ''
+                            }
+                          >
+                            <Link to={sub.path}>
+                              <span>{sub.label}</span>
+                            </Link>
+                          </div>
+                        </Accordion.Body>
+                      ))}
+                    </Accordion.Item>
+                  </Accordion>
+                ) : (
+                  <Link to={menu.path} key={index}>
+                    <span>{menu.label}</span>
+                  </Link>
+                )}
+              </li>
+            ))}
+
+          {menus
+            .filter((menu) =>
+              lockedForCurrentPlan(menu.permissionRequired),
+            )
+            .map((menu, index) => (
+              <li
+                key={index}
+                className={`menu-li text-nowrap`}
+                style={{
+                  cursor: 'auto',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  opacity: 0.5,
+                }}
+              >
+                <div className="menu-li-locked">
+                  <i
+                    className={`menu-icon ${menu.icon}`}
+                  ></i>
+                  <span>{menu.label}</span>
+                </div>
+              </li>
+            ))}
+        </ul>
       </div>
     </MenuWrapper>
   );

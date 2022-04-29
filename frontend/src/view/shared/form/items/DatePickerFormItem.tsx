@@ -15,6 +15,9 @@ export function DatePickerFormItem(props) {
     externalErrorMessage,
     required,
     showTimeInput,
+    scrollableYearDropdown,
+    showYearDropdown,
+    showMonthDropdown,
   } = props;
 
   const {
@@ -48,7 +51,7 @@ export function DatePickerFormItem(props) {
         >
           {label}
         </label>
-      )}{' '}
+      )}
       <br />
       <DatePicker
         id={name}
@@ -57,7 +60,10 @@ export function DatePickerFormItem(props) {
           errorMessage ? 'is-invalid' : ''
         }`}
         onChange={(value) => {
-          setValue(name, value, { shouldValidate: true, shouldDirty: true });
+          setValue(name, value, {
+            shouldValidate: true,
+            shouldDirty: true,
+          });
           props.onChange && props.onChange(value);
         }}
         onBlur={(event) => {
@@ -65,6 +71,9 @@ export function DatePickerFormItem(props) {
         }}
         selected={watch(name)}
         showTimeInput={showTimeInput}
+        scrollableYearDropdown={scrollableYearDropdown}
+        showYearDropdown={showYearDropdown}
+        showMonthDropdown={showMonthDropdown}
         popperModifiers={{
           preventOverflow: {
             enabled: true,
@@ -104,6 +113,9 @@ DatePickerFormItem.propTypes = {
   placeholder: PropTypes.string,
   externalErrorMessage: PropTypes.string,
   showTimeInput: PropTypes.bool,
+  scrollableYearDropdown: PropTypes.bool,
+  showYearDropdown: PropTypes.bool,
+  showMonthDropdown: PropTypes.bool,
 };
 
 export default DatePickerFormItem;

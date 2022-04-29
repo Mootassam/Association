@@ -76,8 +76,7 @@ function ChieldCategoriesToolbar(props) {
         <ButtonIcon
           loading={exportLoading}
           iconClass="far fa-file-excel"
-        />{' '}
-        {i18n('common.export')}
+        />
       </button>
     );
 
@@ -107,15 +106,14 @@ function ChieldCategoriesToolbar(props) {
     const button = (
       <button
         disabled={disabled}
-        className="btn btn-primary"
+        className="btnCircle btn-primary"
         type="button"
         onClick={doOpenDestroyAllConfirmModal}
       >
         <ButtonIcon
           loading={destroyLoading}
           iconClass="far fa-trash-alt"
-        />{' '}
-        {i18n('common.destroy')}
+        />
       </button>
     );
 
@@ -139,18 +137,22 @@ function ChieldCategoriesToolbar(props) {
     <Toolbar>
       {hasPermissionToCreate && (
         <Link to="/chield-categories/new">
-          <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-plus" />{' '}
-            {i18n('common.new')}
+          <button
+            className="btnCircle btn-primary"
+            type="button"
+          >
+            <ButtonIcon iconClass="fas fa-plus" />
           </button>
         </Link>
       )}
 
       {hasPermissionToImport && (
         <Link to="/chield-categories/importer">
-          <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-upload" />{' '}
-            {i18n('common.import')}
+          <button
+            className="btnCircle btn-primary"
+            type="button"
+          >
+            <ButtonIcon iconClass="fas fa-upload" />
           </button>
         </Link>
       )}
@@ -160,8 +162,7 @@ function ChieldCategoriesToolbar(props) {
       {hasPermissionToAuditLogs && (
         <Link to="/audit-logs?entityNames=chieldCategories">
           <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="fas fa-history" />{' '}
-            {i18n('auditLog.menu')}
+            <ButtonIcon iconClass="fas fa-history" />
           </button>
         </Link>
       )}

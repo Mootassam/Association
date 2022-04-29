@@ -94,6 +94,22 @@ require('./projet').default(routes);
 require('./votes').default(routes);
 require('./dons').default(routes);
 require('./palier').default(routes);
+require('./association').default(routes);
+require('./association').default(routes);
+require('./campaign').default(routes);
+require('./charge').default(routes);
+require('./depense').default(routes);
+require('./group').default(routes);
+require('./formule').default(routes);
+require('./entree').default(routes);
+require('./election').default(routes);
+require('./membership').default(routes);
+require('./news').default(routes);
+require('./newsCategory').default(routes);
+require('./newsTag').default(routes);
+require('./objectif').default(routes);
+require('./partner').default(routes);
+
 // Loads the Tenant if the :tenantId param is passed
 routes.param('tenantId', tenantMiddleware);
 

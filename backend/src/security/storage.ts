@@ -97,6 +97,53 @@ export default class Storage {
         folder: 'tenant/:tenantId/paymentsettings/photo',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
+
+      electionPv: {
+        id: 'electionPv',
+        folder: 'tenant/:tenantId/election/pv',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+
+      associationLogo: {
+        id: 'associationLogo',
+        folder: 'tenant/:tenantId/association/logo',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+      customshipAttachements: {
+        id: 'customshipAttachements',
+        folder:
+          'tenant/:tenantId/customshipAttachements/customshipAttachements',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+
+      newsImage: {
+        id: 'newsImage',
+        folder: 'tenant/:tenantId/news/image',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+      newsAttachements: {
+        id: 'newsAttachements',
+        folder: 'tenant/:tenantId/news/attachements',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+
+      partnerLogo: {
+        id: 'partnerLogo',
+        folder: 'tenant/:tenantId/partner/logo',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+
+      groupLogo: {
+        id: 'groupLogo',
+        folder: 'tenant/:tenantId/group/logo',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
+
+      membershipAttachements: {
+        id: 'membershipAttachements',
+        folder: 'tenant/:tenantId/membership/attachements',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
     };
   }
 }

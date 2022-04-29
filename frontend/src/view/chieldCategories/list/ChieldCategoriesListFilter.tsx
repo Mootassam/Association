@@ -25,7 +25,7 @@ const schema = yup.object().shape({
 const emptyValues = {
   name: null,
   slug: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -36,7 +36,7 @@ const previewRenders = {
     label: i18n('entities.chieldCategories.fields.slug'),
     render: filterRenders.generic(),
   },
-}
+};
 
 function ChieldCategoriesListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -57,7 +57,12 @@ function ChieldCategoriesListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -98,18 +103,22 @@ function ChieldCategoriesListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.chieldCategories.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="slug"
-                        label={i18n('entities.chieldCategories.fields.slug')}      
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.chieldCategories.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="slug"
+                    label={i18n(
+                      'entities.chieldCategories.fields.slug',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -122,7 +131,7 @@ function ChieldCategoriesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -134,8 +143,7 @@ function ChieldCategoriesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
-                    {i18n('common.reset')}
+                    />
                   </button>
                 </div>
               </div>

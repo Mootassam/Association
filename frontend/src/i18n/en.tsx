@@ -27,6 +27,11 @@ const en = {
     hightlight: 'Hightlight',
     attributes: 'Attributes',
     attributeoptions: 'Attribute options',
+    administration: 'Administration',
+    community: 'Community',
+    news: 'News',
+    membership: 'MemberShip',
+    accounting: 'Accounting',
   },
 
   app: {
@@ -719,6 +724,804 @@ const en = {
       importer: {
         title: 'Import Galleries',
         fileName: 'gallery_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+    election: {
+      name: 'election',
+      label: 'Elections',
+      menu: 'Elections',
+      exporterFileName: 'election_export',
+      list: {
+        menu: 'Elections',
+        title: 'Elections',
+      },
+      create: {
+        success: 'Election successfully saved',
+      },
+      update: {
+        success: 'Election successfully saved',
+      },
+      destroy: {
+        success: 'Election successfully deleted',
+      },
+      destroyAll: {
+        success: 'Election(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Election',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        members: 'Members',
+        startDateRange: 'StartDate',
+        startDate: 'StartDate',
+        endDateRange: 'EndDate',
+        endDate: 'EndDate',
+        pv: 'Pv',
+        objectifs: 'Goals',
+        association: 'Association',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Election',
+      },
+      view: {
+        title: 'View Election',
+      },
+      importer: {
+        title: 'Import Elections',
+        fileName: 'election_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    association: {
+      name: 'association',
+      label: 'Associations',
+      menu: 'Associations',
+      exporterFileName: 'association_export',
+      list: {
+        menu: 'Associations',
+        title: 'Associations',
+      },
+      create: {
+        success: 'Association successfully saved',
+      },
+      update: {
+        success: 'Association successfully saved',
+      },
+      destroy: {
+        success: 'Association successfully deleted',
+      },
+      destroyAll: {
+        success: 'Association(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Association',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        logo: 'Logo',
+        email: 'Email',
+        phone: 'Phone',
+        postalCodeRange: 'PostalCode',
+        postalCode: 'PostalCode',
+        city: 'City',
+        country: 'Country',
+        admins: 'Admins',
+        elections: 'Elections',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Association',
+      },
+      view: {
+        title: 'View Association',
+      },
+      importer: {
+        title: 'Import Associations',
+        fileName: 'association_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    newsCategory: {
+      name: 'newsCategory',
+      label: 'NewsCategories',
+      menu: 'NewsCategories',
+      exporterFileName: 'newsCategory_export',
+      list: {
+        menu: 'NewsCategories',
+        title: 'NewsCategories',
+      },
+      create: {
+        success: 'NewsCategory successfully saved',
+      },
+      update: {
+        success: 'NewsCategory successfully saved',
+      },
+      destroy: {
+        success: 'NewsCategory successfully deleted',
+      },
+      destroyAll: {
+        success: 'NewsCategory(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit NewsCategory',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        description: 'Description',
+        news: 'News',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New NewsCategory',
+      },
+      view: {
+        title: 'View NewsCategory',
+      },
+      importer: {
+        title: 'Import NewsCategories',
+        fileName: 'newsCategory_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    newsTag: {
+      name: 'newsTag',
+      label: 'NewsTags',
+      menu: 'NewsTags',
+      exporterFileName: 'newsTag_export',
+      list: {
+        menu: 'NewsTags',
+        title: 'NewsTags',
+      },
+      create: {
+        success: 'NewsTag successfully saved',
+      },
+      update: {
+        success: 'NewsTag successfully saved',
+      },
+      destroy: {
+        success: 'NewsTag successfully deleted',
+      },
+      destroyAll: {
+        success: 'NewsTag(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit NewsTag',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        description: 'Description',
+        news: 'News',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New NewsTag',
+      },
+      view: {
+        title: 'View NewsTag',
+      },
+      importer: {
+        title: 'Import NewsTags',
+        fileName: 'newsTag_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    news: {
+      name: 'news',
+      label: 'News',
+      menu: 'News',
+      exporterFileName: 'news_export',
+      list: {
+        menu: 'News',
+        title: 'News',
+      },
+      create: {
+        success: 'News successfully saved',
+      },
+      update: {
+        success: 'News successfully saved',
+      },
+      destroy: {
+        success: 'News successfully deleted',
+      },
+      destroyAll: {
+        success: 'News(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit News',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        type: 'Type',
+        shortDescription: 'ShortDescription',
+        description: 'Description',
+        image: 'Image',
+        attachements: 'Attachements',
+        category: 'Category',
+        tags: 'Tags',
+        published: 'Published',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        type: {
+          news: 'News',
+          appelOffre: 'AppelOffre',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New News',
+      },
+      view: {
+        title: 'View News',
+      },
+      importer: {
+        title: 'Import News',
+        fileName: 'news_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    partner: {
+      name: 'partner',
+      label: 'Partners',
+      menu: 'Partners',
+      exporterFileName: 'partner_export',
+      list: {
+        menu: 'Partners',
+        title: 'Partners',
+      },
+      create: {
+        success: 'Partner successfully saved',
+      },
+      update: {
+        success: 'Partner successfully saved',
+      },
+      destroy: {
+        success: 'Partner successfully deleted',
+      },
+      destroyAll: {
+        success: 'Partner(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Partner',
+      },
+      fields: {
+        id: 'Id',
+        acronym: 'Acronym',
+        name: 'Name',
+        email: 'Email',
+        logo: 'Logo',
+        postalAddress: 'PostalAddress',
+        postalCode: 'PostalCode',
+        city: 'City',
+        country: 'Country',
+        members: 'Members',
+        type: 'Type',
+        group: 'Group',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        type: {
+          association: 'Association',
+          funder: 'Funder',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Partner',
+      },
+      view: {
+        title: 'View Partner',
+      },
+      importer: {
+        title: 'Import Partners',
+        fileName: 'partner_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    group: {
+      name: 'group',
+      label: 'Groups',
+      menu: 'Groups',
+      exporterFileName: 'group_export',
+      list: {
+        menu: 'Groups',
+        title: 'Groups',
+      },
+      create: {
+        success: 'Group successfully saved',
+      },
+      update: {
+        success: 'Group successfully saved',
+      },
+      destroy: {
+        success: 'Group successfully deleted',
+      },
+      destroyAll: {
+        success: 'Group(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Group',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        logo: 'Logo',
+        admin: 'Admin',
+        members: 'Members',
+        partners: 'Partners',
+        type: 'Type',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        type: {
+          administrative: 'Administrative',
+          cultural: 'Cultural',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Group',
+      },
+      view: {
+        title: 'View Group',
+      },
+      importer: {
+        title: 'Import Groups',
+        fileName: 'group_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    formule: {
+      name: 'formule',
+      label: 'Formules',
+      menu: 'Formules',
+      exporterFileName: 'formule_export',
+      list: {
+        menu: 'Formules',
+        title: 'Formules',
+      },
+      create: {
+        success: 'Formule successfully saved',
+      },
+      update: {
+        success: 'Formule successfully saved',
+      },
+      destroy: {
+        success: 'Formule successfully deleted',
+      },
+      destroyAll: {
+        success: 'Formule(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Formule',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        description: 'Description',
+        amountRange: 'Amount',
+        amount: 'Amount',
+        membership: 'Membership',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Formule',
+      },
+      view: {
+        title: 'View Formule',
+      },
+      importer: {
+        title: 'Import Formules',
+        fileName: 'formule_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    membership: {
+      name: 'membership',
+      label: 'Memberships',
+      menu: 'Memberships',
+      exporterFileName: 'membership_export',
+      list: {
+        menu: 'Memberships',
+        title: 'Memberships',
+      },
+      create: {
+        success: 'Membership successfully saved',
+      },
+      update: {
+        success: 'Membership successfully saved',
+      },
+      destroy: {
+        success: 'Membership successfully deleted',
+      },
+      destroyAll: {
+        success: 'Membership(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Membership',
+      },
+      fields: {
+        id: 'Id',
+        status: 'Status',
+        paymentMethod: 'PaymentMethod',
+        formule: 'Formule',
+        attachements: 'Attachements',
+        member: 'Member',
+        campaign: 'Campaign',
+        amountRange: 'Amount',
+        amount: 'Amount',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        status: {
+          paid: 'Paid',
+          waiting: 'Waiting',
+        },
+        paymentMethod: {
+          cash: 'Cash',
+          check: 'Check',
+          bank: 'Bank',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Membership',
+      },
+      view: {
+        title: 'View Membership',
+      },
+      importer: {
+        title: 'Import Memberships',
+        fileName: 'membership_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    campaign: {
+      name: 'campaign',
+      label: 'Campaigns',
+      menu: 'Campaigns',
+      exporterFileName: 'campaign_export',
+      list: {
+        menu: 'Campaigns',
+        title: 'Campaigns',
+      },
+      create: {
+        success: 'Campaign successfully saved',
+      },
+      update: {
+        success: 'Campaign successfully saved',
+      },
+      destroy: {
+        success: 'Campaign successfully deleted',
+      },
+      destroyAll: {
+        success: 'Campaign(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Campaign',
+      },
+      fields: {
+        id: 'Id',
+        name: 'Name',
+        membership: 'Membership',
+        status: 'Status',
+        yearRange: 'Year',
+        year: 'Year',
+        startDateRange: 'StartDate',
+        startDate: 'StartDate',
+        endDateRange: 'EndDate',
+        endDate: 'EndDate',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        status: {
+          published: 'Published',
+          draft: 'Draft',
+          suspended: 'Suspended',
+          archived: 'Archived',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Campaign',
+      },
+      view: {
+        title: 'View Campaign',
+      },
+      importer: {
+        title: 'Import Campaigns',
+        fileName: 'campaign_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+    objectif: {
+      name: 'objectif',
+      label: 'Objectifs',
+      menu: 'Objectifs',
+      exporterFileName: 'objectif_export',
+      list: {
+        menu: 'Objectifs',
+        title: 'Objectifs',
+      },
+      create: {
+        success: 'Objectif successfully saved',
+      },
+      update: {
+        success: 'Objectif successfully saved',
+      },
+      destroy: {
+        success: 'Objectif successfully deleted',
+      },
+      destroyAll: {
+        success: 'Objectif(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Objectif',
+      },
+      fields: {
+        id: 'Id',
+        numberRange: 'Number',
+        number: 'Number',
+        title: 'Title',
+        description: 'Description',
+        status: 'Status',
+        yearRange: 'Year',
+        year: 'Year',
+        progression: 'Progress',
+        startDateRange: 'StartDate',
+        startDate: 'StartDate',
+        endDateRange: 'EndDate',
+        endDate: 'EndDate',
+        election: 'Election',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        status: {
+          achieved: 'Achieved',
+          waiting: 'Waiting',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Objectif',
+      },
+      view: {
+        title: 'View Objectif',
+      },
+      importer: {
+        title: 'Import Objectifs',
+        fileName: 'objectif_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+    entree: {
+      name: 'entree',
+      label: 'Revenues',
+      menu: 'Revenues',
+      exporterFileName: 'entree_export',
+      list: {
+        menu: 'Revenues',
+        title: 'Revenues',
+      },
+      create: {
+        success: 'Revenue successfully saved',
+      },
+      update: {
+        success: 'Revenue successfully saved',
+      },
+      destroy: {
+        success: 'Revenue successfully deleted',
+      },
+      destroyAll: {
+        success: 'Revenue(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Revenue',
+      },
+      fields: {
+        id: 'Id',
+        type: 'Type',
+        sourceLink: 'Source Link',
+        amountRange: 'Amount',
+        amount: 'Amount',
+        dateRange: 'Date',
+        date: 'Date',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        type: {
+          'e-commerce': 'E-commerce',
+          boutique: 'Shop',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Revenue',
+      },
+      view: {
+        title: 'View Revenue',
+      },
+      importer: {
+        title: 'Import Revenues',
+        fileName: 'entree_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    depense: {
+      name: 'depense',
+      label: 'Expenses',
+      menu: 'Expenses',
+      exporterFileName: 'depense_export',
+      list: {
+        menu: 'Expenses',
+        title: 'Expenses',
+      },
+      create: {
+        success: 'Expense successfully saved',
+      },
+      update: {
+        success: 'Expense successfully saved',
+      },
+      destroy: {
+        success: 'Expense successfully deleted',
+      },
+      destroyAll: {
+        success: 'Expense(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Expense',
+      },
+      fields: {
+        id: 'Id',
+        facture: 'Billed',
+        charge: 'Charge',
+        amountRange: 'Amount',
+        amount: 'Amount',
+        type: 'Type',
+        dateRange: 'Date',
+        date: 'Date',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        type: {
+          salaires: 'Salaries',
+          loyers: 'Rents',
+          impots: 'Taxes',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Expense',
+      },
+      view: {
+        title: 'View Expense',
+      },
+      importer: {
+        title: 'Import Expenses',
+        fileName: 'depense_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    charge: {
+      name: 'charge',
+      label: 'Charges',
+      menu: 'Charges',
+      exporterFileName: 'charge_export',
+      list: {
+        menu: 'Charges',
+        title: 'Charges',
+      },
+      create: {
+        success: 'Charge successfully saved',
+      },
+      update: {
+        success: 'Charge successfully saved',
+      },
+      destroy: {
+        success: 'Charge successfully deleted',
+      },
+      destroyAll: {
+        success: 'Charge(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Charge',
+      },
+      fields: {
+        id: 'Id',
+        type: 'Type',
+        amountRange: 'Amount',
+        amount: 'Amount',
+        depense: 'Expense',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        type: {
+          salaires: 'Salaries',
+          loyers: 'Rents',
+          impots: 'Taxes',
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New Charge',
+      },
+      view: {
+        title: 'View Charge',
+      },
+      importer: {
+        title: 'Import Charges',
+        fileName: 'charge_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },

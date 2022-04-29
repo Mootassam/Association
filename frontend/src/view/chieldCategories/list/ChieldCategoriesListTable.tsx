@@ -246,7 +246,7 @@ function ChieldCategoriesListTable(props) {
                         className="btn btn-link"
                         to={`/chield-categories/${row.id}/edit`}
                       >
-                        {i18n('common.edit')}
+                        <i className="fas fa-edit" />
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -257,7 +257,7 @@ function ChieldCategoriesListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        {i18n('common.destroy')}
+                        <i className="fas fa-trash-alt" />
                       </button>
                     )}
                   </td>

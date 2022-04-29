@@ -32,6 +32,20 @@ import projet from 'src/modules/projet/projetReducers';
 import votes from 'src/modules/votes/votesReducers';
 import dons from 'src/modules/dons/donsReducers';
 import palier from 'src/modules/palier/palierReducers';
+import election from 'src/modules/election/electionReducers';
+import association from 'src/modules/association/associationReducers';
+import newsCategory from 'src/modules/newsCategory/newsCategoryReducers';
+import newsTag from 'src/modules/newsTag/newsTagReducers';
+import news from 'src/modules/news/newsReducers';
+import partner from 'src/modules/partner/partnerReducers';
+import group from 'src/modules/group/groupReducers';
+import formule from 'src/modules/formule/formuleReducers';
+import membership from 'src/modules/membership/membershipReducers';
+import campaign from 'src/modules/campaign/campaignReducers';
+import objectif from 'src/modules/objectif/objectifReducers';
+import entree from 'src/modules/entree/entreeReducers';
+import depense from 'src/modules/depense/depenseReducers';
+import charge from 'src/modules/charge/chargeReducers';
 import { combineReducers } from 'redux';
 
 export default (history) =>
@@ -70,4 +84,18 @@ export default (history) =>
     votes,
     dons,
     palier,
+    election,
+    association,
+    newsCategory,
+    newsTag,
+    news,
+    partner,
+    group,
+    formule,
+    membership,
+    campaign,
+    objectif,
+    entree,
+    depense,
+    charge,
   });
