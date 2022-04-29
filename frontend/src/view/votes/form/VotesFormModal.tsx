@@ -4,6 +4,7 @@ import { i18n } from 'src/i18n';
 import Errors from 'src/modules/shared/error/errors';
 import VotesForm from 'src/view/votes/form/VotesForm';
 import VotesService from 'src/modules/votes/votesService';
+import Message from 'src/view/shared/message';
 
 function VotesFormModal(props) {
   const modalRef = useRef<any>();
@@ -22,6 +23,9 @@ function VotesFormModal(props) {
       setSaveLoading(true);
       const { id } = await VotesService.create(data);
       const record = await VotesService.find(id);
+      await Message.success(
+        i18n('entities.votes.create.success'),
+      );
       (window as any).$(modalRef.current).modal('hide');
       props.onSuccess(record);
     } catch (error) {

@@ -4,6 +4,7 @@ import { i18n } from 'src/i18n';
 import Errors from 'src/modules/shared/error/errors';
 import DonsForm from 'src/view/dons/form/DonsForm';
 import DonsService from 'src/modules/dons/donsService';
+import Message from 'src/view/shared/message';
 
 function DonsFormModal(props) {
   const modalRef = useRef<any>();
@@ -22,6 +23,9 @@ function DonsFormModal(props) {
       setSaveLoading(true);
       const { id } = await DonsService.create(data);
       const record = await DonsService.find(id);
+      await Message.success(
+        i18n('entities.votes.create.success'),
+      );
       (window as any).$(modalRef.current).modal('hide');
       props.onSuccess(record);
     } catch (error) {
