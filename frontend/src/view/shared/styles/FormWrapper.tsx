@@ -33,12 +33,6 @@ const FormWrapper = styled.div`
       margin-bottom: 8px;
     }
   }
-  .app__specification {
-    padding: 0 0 1.6rem;
-  }
-  .col-2 {
-    padding: 0 0 -5rem;
-  }
 `;
 
 export default FormWrapper;

@@ -18,7 +18,6 @@ const MenuWrapper = styled.div`
   .panel-header button:focus {
     outline: 0px auto -webkit-focus-ring-color;
   }
-
   .menu-nav {
     flex: 0 0 200px;
     max-width: 200px;
