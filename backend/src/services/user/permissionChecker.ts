@@ -22,7 +22,7 @@ export default class PermissionChecker {
 
   /**
    * Validates if the user has a specific permission
-   * and throws a Error403 if it doesn't.   
+   * and throws a Error403 if it doesn't.
    */
   validateHas(permission) {
     if (!this.has(permission)) {
