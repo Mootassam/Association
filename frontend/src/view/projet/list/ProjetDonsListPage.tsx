@@ -11,8 +11,8 @@ function DonsListPage(props) {
   let average = 0;
   if (props.idprojet) {
     let totalFunds = 0;
-    for (let i = 0; i < props.idprojet.dons.length; i++) {
-      totalFunds = totalFunds + props.idprojet.dons[i].montant;
+    for (let i = 0; i < props.idprojet.don.length; i++) {
+      totalFunds = totalFunds + props.idprojet.don[i].montant;
     }
     average = totalFunds;
   }

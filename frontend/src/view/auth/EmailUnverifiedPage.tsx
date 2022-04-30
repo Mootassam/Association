@@ -65,7 +65,7 @@ function EmailUnverifiedPage() {
           disabled={loading}
           onClick={doSubmit}
         >
-          <ButtonIcon loading={loading} />{' '}
+          <ButtonIcon loading={loading} />
           {i18n('auth.emailUnverified.submit')}
         </button>
 

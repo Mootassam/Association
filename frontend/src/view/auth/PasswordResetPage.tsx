@@ -89,7 +89,7 @@ function PasswordResetPage() {
               className="btn btn-block btn-primary"
               disabled={loading}
             >
-              <ButtonIcon loading={loading} />{' '}
+              <ButtonIcon loading={loading} />
               {i18n('auth.passwordReset.message')}
             </button>
 

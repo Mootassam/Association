@@ -50,74 +50,56 @@ function ForgotPasswordPage() {
   };
 
   return (
-    <Wrapper>
-      <div className="login-root">
-        <div
-          className="box-root flex-flex flex-direction--column"
-          style={{ minHeight: '100vh', flexGrow: 1 }}
-        >
-          <div
-            className="box-root padding-top--24 flex-flex flex-direction--column"
-            style={{ flexGrow: 1, zIndex: 9 }}
-          >
-            <div className="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-              <h1>
-                <a
-                  href="http://blog.stackfindover.com/"
-                  rel="dofollow"
-                >
-                  Stackfindover
-                </a>
-              </h1>
-            </div>
-            <div className="formbg-outer">
-              <div className="formbg">
-                <div className="formbg-inner padding-horizontal--48">
-                  <span className="padding-bottom--15">
-                    Sign in to your account
-                  </span>
-                  <FormProvider {...form}>
-                    <form
-                      onSubmit={form.handleSubmit(onSubmit)}
-                    >
-                      <div className="field padding-bottom--24">
-                        <InputFormItem
-                          name={'email'}
-                          label={i18n('user.fields.email')}
-                          autoComplete={'email'}
-                          disabled={loading}
-                          autoFocus
-                        />
-                      </div>
+    <Wrapper
+      style={{
+        backgroundImage: `url(${
+          backgroundImageUrl || '/images/forgotPassword.jpg'
+        })`,
+      }}
+    >
+      <Content>
+        <Logo>
+          {logoUrl ? (
+            <img
+              src={logoUrl}
+              width="240px"
+              alt={i18n('app.title')}
+            />
+          ) : (
+            <h1>{i18n('app.title')}</h1>
+          )}
+        </Logo>
 
-                      <div className="field padding-bottom--24">
-                        <input
-                          type="submit"
-                          name="submit"
-                          defaultValue="Continue"
-                          disabled={loading}
-                        />
-                      </div>
-                    </form>
-                  </FormProvider>
-                </div>
-              </div>
-              <div className="footer-link padding-top--24">
-                <span>
-                  <a href="">
-                    <Link
-                      className="btn btn-sm btn-link"
-                      to="/auth/signin"
-                    >
-                      {i18n('common.cancel')}
-                    </Link>
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <FormProvider {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <InputFormItem
+              name={'email'}
+              label={i18n('user.fields.email')}
+              autoComplete={'email'}
+              disabled={loading}
+              autoFocus
+            />
+
+            <button
+              type="submit"
+              className="btn btn-primary btn-block"
+              disabled={loading}
+            >
+              <ButtonIcon loading={loading} />
+              {i18n('auth.passwordResetEmail.message')}
+            </button>
+
+            <OtherActions>
+              <Link
+                className="btn btn-sm btn-link"
+                to="/auth/signin"
+              >
+                {i18n('common.cancel')}
+              </Link>
+            </OtherActions>
+          </form>
+        </FormProvider>
+      </Content>
     </Wrapper>
   );
 }

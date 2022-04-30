@@ -51,7 +51,6 @@ function ProfileFormPage(props) {
   const currentUser = useSelector(
     selectors.selectCurrentUser,
   );
-
   const [initialValues] = useState(() => {
     const record = currentUser || {};
 
@@ -125,7 +124,7 @@ function ProfileFormPage(props) {
                 name="phoneNumber"
                 label={i18n('user.fields.phoneNumber')}
                 autoComplete="phoneNumber"
-                prefix="+"
+                // prefix="+"
               />
             </div>
 
@@ -149,7 +148,7 @@ function ProfileFormPage(props) {
               <ButtonIcon
                 loading={saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -159,7 +158,7 @@ function ProfileFormPage(props) {
               className="btn btn-light"
               type="button"
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -170,7 +169,7 @@ function ProfileFormPage(props) {
                 className="btn btn-light"
                 type="button"
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

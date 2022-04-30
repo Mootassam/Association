@@ -76,105 +76,55 @@ function SignupPage() {
         })`,
       }}
     >
-      <div className="login-root">
-        <div
-          className="box-root flex-flex flex-direction--column"
-          style={{ minHeight: '100vh', flexGrow: 1 }}
-        >
-          <div
-            className="box-root padding-top--24 flex-flex flex-direction--column"
-            style={{ flexGrow: 1, zIndex: 9 }}
-          >
-            <div className="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-              <h1>
-                <a
-                  href="http://blog.stackfindover.com/"
-                  rel="dofollow"
-                >
-                  Stackfindover
-                </a>
-              </h1>
-            </div>
-            <div className="formbg-outer">
-              <div className="formbg">
-                <div className="formbg-inner padding-horizontal--48">
-                  <span className="padding-bottom--15">
-                    Sign in to your account
-                  </span>
-                  <FormProvider {...form}>
-                    <form
-                      onSubmit={form.handleSubmit(onSubmit)}
-                    >
-                      <div className="field padding-bottom--24">
-                        <label htmlFor="email">Email</label>
-                        <InputFormItem
-                          name="email"
-                          placeholder={i18n(
-                            'user.fields.email',
-                          )}
-                          autoComplete="email"
-                          autoFocus
-                          externalErrorMessage={
-                            externalErrorMessage
-                          }
-                        />
-                      </div>
+      <Content>
+        <Logo>
+          {logoUrl ? (
+            <img
+              src={logoUrl}
+              width="240px"
+              alt={i18n('app.title')}
+            />
+          ) : (
+            <h1>{i18n('app.title')}</h1>
+          )}
+        </Logo>
 
-                      <div className="field padding-bottom--24">
-                        <div className="grid--50-50">
-                          <label htmlFor="password">
-                            Password
-                          </label>
-                        </div>
-                        <InputFormItem
-                          name="password"
-                          placeholder={i18n(
-                            'user.fields.password',
-                          )}
-                          autoComplete="password"
-                          type="password"
-                        />
-                      </div>
+        <FormProvider {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <InputFormItem
+              name="email"
+              placeholder={i18n('user.fields.email')}
+              autoComplete="email"
+              autoFocus
+              externalErrorMessage={externalErrorMessage}
+            />
 
-                      <div className="field padding-bottom--24">
-                        <input
-                          type="submit"
-                          name="submit"
-                          defaultValue="Continue"
-                          disabled={loading}
-                        />
-                      </div>
-                      <div className="field">
-                        <ButtonIcon loading={loading} />
-                        {externalErrorMessage && (
-                          <a
-                            className="ssolink"
-                            style={{ color: 'red' }}
-                          >
-                            {externalErrorMessage}
-                          </a>
-                        )}
-                      </div>
-                    </form>
-                  </FormProvider>
-                </div>
-              </div>
-              <div className="footer-link padding-top--24">
-                <span>
-                  <a href="">
-                    <Link
-                      className="btn btn-sm btn-link"
-                      to="/auth/signin"
-                    >
-                      {i18n('auth.alreadyHaveAnAccount')}
-                    </Link>
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            <InputFormItem
+              name="password"
+              placeholder={i18n('user.fields.password')}
+              autoComplete="password"
+              type="password"
+            />
+            <button
+              className="btn btn-block btn-primary"
+              type="submit"
+              disabled={loading}
+            >
+              <ButtonIcon loading={loading} />
+              {i18n('auth.signup')}
+            </button>
+
+            <OtherActions>
+              <Link
+                className="btn btn-sm btn-link"
+                to="/auth/signin"
+              >
+                {i18n('auth.alreadyHaveAnAccount')}
+              </Link>
+            </OtherActions>
+          </form>
+        </FormProvider>
+      </Content>
     </Wrapper>
   );
 }

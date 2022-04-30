@@ -112,7 +112,7 @@ function PasswordChangeFormPage(props) {
               <ButtonIcon
                 loading={saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -122,7 +122,7 @@ function PasswordChangeFormPage(props) {
               className="btn btn-light"
               type="button"
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -133,7 +133,7 @@ function PasswordChangeFormPage(props) {
                 className="btn btn-light"
                 type="button"
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}
