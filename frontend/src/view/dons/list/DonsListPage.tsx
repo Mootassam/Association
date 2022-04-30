@@ -11,17 +11,13 @@ import userselectors from 'src/modules/user/view/userViewSelectors';
 import { useRouteMatch } from 'react-router-dom';
 import actions from 'src/modules/user/view/userViewActions';
 
-
-
 function DonsListPage(props) {
   const dispatch = useDispatch();
   const match = useRouteMatch();
 
-
   useEffect(() => {
     dispatch(actions.doFind(match.params.id));
   }, [dispatch, match.params.id]);
-
 
   const user = useSelector(userselectors.selectUser);
 
@@ -40,7 +36,10 @@ function DonsListPage(props) {
         </PageTitle>
 
         <DonsListToolbar />
-        <DonsListFilter match={match} user={match.params.id} />
+        <DonsListFilter
+          match={match}
+          user={match.params.id}
+        />
         <DonsListTable />
       </ContentWrapper>
     </>

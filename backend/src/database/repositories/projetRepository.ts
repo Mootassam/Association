@@ -181,8 +181,8 @@ class ProjetRepository {
       await MongooseRepository.wrapWithSessionIfExists(
         Projet(options.database)
           .findById(id)
-          .populate('votes')
-          .populate('dons'),
+          .populate('vote')
+          .populate('don'),
         options,
       );
 
