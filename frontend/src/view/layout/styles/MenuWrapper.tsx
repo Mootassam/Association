@@ -5,6 +5,10 @@ const MenuWrapper = styled.div`
     padding: 5px;
     border-top: none;
   }
+  i {
+    padding-right: 15px;
+    font-size: 18px;
+  }
 
   .panel-header {
     font-weight: normal;

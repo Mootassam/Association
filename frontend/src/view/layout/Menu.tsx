@@ -112,6 +112,7 @@ function Menu(props) {
                     <Accordion.Item eventKey={menu.id}>
                       <div className="panel-header text-nowrap">
                         <Accordion.Header>
+                          <i className={`${menu.icon}`}></i>
                           {menu.label}
                         </Accordion.Header>
                       </div>
@@ -134,6 +135,7 @@ function Menu(props) {
                   </Accordion>
                 ) : (
                   <Link to={menu.path} key={index}>
+                    <i className={`${menu.icon}`}></i>
                     <span>{menu.label}</span>
                   </Link>
                 )}
