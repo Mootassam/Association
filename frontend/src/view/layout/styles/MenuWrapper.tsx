@@ -94,8 +94,8 @@ const MenuWrapper = styled.div`
   ,
   .menu-li a:hover {
     text-decoration: none;
-    background-color: var(--secondary);
-    color: var(--primary);
+    background-color: var(--hover);
+    color: var(--white);
   }
 `;
 
