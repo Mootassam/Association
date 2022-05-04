@@ -48,20 +48,6 @@ export default [
         icon: 'fa fa-circle-o',
         label: i18n('entities.election.menu'),
       },
-
-      {
-        path: '/audit-logs',
-        icon: 'fas fa-history',
-        label: i18n('auditLog.menu'),
-        permissionRequired: permissions.auditLogRead,
-      },
-
-      {
-        path: '/settings',
-        icon: 'fas fa-cog',
-        label: i18n('settings.menu'),
-        permissionRequired: permissions.settingsEdit,
-      },
     ],
   },
   {

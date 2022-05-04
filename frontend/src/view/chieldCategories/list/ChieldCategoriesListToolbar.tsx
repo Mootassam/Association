@@ -106,7 +106,7 @@ function ChieldCategoriesToolbar(props) {
     const button = (
       <button
         disabled={disabled}
-        className="btnCircle btn-primary"
+        className="btn btn-primary"
         type="button"
         onClick={doOpenDestroyAllConfirmModal}
       >
@@ -137,10 +137,7 @@ function ChieldCategoriesToolbar(props) {
     <Toolbar>
       {hasPermissionToCreate && (
         <Link to="/chield-categories/new">
-          <button
-            className="btnCircle btn-primary"
-            type="button"
-          >
+          <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-plus" />
           </button>
         </Link>
@@ -148,10 +145,7 @@ function ChieldCategoriesToolbar(props) {
 
       {hasPermissionToImport && (
         <Link to="/chield-categories/importer">
-          <button
-            className="btnCircle btn-primary"
-            type="button"
-          >
+          <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-upload" />
           </button>
         </Link>

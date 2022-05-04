@@ -34,6 +34,12 @@ function Header(props) {
   const doNavigateToProfile = () => {
     getHistory().push('/profile');
   };
+  const doNavigateToAuditLog = () => {
+    getHistory().push('/audit-logs');
+  };
+  const doNavigateToSettings = () => {
+    getHistory().push('/settings');
+  };
 
   const doNavigateToPasswordChange = () => {
     getHistory().push('/password-change');
@@ -112,22 +118,25 @@ function Header(props) {
                 {i18n('auth.tenants')}
               </button>
             )}
-            {config.apiDocumentationUrl && (
-              <a
-                href={config.apiDocumentationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none' }}
-              >
-                <button
-                  className="dropdown-item"
-                  type="button"
-                >
-                  <i className="fas fa-code" />{' '}
-                  {i18n('api.menu')}
-                </button>
-              </a>
-            )}
+
+            <button
+              onClick={doNavigateToSettings}
+              className="dropdown-item"
+              type="button"
+            >
+              <i className="fas fa-wrench" />{' '}
+              {i18n('settings.menu')}
+            </button>
+
+            <button
+              onClick={doNavigateToAuditLog}
+              className="dropdown-item"
+              type="button"
+            >
+              <i className="fas fa-book" />{' '}
+              {i18n('auditLog.menu')}
+            </button>
+
             <button
               onClick={doSignout}
               className="dropdown-item"
