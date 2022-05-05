@@ -192,6 +192,7 @@ function MemberEditForm(props) {
                 loading={props.saveLoading}
                 iconClass="far fa-save"
               />
+              &nbsp;
               {i18n('common.save')}
             </button>
 

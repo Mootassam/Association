@@ -106,6 +106,7 @@ function TaxesForm(props) {
                 loading={props.saveLoading}
                 iconClass="far fa-save"
               />
+              &nbsp;
               {i18n('common.save')}
             </button>
 
@@ -116,6 +117,7 @@ function TaxesForm(props) {
               onClick={onReset}
             >
               <i className="fas fa-undo"></i>
+              &nbsp;
               {i18n('common.reset')}
             </button>
 
@@ -126,7 +128,7 @@ function TaxesForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>
+                <i className="fas fa-times"></i>&nbsp;
                 {i18n('common.cancel')}
               </button>
             ) : null}

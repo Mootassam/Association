@@ -134,6 +134,7 @@ function Header(props) {
               type="button"
             >
               <i className="fas fa-book" />
+              {i18n('auditLog.menu')}
             </button>
 
             <button

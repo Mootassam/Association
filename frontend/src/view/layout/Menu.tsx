@@ -96,11 +96,11 @@ function Menu(props) {
             .map((menu, index) => (
               <li
                 key={index + 'item'}
-                className={`menu-li text-nowrap`}
+                className={`menu-li side-menue`}
               >
                 {menu.subMenu ? (
                   <Accordion
-                    className={'panel-header text-nowrap'}
+                    className={'panel-header'}
                     style={{ marginLeft: '24px' }}
                     defaultActiveKey={
                       menu.subPaths.includes(selectedKeys())

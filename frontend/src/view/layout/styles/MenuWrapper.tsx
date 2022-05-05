@@ -9,6 +9,14 @@ const MenuWrapper = styled.div`
     padding-right: 15px;
     font-size: 18px;
   }
+  .side-menue:hover {
+    width: 100%;
+    cursor: pointer;
+    background-color: var(--hover);
+  }
+  .side-menue {
+    padding: 0.1px;
+  }
 
   .panel-header {
     font-weight: normal;

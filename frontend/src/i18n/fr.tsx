@@ -19,19 +19,19 @@ const fr = {
     destroy: 'détruire',
     mustSelectARow: 'doit sélectionner une ligne',
     start: 'Démarrer',
-    end: 'finir',
-    select: 'sélectionner',
+    end: 'Finir',
+    select: 'Sélectionner',
     continue: 'Continuez',
-    filters: 'filtres',
+    filters: 'fFltres',
     gallery: 'Gallery Imgaes',
-    hightlight: 'souligner',
-    attributes: 'les attributs',
-    attributeoptions: 'options dattribut',
-    administration: 'administration',
-    community: 'communauté',
-    news: 'nouvelles',
-    membership: 'adhésion',
-    accounting: 'comptabilité',
+    hightlight: 'Suligner',
+    attributes: 'Attributs',
+    attributeoptions: 'Options dattribut',
+    administration: 'Administration',
+    community: 'Communauté',
+    news: ' Nouvelles',
+    membership: 'Adhésion',
+    accounting: 'Comptabilité',
   },
 
   app: {
@@ -1648,13 +1648,16 @@ const fr = {
         title: 'Expédition',
       },
       create: {
-        success: 'Expédition service enregistré avec succès',
+        success:
+          'Expédition service enregistré avec succès',
       },
       update: {
-        success: 'Expédition service enregistré avec succès',
+        success:
+          'Expédition service enregistré avec succès',
       },
       destroy: {
-        success: 'Expédition service supprimer avec succèsd',
+        success:
+          'Expédition service supprimer avec succèsd',
       },
       destroyAll: {
         success:
@@ -1823,16 +1826,20 @@ const fr = {
         title: 'Suivi des commandes',
       },
       create: {
-        success: 'Suivi des commandes enregistré avec succès',
+        success:
+          'Suivi des commandes enregistré avec succès',
       },
       update: {
-        success: 'Suivi des commandes enregistré avec succès',
+        success:
+          'Suivi des commandes enregistré avec succès',
       },
       destroy: {
-        success: 'Suivi des commandes supprimer avec succèsd',
+        success:
+          'Suivi des commandes supprimer avec succèsd',
       },
       destroyAll: {
-        success: 'Suivi des commande(s) supprimer avec succèsd',
+        success:
+          'Suivi des commande(s) supprimer avec succèsd',
       },
       edit: {
         title: 'Modifier Suivi des commandes',
@@ -2289,7 +2296,8 @@ const fr = {
       message: `Vous n'avez pas encore d'autorisations. Attendez que l'administrateur vous accorde des privilèges`,
     },
     passwordResetEmail: {
-      message: 'Envoyer un e-mail de réinitialisation du mot de passe',
+      message:
+        'Envoyer un e-mail de réinitialisation du mot de passe',
       error: `E-mail non reconnu`,
     },
     passwordReset: {
@@ -2352,7 +2360,8 @@ const fr = {
       password: 'Mot de passe',
       oldPassword: 'ancien mot de passe',
       newPassword: 'Nouveau mot de passe',
-      newPasswordConfirmation: 'Confirmation du nouveau mot de passe',
+      newPasswordConfirmation:
+        'Confirmation du nouveau mot de passe',
       rememberMe: 'Souviens-toi de moi',
     },
     sector: {
@@ -2624,8 +2633,10 @@ const fr = {
       email: '${path} doit être un email valide',
       url: '${path} doit être une URL valide',
       trim: '${path} doit être une chaîne coupée',
-      lowercase: '${path} doit être une chaîne en minuscule',
-      uppercase: '${path} doit être une chaîne en majuscule',
+      lowercase:
+        '${path} doit être une chaîne en minuscule',
+      uppercase:
+        '${path} doit être une chaîne en majuscule',
       selected: '${path} doit être sélectionné',
     },
     number: {
@@ -2633,7 +2644,8 @@ const fr = {
       max: '${path} doit être inférieur ou égal à ${max}',
       lessThan: '${path} doit être inférieur à ${less}',
       moreThan: '${path} doit être supérieur à ${more}',
-      notEqual: '${path} ne doit pas être égal à ${notEqual}',
+      notEqual:
+        '${path} ne doit pas être égal à ${notEqual}',
       positive: '${path} Doit être un nombre positif',
       negative: '${path} doit être un nombre négatif',
       integer: '${path} Doit être un entier',
@@ -2670,8 +2682,8 @@ const fr = {
     error: 'Erreur',
     total: `{0} importé, {1} en attente et{2} avec erreur`,
     importedMessage: `Traité {0} of {1}.`,
-    noNavigateAwayMessage:    
-    'Ne quittez pas cette page ou limportation sera arrêtée.',
+    noNavigateAwayMessage:
+      'Ne quittez pas cette page ou limportation sera arrêtée.',
     completed: {
       success:
         'Importation terminée. Toutes les lignes ont été importées avec succès.',
@@ -2691,9 +2703,12 @@ const fr = {
       invalidFileEmpty: 'Le fichier est vide',
       invalidFileExcel:
         'Seuls les fichiers Excel (.xlsx) sont autorisés',
-      invalidFileUpload:'Fichier non valide. Assurez-vous dutiliser la dernière version du modèle.',
-      importHashRequired: 'Le hachage dimportation est requis',
-      importHashExistent: 'Les données ont déjà été importées',
+      invalidFileUpload:
+        'Fichier non valide. Assurez-vous dutiliser la dernière version du modèle.',
+      importHashRequired:
+        'Le hachage dimportation est requis',
+      importHashExistent:
+        'Les données ont déjà été importées',
     },
   },
 

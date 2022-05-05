@@ -278,7 +278,7 @@ export default [
     path: '#e-commerce',
     permissionRequired: permissions.attributeOptionsRead,
     icon: 'fas fa-dumpster',
-    label: i18n('e-commerce'),
+    label: i18n('Configuration'),
     haveSubMenu: true,
     subPaths: [
       '/coupons',
