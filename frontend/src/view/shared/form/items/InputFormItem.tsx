@@ -45,7 +45,7 @@ export function InputFormItem(props) {
           >
             {label}
           </label>
-        )}{' '}
+        )}
         {description}
         <input
           id={name}

@@ -45,7 +45,7 @@ const schema = yup.object().shape({
   orderStatus: yupFormSchemas.enumerator(
     i18n('entities.order.fields.orderStatus'),
     {
-      "options": orderEnumerators.orderStatus
+      options: orderEnumerators.orderStatus,
     },
   ),
 });
@@ -88,7 +88,7 @@ function OrderForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
-              <UserAutocompleteFormItem  
+              <UserAutocompleteFormItem
                 name="userId"
                 label={i18n('entities.order.fields.userId')}
                 required={false}
@@ -105,26 +105,32 @@ function OrderForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="shipping"
-                label={i18n('entities.order.fields.shipping')}
+                label={i18n(
+                  'entities.order.fields.shipping',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="discount"
-                label={i18n('entities.order.fields.discount')}  
+                label={i18n(
+                  'entities.order.fields.discount',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="paymentMethod"
-                label={i18n('entities.order.fields.paymentMethod')}
+                label={i18n(
+                  'entities.order.fields.paymentMethod',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <TaxesAutocompleteFormItem  
+              <TaxesAutocompleteFormItem
                 name="taxe"
                 label={i18n('entities.order.fields.taxe')}
                 required={false}
@@ -132,9 +138,11 @@ function OrderForm(props) {
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <TransactionAutocompleteFormItem  
+              <TransactionAutocompleteFormItem
                 name="transactionNumber"
-                label={i18n('entities.order.fields.transactionNumber')}
+                label={i18n(
+                  'entities.order.fields.transactionNumber',
+                )}
                 required={false}
                 showCreate={!props.modal}
                 mode="multiple"
@@ -143,7 +151,9 @@ function OrderForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="orderStatus"
-                label={i18n('entities.order.fields.orderStatus')}
+                label={i18n(
+                  'entities.order.fields.orderStatus',
+                )}
                 options={orderEnumerators.orderStatus.map(
                   (value) => ({
                     value,
@@ -167,7 +177,7 @@ function OrderForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -177,7 +187,7 @@ function OrderForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -188,7 +198,7 @@ function OrderForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

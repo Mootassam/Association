@@ -59,7 +59,7 @@ export default (selectors) => {
               'importer.importedMessage',
               nonPendingRowsCount,
               rowsCount,
-            )}{' '}
+            )}
             {i18n('importer.noNavigateAwayMessage')}
           </p>
         </>

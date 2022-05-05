@@ -32,7 +32,7 @@ const emptyValues = {
   name: null,
   valueRange: [],
   status: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -45,9 +45,11 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.taxes.fields.status'),
-    render: filterRenders.enumerator('entities.taxes.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.taxes.enumerators.status',
+    ),
   },
-}
+};
 
 function TaxesListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -68,7 +70,12 @@ function TaxesListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -109,32 +116,38 @@ function TaxesListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.taxes.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="valueRange"
-                        label={i18n('entities.taxes.fields.valueRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.taxes.fields.status')}
-                        options={taxesEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.taxes.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.taxes.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="valueRange"
+                    label={i18n(
+                      'entities.taxes.fields.valueRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.taxes.fields.status',
+                    )}
+                    options={taxesEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.taxes.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -147,7 +160,7 @@ function TaxesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -159,7 +172,7 @@ function TaxesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

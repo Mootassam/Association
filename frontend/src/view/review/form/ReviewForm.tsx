@@ -17,37 +17,37 @@ const schema = yup.object().shape({
   review: yupFormSchemas.string(
     i18n('entities.review.fields.review'),
     {
-      "required": true
+      required: true,
     },
   ),
   rating: yupFormSchemas.integer(
     i18n('entities.review.fields.rating'),
     {
-      "required": true
+      required: true,
     },
   ),
   status: yupFormSchemas.enumerator(
     i18n('entities.review.fields.status'),
     {
-      "options": reviewEnumerators.status
+      options: reviewEnumerators.status,
     },
   ),
   subject: yupFormSchemas.string(
     i18n('entities.review.fields.subject'),
     {
-      "required": true
+      required: true,
     },
   ),
   item: yupFormSchemas.relationToOne(
     i18n('entities.review.fields.item'),
     {
-      "required": true
+      required: true,
     },
   ),
   user: yupFormSchemas.relationToOne(
     i18n('entities.review.fields.user'),
     {
-      "required": true
+      required: true,
     },
   ),
 });
@@ -90,22 +90,28 @@ function ReviewForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="review"
-                label={i18n('entities.review.fields.review')}
+                label={i18n(
+                  'entities.review.fields.review',
+                )}
                 required={true}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputNumberFormItem
                 name="rating"
-                label={i18n('entities.review.fields.rating')}  
+                label={i18n(
+                  'entities.review.fields.rating',
+                )}
                 required={true}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n('entities.review.fields.status')}
+                label={i18n(
+                  'entities.review.fields.status',
+                )}
                 options={reviewEnumerators.status.map(
                   (value) => ({
                     value,
@@ -120,12 +126,14 @@ function ReviewForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="subject"
-                label={i18n('entities.review.fields.subject')}
+                label={i18n(
+                  'entities.review.fields.subject',
+                )}
                 required={true}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <ProductAutocompleteFormItem  
+              <ProductAutocompleteFormItem
                 name="item"
                 label={i18n('entities.review.fields.item')}
                 required={true}
@@ -133,7 +141,7 @@ function ReviewForm(props) {
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <UserAutocompleteFormItem  
+              <UserAutocompleteFormItem
                 name="user"
                 label={i18n('entities.review.fields.user')}
                 required={true}
@@ -152,7 +160,7 @@ function ReviewForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -162,7 +170,7 @@ function ReviewForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -173,7 +181,7 @@ function ReviewForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

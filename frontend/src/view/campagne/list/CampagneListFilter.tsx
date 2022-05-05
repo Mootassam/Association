@@ -41,7 +41,7 @@ const emptyValues = {
   datedebutRange: [],
   datefinRange: [],
   statut: null,
-}
+};
 
 const previewRenders = {
   titre: {
@@ -62,9 +62,11 @@ const previewRenders = {
   },
   statut: {
     label: i18n('entities.campagne.fields.statut'),
-    render: filterRenders.enumerator('entities.campagne.enumerators.statut',),
+    render: filterRenders.enumerator(
+      'entities.campagne.enumerators.statut',
+    ),
   },
-}
+};
 
 function CampagneListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -85,7 +87,12 @@ function CampagneListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -126,44 +133,54 @@ function CampagneListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="titre"
-                        label={i18n('entities.campagne.fields.titre')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputNumberRangeFormItem
-                        name="anneeRange"
-                        label={i18n('entities.campagne.fields.anneeRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="datedebutRange"
-                        label={i18n('entities.campagne.fields.datedebutRange')}    
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="datefinRange"
-                        label={i18n('entities.campagne.fields.datefinRange')}    
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="statut"
-                        label={i18n('entities.campagne.fields.statut')}
-                        options={campagneEnumerators.statut.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.campagne.enumerators.statut.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="titre"
+                    label={i18n(
+                      'entities.campagne.fields.titre',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputNumberRangeFormItem
+                    name="anneeRange"
+                    label={i18n(
+                      'entities.campagne.fields.anneeRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="datedebutRange"
+                    label={i18n(
+                      'entities.campagne.fields.datedebutRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="datefinRange"
+                    label={i18n(
+                      'entities.campagne.fields.datefinRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="statut"
+                    label={i18n(
+                      'entities.campagne.fields.statut',
+                    )}
+                    options={campagneEnumerators.statut.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.campagne.enumerators.statut.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -176,7 +193,7 @@ function CampagneListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -188,7 +205,7 @@ function CampagneListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

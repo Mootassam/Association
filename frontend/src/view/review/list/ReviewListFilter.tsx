@@ -42,7 +42,7 @@ const emptyValues = {
   subject: null,
   item: null,
   user: null,
-}
+};
 
 const previewRenders = {
   ratingRange: {
@@ -51,21 +51,23 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.review.fields.status'),
-    render: filterRenders.enumerator('entities.review.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.review.enumerators.status',
+    ),
   },
   subject: {
     label: i18n('entities.review.fields.subject'),
     render: filterRenders.generic(),
   },
   item: {
-      label: i18n('entities.review.fields.item'),
-      render: filterRenders.relationToOne(),
-    },
+    label: i18n('entities.review.fields.item'),
+    render: filterRenders.relationToOne(),
+  },
   user: {
     label: i18n('entities.review.fields.user'),
     render: filterRenders.relationToOne(),
   },
-}
+};
 
 function ReviewListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -86,7 +88,12 @@ function ReviewListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -127,44 +134,54 @@ function ReviewListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputNumberRangeFormItem
-                        name="ratingRange"
-                        label={i18n('entities.review.fields.ratingRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.review.fields.status')}
-                        options={reviewEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.review.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="subject"
-                        label={i18n('entities.review.fields.subject')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <ProductAutocompleteFormItem  
-                        name="item"
-                        label={i18n('entities.review.fields.item')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <UserAutocompleteFormItem  
-                        name="user"
-                        label={i18n('entities.review.fields.user')}        
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputNumberRangeFormItem
+                    name="ratingRange"
+                    label={i18n(
+                      'entities.review.fields.ratingRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.review.fields.status',
+                    )}
+                    options={reviewEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.review.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="subject"
+                    label={i18n(
+                      'entities.review.fields.subject',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <ProductAutocompleteFormItem
+                    name="item"
+                    label={i18n(
+                      'entities.review.fields.item',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <UserAutocompleteFormItem
+                    name="user"
+                    label={i18n(
+                      'entities.review.fields.user',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -177,7 +194,7 @@ function ReviewListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -189,7 +206,7 @@ function ReviewListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

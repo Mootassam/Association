@@ -16,19 +16,19 @@ const schema = yup.object().shape({
   title: yupFormSchemas.string(
     i18n('entities.palier.fields.title'),
     {
-      "required": true
+      required: true,
     },
   ),
   montant: yupFormSchemas.decimal(
     i18n('entities.palier.fields.montant'),
     {
-      "required": true
+      required: true,
     },
   ),
   details: yupFormSchemas.string(
     i18n('entities.palier.fields.details'),
     {
-      "required": true
+      required: true,
     },
   ),
 });
@@ -65,11 +65,18 @@ function PalierForm(props) {
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <ViewWrapper>
-            <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+            <Row
+              style={{
+                backgroundColor: '#f0f2f5',
+                paddingBottom: '10px',
+              }}
+            >
               <Col sm={3}>
                 <InputFormItem
                   name="title"
-                  label={i18n('entities.palier.fields.title')}
+                  label={i18n(
+                    'entities.palier.fields.title',
+                  )}
                   required={true}
                   autoFocus
                 />
@@ -77,14 +84,18 @@ function PalierForm(props) {
               <Col sm={3}>
                 <InputFormItem
                   name="montant"
-                  label={i18n('entities.palier.fields.montant')}
+                  label={i18n(
+                    'entities.palier.fields.montant',
+                  )}
                   required={true}
                 />
               </Col>
               <Col sm={6}>
                 <TextAreaFormItem
                   name="details"
-                  label={i18n('entities.palier.fields.details')}
+                  label={i18n(
+                    'entities.palier.fields.details',
+                  )}
                   required={true}
                 />
               </Col>
@@ -101,7 +112,7 @@ function PalierForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -111,7 +122,7 @@ function PalierForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -122,7 +133,7 @@ function PalierForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

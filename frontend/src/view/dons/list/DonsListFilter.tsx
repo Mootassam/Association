@@ -16,7 +16,6 @@ import donsEnumerators from 'src/modules/dons/donsEnumerators';
 import { useDispatch, useSelector } from 'react-redux';
 
 const schema = yup.object().shape({
-
   montantRange: yupFilterSchemas.decimalRange(
     i18n('entities.dons.fields.montantRange'),
   ),
@@ -28,21 +27,21 @@ const schema = yup.object().shape({
 const emptyValues = {
   montantRange: null,
   typePaiement: null,
-  iduser: null
-}
+  iduser: null,
+};
 
 const previewRenders = {
-
   montantRange: {
     label: i18n('entities.dons.fields.montantRange'),
     render: filterRenders.decimalRange(),
   },
   typePaiement: {
     label: i18n('entities.dons.fields.typePaiement'),
-    render: filterRenders.enumerator('entities.dons.enumerators.typePaiement',),
+    render: filterRenders.enumerator(
+      'entities.dons.enumerators.typePaiement',
+    ),
   },
-
-}
+};
 
 function DonsListFilter(props) {
   const { user, match } = props;
@@ -64,9 +63,13 @@ function DonsListFilter(props) {
   });
 
   useEffect(() => {
-
     initialValues.iduser = user;
-    dispatch(actions.doFetchUserDons(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetchUserDons(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -110,17 +113,20 @@ function DonsListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-
                 <div className="col-lg-6 col-12">
                   <InputRangeFormItem
                     name="montantRange"
-                    label={i18n('entities.dons.fields.montantRange')}
+                    label={i18n(
+                      'entities.dons.fields.montantRange',
+                    )}
                   />
                 </div>
                 <div className="col-lg-6 col-12">
                   <SelectFormItem
                     name="typePaiement"
-                    label={i18n('entities.dons.fields.typePaiement')}
+                    label={i18n(
+                      'entities.dons.fields.typePaiement',
+                    )}
                     options={donsEnumerators.typePaiement.map(
                       (value) => ({
                         value,
@@ -132,9 +138,7 @@ function DonsListFilter(props) {
                   />
                 </div>
                 <div style={{ display: 'none' }}>
-                  <input
-                    name="iduser"
-                  />
+                  <input name="iduser" />
                 </div>
               </div>
 
@@ -148,7 +152,7 @@ function DonsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -160,7 +164,7 @@ function DonsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

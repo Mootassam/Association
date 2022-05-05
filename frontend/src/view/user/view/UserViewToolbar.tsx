@@ -26,7 +26,7 @@ function UserViewToolbar(props) {
       {hasPermissionToEdit && (
         <Link to={`/user/${id}/edit`}>
           <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-edit" />{' '}
+            <ButtonIcon iconClass="fas fa-edit" />
             {i18n('common.edit')}
           </button>
         </Link>
@@ -39,7 +39,7 @@ function UserViewToolbar(props) {
           )}`}
         >
           <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="fas fa-history" />{' '}
+            <ButtonIcon iconClass="fas fa-history" />
             {i18n('auditLog.menu')}
           </button>
         </Link>
@@ -52,7 +52,7 @@ function UserViewToolbar(props) {
           )}`}
         >
           <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="far fa-eye" />{' '}
+            <ButtonIcon iconClass="far fa-eye" />
             {i18n('user.view.activity')}
           </button>
         </Link>

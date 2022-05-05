@@ -9,8 +9,7 @@ function TenantToolbar(props) {
     <Toolbar style={{ marginBottom: '8px' }}>
       <Link to="/tenant/new">
         <button className="btn btn-primary" type="button">
-          <ButtonIcon iconClass="fas fa-plus" />{' '}
-          {i18n('common.new')}
+          <ButtonIcon iconClass="fas fa-plus" />
         </button>
       </Link>
     </Toolbar>

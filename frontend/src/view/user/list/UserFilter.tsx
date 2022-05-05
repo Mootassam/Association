@@ -23,39 +23,23 @@ const schema = yup.object().shape({
   role: yupFilterSchemas.enumerator(
     i18n('user.fields.role'),
   ),
-  mobile: yupFilterSchemas.integer(
-    i18n('Mobile'),
-  ),
-  secteur: yupFilterSchemas.enumerator(
-    i18n('Secteur'),
-  ),
-  employeur: yupFilterSchemas.string(
-    i18n('Employeur'),
-  ),
-  profession: yupFilterSchemas.string(
-    i18n('Profession'),
-  ),
-  adresse: yupFilterSchemas.string(
-    i18n('Adresse'),
-  ),
-  cin: yupFilterSchemas.integer(
-    i18n('C.I.N'),
-  ),
+  mobile: yupFilterSchemas.integer(i18n('Mobile')),
+  secteur: yupFilterSchemas.enumerator(i18n('Secteur')),
+  employeur: yupFilterSchemas.string(i18n('Employeur')),
+  profession: yupFilterSchemas.string(i18n('Profession')),
+  adresse: yupFilterSchemas.string(i18n('Adresse')),
+  cin: yupFilterSchemas.integer(i18n('C.I.N')),
   date_naissance: yupFilterSchemas.dateRange(
     i18n('date Naissance'),
   ),
   etat_civil: yupFilterSchemas.enumerator(
     i18n('Etat Civil'),
   ),
-  status: yupFilterSchemas.enumerator(
-    i18n('Status'),
-  ),
+  status: yupFilterSchemas.enumerator(i18n('Status')),
   lien_facebook: yupFilterSchemas.string(
     i18n('Lien Facebook'),
   ),
-  parrain: yupFilterSchemas.enumerator(
-    i18n('Parrain'),
-  ),
+  parrain: yupFilterSchemas.enumerator(i18n('Parrain')),
 });
 
 const emptyValues = {
@@ -200,7 +184,7 @@ function UserFilter(props) {
                     <ButtonIcon
                       loading={loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -212,7 +196,7 @@ function UserFilter(props) {
                     <ButtonIcon
                       loading={loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

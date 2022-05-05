@@ -43,7 +43,7 @@ const emptyValues = {
   text: null,
   status: null,
   type: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -51,11 +51,15 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   information: {
-    label: i18n('entities.paymentsettings.fields.information'),
+    label: i18n(
+      'entities.paymentsettings.fields.information',
+    ),
     render: filterRenders.generic(),
   },
   uniqueKeywords: {
-    label: i18n('entities.paymentsettings.fields.uniqueKeywords'),
+    label: i18n(
+      'entities.paymentsettings.fields.uniqueKeywords',
+    ),
     render: filterRenders.generic(),
   },
   text: {
@@ -64,13 +68,15 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.paymentsettings.fields.status'),
-    render: filterRenders.enumerator('entities.paymentsettings.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.paymentsettings.enumerators.status',
+    ),
   },
   type: {
     label: i18n('entities.paymentsettings.fields.type'),
     render: filterRenders.generic(),
   },
-}
+};
 
 function PaymentsettingsListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -91,7 +97,12 @@ function PaymentsettingsListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -132,50 +143,62 @@ function PaymentsettingsListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.paymentsettings.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="information"
-                        label={i18n('entities.paymentsettings.fields.information')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="uniqueKeywords"
-                        label={i18n('entities.paymentsettings.fields.uniqueKeywords')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="text"
-                        label={i18n('entities.paymentsettings.fields.text')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.paymentsettings.fields.status')}
-                        options={paymentsettingsEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.paymentsettings.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="type"
-                        label={i18n('entities.paymentsettings.fields.type')}      
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.paymentsettings.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="information"
+                    label={i18n(
+                      'entities.paymentsettings.fields.information',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="uniqueKeywords"
+                    label={i18n(
+                      'entities.paymentsettings.fields.uniqueKeywords',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="text"
+                    label={i18n(
+                      'entities.paymentsettings.fields.text',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.paymentsettings.fields.status',
+                    )}
+                    options={paymentsettingsEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.paymentsettings.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="type"
+                    label={i18n(
+                      'entities.paymentsettings.fields.type',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -188,7 +211,7 @@ function PaymentsettingsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -200,7 +223,7 @@ function PaymentsettingsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

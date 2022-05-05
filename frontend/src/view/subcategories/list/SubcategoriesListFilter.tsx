@@ -31,7 +31,7 @@ const emptyValues = {
   name: null,
   slug: null,
   status: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -44,9 +44,11 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.subcategories.fields.status'),
-    render: filterRenders.enumerator('entities.subcategories.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.subcategories.enumerators.status',
+    ),
   },
-}
+};
 
 function SubcategoriesListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -67,7 +69,12 @@ function SubcategoriesListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -108,32 +115,38 @@ function SubcategoriesListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.subcategories.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="slug"
-                        label={i18n('entities.subcategories.fields.slug')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.subcategories.fields.status')}
-                        options={subcategoriesEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.subcategories.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.subcategories.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="slug"
+                    label={i18n(
+                      'entities.subcategories.fields.slug',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.subcategories.fields.status',
+                    )}
+                    options={subcategoriesEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.subcategories.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -146,7 +159,7 @@ function SubcategoriesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -158,7 +171,7 @@ function SubcategoriesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

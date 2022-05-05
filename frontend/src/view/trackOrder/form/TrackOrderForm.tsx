@@ -14,7 +14,7 @@ const schema = yup.object().shape({
   title: yupFormSchemas.string(
     i18n('entities.trackOrder.fields.title'),
     {
-      "required": true
+      required: true,
     },
   ),
   item: yupFormSchemas.relationToMany(
@@ -62,24 +62,30 @@ function TrackOrderForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="title"
-                label={i18n('entities.trackOrder.fields.title')}
+                label={i18n(
+                  'entities.trackOrder.fields.title',
+                )}
                 required={true}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <ProductAutocompleteFormItem  
+              <ProductAutocompleteFormItem
                 name="item"
-                label={i18n('entities.trackOrder.fields.item')}
+                label={i18n(
+                  'entities.trackOrder.fields.item',
+                )}
                 required={false}
                 showCreate={!props.modal}
                 mode="multiple"
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <OrderAutocompleteFormItem  
+              <OrderAutocompleteFormItem
                 name="order"
-                label={i18n('entities.trackOrder.fields.order')}
+                label={i18n(
+                  'entities.trackOrder.fields.order',
+                )}
                 required={false}
                 showCreate={!props.modal}
                 mode="multiple"
@@ -97,7 +103,7 @@ function TrackOrderForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -107,7 +113,7 @@ function TrackOrderForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -118,7 +124,7 @@ function TrackOrderForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

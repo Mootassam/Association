@@ -90,7 +90,7 @@ function FilesUploader(props) {
       <ButtonIcon
         loading={loading}
         iconClass="fas fa-plus"
-      />{' '}
+      />
       {i18n('fileUploader.upload')}
       <input
         style={{ display: 'none' }}

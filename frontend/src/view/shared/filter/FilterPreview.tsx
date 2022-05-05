@@ -44,7 +44,7 @@ export default function FilterPreview(props) {
                   event.stopPropagation();
                 }}
               >
-                {`${item.label}: ${item.value}`}{' '}
+                {`${item.label}: ${item.value}`}
                 {onRemove && (
                   <i
                     style={{

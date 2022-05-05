@@ -21,19 +21,14 @@ import Col from 'react-bootstrap/Col';
 
 function CampagneView(props) {
   const { setValue, getValues } = useForm();
-  const [
-    recordIdcampagne,
-    setRecordIdcampagne,
-  ] = useState(null);
-  const [
-    recordTitrecampagne,
-    setRecordTitrecampagne,
-  ] = useState(null);
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [recordIdcampagne, setRecordIdcampagne] =
+    useState(null);
+  const [recordTitrecampagne, setRecordTitrecampagne] =
+    useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
+  const [modalVisible, setModalVisible] =
+    useState<boolean>(false);
   let idcampagne;
   const dispatch = useDispatch();
   const doCloseModal = () => {
@@ -60,9 +55,7 @@ function CampagneView(props) {
         ...(getValues()[name] || []),
         record,
         props.idcampagne,
-        props.titre
-
-
+        props.titre,
       ]);
     } else {
       setValue(name, [
@@ -82,20 +75,31 @@ function CampagneView(props) {
 
   return (
     <Toolbar>
-      <Tabs defaultActiveKey="informations" id="tab-inf-projet">
+      <Tabs
+        defaultActiveKey="informations"
+        id="tab-inf-projet"
+      >
         <Tab eventKey="informations" title="Informations">
           <ViewWrapper style={{ marginTop: '10px' }}>
-            <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+            <Row
+              style={{
+                backgroundColor: '#f0f2f5',
+                paddingBottom: '10px',
+              }}
+            >
               <Col sm={8}>
                 <TextViewItem
-                  label={i18n('entities.campagne.fields.titre')}
+                  label={i18n(
+                    'entities.campagne.fields.titre',
+                  )}
                   value={record.titre}
                 />
-
               </Col>
               <Col sm={4}>
                 <TextViewItem
-                  label={i18n('entities.campagne.fields.statut')}
+                  label={i18n(
+                    'entities.campagne.fields.statut',
+                  )}
                   value={
                     record.statut &&
                     i18n(
@@ -108,52 +112,64 @@ function CampagneView(props) {
             <Row>
               <Col sm={4}>
                 <TextViewItem
-                  label={i18n('entities.campagne.fields.datedebut')}
+                  label={i18n(
+                    'entities.campagne.fields.datedebut',
+                  )}
                   value={record.datedebut}
                 />
               </Col>
               <Col sm={4}>
                 <TextViewItem
-                  label={i18n('entities.campagne.fields.datefin')}
+                  label={i18n(
+                    'entities.campagne.fields.datefin',
+                  )}
                   value={record.datefin}
                 />
               </Col>
               <Col sm={4}>
                 <TextViewItem
-                  label={i18n('entities.campagne.fields.annee')}
+                  label={i18n(
+                    'entities.campagne.fields.annee',
+                  )}
                   value={record.annee}
                 />
               </Col>
             </Row>
           </ViewWrapper>
         </Tab>
-        <Tab eventKey="details" title="Details" >
-          <DetailsCampagneListFilter idcampagne={record.id} titre={record.titre} />
+        <Tab eventKey="details" title="Details">
+          <DetailsCampagneListFilter
+            idcampagne={record.id}
+            titre={record.titre}
+          />
           <DetailsCampagneListTable />
           {hasPermissionToCreate && (
             <Link
               className="btn btn-link"
-
-              onClick={() => { doOpenModal(record.id, record.titre) }
-              }>
-              <button className="btn btn-primary" type="button">
-                <ButtonIcon iconClass="fas fa-plus" />{' '}
+              onClick={() => {
+                doOpenModal(record.id, record.titre);
+              }}
+            >
+              <button
+                className="btn btn-primary"
+                type="button"
+              >
+                <ButtonIcon iconClass="fas fa-plus" />
                 {i18n('entities.detailsCampagne.new.title')}
               </button>
-            </Link>)}
+            </Link>
+          )}
           {modalVisible && (
             <DetailsCampagneFormModal
               onClose={doCloseModal}
               onSuccess={doCreateSuccess}
               recordIdcampagne={recordIdcampagne}
               recordTitrecampagne={recordTitrecampagne}
-
             />
           )}
         </Tab>
       </Tabs>
     </Toolbar>
-
   );
 }
 

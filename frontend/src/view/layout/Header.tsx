@@ -78,7 +78,7 @@ function Header(props) {
                 />
               </span>
               <span className="user-dropdown-text">
-                <span>{userText}</span>{' '}
+                <span>{userText}</span>
                 {['multi', 'multi-with-subdomain'].includes(
                   config.tenantMode,
                 ) && (
@@ -95,7 +95,7 @@ function Header(props) {
               className="dropdown-item"
               type="button"
             >
-              <i className="fas fa-user" />{' '}
+              <i className="fas fa-user" />
               {i18n('auth.profile.title')}
             </button>
             <button
@@ -103,7 +103,7 @@ function Header(props) {
               className="dropdown-item"
               type="button"
             >
-              <i className="fas fa-lock" />{' '}
+              <i className="fas fa-lock" />
               {i18n('auth.passwordChange.title')}
             </button>
             {['multi', 'multi-with-subdomain'].includes(
@@ -114,7 +114,7 @@ function Header(props) {
                 className="dropdown-item"
                 type="button"
               >
-                <i className="fas fa-th-large" />{' '}
+                <i className="fas fa-th-large" />
                 {i18n('auth.tenants')}
               </button>
             )}
@@ -124,7 +124,7 @@ function Header(props) {
               className="dropdown-item"
               type="button"
             >
-              <i className="fas fa-wrench" />{' '}
+              <i className="fas fa-wrench" />
               {i18n('settings.menu')}
             </button>
 
@@ -133,8 +133,7 @@ function Header(props) {
               className="dropdown-item"
               type="button"
             >
-              <i className="fas fa-book" />{' '}
-              {i18n('auditLog.menu')}
+              <i className="fas fa-book" />
             </button>
 
             <button
@@ -142,7 +141,7 @@ function Header(props) {
               className="dropdown-item"
               type="button"
             >
-              <i className="fas fa-sign-out-alt" />{' '}
+              <i className="fas fa-sign-out-alt" />
               {i18n('auth.signout')}
             </button>
           </div>

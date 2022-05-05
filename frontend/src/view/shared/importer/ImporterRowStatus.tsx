@@ -28,7 +28,7 @@ function ImporterRowStatus(props) {
       <>
         <span className="badge badge-danger">
           {i18n('importer.error')}
-        </span>{' '}
+        </span>
         <ImporterErrorStatusMessage>
           {errorMessage}
         </ImporterErrorStatusMessage>

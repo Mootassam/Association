@@ -16,7 +16,7 @@ function SettingsFormToolbar(props) {
       {hasPermissionToAuditLogs && (
         <Link to={`/audit-logs?entityNames=settings`}>
           <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="fas fa-history" />{' '}
+            <ButtonIcon iconClass="fas fa-history" />
             {i18n('auditLog.menu')}
           </button>
         </Link>

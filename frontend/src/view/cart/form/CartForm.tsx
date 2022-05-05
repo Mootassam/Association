@@ -99,9 +99,11 @@ function CartForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
-              <AttributeOptionsAutocompleteFormItem  
+              <AttributeOptionsAutocompleteFormItem
                 name="optionsId"
-                label={i18n('entities.cart.fields.optionsId')}
+                label={i18n(
+                  'entities.cart.fields.optionsId',
+                )}
                 required={false}
                 showCreate={!props.modal}
                 mode="multiple"
@@ -110,7 +112,9 @@ function CartForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="attribute"
-                label={i18n('entities.cart.fields.attribute')}
+                label={i18n(
+                  'entities.cart.fields.attribute',
+                )}
                 required={false}
               />
             </div>
@@ -131,21 +135,23 @@ function CartForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="qty"
-                label={i18n('entities.cart.fields.qty')}  
+                label={i18n('entities.cart.fields.qty')}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="price"
-                label={i18n('entities.cart.fields.price')}  
+                label={i18n('entities.cart.fields.price')}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="mainPrice"
-                label={i18n('entities.cart.fields.mainPrice')}  
+                label={i18n(
+                  'entities.cart.fields.mainPrice',
+                )}
                 required={false}
               />
             </div>
@@ -161,7 +167,9 @@ function CartForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="itemType"
-                label={i18n('entities.cart.fields.itemType')}
+                label={i18n(
+                  'entities.cart.fields.itemType',
+                )}
                 required={false}
               />
             </div>
@@ -191,7 +199,7 @@ function CartForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -201,7 +209,7 @@ function CartForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -212,7 +220,7 @@ function CartForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

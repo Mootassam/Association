@@ -65,7 +65,7 @@ const emptyValues = {
   dateFinProjetRange: [],
   dateDebutDonRange: [],
   dateFinDonRange: [],
-}
+};
 
 const previewRenders = {
   titre: {
@@ -82,11 +82,15 @@ const previewRenders = {
   },
   typeProjet: {
     label: i18n('entities.projet.fields.typeProjet'),
-    render: filterRenders.enumerator('entities.projet.enumerators.typeProjet',),
+    render: filterRenders.enumerator(
+      'entities.projet.enumerators.typeProjet',
+    ),
   },
   statutProjet: {
     label: i18n('entities.projet.fields.statutProjet'),
-    render: filterRenders.enumerator('entities.projet.enumerators.statutProjet',),
+    render: filterRenders.enumerator(
+      'entities.projet.enumerators.statutProjet',
+    ),
   },
   budgetRange: {
     label: i18n('entities.projet.fields.budgetRange'),
@@ -97,11 +101,15 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   dateDebutProjetRange: {
-    label: i18n('entities.projet.fields.dateDebutProjetRange'),
+    label: i18n(
+      'entities.projet.fields.dateDebutProjetRange',
+    ),
     render: filterRenders.datetimeRange(),
   },
   dateFinProjetRange: {
-    label: i18n('entities.projet.fields.dateFinProjetRange'),
+    label: i18n(
+      'entities.projet.fields.dateFinProjetRange',
+    ),
     render: filterRenders.datetimeRange(),
   },
   dateDebutDonRange: {
@@ -112,7 +120,7 @@ const previewRenders = {
     label: i18n('entities.projet.fields.dateFinDonRange'),
     render: filterRenders.dateRange(),
   },
-}
+};
 
 function ProjetListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -133,7 +141,12 @@ function ProjetListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -174,90 +187,112 @@ function ProjetListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="titre"
-                        label={i18n('entities.projet.fields.titre')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="description"
-                        label={i18n('entities.projet.fields.description')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="details"
-                        label={i18n('entities.projet.fields.details')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="typeProjet"
-                        label={i18n('entities.projet.fields.typeProjet')}
-                        options={projetEnumerators.typeProjet.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.projet.enumerators.typeProjet.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="statutProjet"
-                        label={i18n('entities.projet.fields.statutProjet')}
-                        options={projetEnumerators.statutProjet.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.projet.enumerators.statutProjet.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="budgetRange"
-                        label={i18n('entities.projet.fields.budgetRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="lieu"
-                        label={i18n('entities.projet.fields.lieu')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="dateDebutProjetRange"
-                        label={i18n('entities.projet.fields.dateDebutProjetRange')}    
-                        showTimeInput
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="dateFinProjetRange"
-                        label={i18n('entities.projet.fields.dateFinProjetRange')}    
-                        showTimeInput
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="dateDebutDonRange"
-                        label={i18n('entities.projet.fields.dateDebutDonRange')}    
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="dateFinDonRange"
-                        label={i18n('entities.projet.fields.dateFinDonRange')}    
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="titre"
+                    label={i18n(
+                      'entities.projet.fields.titre',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="description"
+                    label={i18n(
+                      'entities.projet.fields.description',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="details"
+                    label={i18n(
+                      'entities.projet.fields.details',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="typeProjet"
+                    label={i18n(
+                      'entities.projet.fields.typeProjet',
+                    )}
+                    options={projetEnumerators.typeProjet.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.projet.enumerators.typeProjet.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="statutProjet"
+                    label={i18n(
+                      'entities.projet.fields.statutProjet',
+                    )}
+                    options={projetEnumerators.statutProjet.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.projet.enumerators.statutProjet.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="budgetRange"
+                    label={i18n(
+                      'entities.projet.fields.budgetRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="lieu"
+                    label={i18n(
+                      'entities.projet.fields.lieu',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="dateDebutProjetRange"
+                    label={i18n(
+                      'entities.projet.fields.dateDebutProjetRange',
+                    )}
+                    showTimeInput
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="dateFinProjetRange"
+                    label={i18n(
+                      'entities.projet.fields.dateFinProjetRange',
+                    )}
+                    showTimeInput
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="dateDebutDonRange"
+                    label={i18n(
+                      'entities.projet.fields.dateDebutDonRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="dateFinDonRange"
+                    label={i18n(
+                      'entities.projet.fields.dateFinDonRange',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -270,7 +305,7 @@ function ProjetListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -282,7 +317,7 @@ function ProjetListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

@@ -30,7 +30,7 @@ const emptyValues = {
   title: null,
   montantRange: [],
   details: null,
-}
+};
 
 const previewRenders = {
   title: {
@@ -45,7 +45,7 @@ const previewRenders = {
     label: i18n('entities.palier.fields.details'),
     render: filterRenders.generic(),
   },
-}
+};
 
 function PalierListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -66,7 +66,12 @@ function PalierListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -107,24 +112,30 @@ function PalierListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="title"
-                        label={i18n('entities.palier.fields.title')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="montantRange"
-                        label={i18n('entities.palier.fields.montantRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="details"
-                        label={i18n('entities.palier.fields.details')}      
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="title"
+                    label={i18n(
+                      'entities.palier.fields.title',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="montantRange"
+                    label={i18n(
+                      'entities.palier.fields.montantRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="details"
+                    label={i18n(
+                      'entities.palier.fields.details',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -137,7 +148,7 @@ function PalierListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -149,7 +160,7 @@ function PalierListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

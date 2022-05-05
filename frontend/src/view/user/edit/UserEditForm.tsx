@@ -25,83 +25,61 @@ const schema = yup.object().shape({
   roles: yupFormSchemas.stringArray(
     i18n('user.fields.roles'),
     {
-      "min": 1
+      min: 1,
     },
   ),
-  phoneNumber: yupFormSchemas.string(
-    i18n('phoneNumber'),
-    {
-      "max": 24,
-    },
-  ),
+  phoneNumber: yupFormSchemas.string(i18n('phoneNumber'), {
+    max: 24,
+  }),
 
-  secteur: yupFormSchemas.enumerator(
-    i18n('secteur'),
-    {
+  secteur: yupFormSchemas.enumerator(i18n('secteur'), {
+    options: userSecteur.secteur,
+  }),
 
-      "options": userSecteur.secteur
-    },
-  ),
-
-  employeur: yupFormSchemas.string(i18n('Employeur'),
-    {
-      "required": false
-    },
-  ),
-  profession: yupFormSchemas.string(i18n('Profession'),
-    {
-      "required": false
-    },
-  ),
-  adresse: yupFormSchemas.string(i18n('adresse'),
-    {
-      "required": false
-    },
-  ),
-  fullName: yupFormSchemas.string(i18n('fullName'),
-    {
-      "required": false
-    },
-  ),
-  cin: yupFormSchemas.integer(i18n('cin'),
-    {
-
-
-      maxlength: 8
-    },
-  ),
+  employeur: yupFormSchemas.string(i18n('Employeur'), {
+    required: false,
+  }),
+  profession: yupFormSchemas.string(i18n('Profession'), {
+    required: false,
+  }),
+  adresse: yupFormSchemas.string(i18n('adresse'), {
+    required: false,
+  }),
+  fullName: yupFormSchemas.string(i18n('fullName'), {
+    required: false,
+  }),
+  cin: yupFormSchemas.integer(i18n('cin'), {
+    maxlength: 8,
+  }),
   date_naissance: yupFormSchemas.date(
     i18n('Date Naissance'),
     {
-      "required": false
+      required: false,
     },
   ),
   etat_civil: yupFormSchemas.enumerator(
     i18n('user.fields.Etat_Civil'),
     {
-
-      "options": userEtat.Etat
-
+      options: userEtat.Etat,
     },
   ),
   status: yupFormSchemas.enumerator(
     i18n('user.fields.status'),
     {
-
-      "options": userEnumerators.status,
-    }
+      options: userEnumerators.status,
+    },
   ),
-  lien_facebook: yupFormSchemas.string(i18n('Lien Facebook'),
+  lien_facebook: yupFormSchemas.string(
+    i18n('Lien Facebook'),
     {
-      "required": false
+      required: false,
     },
   ),
   parrain: yupFormSchemas.relationToOne(
     i18n('user.fields.parrain'),
     {
-      "required": false
-    }
-
+      required: false,
+    },
   ),
 });
 
@@ -121,7 +99,9 @@ function UserEditForm(props) {
       fullName: record.fullName,
       cin: record.cin,
       etat_civil: record.etat_civil,
-      date_naissance: record.date_naissance ? moment(record.date_naissance).toDate() : null,
+      date_naissance: record.date_naissance
+        ? moment(record.date_naissance).toDate()
+        : null,
       status: record.status,
       lien_facebook: record.lien_facebook,
       parrain: record.parrain,
@@ -152,7 +132,12 @@ function UserEditForm(props) {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+          <Row
+            style={{
+              backgroundColor: '#f0f2f5',
+              paddingBottom: '10px',
+            }}
+          >
             <Col sm={4}>
               <div className="form-group">
                 <label
@@ -188,7 +173,6 @@ function UserEditForm(props) {
               <SelectFormItem
                 name="status"
                 label={i18n('user.fields.status')}
-
                 options={userEnumerators.status.map(
                   (value) => ({
                     value,
@@ -210,23 +194,25 @@ function UserEditForm(props) {
               <InputNumberFormItem
                 name="phoneNumber"
                 label={i18n('user.fields.phoneNumber')}
-
               />
             </Col>
             <Col sm={4}>
               <InputFormItem
                 name="adresse"
                 label={i18n('user.fields.address')}
-
               />
             </Col>
           </Row>
-          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+          <Row
+            style={{
+              backgroundColor: '#f0f2f5',
+              paddingBottom: '10px',
+            }}
+          >
             <Col sm={4}>
               <SelectFormItem
                 name="secteur"
                 label={i18n('user.fields.sector')}
-
                 options={userSecteur.secteur.map(
                   (value) => ({
                     value,
@@ -239,14 +225,12 @@ function UserEditForm(props) {
               <InputFormItem
                 name="employeur"
                 label={i18n('user.fields.employer')}
-
               />
             </Col>
             <Col sm={4}>
               <InputFormItem
                 name="profession"
                 label={i18n('user.fields.profession')}
-
               />
             </Col>
           </Row>
@@ -262,42 +246,41 @@ function UserEditForm(props) {
               <SelectFormItem
                 name="etat_civil"
                 label={i18n('user.fields.maritalStatus')}
-
-                options={userEtat.Etat.map(
-                  (value) => ({
-                    value,
-                    label: i18n(`user.maritalStatus.${value}`),
-                  }),
-                )}
+                options={userEtat.Etat.map((value) => ({
+                  value,
+                  label: i18n(
+                    `user.maritalStatus.${value}`,
+                  ),
+                }))}
               />
             </Col>
             <Col sm={4}>
               <InputNumberFormItem
                 name="cin"
                 label={i18n('C.I.N')}
-
               />
             </Col>
           </Row>
-          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+          <Row
+            style={{
+              backgroundColor: '#f0f2f5',
+              paddingBottom: '10px',
+            }}
+          >
             <Col sm={4}>
               <InputFormItem
                 name="lien_facebook"
                 label={i18n('user.fields.facebookLink')}
-
               />
             </Col>
             <Col sm={4}>
               <UserAdherantAutocompleteFormItem
                 name="parrain"
                 label={i18n('user.fields.sponsor')}
-
                 showCreate={!props.modal}
               />
             </Col>
-            <Col sm={4}>
-
-            </Col>
+            <Col sm={4}></Col>
           </Row>
           <div className="form-buttons">
             <button
@@ -309,7 +292,7 @@ function UserEditForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -319,7 +302,7 @@ function UserEditForm(props) {
               onClick={onReset}
               type="button"
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -330,7 +313,7 @@ function UserEditForm(props) {
                 onClick={() => props.onCancel()}
                 type="button"
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

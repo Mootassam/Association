@@ -43,7 +43,7 @@ const emptyValues = {
   metaDescriptions: null,
   status: null,
   isFeature: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -59,18 +59,22 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   metaDescriptions: {
-    label: i18n('entities.category.fields.metaDescriptions'),
+    label: i18n(
+      'entities.category.fields.metaDescriptions',
+    ),
     render: filterRenders.generic(),
   },
   status: {
     label: i18n('entities.category.fields.status'),
-    render: filterRenders.enumerator('entities.category.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.category.enumerators.status',
+    ),
   },
   isFeature: {
     label: i18n('entities.category.fields.isFeature'),
     render: filterRenders.boolean(),
   },
-}
+};
 
 function CategoryListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -91,7 +95,12 @@ function CategoryListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -132,60 +141,72 @@ function CategoryListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.category.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="slug"
-                        label={i18n('entities.category.fields.slug')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="metaKeywords"
-                        label={i18n('entities.category.fields.metaKeywords')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="metaDescriptions"
-                        label={i18n('entities.category.fields.metaDescriptions')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.category.fields.status')}
-                        options={categoryEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.category.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="isFeature"
-                        label={i18n('entities.category.fields.isFeature')}
-                        options={[
-                          {
-                            value: true,
-                            label: i18n('common.yes'),
-                          },
-                          {
-                            value: false,
-                            label: i18n('common.no'),
-                          },
-                        ]}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.category.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="slug"
+                    label={i18n(
+                      'entities.category.fields.slug',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="metaKeywords"
+                    label={i18n(
+                      'entities.category.fields.metaKeywords',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="metaDescriptions"
+                    label={i18n(
+                      'entities.category.fields.metaDescriptions',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.category.fields.status',
+                    )}
+                    options={categoryEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.category.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="isFeature"
+                    label={i18n(
+                      'entities.category.fields.isFeature',
+                    )}
+                    options={[
+                      {
+                        value: true,
+                        label: i18n('common.yes'),
+                      },
+                      {
+                        value: false,
+                        label: i18n('common.no'),
+                      },
+                    ]}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -198,7 +219,7 @@ function CategoryListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -210,7 +231,7 @@ function CategoryListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

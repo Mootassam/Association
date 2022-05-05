@@ -41,7 +41,7 @@ const emptyValues = {
   discountRange: [],
   noOfTimesRange: [],
   status: null,
-}
+};
 
 const previewRenders = {
   title: {
@@ -62,9 +62,11 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.coupons.fields.status'),
-    render: filterRenders.enumerator('entities.coupons.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.coupons.enumerators.status',
+    ),
   },
-}
+};
 
 function CouponsListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -85,7 +87,12 @@ function CouponsListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -126,44 +133,54 @@ function CouponsListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="title"
-                        label={i18n('entities.coupons.fields.title')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="codeName"
-                        label={i18n('entities.coupons.fields.codeName')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="discountRange"
-                        label={i18n('entities.coupons.fields.discountRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputNumberRangeFormItem
-                        name="noOfTimesRange"
-                        label={i18n('entities.coupons.fields.noOfTimesRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.coupons.fields.status')}
-                        options={couponsEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.coupons.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="title"
+                    label={i18n(
+                      'entities.coupons.fields.title',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="codeName"
+                    label={i18n(
+                      'entities.coupons.fields.codeName',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="discountRange"
+                    label={i18n(
+                      'entities.coupons.fields.discountRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputNumberRangeFormItem
+                    name="noOfTimesRange"
+                    label={i18n(
+                      'entities.coupons.fields.noOfTimesRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.coupons.fields.status',
+                    )}
+                    options={couponsEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.coupons.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -176,7 +193,7 @@ function CouponsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -188,7 +205,7 @@ function CouponsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

@@ -104,7 +104,7 @@ function SettingsForm(props) {
                 name="backgroundImages"
                 label={i18n(
                   'settings.fields.backgroundImages',
-                )}                
+                )}
                 storage={
                   Storage.values.settingsBackgroundImages
                 }
@@ -123,7 +123,7 @@ function SettingsForm(props) {
               <ButtonIcon
                 loading={saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -133,7 +133,7 @@ function SettingsForm(props) {
               className="btn btn-light"
               type="button"
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -144,7 +144,7 @@ function SettingsForm(props) {
                 className="btn btn-light"
                 type="button"
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

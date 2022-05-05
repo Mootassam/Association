@@ -206,7 +206,7 @@ function AuditLogFilter(props) {
                     <ButtonIcon
                       loading={loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -217,7 +217,7 @@ function AuditLogFilter(props) {
                     <ButtonIcon
                       loading={loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

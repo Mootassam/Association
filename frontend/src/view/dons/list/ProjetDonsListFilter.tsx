@@ -17,7 +17,6 @@ import donsEnumerators from 'src/modules/dons/donsEnumerators';
 import { useDispatch, useSelector } from 'react-redux';
 //import userselectors from 'src/modules/user/view/userViewSelectors';
 
- 
 const schema = yup.object().shape({
   adherent: yupFilterSchemas.relationToOne(
     i18n('entities.dons.fields.adherent'),
@@ -28,15 +27,14 @@ const schema = yup.object().shape({
   typePaiement: yupFilterSchemas.enumerator(
     i18n('entities.dons.fields.typePaiement'),
   ),
-
 });
 
 const emptyValues = {
   adherent: null,
   montantRange: [],
   typePaiement: null,
-  projet:null
-}
+  projet: null,
+};
 
 const previewRenders = {
   adherent: {
@@ -49,20 +47,21 @@ const previewRenders = {
   },
   typePaiement: {
     label: i18n('entities.dons.fields.typePaiement'),
-    render: filterRenders.enumerator('entities.dons.enumerators.typePaiement',),
+    render: filterRenders.enumerator(
+      'entities.dons.enumerators.typePaiement',
+    ),
   },
   projet: {
     label: i18n('entities.dons.fields.projet'),
     render: filterRenders.relationToOne(),
   },
-
-}
+};
 
 function ProjetDonsListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
- 
+
   const [initialValues] = useState(() => {
     return {
       ...emptyValues,
@@ -76,16 +75,20 @@ function ProjetDonsListFilter(props) {
     mode: 'all',
   });
   useEffect(() => {
-
-    initialValues.projet=props.idprojet;
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    initialValues.projet = props.idprojet;
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
   const onSubmit = (values) => {
     const rawValues = form.getValues();
-    rawValues.projet= props.idprojet;
-    values.projet= props.idprojet;
+    rawValues.projet = props.idprojet;
+    values.projet = props.idprojet;
     dispatch(actions.doFetch(values, rawValues));
     setExpanded(false);
   };
@@ -121,37 +124,41 @@ function ProjetDonsListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <UserAutocompleteFormItem  
-                        name="adherent"
-                        label={i18n('entities.dons.fields.adherent')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="montantRange"
-                        label={i18n('entities.dons.fields.montantRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="typePaiement"
-                        label={i18n('entities.dons.fields.typePaiement')}
-                        options={donsEnumerators.typePaiement.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.dons.enumerators.typePaiement.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div style={{ display: 'none' }}>
-                    <input
-                        name="projet"
-                    />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <UserAutocompleteFormItem
+                    name="adherent"
+                    label={i18n(
+                      'entities.dons.fields.adherent',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="montantRange"
+                    label={i18n(
+                      'entities.dons.fields.montantRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="typePaiement"
+                    label={i18n(
+                      'entities.dons.fields.typePaiement',
+                    )}
+                    options={donsEnumerators.typePaiement.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.dons.enumerators.typePaiement.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div style={{ display: 'none' }}>
+                  <input name="projet" />
+                </div>
               </div>
 
               <div className="row">
@@ -164,7 +171,7 @@ function ProjetDonsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -176,7 +183,7 @@ function ProjetDonsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>
