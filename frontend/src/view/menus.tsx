@@ -181,7 +181,14 @@ export default [
       },
     ],
   },
-
+  {
+    id: '11',
+    path: '/projet',
+    permissionRequired: permissions.projetRead,
+    icon: 'fas fa-hand-holding-usd',
+    className: 'menu-li side-menue',
+    label: i18n('entities.projet.menu'),
+  },
   {
     id: 14,
     label: i18n('E-commerce'),
@@ -281,14 +288,7 @@ export default [
     className: 'menu-li side-menue',
     label: i18n('entities.transaction.menu'),
   },
-  {
-    id: '11',
-    path: '/projet',
-    permissionRequired: permissions.projetRead,
-    icon: 'fas fa-hand-holding-usd',
-    className: 'menu-li side-menue',
-    label: i18n('entities.projet.menu'),
-  },
+
   {
     id: '10',
     path: '#e-commerce',

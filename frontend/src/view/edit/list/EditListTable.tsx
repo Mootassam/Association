@@ -15,10 +15,8 @@ import Pagination from 'src/view/shared/table/Pagination';
 import moment from 'moment';
 
 function EditListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -96,50 +94,48 @@ function EditListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'campaignTitle'}
-                  label={i18n(
-                    'entities.edit.fields.campaignTitle',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'campaignLastDateTime'}
-                  label={i18n(
-                    'entities.edit.fields.campaignLastDateTime',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.edit.fields.status',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'campaignTitle'}
+                label={i18n(
+                  'entities.edit.fields.campaignTitle',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'campaignLastDateTime'}
+                label={i18n(
+                  'entities.edit.fields.campaignLastDateTime',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n('entities.edit.fields.status')}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -164,10 +160,10 @@ function EditListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -178,7 +174,7 @@ function EditListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>
@@ -187,9 +183,9 @@ function EditListTable(props) {
                   <td>{row.campaignTitle}</td>
                   <td>
                     {row.campaignLastDateTime
-                      ? moment(row.campaignLastDateTime).format(
-                          'YYYY-MM-DD HH:mm',
-                        )
+                      ? moment(
+                          row.campaignLastDateTime,
+                        ).format('YYYY-MM-DD HH:mm')
                       : null}
                   </td>
                   <td>

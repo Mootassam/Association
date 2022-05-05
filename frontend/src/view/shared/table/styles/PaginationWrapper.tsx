@@ -97,12 +97,12 @@ const PaginationWrapper = styled.div`
   .rc-pagination-jump-next:hover:after {
     content: '»';
   }
-  .rc-pagination-jump-prev-custom-icon,
-  .rc-pagination-jump-next-custom-icon {
+  .rc-pagination-jump-prev-adherent-icon,
+  .rc-pagination-jump-next-adherent-icon {
     position: relative;
   }
-  .rc-pagination-jump-prev-custom-icon:after,
-  .rc-pagination-jump-next-custom-icon:after {
+  .rc-pagination-jump-prev-adherent-icon:after,
+  .rc-pagination-jump-next-adherent-icon:after {
     position: absolute;
     top: 0;
     right: 0;
@@ -118,30 +118,30 @@ const PaginationWrapper = styled.div`
     font-size: 12px;
     margin-top: 1px;
   }
-  .rc-pagination-jump-prev-custom-icon
-    .custom-icon-jump-prev,
-  .rc-pagination-jump-next-custom-icon
-    .custom-icon-jump-prev,
-  .rc-pagination-jump-prev-custom-icon
-    .custom-icon-jump-next,
-  .rc-pagination-jump-next-custom-icon
-    .custom-icon-jump-next {
+  .rc-pagination-jump-prev-adherent-icon
+    .adherent-icon-jump-prev,
+  .rc-pagination-jump-next-adherent-icon
+    .adherent-icon-jump-prev,
+  .rc-pagination-jump-prev-adherent-icon
+    .adherent-icon-jump-next,
+  .rc-pagination-jump-next-adherent-icon
+    .adherent-icon-jump-next {
     opacity: 0;
     transition: all 0.2s;
   }
-  .rc-pagination-jump-prev-custom-icon:hover:after,
-  .rc-pagination-jump-next-custom-icon:hover:after {
+  .rc-pagination-jump-prev-adherent-icon:hover:after,
+  .rc-pagination-jump-next-adherent-icon:hover:after {
     opacity: 0;
     color: #ccc;
   }
-  .rc-pagination-jump-prev-custom-icon:hover
-    .custom-icon-jump-prev,
-  .rc-pagination-jump-next-custom-icon:hover
-    .custom-icon-jump-prev,
-  .rc-pagination-jump-prev-custom-icon:hover
-    .custom-icon-jump-next,
-  .rc-pagination-jump-next-custom-icon:hover
-    .custom-icon-jump-next {
+  .rc-pagination-jump-prev-adherent-icon:hover
+    .adherent-icon-jump-prev,
+  .rc-pagination-jump-next-adherent-icon:hover
+    .adherent-icon-jump-prev,
+  .rc-pagination-jump-prev-adherent-icon:hover
+    .adherent-icon-jump-next,
+  .rc-pagination-jump-next-adherent-icon:hover
+    .adherent-icon-jump-next {
     opacity: 1;
     color: var(--primary);
   }

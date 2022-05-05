@@ -17,10 +17,8 @@ import TaxesListItem from 'src/view/taxes/list/TaxesListItem';
 import OrderListItem from 'src/view/order/list/OrderListItem';
 
 function TransactionListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -98,66 +96,66 @@ function TransactionListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'amount'}
-                  label={i18n(
-                    'entities.transaction.fields.amount',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.transaction.fields.email',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.transaction.fields.tax',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'currencySign'}
-                  label={i18n(
-                    'entities.transaction.fields.currencySign',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'currencyValue'}
-                  label={i18n(
-                    'entities.transaction.fields.currencyValue',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.transaction.fields.orderId',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'amount'}
+                label={i18n(
+                  'entities.transaction.fields.amount',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.transaction.fields.email',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.transaction.fields.tax',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'currencySign'}
+                label={i18n(
+                  'entities.transaction.fields.currencySign',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'currencyValue'}
+                label={i18n(
+                  'entities.transaction.fields.currencyValue',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.transaction.fields.orderId',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -182,10 +180,10 @@ function TransactionListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -196,7 +194,7 @@ function TransactionListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>

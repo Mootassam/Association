@@ -16,10 +16,8 @@ import UserListItem from 'src/view/user/list/UserListItem';
 import ProductListItem from 'src/view/product/list/ProductListItem';
 
 function ReviewListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -97,52 +95,48 @@ function ReviewListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'review'}
-                  label={i18n(
-                    'entities.review.fields.review',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'rating'}
-                  label={i18n(
-                    'entities.review.fields.rating',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.review.fields.item',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.review.fields.user',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'review'}
+                label={i18n(
+                  'entities.review.fields.review',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'rating'}
+                label={i18n(
+                  'entities.review.fields.rating',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                label={i18n('entities.review.fields.item')}
+              />
+              <TableColumnHeader
+                label={i18n('entities.review.fields.user')}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -167,10 +161,10 @@ function ReviewListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -181,14 +175,16 @@ function ReviewListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>
                     </div>
                   </th>
                   <td>{row.review}</td>
-                  <td style={{ textAlign: 'right' }}>{row.rating}</td>
+                  <td style={{ textAlign: 'right' }}>
+                    {row.rating}
+                  </td>
                   <td>
                     <ProductListItem value={row.item} />
                   </td>

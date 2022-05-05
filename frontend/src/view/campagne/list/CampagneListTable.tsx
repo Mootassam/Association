@@ -16,22 +16,16 @@ import Pagination from 'src/view/shared/table/Pagination';
 import DetailsCampagneFormModal from 'src/view/detailsCampagne/form/DetailsCampagneFormModal';
 import moment from 'moment';
 
-
 function CampagneListTable(props) {
   const { setValue, getValues } = useForm();
-  const [
-    recordIdcampagne,
-    setRecordIdcampagne,
-  ] = useState(null);
-  const [
-    recordTitrecampagne,
-    setRecordTitrecampagne,
-  ] = useState(null);
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [recordIdcampagne, setRecordIdcampagne] =
+    useState(null);
+  const [recordTitrecampagne, setRecordTitrecampagne] =
+    useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
+  const [modalVisible, setModalVisible] =
+    useState<boolean>(false);
   let idcampagne;
   const dispatch = useDispatch();
   const doCloseModal = () => {
@@ -89,7 +83,6 @@ function CampagneListTable(props) {
 
     dispatch(
       actions.doChangeSort({
-
         field,
         order,
       }),
@@ -123,9 +116,7 @@ function CampagneListTable(props) {
         ...(getValues()[name] || []),
         record,
         props.idcampagne,
-        props.titre
-
-
+        props.titre,
       ]);
     } else {
       setValue(name, [
@@ -145,17 +136,17 @@ function CampagneListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
@@ -232,10 +223,10 @@ function CampagneListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -246,32 +237,46 @@ function CampagneListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>
                     </div>
                   </th>
                   <td>{row.titre}</td>
-                  <td style={{ textAlign: 'right' }}>{row.annee}</td>
-                  <td>{moment(row.datedebut).format('DD-MM-YYYY',)}</td>
-                  <td>{moment(row.datefin).format('DD-MM-YYYY',)}</td>
+                  <td style={{ textAlign: 'right' }}>
+                    {row.annee}
+                  </td>
+                  <td>
+                    {moment(row.datedebut).format(
+                      'DD-MM-YYYY',
+                    )}
+                  </td>
+                  <td>
+                    {moment(row.datefin).format(
+                      'DD-MM-YYYY',
+                    )}
+                  </td>
                   <td>
                     {row.statut
                       ? i18n(
-                        `entities.campagne.enumerators.statut.${row.statut}`,
-                      )
+                          `entities.campagne.enumerators.statut.${row.statut}`,
+                        )
                       : null}
                   </td>
                   <td className="td-actions">
                     {hasPermissionToCreate && (
                       <Link
                         className="btn btn-link"
-
-                        onClick={() => { doOpenModal(row.id, row.titre) }
-                        }>
-                        {i18n('entities.detailsCampagne.new.title')}
-                      </Link>)}
+                        onClick={() => {
+                          doOpenModal(row.id, row.titre);
+                        }}
+                      >
+                        {i18n(
+                          'entities.detailsCampagne.new.title',
+                        )}
+                      </Link>
+                    )}
                     <Link
                       className="btn btn-link"
                       // to={{
@@ -319,7 +324,6 @@ function CampagneListTable(props) {
           onSuccess={doCreateSuccess}
           recordIdcampagne={recordIdcampagne}
           recordTitrecampagne={recordTitrecampagne}
-
         />
       )}
       {recordIdToDestroy && (

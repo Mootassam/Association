@@ -16,10 +16,8 @@ import ImagesListView from 'src/view/shared/table/ImagesListView';
 import AttributeOptionsListItem from 'src/view/attributeOptions/list/AttributeOptionsListItem';
 
 function CartListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -97,117 +95,103 @@ function CartListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.cart.fields.optionsId',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'attribute'}
-                  label={i18n(
-                    'entities.cart.fields.attribute',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.cart.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'slug'}
-                  label={i18n(
-                    'entities.cart.fields.slug',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'qty'}
-                  label={i18n(
-                    'entities.cart.fields.qty',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'price'}
-                  label={i18n(
-                    'entities.cart.fields.price',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'mainPrice'}
-                  label={i18n(
-                    'entities.cart.fields.mainPrice',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.cart.fields.photo',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'itemType'}
-                  label={i18n(
-                    'entities.cart.fields.itemType',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'itemLN'}
-                  label={i18n(
-                    'entities.cart.fields.itemLN',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'itemLK'}
-                  label={i18n(
-                    'entities.cart.fields.itemLK',
-                  )}
-                />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.cart.fields.optionsId',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'attribute'}
+                label={i18n(
+                  'entities.cart.fields.attribute',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n('entities.cart.fields.name')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'slug'}
+                label={i18n('entities.cart.fields.slug')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'qty'}
+                label={i18n('entities.cart.fields.qty')}
+                align="right"
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'price'}
+                label={i18n('entities.cart.fields.price')}
+                align="right"
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'mainPrice'}
+                label={i18n(
+                  'entities.cart.fields.mainPrice',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                label={i18n('entities.cart.fields.photo')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'itemType'}
+                label={i18n(
+                  'entities.cart.fields.itemType',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'itemLN'}
+                label={i18n('entities.cart.fields.itemLN')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'itemLK'}
+                label={i18n('entities.cart.fields.itemLK')}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -232,10 +216,10 @@ function CartListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -246,14 +230,16 @@ function CartListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>
                     </div>
                   </th>
                   <td>
-                    <AttributeOptionsListItem value={row.optionsId} />
+                    <AttributeOptionsListItem
+                      value={row.optionsId}
+                    />
                   </td>
                   <td>{row.attribute}</td>
                   <td>{row.name}</td>

@@ -29,7 +29,7 @@ const fr = {
     attributeoptions: 'Options dattribut',
     administration: 'Administration',
     community: 'Communauté',
-    news: ' Nouvelles',
+    news: ' Nouveauté',
     membership: 'Adhésion',
     accounting: 'Comptabilité',
   },
@@ -2326,7 +2326,7 @@ const fr = {
       label: 'Administrateur',
       description: 'Accès complet à toutes les ressources',
     },
-    custom: {
+    adherent: {
       label: 'Rôle personnalisé',
       description: 'Accès aux rôles personnalisés',
     },
@@ -2586,7 +2586,7 @@ const fr = {
       coding: 'Coding',
       cycling: 'Cycling',
       running: 'Running',
-      customer: 'Customer',
+      adherenter: 'adherenter',
     },
   },
   errors: {
@@ -2609,7 +2609,7 @@ const fr = {
       'Désolé, cette opération nest pas autorisée en mode aperçu.',
   },
 
-  // See https://github.com/jquense/yup#using-a-custom-locale-dictionary
+  // See https://github.com/jquense/yup#using-a-adherent-locale-dictionary
   /* eslint-disable */
   validation: {
     mixed: {
