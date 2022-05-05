@@ -11,13 +11,22 @@ const MenuWrapper = styled.div`
   }
   .side-menue:hover {
     width: 100%;
-    cursor: pointer;
+
     background-color: var(--hover);
   }
   .side-menue {
     padding: 0.1px;
   }
-
+  .label {
+    padding: 50px 10px 30px;
+  }
+  .label a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: -7px;
+    cursor: default;
+  }
   .panel-header {
     font-weight: normal;
   }

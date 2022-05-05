@@ -11,6 +11,7 @@ export default [
     exact: true,
     icon: 'fas fa-home',
     label: i18n('dashboard.menu'),
+    className: 'menu-li side-menue',
     permissionRequired: null,
   },
 
@@ -26,6 +27,7 @@ export default [
     permissionRequired: permissions.associationRead,
     icon: 'fas fa-tasks',
     label: i18n('common.administration'),
+    className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
       '/association',
@@ -58,6 +60,7 @@ export default [
     label: i18n('common.community'),
     haveSubMenu: true,
     subPaths: ['/user', '/partner', '/group'],
+    className: 'menu-li side-menue',
     subMenu: [
       {
         path: '/user',
@@ -89,6 +92,7 @@ export default [
     label: i18n('common.news'),
     haveSubMenu: true,
     subPaths: ['/news', '/news-tag', '/news-category'],
+    className: 'menu-li side-menue',
     subMenu: [
       {
         path: '/news',
@@ -121,6 +125,7 @@ export default [
     label: i18n('common.membership'),
     haveSubMenu: true,
     subPaths: ['/campaign', '/membership', '/formule'],
+    className: 'menu-li side-menue',
     subMenu: [
       {
         path: '/campaign',
@@ -152,6 +157,7 @@ export default [
     label: i18n('common.accounting'),
     haveSubMenu: true,
     subPaths: ['/entree', '/depense', '/charge'],
+    className: 'menu-li side-menue',
     subMenu: [
       {
         path: '/entree',
@@ -177,11 +183,17 @@ export default [
   },
 
   {
+    id: 14,
+    label: i18n('E-commerce'),
+    className: 'label',
+  },
+  {
     id: '6',
     path: '#category',
     permissionRequired: permissions.categoryRead,
     icon: 'fas fa-th-large',
     label: i18n('entities.category.menu'),
+    className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
       '/category',
@@ -217,6 +229,7 @@ export default [
     permissionRequired: permissions.productRead,
     icon: 'fab fa-product-hunt',
     label: i18n('entities.product.menu'),
+    className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
       '/brands',
@@ -257,6 +270,7 @@ export default [
     path: '/order',
     permissionRequired: permissions.orderRead,
     icon: 'fab fa-first-order',
+    className: 'menu-li side-menue',
     label: i18n('entities.order.menu'),
   },
   {
@@ -264,6 +278,7 @@ export default [
     path: '/transaction',
     permissionRequired: permissions.transactionRead,
     icon: 'fas fa-random',
+    className: 'menu-li side-menue',
     label: i18n('entities.transaction.menu'),
   },
   {
@@ -271,6 +286,7 @@ export default [
     path: '/projet',
     permissionRequired: permissions.projetRead,
     icon: 'fas fa-hand-holding-usd',
+    className: 'menu-li side-menue',
     label: i18n('entities.projet.menu'),
   },
   {
@@ -279,6 +295,7 @@ export default [
     permissionRequired: permissions.attributeOptionsRead,
     icon: 'fas fa-dumpster',
     label: i18n('Configuration'),
+    className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
       '/coupons',

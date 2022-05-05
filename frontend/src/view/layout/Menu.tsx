@@ -96,7 +96,7 @@ function Menu(props) {
             .map((menu, index) => (
               <li
                 key={index + 'item'}
-                className={`menu-li side-menue`}
+                className={menu.className}
               >
                 {menu.subMenu ? (
                   <Accordion
