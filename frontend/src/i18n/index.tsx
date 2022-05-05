@@ -36,16 +36,12 @@ const languages: {
 
 export async function init() {
   currentLanguageCode =
-    localStorage.getItem('language') || 'en';
+    localStorage.getItem('language') || 'fr';
   setLanguageCode(currentLanguageCode);
 
   if (currentLanguageCode === 'en') {
     await initEn();
   }
-
-  // if (currentLanguageCode === 'pt-BR') {
-  //   await initPtBr();
-  // }
 
   if (currentLanguageCode === 'fr') {
     await initFr();

@@ -851,28 +851,24 @@ const fr = {
 
     newsCategory: {
       name: 'actualités Catégorie',
-      label: 'Catégories dactualités',
-      menu: 'Catégories dactualités',
+      label: 'Catégories',
+      menu: 'Catégories',
       exporterFileName: 'newsCategory_export',
       list: {
-        menu: 'Catégories dactualités',
-        title: 'Catégories dactualités',
+        menu: 'Catégories',
+        title: 'Catégories',
       },
       create: {
-        success:
-          'Catégorie dactualités enregistrée avec succès',
+        success: 'Catégorie enregistrée avec succès',
       },
       update: {
-        success:
-          'Catégorie dactualités enregistrée avec succès',
+        success: 'Catégorie enregistrée avec succès',
       },
       destroy: {
-        success:
-          'Catégorie dactualités supprimée avec succès',
+        success: 'Catégorie supprimée avec succès',
       },
       destroyAll: {
-        success:
-          'Catégorie dactualités supprimée avec succès',
+        success: 'Catégorie supprimée avec succès',
       },
       edit: {
         title: 'Modifier la catégorie dactualités',
@@ -896,7 +892,7 @@ const fr = {
         title: 'Afficher la catégorie des actualités',
       },
       importer: {
-        title: 'Importer des catégories dactualités',
+        title: 'Importer des catégories',
         fileName: 'newsCategory_import_template',
         hint: 'Les colonnes Fichiers/Images doivent contenir les URL des fichiers séparés par un espace.',
       },
@@ -2151,13 +2147,13 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New Paymentsettings',
+        title: 'Nouveau Paramètre',
       },
       view: {
-        title: 'View Paymentsettings',
+        title: 'Afficher les paramètres',
       },
       importer: {
-        title: 'Import Paymentsettings',
+        title: 'Import les paramètres',
         fileName: 'paymentsettings_import_template',
         hint: 'Les colonnes Fichiers/Images doivent contenir les URL des fichiers séparés par un espace.',
       },
