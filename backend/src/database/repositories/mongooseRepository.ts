@@ -47,7 +47,9 @@ export default class MongooseRepository {
   /**
    * Creates a database session and transaction.
    */
-  static async createSession(connection) {
+  static async createSession(
+    connection,
+  ) {
     if (getConfig().DATABASE_TRANSACTIONS !== 'true') {
       return;
     }
@@ -111,7 +113,7 @@ export default class MongooseRepository {
     await sourceModel.updateMany(
       {
         _id: { $nin: record._id },
-        [sourceProperty]: [{ $in: record[sourceProperty] }],
+        [sourceProperty]:[{ $in: record[sourceProperty] }],
       },
       {
         $pullAll: {
