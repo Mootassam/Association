@@ -10,7 +10,7 @@ import Error403 from '../../errors/Error403';
  * The directory where the files should be uploaded.
  * Change this to a persisted folder.
  */
-const UPLOAD_DIR = os.tmpdir();
+const UPLOAD_DIR = '/upload/';
 
 export default class LocalFileStorage {
   /**
@@ -96,6 +96,8 @@ function ensureDirectoryExistence(filePath) {
 }
 
 function isPathInsideUploadDir(privateUrl) {
-  const uploadUrlWithSlash = UPLOAD_DIR.endsWith(path.sep) ? UPLOAD_DIR : `${UPLOAD_DIR}${path.sep}`;
+  const uploadUrlWithSlash = UPLOAD_DIR.endsWith(path.sep)
+    ? UPLOAD_DIR
+    : `${UPLOAD_DIR}${path.sep}`;
   return privateUrl.indexOf(uploadUrlWithSlash) === 0;
 }
