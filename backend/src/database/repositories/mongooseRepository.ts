@@ -113,7 +113,7 @@ export default class MongooseRepository {
     await sourceModel.updateMany(
       {
         _id: { $nin: record._id },
-        [sourceProperty]: { $in: record[sourceProperty] },
+        [sourceProperty]:[{ $in: record[sourceProperty] }],
       },
       {
         $pullAll: {
