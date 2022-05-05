@@ -12,11 +12,16 @@ const FormWrapper = styled.div`
     font-size: 13px;
     color: #f5222d;
   }
-
+  .app__specification {
+    padding: 14px;
+  }
   .react-datepicker-wrapper {
     width: 100%;
   }
-
+  i {
+    padding-right: 4px;
+    font-size: 14px;
+  }
   .adherent-control {
     z-index: 0;
   }

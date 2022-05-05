@@ -301,6 +301,7 @@ function UserNewForm(props) {
                 loading={saveLoading}
                 iconClass="far fa-save"
               />
+
               {i18n('common.save')}
             </button>
 
@@ -311,6 +312,7 @@ function UserNewForm(props) {
               type="button"
             >
               <i className="fas fa-undo"></i>
+
               {i18n('common.reset')}
             </button>
 
@@ -322,6 +324,7 @@ function UserNewForm(props) {
                 type="button"
               >
                 <i className="fas fa-times"></i>
+
                 {i18n('common.cancel')}
               </button>
             ) : null}
