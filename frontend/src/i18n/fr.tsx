@@ -22,16 +22,17 @@ const fr = {
     end: 'Finir',
     select: 'Sélectionner',
     continue: 'Continuez',
-    filters: 'fFltres',
+    filters: 'Chercher',
     gallery: 'Gallery Imgaes',
     hightlight: 'Suligner',
     attributes: 'Attributs',
     attributeoptions: 'Options dattribut',
     administration: 'Administration',
     community: 'Communauté',
-    news: ' Nouveauté',
-    membership: 'Adhésion',
+    news: ' Actualité',
+    membership: 'Adhésions',
     accounting: 'Comptabilité',
+    configurations: 'Configurations',
   },
 
   app: {
@@ -380,7 +381,7 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'Nouvelles sous-catégories',
+        title: 'Actualité sous-catégories',
       },
       view: {
         title: 'Afficher les sous-catégories',
@@ -442,7 +443,7 @@ const fr = {
       },
       hints: {},
       new: {
-        title: 'Nouvelles catégories enfant',
+        title: 'Actualité catégories enfant',
       },
       view: {
         title: 'Voir les catégories de champs',
@@ -497,7 +498,7 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'Nouvelles taxes',
+        title: 'Actualité taxes',
       },
       view: {
         title: 'Afficher les taxes',
@@ -557,7 +558,7 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'Nouvelles Marques',
+        title: 'Actualité Marques',
       },
       view: {
         title: 'Voir les marques',
@@ -679,10 +680,10 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'Nouvelles offres de campagne',
+        title: 'Actualité offres de campagne',
       },
       view: {
-        title: 'Nouvelles offres de campagne',
+        title: 'Actualité offres de campagne',
       },
       importer: {
         title: 'Importer des offres de campagne',
@@ -880,7 +881,7 @@ const fr = {
         id: 'Identifiant',
         name: 'Nom',
         description: 'Description',
-        news: 'Nouvelles',
+        news: 'Actualité',
         createdAt: 'Créé à',
         updatedAt: 'Mis à jour à',
         createdAtRange: 'Créé à',
@@ -929,7 +930,7 @@ const fr = {
         id: 'Identifiant',
         name: 'Nom',
         description: 'Description',
-        news: 'Nouvelles',
+        news: 'Actualité',
         createdAt: 'Créé à',
         updatedAt: 'Mis à jour à',
         createdAtRange: 'Créé à',
@@ -951,28 +952,28 @@ const fr = {
     },
 
     news: {
-      name: 'Nouvelles',
-      label: 'Nouvelles',
-      menu: 'Nouvelles',
+      name: 'Actualité',
+      label: 'Actualité',
+      menu: 'Actualité',
       exporterFileName: 'news_export',
       list: {
-        menu: 'Nouvelles',
-        title: 'Nouvelles',
+        menu: 'Actualité',
+        title: 'Actualité',
       },
       create: {
-        success: 'Nouvelles enregistrées avec succès',
+        success: 'Actualité enregistrées avec succès',
       },
       update: {
-        success: 'Nouvelles enregistrées avec succès',
+        success: 'Actualité enregistrées avec succès',
       },
       destroy: {
-        success: 'Nouvelles supprimées avec succès',
+        success: 'Actualité supprimées avec succès',
       },
       destroyAll: {
-        success: 'Nouvelles supprimées avec succès',
+        success: 'Actualité supprimées avec succès',
       },
       edit: {
-        title: 'Modifier les nouvelles',
+        title: 'Modifier les Actualité',
       },
       fields: {
         id: 'Identifiant',
@@ -991,33 +992,33 @@ const fr = {
       },
       enumerators: {
         type: {
-          news: 'Nouvelles',
+          news: 'Actualité',
           appelOffre: 'Appel dOffre',
         },
       },
       placeholders: {},
       hints: {},
       new: {
-        title: 'Nouvelles informations',
+        title: 'Actualité informations',
       },
       view: {
-        title: 'Voir les nouvelles',
+        title: 'Voir les Actualité',
       },
       importer: {
-        title: 'Importer des nouvelles',
+        title: 'Importer des Actualité',
         fileName: 'news_import_template',
         hint: 'Les colonnes Fichiers/Images doivent contenir les URL des fichiers séparés par un espace.',
       },
     },
 
     partner: {
-      name: 'Partenaire',
-      label: 'Partenaire',
-      menu: 'Partenaire',
+      name: 'Partenaires',
+      label: 'Partenaires',
+      menu: 'Partenaires',
       exporterFileName: 'partner_export',
       list: {
-        menu: 'Partenaire',
-        title: 'Partenaire',
+        menu: 'Partenaires',
+        title: 'Partenaires',
       },
       create: {
         success: 'Partenaire enregistré avec succès',
@@ -1073,13 +1074,13 @@ const fr = {
     },
 
     group: {
-      name: 'group',
-      label: 'Groups',
-      menu: 'Groups',
+      name: 'Groupes',
+      label: 'Groupes',
+      menu: 'Groupes',
       exporterFileName: 'group_export',
       list: {
-        menu: 'Groups',
-        title: 'Groups',
+        menu: 'Groupes',
+        title: 'Groupes',
       },
       create: {
         success: 'Group enregistré avec succès',
@@ -1159,7 +1160,7 @@ const fr = {
         description: 'Description',
         amountRange: 'Montant',
         amount: 'Montant',
-        membership: 'Adhésion',
+        membership: 'Adhésions',
         createdAt: 'Créé à',
         updatedAt: 'Mis à jour à',
         createdAtRange: 'Créé à',
@@ -1181,28 +1182,28 @@ const fr = {
     },
 
     membership: {
-      name: 'Adhésion',
-      label: 'Adhésions',
-      menu: 'Adhésions',
+      name: 'Adhésions',
+      label: 'Adhésionss',
+      menu: 'Adhésionss',
       exporterFileName: 'membership_export',
       list: {
-        menu: 'Adhésions',
-        title: 'Adhésions',
+        menu: 'Adhésionss',
+        title: 'Adhésionss',
       },
       create: {
-        success: 'Adhésion enregistré avec succès',
+        success: 'Adhésions enregistré avec succès',
       },
       update: {
-        success: 'Adhésion enregistré avec succès',
+        success: 'Adhésions enregistré avec succès',
       },
       destroy: {
-        success: 'Adhésion supprimer avec succèsd',
+        success: 'Adhésions supprimer avec succèsd',
       },
       destroyAll: {
-        success: 'Adhésion(s) supprimer avec succèsd',
+        success: 'Adhésions(s) supprimer avec succèsd',
       },
       edit: {
-        title: 'Modifier Adhésion',
+        title: 'Modifier Adhésions',
       },
       fields: {
         id: 'Identifiant',
@@ -1211,7 +1212,7 @@ const fr = {
         formule: 'formule',
         attachements: 'Pièces jointes',
         member: 'Membre',
-        campaign: 'Campagne',
+        campaign: 'Campagnes',
         amountRange: 'Montant',
         amount: 'Montant',
         createdAt: 'Créé à',
@@ -1232,26 +1233,26 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'Nouvelle Adhésion',
+        title: 'Nouvelle Adhésions',
       },
       view: {
-        title: 'Voir Adhésion',
+        title: 'Voir Adhésions',
       },
       importer: {
-        title: 'Import Adhésions',
+        title: 'Import Adhésionss',
         fileName: 'membership_import_template',
         hint: 'Les colonnes Fichiers/Images doivent contenir les URL des fichiers séparés par un espace.',
       },
     },
 
     campaign: {
-      name: 'Campagne',
-      label: 'Campagne',
-      menu: 'Campagne',
+      name: 'Campagnes',
+      label: 'Campagnes',
+      menu: 'Campagnes',
       exporterFileName: 'campaign_export',
       list: {
-        menu: 'Campagne',
-        title: 'Campagne',
+        menu: 'Campagnes',
+        title: 'Campagnes',
       },
       create: {
         success: 'Campagne enregistré avec succès',
@@ -1271,7 +1272,7 @@ const fr = {
       fields: {
         id: 'Identifiant',
         name: 'Nom',
-        membership: 'Adhésion',
+        membership: 'Adhésions',
         status: 'Statut',
         yearRange: 'An',
         year: 'An',
@@ -2028,7 +2029,7 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'Nouvelles options dattribut',
+        title: 'Actualité options dattribut',
       },
       view: {
         title: 'Afficher les options dattribut',
@@ -2101,29 +2102,32 @@ const fr = {
     },
 
     paymentsettings: {
-      name: 'paymentsettings',
-      label: 'Paymentsettings',
-      menu: 'Paymentsettings',
-      exporterFileName: 'paymentsettings_export',
+      name: 'Paramètres de paiement',
+      label: 'Paramètres de paiement',
+      menu: 'Paramètres paiement',
+      exporterFileName: 'Paramètres_de_paiement_export',
       list: {
-        menu: 'Paymentsettings',
-        title: 'Paymentsettings',
+        menu: 'Paramètres de paiement',
+        title: 'Paramètres de paiement',
       },
       create: {
-        success: 'Paymentsettings enregistré avec succès',
+        success:
+          'Paramètres de paiement enregistré avec succès',
       },
       update: {
-        success: 'Paymentsettings enregistré avec succès',
+        success:
+          'Paramètres de paiement enregistré avec succès',
       },
       destroy: {
-        success: 'Paymentsettings supprimer avec succèsd',
+        success:
+          'Paramètres de paiement supprimer avec succèsd',
       },
       destroyAll: {
         success:
-          'Paymentsettings(s) supprimer avec succèsd',
+          'Paramètres de paiement de paiementsettings(s) supprimer avec succèsd',
       },
       edit: {
-        title: 'Edit Paymentsettings',
+        title: 'Modifier Paramètres de paiement',
       },
       fields: {
         id: 'Id',

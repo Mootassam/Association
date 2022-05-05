@@ -20,6 +20,9 @@ const MenuWrapper = styled.div`
   .label {
     padding: 50px 10px 30px;
   }
+  .menu-logo {
+    margin-bottom: 25px;
+  }
   .label a {
     color: #fff;
     text-decoration: none;

@@ -32,6 +32,7 @@ const en = {
     news: 'News',
     membership: 'MemberShip',
     accounting: 'Accounting',
+    configurations: 'Configurations',
   },
 
   app: {

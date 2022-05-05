@@ -294,7 +294,7 @@ export default [
     path: '#e-commerce',
     permissionRequired: permissions.attributeOptionsRead,
     icon: 'fas fa-dumpster',
-    label: i18n('Configuration'),
+    label: i18n('common.configurations'),
     className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
