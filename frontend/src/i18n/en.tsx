@@ -1,6 +1,6 @@
 const en = {
   common: {
-    or: 'or',
+    or: 'Or',
     cancel: 'Cancel',
     reset: 'Reset',
     save: 'Save',
