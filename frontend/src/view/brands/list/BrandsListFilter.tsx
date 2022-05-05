@@ -35,7 +35,7 @@ const emptyValues = {
   slug: null,
   status: null,
   isPopular: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -48,13 +48,17 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.brands.fields.status'),
-    render: filterRenders.enumerator('entities.brands.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.brands.enumerators.status',
+    ),
   },
   isPopular: {
     label: i18n('entities.brands.fields.isPopular'),
-    render: filterRenders.enumerator('entities.brands.enumerators.isPopular',),
+    render: filterRenders.enumerator(
+      'entities.brands.enumerators.isPopular',
+    ),
   },
-}
+};
 
 function BrandsListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -75,7 +79,12 @@ function BrandsListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -116,46 +125,54 @@ function BrandsListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.brands.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="slug"
-                        label={i18n('entities.brands.fields.slug')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.brands.fields.status')}
-                        options={brandsEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.brands.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="isPopular"
-                        label={i18n('entities.brands.fields.isPopular')}
-                        options={brandsEnumerators.isPopular.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.brands.enumerators.isPopular.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.brands.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="slug"
+                    label={i18n(
+                      'entities.brands.fields.slug',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.brands.fields.status',
+                    )}
+                    options={brandsEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.brands.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="isPopular"
+                    label={i18n(
+                      'entities.brands.fields.isPopular',
+                    )}
+                    options={brandsEnumerators.isPopular.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.brands.enumerators.isPopular.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -168,7 +185,7 @@ function BrandsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -180,7 +197,7 @@ function BrandsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

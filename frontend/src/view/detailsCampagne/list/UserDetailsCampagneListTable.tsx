@@ -18,10 +18,8 @@ import PalierListItem from 'src/view/palier/list/PalierListItem';
 //import  CampagneListItem from 'src/view/campagne/list/CampagneListItem';
 
 function UserDetailsCampagneListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -99,17 +97,17 @@ function UserDetailsCampagneListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
@@ -117,47 +115,45 @@ function UserDetailsCampagneListTable(props) {
                 )}
               </TableColumnHeader>
               <TableColumnHeader
-                  label={i18n(
-                    'Titre Campagne',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.detailsCampagne.fields.palier',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'statutPay'}
-                  label={i18n(
-                    'entities.detailsCampagne.fields.statutPay',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'montant'}
-                  label={i18n(
-                    'entities.detailsCampagne.fields.montant',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.detailsCampagne.fields.facture',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'typePay'}
-                  label={i18n(
-                    'entities.detailsCampagne.fields.typePay',
-                  )}
-                />
+                label={i18n('Titre Campagne')}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.detailsCampagne.fields.palier',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'statutPay'}
+                label={i18n(
+                  'entities.detailsCampagne.fields.statutPay',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'montant'}
+                label={i18n(
+                  'entities.detailsCampagne.fields.montant',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.detailsCampagne.fields.facture',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'typePay'}
+                label={i18n(
+                  'entities.detailsCampagne.fields.typePay',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -182,10 +178,10 @@ function UserDetailsCampagneListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -196,15 +192,13 @@ function UserDetailsCampagneListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>
                     </div>
                   </th>
-                  <td>
-                    {row.titre}
-                  </td>
+                  <td>{row.titre}</td>
                   <td>
                     <PalierListItem value={row.palier} />
                   </td>
@@ -215,13 +209,9 @@ function UserDetailsCampagneListTable(props) {
                         )
                       : null}
                   </td>
+                  <td>{row.montant}</td>
                   <td>
-                    {row.montant}
-                  </td>
-                  <td>
-                    <FilesListView
-                      value={row.facture}
-                    />
+                    <FilesListView value={row.facture} />
                   </td>
                   <td>
                     {row.typePay

@@ -18,15 +18,9 @@ import ImagesListView from 'src/view/shared/table/ImagesListView';
 import moment from 'moment';
 
 function DonsListTable(props) {
-
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
-  const [
-    recordMontant,
-    setRecordMontant,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
+  const [recordMontant, setRecordMontant] = useState(null);
   const dispatch = useDispatch();
   const { setValue, getValues } = useForm();
   const findLoading = useSelector(selectors.selectLoading);
@@ -77,11 +71,12 @@ function DonsListTable(props) {
       }),
     );
   };
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] =
+    useState<boolean>(false);
   const doCloseModal = () => {
     setModalVisible(false);
   };
-  let donsMontant
+  let donsMontant;
   const doOpenModal = (montant) => {
     donsMontant = montant;
     setRecordMontant(montant);
@@ -116,10 +111,7 @@ function DonsListTable(props) {
         props.donsMontant,
       ]);
     } else {
-      setValue(name, [
-        record,
-        props.donsMontant,
-      ]);
+      setValue(name, [record, props.donsMontant]);
     }
 
     doCloseModal();
@@ -133,17 +125,17 @@ function DonsListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
@@ -169,9 +161,7 @@ function DonsListTable(props) {
                 hasRows={hasRows}
                 sorter={sorter}
                 name={'montant'}
-                label={i18n(
-                  'entities.dons.fields.montant',
-                )}
+                label={i18n('entities.dons.fields.montant')}
                 align="right"
               />
               <TableColumnHeader
@@ -212,10 +202,10 @@ function DonsListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -226,7 +216,7 @@ function DonsListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>
@@ -236,7 +226,9 @@ function DonsListTable(props) {
                     <UserListItem value={row.adherent} />
                   </td>
                   <td style={{ textAlign: 'right' }}>
-                    {moment(row.createdAt).format('DD-MM-YYYY')}
+                    {moment(row.createdAt).format(
+                      'DD-MM-YYYY',
+                    )}
                   </td>
                   <td style={{ textAlign: 'right' }}>
                     {row.montant}
@@ -244,12 +236,14 @@ function DonsListTable(props) {
                   <td style={{ textAlign: 'center' }}>
                     {row.typePaiement
                       ? i18n(
-                        `entities.dons.enumerators.typePaiement.${row.typePaiement}`,
-                      )
+                          `entities.dons.enumerators.typePaiement.${row.typePaiement}`,
+                        )
                       : null}
                   </td>
                   <td style={{ textAlign: 'center' }}>
-                    <ImagesListView value={row.attachements} />
+                    <ImagesListView
+                      value={row.attachements}
+                    />
                   </td>
                   <td className="td-actions">
                     <Link

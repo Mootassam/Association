@@ -7,7 +7,7 @@ import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem'
 import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
 import TagsFormItem from 'src/view/shared/form/items/TagsFormItem';
 import FormWrapper from 'src/view/shared/styles/FormWrapper';
-import Calendar from 'react-calendar'
+import Calendar from 'react-calendar';
 import ButtonIcon from 'src/view/shared/ButtonIcon';
 import * as yup from 'yup';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
@@ -28,68 +28,45 @@ const singleSchema = yup.object().shape({
       // "min": 1
     },
   ),
-  phoneNumber: yupFormSchemas.string(
-    i18n('phoneNumber'),
-    {
-      // "matches": /^[0-9]/,
-      "max": 24,
-    },
-  ),
+  phoneNumber: yupFormSchemas.string(i18n('phoneNumber'), {
+    // "matches": /^[0-9]/,
+    max: 24,
+  }),
 
-  secteur: yupFormSchemas.enumerator(
-    i18n('secteur'),
-    {
-      "options": userSecteur.secteur
-    },
-  ),
+  secteur: yupFormSchemas.enumerator(i18n('secteur'), {
+    options: userSecteur.secteur,
+  }),
 
-  employeur: yupFormSchemas.string(i18n('Employeur'),
-    {
-    },
-  ),
-  profession: yupFormSchemas.string(i18n('Profession'),
-    {
-    },
-  ),
-  adresse: yupFormSchemas.string(i18n('adresse'),
-    {
-    },
-  ),
-  fullName: yupFormSchemas.string(i18n('fullName'),
-    {
-    },
-  ),
-  cin: yupFormSchemas.integer(i18n('cin'),
-    {
-      "max": 8,
-    },
-  ),
+  employeur: yupFormSchemas.string(i18n('Employeur'), {}),
+  profession: yupFormSchemas.string(i18n('Profession'), {}),
+  adresse: yupFormSchemas.string(i18n('adresse'), {}),
+  fullName: yupFormSchemas.string(i18n('fullName'), {}),
+  cin: yupFormSchemas.integer(i18n('cin'), {
+    max: 8,
+  }),
   date_naissance: yupFormSchemas.date(
     i18n('Date Naissance'),
-    {
-    },
+    {},
   ),
   etat_civil: yupFormSchemas.enumerator(
     i18n('user.fields.Etat_Civil'),
     {
-      "options": userEtat.Etat
+      options: userEtat.Etat,
     },
   ),
   status: yupFormSchemas.enumerator(
     i18n('user.fields.status'),
     {
-      "options": userEnumerators.status,
-    }
-  ),
-  lien_facebook: yupFormSchemas.string(i18n('Lien Facebook'),
-    {
+      options: userEnumerators.status,
     },
+  ),
+  lien_facebook: yupFormSchemas.string(
+    i18n('Lien Facebook'),
+    {},
   ),
   parrain: yupFormSchemas.relationToOne(
     i18n('user.fields.parrain'),
-    {
-    }
-
+    {},
   ),
 });
 const multipleSchema = yup.object().shape({
@@ -107,15 +84,15 @@ const multipleSchema = yup.object().shape({
         .max(255)
         .required(),
     )
-    .required().min(1),
+    .required()
+    .min(1),
   roles: yupFormSchemas.stringArray(
     i18n('user.fields.roles'),
     {
       required: false,
-      // min: 1 
+      // min: 1
     },
-  )
-
+  ),
 });
 
 function UserNewForm(props) {
@@ -127,23 +104,23 @@ function UserNewForm(props) {
     : multipleSchema;
 
   const [initialValues] = useState(() => ({
-
     emails: [],
     email: '',
     roles: [],
     phoneNumber: '',
-    secteur: "",
+    secteur: '',
     employeur: '',
     profession: '',
     adresse: '',
     fullName: '',
     cin: '',
-    date_naissance: record.date_naissance ? moment(record.date_naissance, 'DD-MM-YYYY').toDate() : null,
-    etat_civil: "",
+    date_naissance: record.date_naissance
+      ? moment(record.date_naissance, 'DD-MM-YYYY').toDate()
+      : null,
+    etat_civil: '',
     status: [''],
     lien_facebook: '',
     parrain: '',
-
   }));
 
   const form = useForm({
@@ -156,7 +133,7 @@ function UserNewForm(props) {
 
     data.roles[0] = 'membre';
     data.status = 'invited';
-    data.parrain = data.parrain.id
+    data.parrain = data.parrain.id;
 
     if (data.email) {
       data.emails = [data.email];
@@ -177,7 +154,12 @@ function UserNewForm(props) {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+          <Row
+            style={{
+              backgroundColor: '#f0f2f5',
+              paddingBottom: '10px',
+            }}
+          >
             <Col sm={4}>
               <InputFormItem
                 name="emails[0]"
@@ -211,7 +193,6 @@ function UserNewForm(props) {
                 name="phoneNumber"
                 label={i18n('user.fields.phoneNumber')}
                 autoComplete="phoneNumber"
-
               />
             </Col>
           </Row>
@@ -220,7 +201,6 @@ function UserNewForm(props) {
               <SelectFormItem
                 name="secteur"
                 label={i18n('user.fields.sector')}
-
                 options={userSecteur.secteur.map(
                   (value) => ({
                     value,
@@ -233,38 +213,38 @@ function UserNewForm(props) {
               <InputFormItem
                 name="employeur"
                 label={i18n('user.fields.employer')}
-
               />
             </Col>
             <Col sm={4}>
               <InputFormItem
                 name="profession"
                 label={i18n('user.fields.profession')}
-
               />
             </Col>
           </Row>
 
-          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+          <Row
+            style={{
+              backgroundColor: '#f0f2f5',
+              paddingBottom: '10px',
+            }}
+          >
             <Col sm={4}>
               <InputFormItem
                 name="adresse"
                 label={i18n('user.fields.address')}
-
               />
             </Col>
             <Col sm={4}>
               <InputNumberFormItem
                 name="cin"
                 label={i18n('C.I.N')}
-
               />
             </Col>
             <Col sm={4}>
               <DatePickerFormItem
                 name="date_naissance"
                 label={i18n('user.fields.birthDate')}
-
               />
             </Col>
           </Row>
@@ -274,13 +254,12 @@ function UserNewForm(props) {
               <SelectFormItem
                 name="etat_civil"
                 label={i18n('user.fields.maritalStatus')}
-
-                options={userEtat.Etat.map(
-                  (value) => ({
-                    value,
-                    label: i18n(`user.maritalStatus.${value}`),
-                  }),
-                )}
+                options={userEtat.Etat.map((value) => ({
+                  value,
+                  label: i18n(
+                    `user.maritalStatus.${value}`,
+                  ),
+                }))}
               />
             </Col>
             {/* <Col sm={4}>
@@ -300,14 +279,12 @@ function UserNewForm(props) {
               <InputFormItem
                 name="lien_facebook"
                 label={i18n('user.fields.facebookLink')}
-
               />
             </Col>
             <Col sm={4}>
               <UserAdherantAutocompleteFormItem
                 name="parrain"
                 label={i18n('user.fields.sponsor')}
-
                 showCreate={!props.modal}
               />
             </Col>
@@ -323,7 +300,7 @@ function UserNewForm(props) {
               <ButtonIcon
                 loading={saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -333,7 +310,7 @@ function UserNewForm(props) {
               className="btn btn-light"
               type="button"
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -344,7 +321,7 @@ function UserNewForm(props) {
                 className="btn btn-light"
                 type="button"
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

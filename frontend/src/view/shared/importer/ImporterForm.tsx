@@ -35,7 +35,7 @@ export default (selectors, actions) => {
           className="btn btn-primary px-4 mb-2"
           style={{ cursor: 'pointer' }}
         >
-          <i className="fas fa-plus" />{' '}
+          <i className="fas fa-plus" />
           {i18n('fileUploader.upload')}
           <input
             style={{ display: 'none' }}

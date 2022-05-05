@@ -5,7 +5,28 @@ const MenuWrapper = styled.div`
     padding: 5px;
     border-top: none;
   }
+  i {
+    padding-right: 15px;
+    font-size: 18px;
+  }
+  .side-menue:hover {
+    width: 100%;
 
+    background-color: var(--hover);
+  }
+  .side-menue {
+    padding: 0.1px;
+  }
+  .label {
+    padding: 50px 10px 30px;
+  }
+  .label a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: -7px;
+    cursor: default;
+  }
   .panel-header {
     font-weight: normal;
   }
@@ -90,8 +111,8 @@ const MenuWrapper = styled.div`
   ,
   .menu-li a:hover {
     text-decoration: none;
-    background-color: var(--secondary);
-    color: var(--primary);
+    background-color: var(--hover);
+    color: var(--white);
   }
 `;
 

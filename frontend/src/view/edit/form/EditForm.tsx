@@ -16,19 +16,19 @@ const schema = yup.object().shape({
   campaignTitle: yupFormSchemas.string(
     i18n('entities.edit.fields.campaignTitle'),
     {
-      "required": true
+      required: true,
     },
   ),
   campaignLastDateTime: yupFormSchemas.datetime(
     i18n('entities.edit.fields.campaignLastDateTime'),
     {
-      "required": true
+      required: true,
     },
   ),
   status: yupFormSchemas.enumerator(
     i18n('entities.edit.fields.status'),
     {
-      "options": editEnumerators.status
+      options: editEnumerators.status,
     },
   ),
 });
@@ -39,7 +39,9 @@ function EditForm(props) {
 
     return {
       campaignTitle: record.campaignTitle,
-      campaignLastDateTime: record.campaignLastDateTime ? moment(record.campaignLastDateTime).toDate() : null,
+      campaignLastDateTime: record.campaignLastDateTime
+        ? moment(record.campaignLastDateTime).toDate()
+        : null,
       status: record.status,
     };
   });
@@ -68,15 +70,19 @@ function EditForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="campaignTitle"
-                label={i18n('entities.edit.fields.campaignTitle')}
+                label={i18n(
+                  'entities.edit.fields.campaignTitle',
+                )}
                 required={true}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <DatePickerFormItem
                 name="campaignLastDateTime"
-                label={i18n('entities.edit.fields.campaignLastDateTime')}
+                label={i18n(
+                  'entities.edit.fields.campaignLastDateTime',
+                )}
                 required={true}
                 showTimeInput
               />
@@ -108,7 +114,8 @@ function EditForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
+              &nbsp;
               {i18n('common.save')}
             </button>
 
@@ -118,7 +125,8 @@ function EditForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
+              &nbsp;
               {i18n('common.reset')}
             </button>
 
@@ -129,7 +137,7 @@ function EditForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>&nbsp;
                 {i18n('common.cancel')}
               </button>
             ) : null}

@@ -25,17 +25,10 @@ const languages: {
     dateFns: null,
     dictionary: null,
   },
-  es: {
-    id: 'es',
-    label: 'Español',
-    flag: '/images/flags/Spain.png',
-    dateFns: null,
-    dictionary: null,
-  },
-  'pt-BR': {
-    id: 'pt-BR',
-    label: 'Português',
-    flag: '/images/flags/Brazil.png',
+  fr: {
+    id: 'fr',
+    label: 'Français',
+    flag: '/images/flags/France.png',
     dateFns: null,
     dictionary: null,
   },
@@ -50,34 +43,34 @@ export async function init() {
     await initEn();
   }
 
-  if (currentLanguageCode === 'pt-BR') {
-    await initPtBr();
-  }
+  // if (currentLanguageCode === 'pt-BR') {
+  //   await initPtBr();
+  // }
 
-  if (currentLanguageCode === 'es') {
-    await initEs();
+  if (currentLanguageCode === 'fr') {
+    await initFr();
   }
 }
 
-async function initEs() {
-  const language = languages['es'];
+async function initFr() {
+  const language = languages['fr'];
 
   // @ts-ignore
-  const momentLocale = (await import('moment/locale/es'))
+  const momentLocale = (await import('moment/locale/fr'))
     .default;
 
   language.dateFns = (
-    await import('date-fns/locale/es')
+    await import('date-fns/locale/fr')
   ).default;
 
-  registerLocale('es', language.dateFns);
-  setDefaultLocale('es');
+  registerLocale('fr', language.dateFns);
+  setDefaultLocale('fr');
 
   language.dictionary = (
-    await import('src/i18n/es')
+    await import('src/i18n/fr')
   ).default;
 
-  moment.locale('es', momentLocale);
+  moment.locale('fr', momentLocale);
 
   if (language.dictionary.validation) {
     setYupLocale(language.dictionary.validation);
@@ -86,32 +79,32 @@ async function initEs() {
   return language;
 }
 
-async function initPtBr() {
-  const language = languages['pt-BR'];
+// async function initPtBr() {
+//   const language = languages['pt-BR'];
 
-  // @ts-ignore
-  const momentLocale = (await import('moment/locale/pt-br'))
-    .default;
+//   // @ts-ignore
+//   const momentLocale = (await import('moment/locale/pt-br'))
+//     .default;
 
-  language.dateFns = (
-    await import('date-fns/locale/pt-BR')
-  ).default;
+//   language.dateFns = (
+//     await import('date-fns/locale/pt-BR')
+//   ).default;
 
-  registerLocale('pt-BR', language.dateFns);
-  setDefaultLocale('pt-BR');
+//   registerLocale('pt-BR', language.dateFns);
+//   setDefaultLocale('pt-BR');
 
-  language.dictionary = (
-    await import('src/i18n/pt-BR')
-  ).default;
+//   language.dictionary = (
+//     await import('src/i18n/pt-BR')
+//   ).default;
 
-  moment.locale('pt-BR', momentLocale);
+//   moment.locale('pt-BR', momentLocale);
 
-  if (language.dictionary.validation) {
-    setYupLocale(language.dictionary.validation);
-  }
+//   if (language.dictionary.validation) {
+//     setYupLocale(language.dictionary.validation);
+//   }
 
-  return language;
-}
+//   return language;
+// }
 
 async function initEn() {
   const language = languages['en'];
@@ -137,14 +130,14 @@ function format(message, args) {
   }
 
   try {
-    return message.replace(/{(\d+)}/g, function (
-      match,
-      number,
-    ) {
-      return typeof args[number] != 'undefined'
-        ? args[number]
-        : match;
-    });
+    return message.replace(
+      /{(\d+)}/g,
+      function (match, number) {
+        return typeof args[number] != 'undefined'
+          ? args[number]
+          : match;
+      },
+    );
   } catch (error) {
     console.error(message, error);
     throw error;

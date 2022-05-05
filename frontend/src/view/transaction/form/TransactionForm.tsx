@@ -76,23 +76,29 @@ function TransactionForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="amount"
-                label={i18n('entities.transaction.fields.amount')}  
+                label={i18n(
+                  'entities.transaction.fields.amount',
+                )}
                 required={false}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <UserAutocompleteFormItem  
+              <UserAutocompleteFormItem
                 name="email"
-                label={i18n('entities.transaction.fields.email')}
+                label={i18n(
+                  'entities.transaction.fields.email',
+                )}
                 required={false}
                 showCreate={!props.modal}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <TaxesAutocompleteFormItem  
+              <TaxesAutocompleteFormItem
                 name="tax"
-                label={i18n('entities.transaction.fields.tax')}
+                label={i18n(
+                  'entities.transaction.fields.tax',
+                )}
                 required={false}
                 showCreate={!props.modal}
               />
@@ -100,21 +106,27 @@ function TransactionForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="currencySign"
-                label={i18n('entities.transaction.fields.currencySign')}
+                label={i18n(
+                  'entities.transaction.fields.currencySign',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="currencyValue"
-                label={i18n('entities.transaction.fields.currencyValue')}
+                label={i18n(
+                  'entities.transaction.fields.currencyValue',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <OrderAutocompleteFormItem  
+              <OrderAutocompleteFormItem
                 name="orderId"
-                label={i18n('entities.transaction.fields.orderId')}
+                label={i18n(
+                  'entities.transaction.fields.orderId',
+                )}
                 required={false}
                 showCreate={!props.modal}
                 mode="multiple"
@@ -132,7 +144,8 @@ function TransactionForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
+              &nbsp;
               {i18n('common.save')}
             </button>
 
@@ -142,7 +155,8 @@ function TransactionForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
+              &nbsp;
               {i18n('common.reset')}
             </button>
 
@@ -153,7 +167,7 @@ function TransactionForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>&nbsp;
                 {i18n('common.cancel')}
               </button>
             ) : null}

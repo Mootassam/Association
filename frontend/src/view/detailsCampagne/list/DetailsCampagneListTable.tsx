@@ -17,10 +17,8 @@ import FilesListView from 'src/view/shared/table/FileListView';
 import PalierListItem from 'src/view/palier/list/PalierListItem';
 
 function DetailsCampagneListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -98,66 +96,66 @@ function DetailsCampagneListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.detailsCampagne.fields.adherent',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.detailsCampagne.fields.palier',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'statutPay'}
-                  label={i18n(
-                    'entities.detailsCampagne.fields.statutPay',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'montant'}
-                  label={i18n(
-                    'entities.detailsCampagne.fields.montant',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.detailsCampagne.fields.facture',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'typePay'}
-                  label={i18n(
-                    'entities.detailsCampagne.fields.typePay',
-                  )}
-                />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.detailsCampagne.fields.adherent',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.detailsCampagne.fields.palier',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'statutPay'}
+                label={i18n(
+                  'entities.detailsCampagne.fields.statutPay',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'montant'}
+                label={i18n(
+                  'entities.detailsCampagne.fields.montant',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.detailsCampagne.fields.facture',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'typePay'}
+                label={i18n(
+                  'entities.detailsCampagne.fields.typePay',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -182,10 +180,10 @@ function DetailsCampagneListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -196,7 +194,7 @@ function DetailsCampagneListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>
@@ -219,9 +217,7 @@ function DetailsCampagneListTable(props) {
                     {row.montant}
                   </td>
                   <td>
-                    <FilesListView
-                      value={row.facture}
-                    />
+                    <FilesListView value={row.facture} />
                   </td>
                   <td>
                     {row.typePay

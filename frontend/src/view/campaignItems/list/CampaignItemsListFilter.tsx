@@ -26,18 +26,22 @@ const schema = yup.object().shape({
 const emptyValues = {
   status: null,
   isFeature: null,
-}
+};
 
 const previewRenders = {
   status: {
     label: i18n('entities.campaignItems.fields.status'),
-    render: filterRenders.enumerator('entities.campaignItems.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.campaignItems.enumerators.status',
+    ),
   },
   isFeature: {
     label: i18n('entities.campaignItems.fields.isFeature'),
-    render: filterRenders.enumerator('entities.campaignItems.enumerators.isFeature',),
+    render: filterRenders.enumerator(
+      'entities.campaignItems.enumerators.isFeature',
+    ),
   },
-}
+};
 
 function CampaignItemsListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -58,7 +62,12 @@ function CampaignItemsListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -99,34 +108,38 @@ function CampaignItemsListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.campaignItems.fields.status')}
-                        options={campaignItemsEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.campaignItems.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="isFeature"
-                        label={i18n('entities.campaignItems.fields.isFeature')}
-                        options={campaignItemsEnumerators.isFeature.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.campaignItems.enumerators.isFeature.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.campaignItems.fields.status',
+                    )}
+                    options={campaignItemsEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.campaignItems.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="isFeature"
+                    label={i18n(
+                      'entities.campaignItems.fields.isFeature',
+                    )}
+                    options={campaignItemsEnumerators.isFeature.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.campaignItems.enumerators.isFeature.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -139,7 +152,7 @@ function CampaignItemsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -151,7 +164,7 @@ function CampaignItemsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

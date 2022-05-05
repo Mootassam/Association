@@ -59,11 +59,12 @@ export default async (req, res) => {
      * Upload Credentials has the URL and the fields to be sent
      * to the upload server.
      */
-    const uploadCredentials = await FileStorage.uploadCredentials(
-      privateUrl,
-      maxSizeInBytes,
-      publicRead,
-    );
+    const uploadCredentials =
+      await FileStorage.uploadCredentials(
+        privateUrl,
+        maxSizeInBytes,
+        publicRead,
+      );
 
     await ApiResponseHandler.success(req, res, {
       privateUrl,

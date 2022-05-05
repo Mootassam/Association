@@ -14,10 +14,8 @@ export default (
 ) => {
   function ImporterToolbar() {
     const dispatch = useDispatch();
-    const [
-      resetConfirmVisible,
-      setResetConfirmVisible,
-    ] = useState(false);
+    const [resetConfirmVisible, setResetConfirmVisible] =
+      useState(false);
     const [
       discardConfirmVisible,
       setDiscardConfirmVisible,
@@ -80,7 +78,7 @@ export default (
               type="button"
               onClick={doDownloadTemplate}
             >
-              <ButtonIcon iconClass="far fa-file-excel" />{' '}
+              <ButtonIcon iconClass="far fa-file-excel" />
               {i18n('importer.form.downloadTemplate')}
             </button>
 
@@ -106,8 +104,7 @@ export default (
             className="btn btn-primary"
             type="button"
           >
-            <ButtonIcon iconClass="far fa-save" />{' '}
-            {i18n('common.import')}
+            <ButtonIcon iconClass="far fa-save" />
           </button>
         )}
 
@@ -117,7 +114,7 @@ export default (
             className="btn btn-light"
             onClick={doPause}
           >
-            <ButtonIcon classIcon="fas fa-pause" />{' '}
+            <ButtonIcon classIcon="fas fa-pause" />
             {i18n('common.pause')}
           </button>
         )}
@@ -128,8 +125,7 @@ export default (
             type="button"
             onClick={doOpenResetConfirmModal}
           >
-            <ButtonIcon iconClass="far fa-file" />{' '}
-            {i18n('common.new')}
+            <ButtonIcon iconClass="far fa-file" />
           </button>
         )}
 
@@ -139,7 +135,7 @@ export default (
             className="btn btn-light"
             onClick={doOpenDiscardConfirmModal}
           >
-            <ButtonIcon iconClass="far fa-trash-alt" />{' '}
+            <ButtonIcon iconClass="far fa-trash-alt" />
             {i18n('common.discard')}
           </button>
         )}

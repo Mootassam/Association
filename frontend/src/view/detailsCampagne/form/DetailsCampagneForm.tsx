@@ -21,27 +21,26 @@ const schema = yup.object().shape({
   adherent: yupFormSchemas.relationToOne(
     i18n('entities.detailsCampagne.fields.adherent'),
     {
-      "required": true
+      required: true,
     },
   ),
   palier: yupFormSchemas.relationToOne(
     i18n('entities.detailsCampagne.fields.palier'),
     {
-      "required": true
+      required: true,
     },
   ),
   statutPay: yupFormSchemas.enumerator(
     i18n('entities.detailsCampagne.fields.statutPay'),
     {
-      "options": detailsCampagneEnumerators.statutPay,
-      "required": true,
-
+      options: detailsCampagneEnumerators.statutPay,
+      required: true,
     },
   ),
   montant: yupFormSchemas.decimal(
     i18n('entities.detailsCampagne.fields.montant'),
     {
-      "required": true
+      required: true,
     },
   ),
   facture: yupFormSchemas.files(
@@ -51,8 +50,8 @@ const schema = yup.object().shape({
   typePay: yupFormSchemas.enumerator(
     i18n('entities.detailsCampagne.fields.typePay'),
     {
-      "options": detailsCampagneEnumerators.typePay,
-      "required": true,
+      options: detailsCampagneEnumerators.typePay,
+      required: true,
     },
   ),
 });
@@ -69,7 +68,6 @@ function DetailsCampagneForm(props) {
       typePay: record.typePay,
       campagne: props.recordIdcampagne,
       titre: props.recordTitrecampagne,
-
     };
   });
   const form = useForm({
@@ -85,10 +83,8 @@ function DetailsCampagneForm(props) {
       props.onSubmit(props.record?.id, values);
     } else {
       props.onSubmit(props.record?.id, values);
-
     }
-  }
-
+  };
 
   const onReset = () => {
     Object.keys(initialValues).forEach((key) => {
@@ -100,22 +96,35 @@ function DetailsCampagneForm(props) {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
-            {props.record ?
+          <Row
+            style={{
+              backgroundColor: '#f0f2f5',
+              paddingBottom: '10px',
+            }}
+          >
+            {props.record ? (
               <Col sm={4}>
                 <TextViewItem
-                  label={i18n('entities.campagne.name') + ' ' + i18n('entities.campagne.fields.titre')}
+                  label={
+                    i18n('entities.campagne.name') +
+                    ' ' +
+                    i18n('entities.campagne.fields.titre')
+                  }
                   value={props.record.titre}
                 />
               </Col>
-              :
+            ) : (
               <Col sm={4}></Col>
-            }
+            )}
             <Col sm={4}>
               <UserAutocompleteFormItem
                 name="adherent"
-                label={i18n('entities.detailsCampagne.fields.adherent')}
-                placeholder={i18n('entities.detailsCampagne.placeholders.adherent')}
+                label={i18n(
+                  'entities.detailsCampagne.fields.adherent',
+                )}
+                placeholder={i18n(
+                  'entities.detailsCampagne.placeholders.adherent',
+                )}
                 required={true}
                 showCreate={false}
               />
@@ -123,7 +132,9 @@ function DetailsCampagneForm(props) {
             <Col sm={4}>
               <PalierAutocompleteFormItem
                 name="palier"
-                label={i18n('entities.detailsCampagne.fields.palier')}
+                label={i18n(
+                  'entities.detailsCampagne.fields.palier',
+                )}
                 required={true}
                 showCreate={!props.modal}
               />
@@ -133,14 +144,18 @@ function DetailsCampagneForm(props) {
             <Col sm={4}>
               <InputFormItem
                 name="montant"
-                label={i18n('entities.detailsCampagne.fields.montant')}
+                label={i18n(
+                  'entities.detailsCampagne.fields.montant',
+                )}
                 required={true}
               />
             </Col>
             <Col sm={4}>
               <SelectFormItem
                 name="typePay"
-                label={i18n('entities.detailsCampagne.fields.typePay')}
+                label={i18n(
+                  'entities.detailsCampagne.fields.typePay',
+                )}
                 options={detailsCampagneEnumerators.typePay.map(
                   (value) => ({
                     value,
@@ -155,7 +170,9 @@ function DetailsCampagneForm(props) {
             <Col sm={4}>
               <SelectFormItem
                 name="statutPay"
-                label={i18n('entities.detailsCampagne.fields.statutPay')}
+                label={i18n(
+                  'entities.detailsCampagne.fields.statutPay',
+                )}
                 options={detailsCampagneEnumerators.statutPay.map(
                   (value) => ({
                     value,
@@ -168,13 +185,22 @@ function DetailsCampagneForm(props) {
               />
             </Col>
           </Row>
-          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+          <Row
+            style={{
+              backgroundColor: '#f0f2f5',
+              paddingBottom: '10px',
+            }}
+          >
             <Col sm={12}>
               <FilesFormItem
                 name="facture"
-                label={i18n('entities.detailsCampagne.fields.facture')}
+                label={i18n(
+                  'entities.detailsCampagne.fields.facture',
+                )}
                 required={false}
-                storage={Storage.values.detailsCampagneFacture}
+                storage={
+                  Storage.values.detailsCampagneFacture
+                }
                 max={undefined}
                 formats={undefined}
               />
@@ -182,14 +208,10 @@ function DetailsCampagneForm(props) {
           </Row>
           <div className="row">
             <div style={{ display: 'none' }}>
-              <InputFormItem
-                name="campagne"
-              />
+              <InputFormItem name="campagne" />
             </div>
             <div style={{ display: 'none' }}>
-              <InputFormItem
-                name="titre"
-              />
+              <InputFormItem name="titre" />
             </div>
           </div>
           <div className="form-buttons">
@@ -202,7 +224,8 @@ function DetailsCampagneForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
+              &nbsp;
               {i18n('common.save')}
             </button>
 
@@ -212,7 +235,8 @@ function DetailsCampagneForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
+              &nbsp;
               {i18n('common.reset')}
             </button>
 
@@ -221,17 +245,14 @@ function DetailsCampagneForm(props) {
                 className="btn btn-light"
                 type="button"
                 disabled={props.saveLoading}
-                onClick={() => props.onCancel()
-                }
+                onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>&nbsp;
                 {i18n('common.cancel')}
               </button>
             ) : null}
           </div>
         </form>
-
-
       </FormProvider>
     </FormWrapper>
   );

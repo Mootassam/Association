@@ -36,7 +36,7 @@ const emptyValues = {
   priceRange: [],
   status: null,
   type: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -49,13 +49,15 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.state.fields.status'),
-    render: filterRenders.enumerator('entities.state.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.state.enumerators.status',
+    ),
   },
   type: {
     label: i18n('entities.state.fields.type'),
     render: filterRenders.generic(),
   },
-}
+};
 
 function StateListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -76,7 +78,12 @@ function StateListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -117,38 +124,46 @@ function StateListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.state.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="priceRange"
-                        label={i18n('entities.state.fields.priceRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.state.fields.status')}
-                        options={stateEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.state.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="type"
-                        label={i18n('entities.state.fields.type')}      
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.state.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="priceRange"
+                    label={i18n(
+                      'entities.state.fields.priceRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.state.fields.status',
+                    )}
+                    options={stateEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.state.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="type"
+                    label={i18n(
+                      'entities.state.fields.type',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -161,7 +176,7 @@ function StateListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -173,7 +188,7 @@ function StateListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

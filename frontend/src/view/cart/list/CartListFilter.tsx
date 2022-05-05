@@ -54,7 +54,7 @@ const emptyValues = {
   itemType: null,
   itemLN: null,
   itemLK: null,
-}
+};
 
 const previewRenders = {
   attribute: {
@@ -93,7 +93,7 @@ const previewRenders = {
     label: i18n('entities.cart.fields.itemLK'),
     render: filterRenders.generic(),
   },
-}
+};
 
 function CartListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -114,7 +114,12 @@ function CartListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -155,60 +160,78 @@ function CartListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="attribute"
-                        label={i18n('entities.cart.fields.attribute')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.cart.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="slug"
-                        label={i18n('entities.cart.fields.slug')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="qtyRange"
-                        label={i18n('entities.cart.fields.qtyRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="priceRange"
-                        label={i18n('entities.cart.fields.priceRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="mainPriceRange"
-                        label={i18n('entities.cart.fields.mainPriceRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="itemType"
-                        label={i18n('entities.cart.fields.itemType')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="itemLN"
-                        label={i18n('entities.cart.fields.itemLN')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="itemLK"
-                        label={i18n('entities.cart.fields.itemLK')}      
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="attribute"
+                    label={i18n(
+                      'entities.cart.fields.attribute',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.cart.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="slug"
+                    label={i18n(
+                      'entities.cart.fields.slug',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="qtyRange"
+                    label={i18n(
+                      'entities.cart.fields.qtyRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="priceRange"
+                    label={i18n(
+                      'entities.cart.fields.priceRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="mainPriceRange"
+                    label={i18n(
+                      'entities.cart.fields.mainPriceRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="itemType"
+                    label={i18n(
+                      'entities.cart.fields.itemType',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="itemLN"
+                    label={i18n(
+                      'entities.cart.fields.itemLN',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="itemLK"
+                    label={i18n(
+                      'entities.cart.fields.itemLK',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -221,7 +244,7 @@ function CartListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -233,7 +256,7 @@ function CartListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

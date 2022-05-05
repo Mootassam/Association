@@ -27,7 +27,9 @@ const schema = yup.object().shape({
     i18n('entities.shippingservice.fields.status'),
   ),
   minimumPriceRange: yupFilterSchemas.decimalRange(
-    i18n('entities.shippingservice.fields.minimumPriceRange'),
+    i18n(
+      'entities.shippingservice.fields.minimumPriceRange',
+    ),
   ),
   isCondition: yupFilterSchemas.boolean(
     i18n('entities.shippingservice.fields.isCondition'),
@@ -40,7 +42,7 @@ const emptyValues = {
   status: null,
   minimumPriceRange: [],
   isCondition: null,
-}
+};
 
 const previewRenders = {
   name: {
@@ -48,22 +50,30 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   priceRange: {
-    label: i18n('entities.shippingservice.fields.priceRange'),
+    label: i18n(
+      'entities.shippingservice.fields.priceRange',
+    ),
     render: filterRenders.decimalRange(),
   },
   status: {
     label: i18n('entities.shippingservice.fields.status'),
-    render: filterRenders.enumerator('entities.shippingservice.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.shippingservice.enumerators.status',
+    ),
   },
   minimumPriceRange: {
-    label: i18n('entities.shippingservice.fields.minimumPriceRange'),
+    label: i18n(
+      'entities.shippingservice.fields.minimumPriceRange',
+    ),
     render: filterRenders.decimalRange(),
   },
   isCondition: {
-    label: i18n('entities.shippingservice.fields.isCondition'),
+    label: i18n(
+      'entities.shippingservice.fields.isCondition',
+    ),
     render: filterRenders.boolean(),
   },
-}
+};
 
 function ShippingserviceListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -84,7 +94,12 @@ function ShippingserviceListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -125,54 +140,64 @@ function ShippingserviceListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.shippingservice.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="priceRange"
-                        label={i18n('entities.shippingservice.fields.priceRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.shippingservice.fields.status')}
-                        options={shippingserviceEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.shippingservice.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="minimumPriceRange"
-                        label={i18n('entities.shippingservice.fields.minimumPriceRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="isCondition"
-                        label={i18n('entities.shippingservice.fields.isCondition')}
-                        options={[
-                          {
-                            value: true,
-                            label: i18n('common.yes'),
-                          },
-                          {
-                            value: false,
-                            label: i18n('common.no'),
-                          },
-                        ]}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.shippingservice.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="priceRange"
+                    label={i18n(
+                      'entities.shippingservice.fields.priceRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.shippingservice.fields.status',
+                    )}
+                    options={shippingserviceEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.shippingservice.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="minimumPriceRange"
+                    label={i18n(
+                      'entities.shippingservice.fields.minimumPriceRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="isCondition"
+                    label={i18n(
+                      'entities.shippingservice.fields.isCondition',
+                    )}
+                    options={[
+                      {
+                        value: true,
+                        label: i18n('common.yes'),
+                      },
+                      {
+                        value: false,
+                        label: i18n('common.no'),
+                      },
+                    ]}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -185,7 +210,7 @@ function ShippingserviceListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -197,7 +222,7 @@ function ShippingserviceListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

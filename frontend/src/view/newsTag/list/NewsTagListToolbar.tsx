@@ -117,7 +117,7 @@ function NewsTagToolbar(props) {
       >
         <button
           disabled={disabled}
-          className="btnCircle btn-primary"
+          className="btn btn-primary"
           type="button"
           onClick={doOpenDestroyAllConfirmModal}
         >
@@ -155,7 +155,7 @@ function NewsTagToolbar(props) {
             data-for="charge-list-toolbar-new-tooltip"
           >
             <button
-              className="btnCircle btn-primary"
+              className="btn btn-primary"
               type="button"
             >
               <ButtonIcon iconClass="fas fa-plus" />
@@ -172,7 +172,7 @@ function NewsTagToolbar(props) {
             data-for="charge-list-toolbar-import-tooltip"
           >
             <button
-              className="btnCircle btn-primary"
+              className="btn btn-primary"
               type="button"
             >
               <ButtonIcon iconClass="fas fa-upload" />

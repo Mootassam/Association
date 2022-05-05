@@ -21,14 +21,14 @@ const schema = yup.object().shape({
 
 const emptyValues = {
   title: null,
-}
+};
 
 const previewRenders = {
   title: {
     label: i18n('entities.trackOrder.fields.title'),
     render: filterRenders.generic(),
   },
-}
+};
 
 function TrackOrderListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -49,7 +49,12 @@ function TrackOrderListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -90,12 +95,14 @@ function TrackOrderListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="title"
-                        label={i18n('entities.trackOrder.fields.title')}      
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="title"
+                    label={i18n(
+                      'entities.trackOrder.fields.title',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -108,7 +115,7 @@ function TrackOrderListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -120,7 +127,7 @@ function TrackOrderListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

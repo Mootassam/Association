@@ -62,7 +62,9 @@ const HeaderWrapper = styled.div`
       display: none;
     }
   }
-
+  i {
+    padding-right: 10px;
+  }
   .menu-toggle-button {
     display: block;
     border: none;

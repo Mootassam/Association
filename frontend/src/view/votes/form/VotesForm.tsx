@@ -17,15 +17,15 @@ const schema = yup.object().shape({
   adherent: yupFormSchemas.relationToOne(
     i18n('entities.votes.fields.adherent'),
     {
-      "required": true
+      required: true,
     },
   ),
 
   votes: yupFormSchemas.integer(
     i18n('entities.votes.fields.votes'),
     {
-      "max": 5,
-      "required": true
+      max: 5,
+      required: true,
     },
   ),
 });
@@ -55,7 +55,6 @@ function VotesForm(props) {
       props.onSubmit(props.record?.id, values);
     } else {
       props.onSubmit(props.record?.id, values);
-
     }
   };
 
@@ -69,11 +68,18 @@ function VotesForm(props) {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+          <Row
+            style={{
+              backgroundColor: '#f0f2f5',
+              paddingBottom: '10px',
+            }}
+          >
             <Col sm={8}>
               <UserAutocompleteFormItem
                 name="adherent"
-                label={i18n('entities.votes.fields.adherent')}
+                label={i18n(
+                  'entities.votes.fields.adherent',
+                )}
                 required={true}
                 showCreate={false}
               />
@@ -88,14 +94,10 @@ function VotesForm(props) {
           </Row>
           <div className="row">
             <div style={{ display: 'none' }}>
-              <InputFormItem
-                name="projet"
-              />
+              <InputFormItem name="projet" />
             </div>
             <div style={{ display: 'none' }}>
-              <InputFormItem
-                name="titre"
-              />
+              <InputFormItem name="titre" />
             </div>
           </div>
 
@@ -109,7 +111,8 @@ function VotesForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
+              &nbsp;
               {i18n('common.save')}
             </button>
 
@@ -119,7 +122,8 @@ function VotesForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
+              &nbsp;
               {i18n('common.reset')}
             </button>
 
@@ -130,7 +134,7 @@ function VotesForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>&nbsp;
                 {i18n('common.cancel')}
               </button>
             ) : null}

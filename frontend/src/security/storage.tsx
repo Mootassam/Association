@@ -109,10 +109,10 @@ export default class Storage {
         folder: 'tenant/:tenantId/association/logo',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
-      customshipAttachements: {
-        id: 'customshipAttachements',
+      adherentshipAttachements: {
+        id: 'adherentshipAttachements',
         folder:
-          'tenant/:tenantId/customshipAttachements/customshipAttachements',
+          'tenant/:tenantId/adherentshipAttachements/adherentshipAttachements',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
 

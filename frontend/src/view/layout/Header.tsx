@@ -34,6 +34,12 @@ function Header(props) {
   const doNavigateToProfile = () => {
     getHistory().push('/profile');
   };
+  const doNavigateToAuditLog = () => {
+    getHistory().push('/audit-logs');
+  };
+  const doNavigateToSettings = () => {
+    getHistory().push('/settings');
+  };
 
   const doNavigateToPasswordChange = () => {
     getHistory().push('/password-change');
@@ -72,7 +78,7 @@ function Header(props) {
                 />
               </span>
               <span className="user-dropdown-text">
-                <span>{userText}</span>{' '}
+                <span>{userText}</span>
                 {['multi', 'multi-with-subdomain'].includes(
                   config.tenantMode,
                 ) && (
@@ -89,7 +95,7 @@ function Header(props) {
               className="dropdown-item"
               type="button"
             >
-              <i className="fas fa-user" />{' '}
+              <i className="fas fa-user" />
               {i18n('auth.profile.title')}
             </button>
             <button
@@ -97,7 +103,7 @@ function Header(props) {
               className="dropdown-item"
               type="button"
             >
-              <i className="fas fa-lock" />{' '}
+              <i className="fas fa-lock" />
               {i18n('auth.passwordChange.title')}
             </button>
             {['multi', 'multi-with-subdomain'].includes(
@@ -108,32 +114,35 @@ function Header(props) {
                 className="dropdown-item"
                 type="button"
               >
-                <i className="fas fa-th-large" />{' '}
+                <i className="fas fa-th-large" />
                 {i18n('auth.tenants')}
               </button>
             )}
-            {config.apiDocumentationUrl && (
-              <a
-                href={config.apiDocumentationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none' }}
-              >
-                <button
-                  className="dropdown-item"
-                  type="button"
-                >
-                  <i className="fas fa-code" />{' '}
-                  {i18n('api.menu')}
-                </button>
-              </a>
-            )}
+
+            <button
+              onClick={doNavigateToSettings}
+              className="dropdown-item"
+              type="button"
+            >
+              <i className="fas fa-wrench" />
+              {i18n('settings.menu')}
+            </button>
+
+            <button
+              onClick={doNavigateToAuditLog}
+              className="dropdown-item"
+              type="button"
+            >
+              <i className="fas fa-book" />
+              {i18n('auditLog.menu')}
+            </button>
+
             <button
               onClick={doSignout}
               className="dropdown-item"
               type="button"
             >
-              <i className="fas fa-sign-out-alt" />{' '}
+              <i className="fas fa-sign-out-alt" />
               {i18n('auth.signout')}
             </button>
           </div>

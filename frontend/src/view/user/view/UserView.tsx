@@ -21,7 +21,12 @@ function UserView(props) {
 
   return (
     <ViewWrapper>
-      <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+      <Row
+        style={{
+          backgroundColor: '#f0f2f5',
+          paddingBottom: '10px',
+        }}
+      >
         <Col sm={4}>
           <TextViewItem
             label={i18n('user.fields.email')}
@@ -47,7 +52,6 @@ function UserView(props) {
             value={user.phoneNumber}
           />
         </Col>
-
       </Row>
       <Row>
         <Col sm={4}>
@@ -70,16 +74,21 @@ function UserView(props) {
         </Col>
       </Row>
 
-      <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+      <Row
+        style={{
+          backgroundColor: '#f0f2f5',
+          paddingBottom: '10px',
+        }}
+      >
         <Col sm={4}>
-          {user.date_naissance && <TextViewItem
-            label={i18n(
-              'date naissance',
-            )}
-            value={moment(user.date_naissance).format(
-              'DD-MM-YYYY',
-            )}
-          />}
+          {user.date_naissance && (
+            <TextViewItem
+              label={i18n('date naissance')}
+              value={moment(user.date_naissance).format(
+                'DD-MM-YYYY',
+              )}
+            />
+          )}
         </Col>
         <Col sm={4}>
           <TextViewItem
@@ -100,10 +109,7 @@ function UserView(props) {
           <TextViewItem
             label={i18n('Etat Civil')}
             value={
-              user.etat_civil &&
-              i18n(
-                `${user.etat_civil}`,
-              )
+              user.etat_civil && i18n(`${user.etat_civil}`)
             }
           />
         </Col>
@@ -121,16 +127,19 @@ function UserView(props) {
         </Col>
       </Row>
 
-      <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
+      <Row
+        style={{
+          backgroundColor: '#f0f2f5',
+          paddingBottom: '10px',
+        }}
+      >
         <Col sm={4}>
-          {user.parrain ?
+          {user.parrain ? (
             <TextViewItem
               label={i18n('Parrain')}
               value={user.parrain.email}
             />
-            :
-            null
-          }
+          ) : null}
         </Col>
         <Col sm={4}>
           <CustomViewItem
@@ -139,9 +148,7 @@ function UserView(props) {
             render={(value) => <UserStatut value={value} />}
           />
         </Col>
-        <Col sm={4}>
-
-        </Col>
+        <Col sm={4}></Col>
       </Row>
     </ViewWrapper>
   );

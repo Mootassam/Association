@@ -11,10 +11,8 @@ import Toolbar from 'src/view/shared/styles/Toolbar';
 import ButtonIcon from 'src/view/shared/ButtonIcon';
 
 function PalierViewToolbar(props) {
-  const [
-    destroyConfirmVisible,
-    setDestroyConfirmVisible,
-  ] = useState(false);
+  const [destroyConfirmVisible, setDestroyConfirmVisible] =
+    useState(false);
 
   const dispatch = useDispatch();
 
@@ -80,7 +78,6 @@ function PalierViewToolbar(props) {
         >
           <button className="btn btn-light" type="button">
             <ButtonIcon iconClass="fas fa-history" />{' '}
-            {i18n('auditLog.menu')}
           </button>
         </Link>
       )}

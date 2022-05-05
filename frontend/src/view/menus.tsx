@@ -9,8 +9,9 @@ export default [
     id: '0',
     path: '/',
     exact: true,
-    icon: 'fas fa-th-large',
+    icon: 'fas fa-home',
     label: i18n('dashboard.menu'),
+    className: 'menu-li side-menue',
     permissionRequired: null,
   },
 
@@ -24,8 +25,9 @@ export default [
     id: '1',
     path: '#administration',
     permissionRequired: permissions.associationRead,
-    icon: 'fas fa-chevron-right',
+    icon: 'fas fa-tasks',
     label: i18n('common.administration'),
+    className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
       '/association',
@@ -48,30 +50,17 @@ export default [
         icon: 'fa fa-circle-o',
         label: i18n('entities.election.menu'),
       },
-
-      {
-        path: '/audit-logs',
-        icon: 'fas fa-history',
-        label: i18n('auditLog.menu'),
-        permissionRequired: permissions.auditLogRead,
-      },
-
-      {
-        path: '/settings',
-        icon: 'fas fa-cog',
-        label: i18n('settings.menu'),
-        permissionRequired: permissions.settingsEdit,
-      },
     ],
   },
   {
     id: '2',
     path: '#community',
     permissionRequired: permissions.associationRead,
-    icon: 'fas fa-chevron-right',
+    icon: 'fas fa-users',
     label: i18n('common.community'),
     haveSubMenu: true,
     subPaths: ['/user', '/partner', '/group'],
+    className: 'menu-li side-menue',
     subMenu: [
       {
         path: '/user',
@@ -99,10 +88,11 @@ export default [
     id: '3',
     path: '#news',
     permissionRequired: permissions.associationRead,
-    icon: 'fas fa-chevron-right',
+    icon: 'fas fa-newspaper',
     label: i18n('common.news'),
     haveSubMenu: true,
     subPaths: ['/news', '/news-tag', '/news-category'],
+    className: 'menu-li side-menue',
     subMenu: [
       {
         path: '/news',
@@ -131,10 +121,11 @@ export default [
     id: '4',
     path: '#membership',
     permissionRequired: permissions.associationRead,
-    icon: 'fas fa-chevron-right',
+    icon: 'fas fa-user',
     label: i18n('common.membership'),
     haveSubMenu: true,
     subPaths: ['/campaign', '/membership', '/formule'],
+    className: 'menu-li side-menue',
     subMenu: [
       {
         path: '/campaign',
@@ -162,10 +153,11 @@ export default [
     id: '5',
     path: '#accounting',
     permissionRequired: permissions.depenseRead,
-    icon: 'fas fa-chevron-right',
+    icon: 'fas fa-cash-register',
     label: i18n('common.accounting'),
     haveSubMenu: true,
     subPaths: ['/entree', '/depense', '/charge'],
+    className: 'menu-li side-menue',
     subMenu: [
       {
         path: '/entree',
@@ -189,13 +181,26 @@ export default [
       },
     ],
   },
-
+  {
+    id: '11',
+    path: '/projet',
+    permissionRequired: permissions.projetRead,
+    icon: 'fas fa-hand-holding-usd',
+    className: 'menu-li side-menue',
+    label: i18n('entities.projet.menu'),
+  },
+  {
+    id: 14,
+    label: i18n('E-commerce'),
+    className: 'label',
+  },
   {
     id: '6',
     path: '#category',
     permissionRequired: permissions.categoryRead,
     icon: 'fas fa-th-large',
     label: i18n('entities.category.menu'),
+    className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
       '/category',
@@ -231,6 +236,7 @@ export default [
     permissionRequired: permissions.productRead,
     icon: 'fab fa-product-hunt',
     label: i18n('entities.product.menu'),
+    className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
       '/brands',
@@ -271,6 +277,7 @@ export default [
     path: '/order',
     permissionRequired: permissions.orderRead,
     icon: 'fab fa-first-order',
+    className: 'menu-li side-menue',
     label: i18n('entities.order.menu'),
   },
   {
@@ -278,21 +285,17 @@ export default [
     path: '/transaction',
     permissionRequired: permissions.transactionRead,
     icon: 'fas fa-random',
+    className: 'menu-li side-menue',
     label: i18n('entities.transaction.menu'),
   },
-  {
-    id: '11',
-    path: '/projet',
-    permissionRequired: permissions.projetRead,
-    icon: 'fas fa-random',
-    label: i18n('entities.projet.menu'),
-  },
+
   {
     id: '10',
     path: '#e-commerce',
     permissionRequired: permissions.attributeOptionsRead,
-    icon: 'fas fa-newspaper',
-    label: i18n('e-commerce'),
+    icon: 'fas fa-dumpster',
+    label: i18n('Configuration'),
+    className: 'menu-li side-menue',
     haveSubMenu: true,
     subPaths: [
       '/coupons',

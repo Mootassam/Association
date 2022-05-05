@@ -17,7 +17,7 @@ const FormWrapper = styled.div`
     width: 100%;
   }
 
-  .custom-control {
+  .adherent-control {
     z-index: 0;
   }
 

@@ -39,10 +39,10 @@ function SwitchFormItem(props) {
         </label>
       )}
 
-      <div className="custom-control custom-switch">
+      <div className="adherent-control adherent-switch">
         <input
           type="checkbox"
-          className="custom-control-input"
+          className="adherent-control-input"
           id={name}
           name={name}
           ref={register}
@@ -56,7 +56,7 @@ function SwitchFormItem(props) {
         />
 
         <label
-          className="custom-control-label"
+          className="adherent-control-label"
           htmlFor={name}
         >
           &#160;

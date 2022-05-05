@@ -45,7 +45,7 @@ const emptyValues = {
   discountRange: [],
   paymentMethod: null,
   orderStatus: null,
-}
+};
 
 const previewRenders = {
   userId: {
@@ -70,9 +70,11 @@ const previewRenders = {
   },
   orderStatus: {
     label: i18n('entities.order.fields.orderStatus'),
-    render: filterRenders.enumerator('entities.order.enumerators.orderStatus',),
+    render: filterRenders.enumerator(
+      'entities.order.enumerators.orderStatus',
+    ),
   },
-}
+};
 
 function OrderListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -93,7 +95,12 @@ function OrderListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -134,50 +141,62 @@ function OrderListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <UserAutocompleteFormItem  
-                        name="userId"
-                        label={i18n('entities.order.fields.userId')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="cart"
-                        label={i18n('entities.order.fields.cart')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="shipping"
-                        label={i18n('entities.order.fields.shipping')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="discountRange"
-                        label={i18n('entities.order.fields.discountRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="paymentMethod"
-                        label={i18n('entities.order.fields.paymentMethod')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="orderStatus"
-                        label={i18n('entities.order.fields.orderStatus')}
-                        options={orderEnumerators.orderStatus.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.order.enumerators.orderStatus.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <UserAutocompleteFormItem
+                    name="userId"
+                    label={i18n(
+                      'entities.order.fields.userId',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="cart"
+                    label={i18n(
+                      'entities.order.fields.cart',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="shipping"
+                    label={i18n(
+                      'entities.order.fields.shipping',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="discountRange"
+                    label={i18n(
+                      'entities.order.fields.discountRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="paymentMethod"
+                    label={i18n(
+                      'entities.order.fields.paymentMethod',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="orderStatus"
+                    label={i18n(
+                      'entities.order.fields.orderStatus',
+                    )}
+                    options={orderEnumerators.orderStatus.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.order.enumerators.orderStatus.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -190,7 +209,7 @@ function OrderListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -202,7 +221,7 @@ function OrderListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

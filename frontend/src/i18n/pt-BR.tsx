@@ -1193,9 +1193,9 @@ const ptBR = {
       label: 'Administrador',
       description: 'Acesso completo a todos os recursos',
     },
-    custom: {
-      label: 'Perfil Customizado',
-      description: 'Acesso customizado',
+    adherent: {
+      label: 'Perfil adherentizado',
+      description: 'Acesso adherentizado',
     },
   },
 
@@ -1416,7 +1416,7 @@ const ptBR = {
       coding: 'Codificando',
       cycling: 'Pedalando',
       running: 'Correndo',
-      customer: 'Cliente',
+      adherenter: 'Cliente',
     },
   },
   errors: {
@@ -1439,7 +1439,7 @@ const ptBR = {
       'Desculpe, esta operação não é permitida em modo de demonstração.',
   },
 
-  // See https://github.com/jquense/yup#using-a-custom-locale-dictionary
+  // See https://github.com/jquense/yup#using-a-adherent-locale-dictionary
   /* eslint-disable */
   validation: {
     mixed: {

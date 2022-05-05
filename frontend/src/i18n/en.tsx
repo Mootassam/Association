@@ -2300,9 +2300,9 @@ const en = {
       label: 'Admin',
       description: 'Full access to all resources',
     },
-    custom: {
-      label: 'Custom Role',
-      description: 'Custom role access',
+    adherent: {
+      label: 'adherent Role',
+      description: 'adherent role access',
     },
   },
 
@@ -2559,7 +2559,7 @@ const en = {
       coding: 'Coding',
       cycling: 'Cycling',
       running: 'Running',
-      customer: 'Customer',
+      adherenter: 'adherenter',
     },
   },
   errors: {
@@ -2582,7 +2582,7 @@ const en = {
       'Sorry, this operation is not allowed in preview mode.',
   },
 
-  // See https://github.com/jquense/yup#using-a-custom-locale-dictionary
+  // See https://github.com/jquense/yup#using-a-adherent-locale-dictionary
   /* eslint-disable */
   validation: {
     mixed: {

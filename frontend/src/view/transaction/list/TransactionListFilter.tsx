@@ -40,7 +40,7 @@ const emptyValues = {
   tax: null,
   currencySign: null,
   currencyValue: null,
-}
+};
 
 const previewRenders = {
   amountRange: {
@@ -52,18 +52,20 @@ const previewRenders = {
     render: filterRenders.relationToOne(),
   },
   tax: {
-      label: i18n('entities.transaction.fields.tax'),
-      render: filterRenders.relationToOne(),
-    },
+    label: i18n('entities.transaction.fields.tax'),
+    render: filterRenders.relationToOne(),
+  },
   currencySign: {
     label: i18n('entities.transaction.fields.currencySign'),
     render: filterRenders.generic(),
   },
   currencyValue: {
-    label: i18n('entities.transaction.fields.currencyValue'),
+    label: i18n(
+      'entities.transaction.fields.currencyValue',
+    ),
     render: filterRenders.generic(),
   },
-}
+};
 
 function TransactionListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -84,7 +86,12 @@ function TransactionListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -125,36 +132,46 @@ function TransactionListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="amountRange"
-                        label={i18n('entities.transaction.fields.amountRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <UserAutocompleteFormItem  
-                        name="email"
-                        label={i18n('entities.transaction.fields.email')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <TaxesAutocompleteFormItem  
-                        name="tax"
-                        label={i18n('entities.transaction.fields.tax')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="currencySign"
-                        label={i18n('entities.transaction.fields.currencySign')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="currencyValue"
-                        label={i18n('entities.transaction.fields.currencyValue')}      
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="amountRange"
+                    label={i18n(
+                      'entities.transaction.fields.amountRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <UserAutocompleteFormItem
+                    name="email"
+                    label={i18n(
+                      'entities.transaction.fields.email',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <TaxesAutocompleteFormItem
+                    name="tax"
+                    label={i18n(
+                      'entities.transaction.fields.tax',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="currencySign"
+                    label={i18n(
+                      'entities.transaction.fields.currencySign',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="currencyValue"
+                    label={i18n(
+                      'entities.transaction.fields.currencyValue',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -167,7 +184,7 @@ function TransactionListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -179,7 +196,7 @@ function TransactionListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

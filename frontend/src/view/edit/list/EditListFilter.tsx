@@ -32,7 +32,7 @@ const emptyValues = {
   campaignTitle: null,
   campaignLastDateTimeRange: [],
   status: null,
-}
+};
 
 const previewRenders = {
   campaignTitle: {
@@ -40,14 +40,18 @@ const previewRenders = {
     render: filterRenders.generic(),
   },
   campaignLastDateTimeRange: {
-    label: i18n('entities.edit.fields.campaignLastDateTimeRange'),
+    label: i18n(
+      'entities.edit.fields.campaignLastDateTimeRange',
+    ),
     render: filterRenders.datetimeRange(),
   },
   status: {
     label: i18n('entities.edit.fields.status'),
-    render: filterRenders.enumerator('entities.edit.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.edit.enumerators.status',
+    ),
   },
-}
+};
 
 function EditListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -68,7 +72,12 @@ function EditListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -109,33 +118,39 @@ function EditListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="campaignTitle"
-                        label={i18n('entities.edit.fields.campaignTitle')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="campaignLastDateTimeRange"
-                        label={i18n('entities.edit.fields.campaignLastDateTimeRange')}    
-                        showTimeInput
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.edit.fields.status')}
-                        options={editEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.edit.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="campaignTitle"
+                    label={i18n(
+                      'entities.edit.fields.campaignTitle',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="campaignLastDateTimeRange"
+                    label={i18n(
+                      'entities.edit.fields.campaignLastDateTimeRange',
+                    )}
+                    showTimeInput
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.edit.fields.status',
+                    )}
+                    options={editEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.edit.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -148,7 +163,7 @@ function EditListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -160,7 +175,7 @@ function EditListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

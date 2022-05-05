@@ -10,7 +10,6 @@ import userSelectors from 'src/modules/user/userSelectors';
 import ButtonIcon from 'src/view/shared/ButtonIcon';
 import Toolbar from 'src/view/shared/styles/Toolbar';
 
-
 function UserToolbar(props) {
   const dispatch = useDispatch();
 
@@ -56,7 +55,7 @@ function UserToolbar(props) {
         <ButtonIcon
           loading={exportLoading}
           iconClass="far fa-file-excel"
-        />{' '}
+        />
         {i18n('common.export')}
       </button>
     );
@@ -91,8 +90,7 @@ function UserToolbar(props) {
         type="button"
         onClick={doDestroyAllSelected}
       >
-        <ButtonIcon iconClass="fas fa-user-minus" />{' '}
-        {i18n('common.destroy')}
+        <ButtonIcon iconClass="fas fa-user-minus" />
       </button>
     );
 
@@ -114,23 +112,28 @@ function UserToolbar(props) {
 
   return (
     <Toolbar>
-    
-      
       {hasPermissionToCreate && (
         <Link to="/user/new">
           <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-user-plus" />{' '}
-            {i18n('common.new')}
+            <ButtonIcon iconClass="fas fa-user-plus" />
           </button>
         </Link>
       )}
 
       {hasPermissionToImport && (
         <Link to="/user/importer">
-          <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-upload" />{' '}
-            {i18n('common.import')}
-          </button>
+          <span
+            data-tip={i18n('common.import')}
+            data-for="charge-list-toolbar-import-tooltip"
+          >
+            <button
+              className="btn btn-primary"
+              type="button"
+            >
+              <ButtonIcon iconClass="fas fa-upload" />
+            </button>
+            <ReactTooltip id="charge-list-toolbar-import-tooltip" />
+          </span>
         </Link>
       )}
 
@@ -139,8 +142,7 @@ function UserToolbar(props) {
       {hasPermissionToAuditLogs && (
         <Link to="/audit-logs?entityNames=user">
           <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="fas fa-history" />{' '}
-            {i18n('auditLog.menu')}
+            <ButtonIcon iconClass="fas fa-history" />
           </button>
         </Link>
       )}

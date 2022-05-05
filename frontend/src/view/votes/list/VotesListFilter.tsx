@@ -15,7 +15,6 @@ import InputNumberRangeFormItem from 'src/view/shared/form/items/InputNumberRang
 import UserAutocompleteFormItem from 'src/view/user/autocomplete/UserAutocompleteFormItem';
 
 const schema = yup.object().shape({
-
   votesRange: yupFilterSchemas.integerRange(
     i18n('entities.votes.fields.votesRange'),
   ),
@@ -23,20 +22,18 @@ const schema = yup.object().shape({
 
 const emptyValues = {
   votesRange: [],
-  iduser:null,
-}
+  iduser: null,
+};
 
 const previewRenders = {
-
   votesRange: {
     label: i18n('entities.votes.fields.votesRange'),
     render: filterRenders.range(),
   },
-}
+};
 
 function VotesListFilter(props) {
-
-  const { user ,match } = props;
+  const { user, match } = props;
 
   const rawFilter = useSelector(selectors.selectRawFilter);
   const dispatch = useDispatch();
@@ -56,15 +53,20 @@ function VotesListFilter(props) {
   });
 
   useEffect(() => {
-    initialValues.iduser= user;
-    dispatch(actions.doFetchProjetVotes(schema.cast(initialValues), rawFilter));
+    initialValues.iduser = user;
+    dispatch(
+      actions.doFetchProjetVotes(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
   const onSubmit = (values) => {
     const rawValues = form.getValues();
-    rawValues.iduser=user;
-    values.iduser=user;
+    rawValues.iduser = user;
+    values.iduser = user;
     dispatch(actions.doFetchProjetVotes(values, rawValues));
     setExpanded(false);
   };
@@ -100,17 +102,17 @@ function VotesListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputNumberRangeFormItem
-                        name="votesRange"
-                        label={i18n('entities.votes.fields.votesRange')}      
-                      />
-                    </div>
-                    <div style={{ display: 'none' }}>
-                    <input
-                        name="iduser"
-                    />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputNumberRangeFormItem
+                    name="votesRange"
+                    label={i18n(
+                      'entities.votes.fields.votesRange',
+                    )}
+                  />
+                </div>
+                <div style={{ display: 'none' }}>
+                  <input name="iduser" />
+                </div>
               </div>
 
               <div className="row">
@@ -123,7 +125,7 @@ function VotesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -135,7 +137,7 @@ function VotesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
+                    />
                     {i18n('common.reset')}
                   </button>
                 </div>

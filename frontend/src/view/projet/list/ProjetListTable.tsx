@@ -17,23 +17,17 @@ import DonsFormModal from 'src/view/dons/form/DonsFormModal';
 import VotesFormModal from 'src/view/votes/form/VotesFormModal';
 import { useForm } from 'react-hook-form';
 
-
 function ProjetListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
-  const [
-    recordIdprojet,
-    setRecordIdprojet,
-  ] = useState(null);
-  const [
-    recordIdtitre,
-    setRecordIdtitre,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
+  const [recordIdprojet, setRecordIdprojet] =
+    useState(null);
+  const [recordIdtitre, setRecordIdtitre] = useState(null);
   const { setValue, getValues } = useForm();
-  const [modalDonsVisible, setModalDonsVisible] = useState<boolean>(false);
-  const [modalVotesVisible, setModalVotesVisible] = useState<boolean>(false);
+  const [modalDonsVisible, setModalDonsVisible] =
+    useState<boolean>(false);
+  const [modalVotesVisible, setModalVotesVisible] =
+    useState<boolean>(false);
   const dispatch = useDispatch();
   const doCloseDonsModal = () => {
     setModalDonsVisible(false);
@@ -72,7 +66,6 @@ function ProjetListTable(props) {
   const hasPermissionToDestroy = useSelector(
     projetSelectors.selectPermissionToDestroy,
   );
-
 
   const doOpenModalDons = (id, titre) => {
     idprojet = id;
@@ -139,11 +132,7 @@ function ProjetListTable(props) {
         props.titre,
       ]);
     } else {
-      setValue(name, [
-        record,
-        props.idprojet,
-        props.titre,
-      ]);
+      setValue(name, [record, props.idprojet, props.titre]);
     }
 
     doCloseDonsModal();
@@ -158,11 +147,7 @@ function ProjetListTable(props) {
         props.titre,
       ]);
     } else {
-      setValue(name, [
-        record,
-        props.idprojet,
-        props.titre,
-      ]);
+      setValue(name, [record, props.idprojet, props.titre]);
     }
 
     doCloseVotesModal();
@@ -175,17 +160,17 @@ function ProjetListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
@@ -197,9 +182,7 @@ function ProjetListTable(props) {
                 hasRows={hasRows}
                 sorter={sorter}
                 name={'titre'}
-                label={i18n(
-                  'entities.projet.fields.titre',
-                )}
+                label={i18n('entities.projet.fields.titre')}
               />
               <TableColumnHeader
                 onSort={doChangeSort}
@@ -253,10 +236,10 @@ function ProjetListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -267,7 +250,7 @@ function ProjetListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>
@@ -277,15 +260,15 @@ function ProjetListTable(props) {
                   <td>
                     {row.typeProjet
                       ? i18n(
-                        `entities.projet.enumerators.typeProjet.${row.typeProjet}`,
-                      )
+                          `entities.projet.enumerators.typeProjet.${row.typeProjet}`,
+                        )
                       : null}
                   </td>
                   <td>
                     {row.statutProjet
                       ? i18n(
-                        `entities.projet.enumerators.statutProjet.${row.statutProjet}`,
-                      )
+                          `entities.projet.enumerators.statutProjet.${row.statutProjet}`,
+                        )
                       : null}
                   </td>
                   <td>
@@ -298,22 +281,34 @@ function ProjetListTable(props) {
                     {hasPermissionToCreate && (
                       <Link
                         className="btn btn-link"
-                        onClick={() => { doOpenModalVotes(row.id, row.titre) }
-                        }>
+                        onClick={() => {
+                          doOpenModalVotes(
+                            row.id,
+                            row.titre,
+                          );
+                        }}
+                      >
                         {i18n('Votes')}
-                      </Link>)}
+                      </Link>
+                    )}
                     {hasPermissionToCreate && (
                       <Link
                         className="btn btn-link"
-                        onClick={() => { doOpenModalDons(row.id, row.titre) }
-                        }>
+                        onClick={() => {
+                          doOpenModalDons(
+                            row.id,
+                            row.titre,
+                          );
+                        }}
+                      >
                         {i18n('Dons')}
-                      </Link>)}
+                      </Link>
+                    )}
                     <Link
                       className="btn btn-link"
                       to={{
                         pathname: `/projet/${row.id}`,
-                        state: { idprojet: row.id }
+                        state: { idprojet: row.id },
                       }}
                     >
                       {i18n('common.view')}

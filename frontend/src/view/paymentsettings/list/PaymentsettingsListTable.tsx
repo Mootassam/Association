@@ -15,10 +15,8 @@ import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
 
 function PaymentsettingsListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -96,82 +94,82 @@ function PaymentsettingsListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="custom-control custom-checkbox">
+                  <div className="adherent-control adherent-checkbox">
                     <input
                       type="checkbox"
-                      className="custom-control-input"
+                      className="adherent-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="custom-control-label"
+                      className="adherent-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.paymentsettings.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'information'}
-                  label={i18n(
-                    'entities.paymentsettings.fields.information',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'uniqueKeywords'}
-                  label={i18n(
-                    'entities.paymentsettings.fields.uniqueKeywords',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.paymentsettings.fields.photo',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'text'}
-                  label={i18n(
-                    'entities.paymentsettings.fields.text',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.paymentsettings.fields.status',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'type'}
-                  label={i18n(
-                    'entities.paymentsettings.fields.type',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.paymentsettings.fields.name',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'information'}
+                label={i18n(
+                  'entities.paymentsettings.fields.information',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'uniqueKeywords'}
+                label={i18n(
+                  'entities.paymentsettings.fields.uniqueKeywords',
+                )}
+              />
+              <TableColumnHeader
+                label={i18n(
+                  'entities.paymentsettings.fields.photo',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'text'}
+                label={i18n(
+                  'entities.paymentsettings.fields.text',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n(
+                  'entities.paymentsettings.fields.status',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'type'}
+                label={i18n(
+                  'entities.paymentsettings.fields.type',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -196,10 +194,10 @@ function PaymentsettingsListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="custom-control custom-checkbox">
+                    <div className="adherent-control adherent-checkbox">
                       <input
                         type="checkbox"
-                        className="custom-control-input"
+                        className="adherent-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -210,7 +208,7 @@ function PaymentsettingsListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="custom-control-label"
+                        className="adherent-control-label"
                       >
                         &#160;
                       </label>

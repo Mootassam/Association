@@ -36,7 +36,7 @@ const schema = yup.object().shape({
   status: yupFormSchemas.enumerator(
     i18n('entities.paymentsettings.fields.status'),
     {
-      "options": paymentsettingsEnumerators.status
+      options: paymentsettingsEnumerators.status,
     },
   ),
   type: yupFormSchemas.string(
@@ -84,45 +84,59 @@ function PaymentsettingsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="name"
-                label={i18n('entities.paymentsettings.fields.name')}
+                label={i18n(
+                  'entities.paymentsettings.fields.name',
+                )}
                 required={false}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="information"
-                label={i18n('entities.paymentsettings.fields.information')}
+                label={i18n(
+                  'entities.paymentsettings.fields.information',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="uniqueKeywords"
-                label={i18n('entities.paymentsettings.fields.uniqueKeywords')}
+                label={i18n(
+                  'entities.paymentsettings.fields.uniqueKeywords',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <ImagesFormItem
                 name="photo"
-                label={i18n('entities.paymentsettings.fields.photo')}
+                label={i18n(
+                  'entities.paymentsettings.fields.photo',
+                )}
                 required={false}
-                storage={Storage.values.paymentsettingsPhoto}
+                storage={
+                  Storage.values.paymentsettingsPhoto
+                }
                 max={undefined}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="text"
-                label={i18n('entities.paymentsettings.fields.text')}
+                label={i18n(
+                  'entities.paymentsettings.fields.text',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n('entities.paymentsettings.fields.status')}
+                label={i18n(
+                  'entities.paymentsettings.fields.status',
+                )}
                 options={paymentsettingsEnumerators.status.map(
                   (value) => ({
                     value,
@@ -137,7 +151,9 @@ function PaymentsettingsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="type"
-                label={i18n('entities.paymentsettings.fields.type')}
+                label={i18n(
+                  'entities.paymentsettings.fields.type',
+                )}
                 required={false}
               />
             </div>
@@ -153,7 +169,8 @@ function PaymentsettingsForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
+              &nbsp;
               {i18n('common.save')}
             </button>
 
@@ -163,7 +180,8 @@ function PaymentsettingsForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
+              &nbsp;
               {i18n('common.reset')}
             </button>
 
@@ -174,7 +192,7 @@ function PaymentsettingsForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>&nbsp;
                 {i18n('common.cancel')}
               </button>
             ) : null}
