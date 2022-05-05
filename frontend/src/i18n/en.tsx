@@ -36,7 +36,7 @@ const en = {
   },
 
   app: {
-    title: 'Application',
+    title: 'Jamaity',
   },
 
   api: {
