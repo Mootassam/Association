@@ -54,7 +54,7 @@ function ChargeViewToolbar(props) {
             data-for="charge-list-toolbar-new-tooltip"
           >
             <button
-              className="btn btn-primary"
+              className="btnCircle btn-primary"
               type="button"
             >
               <ButtonIcon iconClass="fas fa-edit" />
@@ -72,7 +72,7 @@ function ChargeViewToolbar(props) {
         >
           <button
             disabled={destroyLoading}
-            className="btn btn-primary"
+            className="btnCircle btn-primary"
             type="button"
             onClick={doOpenDestroyConfirmModal}
           >

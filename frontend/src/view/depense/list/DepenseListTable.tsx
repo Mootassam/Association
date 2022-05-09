@@ -94,17 +94,17 @@ function DepenseListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
+                  <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
-                      className="adherent-control-input"
+                      className="custom-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
+                      className="custom-control-label"
                     >
                       &#160;
                     </label>
@@ -120,11 +120,11 @@ function DepenseListTable(props) {
                   'entities.depense.fields.facture',
                 )}
               />
-              <TableColumnHeader
+              {/* <TableColumnHeader
                 label={i18n(
                   'entities.depense.fields.charge',
                 )}
-              />
+              /> */}
               <TableColumnHeader
                 onSort={doChangeSort}
                 hasRows={hasRows}
@@ -173,10 +173,10 @@ function DepenseListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -187,7 +187,7 @@ function DepenseListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
@@ -198,9 +198,9 @@ function DepenseListTable(props) {
                       ? i18n('common.yes')
                       : i18n('common.no')}
                   </td>
-                  <td>
-                    <ChargeListItem value={row.charges} />
-                  </td>
+                  {/* <td>
+                    <ChargeListItem value={row.charge} />
+                  </td> */}
                   <td style={{ textAlign: 'right' }}>
                     {row.amount}
                   </td>

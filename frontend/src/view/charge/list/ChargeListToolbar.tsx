@@ -117,7 +117,7 @@ function ChargeToolbar(props) {
       >
         <button
           disabled={disabled}
-          className="btn btn-primary"
+          className="btnCircle btn-primary"
           type="button"
           onClick={doOpenDestroyAllConfirmModal}
         >
@@ -155,7 +155,7 @@ function ChargeToolbar(props) {
             data-for="charge-list-toolbar-new-tooltip"
           >
             <button
-              className="btn btn-primary"
+              className="btnCircle btn-primary"
               type="button"
             >
               <ButtonIcon iconClass="fas fa-plus" />
@@ -172,7 +172,7 @@ function ChargeToolbar(props) {
             data-for="charge-list-toolbar-import-tooltip"
           >
             <button
-              className="btn btn-primary"
+              className="btnCircle btn-primary"
               type="button"
             >
               <ButtonIcon iconClass="fas fa-upload" />

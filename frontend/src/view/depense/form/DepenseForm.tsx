@@ -45,7 +45,7 @@ function DepenseForm(props) {
 
     return {
       facture: record.facture,
-      charges: record.charges || [],
+      // charge: record.charge || [],
       amount: record.amount,
       type: record.type,
       date: record.date
@@ -136,7 +136,6 @@ function DepenseForm(props) {
                 loading={props.saveLoading}
                 iconClass="far fa-save"
               />
-              &nbsp;
               {i18n('common.save')}
             </button>
 
@@ -147,7 +146,6 @@ function DepenseForm(props) {
               onClick={onReset}
             >
               <i className="fas fa-undo"></i>
-              &nbsp;
               {i18n('common.reset')}
             </button>
 
@@ -158,7 +156,7 @@ function DepenseForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>&nbsp;
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}
