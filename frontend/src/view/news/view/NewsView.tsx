@@ -6,7 +6,7 @@ import TextViewItem from 'src/view/shared/view/TextViewItem';
 import ImagesViewItem from 'src/view/shared/view/ImagesViewItem';
 import FilesViewItem from 'src/view/shared/view/FilesViewItem';
 import NewsCategoryViewItem from 'src/view/newsCategory/view/NewsCategoryViewItem';
-import NewsTagViewItem from 'src/view/newsTag/view/NewsTagViewItem';
+import TagViewItem from 'src/view/tag/view/TagViewItem';
 
 function NewsView(props) {
   const { record, loading } = props;
@@ -59,7 +59,7 @@ function NewsView(props) {
         value={record.category}
       />
 
-      <NewsTagViewItem
+      <TagViewItem
         label={i18n('entities.news.fields.tags')}
         value={record.tags}
       />

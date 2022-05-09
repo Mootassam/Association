@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import { i18n } from 'src/i18n';
 import CampaignListFilter from 'src/view/campaign/list/CampaignListFilter';
 import CampaignListTable from 'src/view/campaign/list/CampaignListTable';
@@ -19,19 +18,11 @@ function CampaignListPage(props) {
       />
 
       <ContentWrapper>
-        <Container fluid={true}>
-          <Row>
-            <Col xs={9}>
-              <PageTitle>
-                {i18n('entities.campaign.list.title')}
-              </PageTitle>
-            </Col>
-            <Col md="auto">
-              <CampaignListToolbar />
-            </Col>
-          </Row>
-        </Container>
+        <PageTitle>
+          {i18n('entities.campaign.list.title')}
+        </PageTitle>
 
+        <CampaignListToolbar />
         <CampaignListFilter />
         <CampaignListTable />
       </ContentWrapper>

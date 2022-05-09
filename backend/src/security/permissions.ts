@@ -99,6 +99,15 @@ class Permissions {
           plans.enterprise,
         ],
       },
+      userAdherantAutocomplete: {
+        id: 'userAdherantAutocomplete',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
       auditLogRead: {
         id: 'auditLogRead',
         allowedRoles: [roles.admin],
@@ -1820,8 +1829,8 @@ class Permissions {
         ],
       },
 
-      newsTagImport: {
-        id: 'newsTagImport',
+      tagImport: {
+        id: 'tagImport',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
@@ -1829,18 +1838,8 @@ class Permissions {
           plans.enterprise,
         ],
       },
-      newsTagCreate: {
-        id: 'newsTagCreate',
-        allowedRoles: [roles.admin, roles.adherent],
-        allowedPlans: [
-          plans.free,
-          plans.growth,
-          plans.enterprise,
-        ],
-        allowedStorage: [],
-      },
-      newsTagEdit: {
-        id: 'newsTagEdit',
+      tagCreate: {
+        id: 'tagCreate',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
@@ -1849,8 +1848,8 @@ class Permissions {
         ],
         allowedStorage: [],
       },
-      newsTagDestroy: {
-        id: 'newsTagDestroy',
+      tagEdit: {
+        id: 'tagEdit',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
@@ -1859,8 +1858,18 @@ class Permissions {
         ],
         allowedStorage: [],
       },
-      newsTagRead: {
-        id: 'newsTagRead',
+      tagDestroy: {
+        id: 'tagDestroy',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      tagRead: {
+        id: 'tagRead',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
@@ -1868,8 +1877,8 @@ class Permissions {
           plans.enterprise,
         ],
       },
-      newsTagAutocomplete: {
-        id: 'newsTagAutocomplete',
+      tagAutocomplete: {
+        id: 'tagAutocomplete',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
@@ -2060,8 +2069,8 @@ class Permissions {
         ],
       },
 
-      customshipImport: {
-        id: 'customshipImport',
+      adherentshipImport: {
+        id: 'adherentshipImport',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
@@ -2069,38 +2078,38 @@ class Permissions {
           plans.enterprise,
         ],
       },
-      customshipCreate: {
-        id: 'customshipCreate',
+      adherentshipCreate: {
+        id: 'adherentshipCreate',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
           plans.growth,
           plans.enterprise,
         ],
-        allowedStorage: [storage.customshipAttachements],
+        allowedStorage: [storage.adherentshipAttachements],
       },
-      customshipEdit: {
-        id: 'customshipEdit',
+      adherentshipEdit: {
+        id: 'adherentshipEdit',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
           plans.growth,
           plans.enterprise,
         ],
-        allowedStorage: [storage.customshipAttachements],
+        allowedStorage: [storage.adherentshipAttachements],
       },
-      customshipDestroy: {
-        id: 'customshipDestroy',
+      adherentshipDestroy: {
+        id: 'adherentshipDestroy',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
           plans.growth,
           plans.enterprise,
         ],
-        allowedStorage: [storage.customshipAttachements],
+        allowedStorage: [storage.adherentshipAttachements],
       },
-      customshipRead: {
-        id: 'customshipRead',
+      adherentshipRead: {
+        id: 'adherentshipRead',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,
@@ -2108,8 +2117,8 @@ class Permissions {
           plans.enterprise,
         ],
       },
-      customshipAutocomplete: {
-        id: 'customshipAutocomplete',
+      adherentshipAutocomplete: {
+        id: 'adherentshipAutocomplete',
         allowedRoles: [roles.admin, roles.adherent],
         allowedPlans: [
           plans.free,

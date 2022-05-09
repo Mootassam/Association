@@ -14,10 +14,14 @@ import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import UserListItem from 'src/view/user/list/UserListItem';
 import FilesListView from 'src/view/shared/table/FileListView';
+import FormuleListItem from 'src/view/formule/list/FormuleListItem';
+import CampaignListItem from 'src/view/campaign/list/CampaignListItem';
 
 function MembershipListTable(props) {
-  const [recordIdToDestroy, setRecordIdToDestroy] =
-    useState(null);
+  const [
+    recordIdToDestroy,
+    setRecordIdToDestroy,
+  ] = useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -92,29 +96,26 @@ function MembershipListTable(props) {
       <div className="table-responsive">
         <table className="table table-striped     mt-2">
           <thead className="thead">
-            {props.data ? (
-              <tr>
-                <TableColumnHeader className="th-checkbox">
-                  {hasRows && (
-                    <div className="adherent-control adherent-checkbox">
-                      <input
-                        type="checkbox"
-                        className="adherent-control-input"
-                        id="table-header-checkbox"
-                        checked={Boolean(isAllSelected)}
-                        onChange={() =>
-                          doToggleAllSelected()
-                        }
-                      />
-                      <label
-                        htmlFor="table-header-checkbox"
-                        className="adherent-control-label"
-                      >
-                        &#160;
-                      </label>
-                    </div>
-                  )}
-                </TableColumnHeader>
+            <tr>
+              <TableColumnHeader className="th-checkbox">
+                {hasRows && (
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="table-header-checkbox"
+                      checked={Boolean(isAllSelected)}
+                      onChange={() => doToggleAllSelected()}
+                    />
+                    <label
+                      htmlFor="table-header-checkbox"
+                      className="custom-control-label"
+                    >
+                      &#160;
+                    </label>
+                  </div>
+                )}
+              </TableColumnHeader>
                 <TableColumnHeader
                   onSort={doChangeSort}
                   hasRows={hasRows}
@@ -124,67 +125,11 @@ function MembershipListTable(props) {
                     'entities.membership.fields.status',
                   )}
                 />
-
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'amount'}
-                  label={i18n(
-                    'entities.membership.fields.amount',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'paymentMethod'}
-                  label={i18n(
-                    'entities.membership.fields.paymentMethod',
-                  )}
-                  align="right"
-                />
                 <TableColumnHeader
                   label={i18n(
-                    'entities.membership.fields.attachements',
+                    'entities.membership.fields.formule',
                   )}
                 />
-                <TableColumnHeader className="th-actions" />
-              </tr>
-            ) : (
-              <tr>
-                <TableColumnHeader className="th-checkbox">
-                  {hasRows && (
-                    <div className="adherent-control adherent-checkbox">
-                      <input
-                        type="checkbox"
-                        className="adherent-control-input"
-                        id="table-header-checkbox"
-                        checked={Boolean(isAllSelected)}
-                        onChange={() =>
-                          doToggleAllSelected()
-                        }
-                      />
-                      <label
-                        htmlFor="table-header-checkbox"
-                        className="adherent-control-label"
-                      >
-                        &#160;
-                      </label>
-                    </div>
-                  )}
-                </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.membership.fields.status',
-                  )}
-                />
-
                 <TableColumnHeader
                   label={i18n(
                     'entities.membership.fields.attachements',
@@ -195,7 +140,11 @@ function MembershipListTable(props) {
                     'entities.membership.fields.member',
                   )}
                 />
-
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.membership.fields.campaign',
+                  )}
+                />
                 <TableColumnHeader
                   onSort={doChangeSort}
                   hasRows={hasRows}
@@ -206,9 +155,8 @@ function MembershipListTable(props) {
                   )}
                   align="right"
                 />
-                <TableColumnHeader className="th-actions" />
-              </tr>
-            )}
+              <TableColumnHeader className="th-actions" />
+            </tr>
           </thead>
           <tbody>
             {loading && (
@@ -228,91 +176,13 @@ function MembershipListTable(props) {
               </tr>
             )}
             {!loading &&
-              props.data &&
-              props.data.map((row) => (
-                <tr key={row.id}>
-                  <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
-                      <input
-                        type="checkbox"
-                        className="adherent-control-input"
-                        id={`table-header-checkbox-${row.id}`}
-                        checked={selectedKeys.includes(
-                          row.id,
-                        )}
-                        onChange={() =>
-                          doToggleOneSelected(row.id)
-                        }
-                      />
-                      <label
-                        htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
-                      >
-                        &#160;
-                      </label>
-                    </div>
-                  </th>
-                  <td>
-                    {row.status
-                      ? i18n(
-                          `entities.membership.enumerators.status.${row.status}`,
-                        )
-                      : null}
-                  </td>
-
-                  <td style={{ textAlign: 'right' }}>
-                    {row.amount}
-                  </td>
-                  <td style={{ textAlign: 'right' }}>
-                    {row.paymentMethod
-                      ? i18n(
-                          `entities.membership.enumerators.paymentMethod.${row.paymentMethod}`,
-                        )
-                      : null}
-                  </td>
-                  <td>
-                    <FilesListView
-                      value={row.attachements}
-                    />
-                  </td>
-                  <td className="td-actions">
-                    <Link
-                      className="btn btn-link"
-                      to={`/membership/${row.id}`}
-                    >
-                      <i className={'fas fa-search'} />
-                    </Link>
-                    {hasPermissionToEdit && (
-                      <Link
-                        className="btn btn-link"
-                        to={`/membership/${row.id}/edit`}
-                      >
-                        <i className="fas fa-edit" />
-                      </Link>
-                    )}
-                    {hasPermissionToDestroy && (
-                      <button
-                        className="btn btn-link"
-                        type="button"
-                        onClick={() =>
-                          doOpenDestroyConfirmModal(row.id)
-                        }
-                      >
-                        <i className="fas fa-trash-alt" />
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            {!loading &&
-              !props.data &&
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -323,7 +193,7 @@ function MembershipListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
@@ -336,16 +206,20 @@ function MembershipListTable(props) {
                         )
                       : null}
                   </td>
-
+                  <td>
+                    <FormuleListItem value={row.formule} />
+                  </td>
                   <td>
                     <FilesListView
                       value={row.attachements}
                     />
                   </td>
                   <td>
-                    <UserListItem value={row.user} />
+                    <UserListItem value={row.member} />
                   </td>
-
+                  <td>
+                    <CampaignListItem value={row.campaign} />
+                  </td>
                   <td style={{ textAlign: 'right' }}>
                     {row.amount}
                   </td>
@@ -354,14 +228,14 @@ function MembershipListTable(props) {
                       className="btn btn-link"
                       to={`/membership/${row.id}`}
                     >
-                      <i className={'fas fa-search'} />
+                      {i18n('common.view')}
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
                         to={`/membership/${row.id}/edit`}
                       >
-                        <i className="fas fa-edit" />
+                        {i18n('common.edit')}
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -372,7 +246,7 @@ function MembershipListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        <i className="fas fa-trash-alt" />
+                        {i18n('common.destroy')}
                       </button>
                     )}
                   </td>

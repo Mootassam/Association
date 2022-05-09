@@ -15,11 +15,6 @@ export default [
     label: i18n('entities.newsCategory.fields.description'),
   },
   {
-    name: 'news',
-    label: i18n('entities.newsCategory.fields.news'),
-    render: exporterRenders.relationToMany(),
-  },
-  {
     name: 'createdAt',
     label: i18n('entities.newsCategory.fields.createdAt'),
     render: exporterRenders.datetime(),

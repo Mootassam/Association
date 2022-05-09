@@ -36,7 +36,7 @@ export default (database) => {
       },
       tags: [{
         type: Schema.Types.ObjectId,
-        ref: 'newsTag',
+        ref: 'tag',
       }],
       published: {
         type: Boolean,

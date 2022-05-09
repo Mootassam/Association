@@ -1,8 +1,7 @@
+import CampaignRepository from '../database/repositories/campaignRepository';
 import Error400 from '../errors/Error400';
 import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
-import CampaignRepository from '../database/repositories/campaignRepository';
-import MembershipRepository from '../database/repositories/membershipRepository';
 
 export default class CampaignService {
   options: IServiceOptions;
@@ -17,12 +16,6 @@ export default class CampaignService {
     );
 
     try {
-      data.membership =
-        await MembershipRepository.filterIdsInTenant(
-          data.membership,
-          { ...this.options, session },
-        );
-
       const record = await CampaignRepository.create(data, {
         ...this.options,
         session,
@@ -50,12 +43,6 @@ export default class CampaignService {
     );
 
     try {
-      data.membership =
-        await MembershipRepository.filterIdsInTenant(
-          data.membership,
-          { ...this.options, session },
-        );
-
       const record = await CampaignRepository.update(
         id,
         data,

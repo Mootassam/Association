@@ -19,13 +19,13 @@ const schema = yup.object().shape({
   status: yupFormSchemas.enumerator(
     i18n('entities.membership.fields.status'),
     {
-      options: membershipEnumerators.status,
+      "options": membershipEnumerators.status
     },
   ),
   paymentMethod: yupFormSchemas.enumerator(
     i18n('entities.membership.fields.paymentMethod'),
     {
-      options: membershipEnumerators.paymentMethod,
+      "options": membershipEnumerators.paymentMethod
     },
   ),
   formule: yupFormSchemas.relationToOne(
@@ -36,7 +36,7 @@ const schema = yup.object().shape({
     i18n('entities.membership.fields.attachements'),
     {},
   ),
-  user: yupFormSchemas.relationToOne(
+  member: yupFormSchemas.relationToOne(
     i18n('entities.membership.fields.member'),
     {},
   ),
@@ -59,7 +59,7 @@ function MembershipForm(props) {
       paymentMethod: record.paymentMethod,
       formule: record.formule,
       attachements: record.attachements || [],
-      user: record.user,
+      member: record.member,
       campaign: record.campaign,
       amount: record.amount,
     };
@@ -89,9 +89,7 @@ function MembershipForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="status"
-                label={i18n(
-                  'entities.membership.fields.status',
-                )}
+                label={i18n('entities.membership.fields.status')}
                 options={membershipEnumerators.status.map(
                   (value) => ({
                     value,
@@ -106,9 +104,7 @@ function MembershipForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <SelectFormItem
                 name="paymentMethod"
-                label={i18n(
-                  'entities.membership.fields.paymentMethod',
-                )}
+                label={i18n('entities.membership.fields.paymentMethod')}
                 options={membershipEnumerators.paymentMethod.map(
                   (value) => ({
                     value,
@@ -120,17 +116,10 @@ function MembershipForm(props) {
                 required={false}
               />
             </div>
-            <div
-              className="col-lg-7 col-md-8 col-12"
-              style={{
-                display: props.formuleId ? 'none' : 'block',
-              }}
-            >
-              <FormuleAutocompleteFormItem
+            <div className="col-lg-7 col-md-8 col-12">
+              <FormuleAutocompleteFormItem  
                 name="formule"
-                label={i18n(
-                  'entities.membership.fields.formule',
-                )}
+                label={i18n('entities.membership.fields.formule')}
                 required={false}
                 showCreate={!props.modal}
               />
@@ -138,45 +127,25 @@ function MembershipForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <FilesFormItem
                 name="attachements"
-                label={i18n(
-                  'entities.membership.fields.attachements',
-                )}
+                label={i18n('entities.membership.fields.attachements')}
                 required={false}
-                storage={
-                  Storage.values.membershipAttachements
-                }
+                storage={Storage.values.membershipAttachements}
                 max={undefined}
                 formats={undefined}
               />
             </div>
-            <div
-              className="col-lg-7 col-md-8 col-12"
-              style={{
-                display: props.userId ? 'none' : 'block',
-              }}
-            >
-              <UserAutocompleteFormItem
-                name="user"
-                label={i18n(
-                  'entities.membership.fields.member',
-                )}
+            <div className="col-lg-7 col-md-8 col-12">
+              <UserAutocompleteFormItem  
+                name="member"
+                label={i18n('entities.membership.fields.member')}
                 required={false}
                 showCreate={!props.modal}
               />
             </div>
-            <div
-              className="col-lg-7 col-md-8 col-12"
-              style={{
-                display: props.campaignId
-                  ? 'none'
-                  : 'block',
-              }}
-            >
-              <CampaignAutocompleteFormItem
+            <div className="col-lg-7 col-md-8 col-12">
+              <CampaignAutocompleteFormItem  
                 name="campaign"
-                label={i18n(
-                  'entities.membership.fields.campaign',
-                )}
+                label={i18n('entities.membership.fields.campaign')}
                 required={false}
                 showCreate={!props.modal}
               />
@@ -184,9 +153,7 @@ function MembershipForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="amount"
-                label={i18n(
-                  'entities.membership.fields.amount',
-                )}
+                label={i18n('entities.membership.fields.amount')}  
                 required={false}
               />
             </div>
@@ -202,8 +169,7 @@ function MembershipForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />
-              &nbsp;
+              />{' '}
               {i18n('common.save')}
             </button>
 
@@ -213,8 +179,7 @@ function MembershipForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>
-              &nbsp;
+              <i className="fas fa-undo"></i>{' '}
               {i18n('common.reset')}
             </button>
 
@@ -225,7 +190,7 @@ function MembershipForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>&nbsp;
+                <i className="fas fa-times"></i>{' '}
                 {i18n('common.cancel')}
               </button>
             ) : null}

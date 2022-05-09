@@ -249,7 +249,7 @@ function PartnerListTable(props) {
                       : null}
                   </td>
                   <td>
-                    <GroupListItem value={row.group} />
+                    <GroupListItem value={row.groupes} />
                   </td>
                   <td className="td-actions">
                     <Link

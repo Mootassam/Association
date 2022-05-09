@@ -20,7 +20,7 @@ export default (database) => {
       date: {
         type: String,
       },
-      depense: {
+      depenses: {
         type: Schema.Types.ObjectId,
         ref: 'depense',
       },

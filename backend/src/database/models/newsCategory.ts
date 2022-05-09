@@ -16,10 +16,6 @@ export default (database) => {
       description: {
         type: String,
       },
-      news: [{
-        type: Schema.Types.ObjectId,
-        ref: 'news',
-      }],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',

@@ -120,11 +120,11 @@ function DepenseListTable(props) {
                   'entities.depense.fields.facture',
                 )}
               />
-              {/* <TableColumnHeader
+              <TableColumnHeader
                 label={i18n(
                   'entities.depense.fields.charge',
                 )}
-              /> */}
+              />
               <TableColumnHeader
                 onSort={doChangeSort}
                 hasRows={hasRows}
@@ -198,9 +198,9 @@ function DepenseListTable(props) {
                       ? i18n('common.yes')
                       : i18n('common.no')}
                   </td>
-                  {/* <td>
-                    <ChargeListItem value={row.charge} />
-                  </td> */}
+                  <td>
+                    <ChargeListItem value={row.charges} />
+                  </td>
                   <td style={{ textAlign: 'right' }}>
                     {row.amount}
                   </td>

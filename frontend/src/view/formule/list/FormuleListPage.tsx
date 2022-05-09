@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import { i18n } from 'src/i18n';
 import FormuleListFilter from 'src/view/formule/list/FormuleListFilter';
 import FormuleListTable from 'src/view/formule/list/FormuleListTable';
@@ -19,19 +18,11 @@ function FormuleListPage(props) {
       />
 
       <ContentWrapper>
-        <Container fluid={true}>
-          <Row>
-            <Col xs={9}>
-              <PageTitle>
-                {i18n('entities.formule.list.title')}
-              </PageTitle>
-            </Col>
-            <Col md="auto">
-              <FormuleListToolbar />
-            </Col>
-          </Row>
-        </Container>
+        <PageTitle>
+          {i18n('entities.formule.list.title')}
+        </PageTitle>
 
+        <FormuleListToolbar />
         <FormuleListFilter />
         <FormuleListTable />
       </ContentWrapper>

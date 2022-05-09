@@ -36,7 +36,7 @@ const emptyValues = {
   type: null,
   category: null,
   published: null,
-};
+}
 
 const previewRenders = {
   name: {
@@ -45,19 +45,17 @@ const previewRenders = {
   },
   type: {
     label: i18n('entities.news.fields.type'),
-    render: filterRenders.enumerator(
-      'entities.news.enumerators.type',
-    ),
+    render: filterRenders.enumerator('entities.news.enumerators.type',),
   },
   category: {
-    label: i18n('entities.news.fields.category'),
-    render: filterRenders.relationToOne(),
-  },
+      label: i18n('entities.news.fields.category'),
+      render: filterRenders.relationToOne(),
+    },
   published: {
     label: i18n('entities.news.fields.published'),
     render: filterRenders.boolean(),
   },
-};
+}
 
 function NewsListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -78,12 +76,7 @@ function NewsListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(
-      actions.doFetch(
-        schema.cast(initialValues),
-        rawFilter,
-      ),
-    );
+    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -124,56 +117,48 @@ function NewsListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                <div className="col-lg-6 col-12">
-                  <InputFormItem
-                    name="name"
-                    label={i18n(
-                      'entities.news.fields.name',
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <SelectFormItem
-                    name="type"
-                    label={i18n(
-                      'entities.news.fields.type',
-                    )}
-                    options={newsEnumerators.type.map(
-                      (value) => ({
-                        value,
-                        label: i18n(
-                          `entities.news.enumerators.type.${value}`,
-                        ),
-                      }),
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <NewsCategoryAutocompleteFormItem
-                    name="category"
-                    label={i18n(
-                      'entities.news.fields.category',
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <SelectFormItem
-                    name="published"
-                    label={i18n(
-                      'entities.news.fields.published',
-                    )}
-                    options={[
-                      {
-                        value: true,
-                        label: i18n('common.yes'),
-                      },
-                      {
-                        value: false,
-                        label: i18n('common.no'),
-                      },
-                    ]}
-                  />
-                </div>
+                    <div className="col-lg-6 col-12">
+                      <InputFormItem
+                        name="name"
+                        label={i18n('entities.news.fields.name')}      
+                      />
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <SelectFormItem
+                        name="type"
+                        label={i18n('entities.news.fields.type')}
+                        options={newsEnumerators.type.map(
+                          (value) => ({
+                            value,
+                            label: i18n(
+                              `entities.news.enumerators.type.${value}`,
+                            ),
+                          }),
+                        )}
+                      />
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <NewsCategoryAutocompleteFormItem  
+                        name="category"
+                        label={i18n('entities.news.fields.category')}        
+                      />
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <SelectFormItem
+                        name="published"
+                        label={i18n('entities.news.fields.published')}
+                        options={[
+                          {
+                            value: true,
+                            label: i18n('common.yes'),
+                          },
+                          {
+                            value: false,
+                            label: i18n('common.no'),
+                          },
+                        ]}
+                      />
+                    </div>
               </div>
 
               <div className="row">
@@ -186,7 +171,7 @@ function NewsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />
+                    />{' '}
                     {i18n('common.search')}
                   </button>
                   <button
@@ -198,7 +183,8 @@ function NewsListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />
+                    />{' '}
+                    {i18n('common.reset')}
                   </button>
                 </div>
               </div>

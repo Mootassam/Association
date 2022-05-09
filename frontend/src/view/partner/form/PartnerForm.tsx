@@ -59,7 +59,7 @@ const schema = yup.object().shape({
       options: partnerEnumerators.type,
     },
   ),
-  group: yupFormSchemas.relationToMany(
+  groupes: yupFormSchemas.relationToMany(
     i18n('entities.partner.fields.group'),
     {},
   ),
@@ -80,7 +80,7 @@ function PartnerForm(props) {
       country: record.country,
       members: record.members || [],
       type: record.type,
-      group: record.group || [],
+      groupes: record.groupes || [],
     };
   });
 

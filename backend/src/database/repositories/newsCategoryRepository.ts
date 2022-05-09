@@ -39,14 +39,7 @@ class NewsCategoryRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      NewsCategory(options.database),
-      'news',
-      News(options.database),
-      'category',
-      options,
-    );    
+    
 
     return this.findById(record.id, options);
   }
@@ -85,14 +78,7 @@ class NewsCategoryRepository {
 
     record = await this.findById(id, options);
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      NewsCategory(options.database),
-      'news',
-      News(options.database),
-      'category',
-      options,
-    );
+
 
     return record;
   }
@@ -181,8 +167,7 @@ class NewsCategoryRepository {
 
     let record = await MongooseRepository.wrapWithSessionIfExists(
       NewsCategory(options.database)
-        .findOne({_id: id, tenant: currentTenant.id})
-      .populate('news'),
+        .findOne({_id: id, tenant: currentTenant.id}),
       options,
     );
 
@@ -268,8 +253,7 @@ class NewsCategoryRepository {
       .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
-      .sort(sort)
-      .populate('news');
+      .sort(sort);
 
     const count = await NewsCategory(
       options.database,

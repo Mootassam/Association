@@ -3,7 +3,7 @@ import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
 import NewsRepository from '../database/repositories/newsRepository';
 import NewsCategoryRepository from '../database/repositories/newsCategoryRepository';
-import NewsTagRepository from '../database/repositories/newsTagRepository';
+import TagRepository from '../database/repositories/tagRepository';
 
 export default class NewsService {
   options: IServiceOptions;
@@ -19,7 +19,7 @@ export default class NewsService {
 
     try {
       data.category = await NewsCategoryRepository.filterIdInTenant(data.category, { ...this.options, session });
-      data.tags = await NewsTagRepository.filterIdsInTenant(data.tags, { ...this.options, session });
+      data.tags = await TagRepository.filterIdsInTenant(data.tags, { ...this.options, session });
 
       const record = await NewsRepository.create(data, {
         ...this.options,
@@ -49,7 +49,7 @@ export default class NewsService {
 
     try {
       data.category = await NewsCategoryRepository.filterIdInTenant(data.category, { ...this.options, session });
-      data.tags = await NewsTagRepository.filterIdsInTenant(data.tags, { ...this.options, session });
+      data.tags = await TagRepository.filterIdsInTenant(data.tags, { ...this.options, session });
 
       const record = await NewsRepository.update(
         id,

@@ -6,7 +6,6 @@ import NewsListToolbar from 'src/view/news/list/NewsListToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
-import { Container, Row, Col } from 'react-bootstrap';
 
 function NewsListPage(props) {
   return (
@@ -19,19 +18,11 @@ function NewsListPage(props) {
       />
 
       <ContentWrapper>
-        <Container fluid={true}>
-          <Row>
-            <Col xs={9}>
-              <PageTitle>
-                {i18n('entities.news.list.title')}
-              </PageTitle>
-            </Col>
-            <Col md="auto">
-              <NewsListToolbar />
-            </Col>
-          </Row>
-        </Container>
+        <PageTitle>
+          {i18n('entities.news.list.title')}
+        </PageTitle>
 
+        <NewsListToolbar />
         <NewsListFilter />
         <NewsListTable />
       </ContentWrapper>

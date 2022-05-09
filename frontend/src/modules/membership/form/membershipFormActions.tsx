@@ -44,7 +44,7 @@ const membershipFormActions = {
         type: membershipFormActions.INIT_ERROR,
       });
 
-      getHistory().goBack();
+      getHistory().push('/membership');
     }
   },
 
@@ -64,7 +64,7 @@ const membershipFormActions = {
         i18n('entities.membership.create.success'),
       );
 
-      getHistory().goBack();
+      getHistory().push('/membership');
     } catch (error) {
       Errors.handle(error);
 
@@ -90,7 +90,7 @@ const membershipFormActions = {
         i18n('entities.membership.update.success'),
       );
 
-      getHistory().goBack();
+      getHistory().push('/membership');
     } catch (error) {
       Errors.handle(error);
 

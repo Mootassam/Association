@@ -1244,40 +1244,34 @@ const privateRoutes = [
   },
 
   {
-    path: '/news-tag',
-    loader: () =>
-      import('src/view/newsTag/list/NewsTagListPage'),
-    permissionRequired: permissions.newsTagRead,
+    path: '/tag',
+    loader: () => import('src/view/tag/list/TagListPage'),
+    permissionRequired: permissions.tagRead,
     exact: true,
   },
   {
-    path: '/news-tag/new',
-    loader: () =>
-      import('src/view/newsTag/form/NewsTagFormPage'),
-    permissionRequired: permissions.newsTagCreate,
+    path: '/tag/new',
+    loader: () => import('src/view/tag/form/TagFormPage'),
+    permissionRequired: permissions.tagCreate,
     exact: true,
   },
   {
-    path: '/news-tag/importer',
+    path: '/tag/importer',
     loader: () =>
-      import(
-        'src/view/newsTag/importer/NewsTagImporterPage'
-      ),
-    permissionRequired: permissions.newsTagImport,
+      import('src/view/tag/importer/TagImporterPage'),
+    permissionRequired: permissions.tagImport,
     exact: true,
   },
   {
-    path: '/news-tag/:id/edit',
-    loader: () =>
-      import('src/view/newsTag/form/NewsTagFormPage'),
-    permissionRequired: permissions.newsTagEdit,
+    path: '/tag/:id/edit',
+    loader: () => import('src/view/tag/form/TagFormPage'),
+    permissionRequired: permissions.tagEdit,
     exact: true,
   },
   {
-    path: '/news-tag/:id',
-    loader: () =>
-      import('src/view/newsTag/view/NewsTagViewPage'),
-    permissionRequired: permissions.newsTagRead,
+    path: '/tag/:id',
+    loader: () => import('src/view/tag/view/TagViewPage'),
+    permissionRequired: permissions.tagRead,
     exact: true,
   },
 

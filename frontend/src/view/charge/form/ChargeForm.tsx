@@ -31,7 +31,7 @@ function ChargeForm(props) {
     return {
       type: record.type,
       amount: record.amount,
-      // depense: record.depense,
+      depenses: record.depenses,
     };
   });
 

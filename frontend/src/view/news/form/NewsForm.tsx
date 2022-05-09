@@ -15,7 +15,7 @@ import Storage from 'src/security/storage';
 import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
 import FilesFormItem from 'src/view/shared/form/items/FilesFormItem';
 import NewsCategoryAutocompleteFormItem from 'src/view/newsCategory/autocomplete/NewsCategoryAutocompleteFormItem';
-import NewsTagAutocompleteFormItem from 'src/view/newsTag/autocomplete/NewsTagAutocompleteFormItem';
+import TagAutocompleteFormItem from 'src/view/tag/autocomplete/TagAutocompleteFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -25,7 +25,7 @@ const schema = yup.object().shape({
   type: yupFormSchemas.enumerator(
     i18n('entities.news.fields.type'),
     {
-      options: newsEnumerators.type,
+      "options": newsEnumerators.type
     },
   ),
   shortDescription: yupFormSchemas.string(
@@ -39,7 +39,7 @@ const schema = yup.object().shape({
   image: yupFormSchemas.images(
     i18n('entities.news.fields.image'),
     {
-      max: 1,
+      "max": 1
     },
   ),
   attachements: yupFormSchemas.files(
@@ -103,7 +103,7 @@ function NewsForm(props) {
                 name="name"
                 label={i18n('entities.news.fields.name')}
                 required={false}
-                autoFocus
+              autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
@@ -124,18 +124,14 @@ function NewsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <TextAreaFormItem
                 name="shortDescription"
-                label={i18n(
-                  'entities.news.fields.shortDescription',
-                )}
+                label={i18n('entities.news.fields.shortDescription')}  
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <TextAreaFormItem
                 name="description"
-                label={i18n(
-                  'entities.news.fields.description',
-                )}
+                label={i18n('entities.news.fields.description')}  
                 required={false}
               />
             </div>
@@ -151,9 +147,7 @@ function NewsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <FilesFormItem
                 name="attachements"
-                label={i18n(
-                  'entities.news.fields.attachements',
-                )}
+                label={i18n('entities.news.fields.attachements')}
                 required={false}
                 storage={Storage.values.newsAttachements}
                 max={undefined}
@@ -161,17 +155,15 @@ function NewsForm(props) {
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <NewsCategoryAutocompleteFormItem
+              <NewsCategoryAutocompleteFormItem  
                 name="category"
-                label={i18n(
-                  'entities.news.fields.category',
-                )}
+                label={i18n('entities.news.fields.category')}
                 required={false}
                 showCreate={!props.modal}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <NewsTagAutocompleteFormItem
+              <TagAutocompleteFormItem  
                 name="tags"
                 label={i18n('entities.news.fields.tags')}
                 required={false}
@@ -182,9 +174,7 @@ function NewsForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <SwitchFormItem
                 name="published"
-                label={i18n(
-                  'entities.news.fields.published',
-                )}
+                label={i18n('entities.news.fields.published')}
               />
             </div>
           </div>
@@ -199,8 +189,7 @@ function NewsForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />
-              &nbsp;
+              />{' '}
               {i18n('common.save')}
             </button>
 
@@ -210,8 +199,7 @@ function NewsForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>
-              &nbsp;
+              <i className="fas fa-undo"></i>{' '}
               {i18n('common.reset')}
             </button>
 
@@ -222,7 +210,7 @@ function NewsForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>&nbsp;
+                <i className="fas fa-times"></i>{' '}
                 {i18n('common.cancel')}
               </button>
             ) : null}

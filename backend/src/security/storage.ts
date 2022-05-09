@@ -126,7 +126,12 @@ export default class Storage {
         folder: 'tenant/:tenantId/news/attachements',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
-
+      adherentshipAttachements: {
+        id: 'newsAttachements',
+        folder:
+          'tenant/:tenantId/adherentshipAttachements/attachements',
+        maxSizeInBytes: 100 * 1024 * 1024,
+      },
       partnerLogo: {
         id: 'partnerLogo',
         folder: 'tenant/:tenantId/partner/logo',

@@ -14,9 +14,8 @@ import lodash from 'lodash';
 
 export default class UserRepository {
   static async create(data, options: IRepositoryOptions) {
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     data = this._preSave(data);
 
@@ -63,7 +62,8 @@ export default class UserRepository {
     });
   }
 
-  static async updateUser(tenantId,
+  static async updateUser(
+    tenantId,
     id,
     fullName,
     phoneNumber,
@@ -76,28 +76,29 @@ export default class UserRepository {
     etat_civil,
     lien_facebook,
     parrain,
-    options) {
-    const user = await MongooseRepository.wrapWithSessionIfExists(
-      User(options.database)
-        .findById(id),
-      options,
-    );
+    options,
+  ) {
+    const user =
+      await MongooseRepository.wrapWithSessionIfExists(
+        User(options.database).findById(id),
+        options,
+      );
 
     await User(options.database).updateOne(
       { _id: id },
       {
         $set: {
-          'fullName': fullName,
-          'phoneNumber': phoneNumber,
-          'employeur': employeur,
-          'profession': profession,
-          'date_naissance': date_naissance,
-          'secteur': secteur,
-          'adresse': adresse,
-          'cin': cin,
-          'etat_civil': etat_civil,
-          'lien_facebook': lien_facebook,
-          'parrain': parrain,
+          fullName: fullName,
+          phoneNumber: phoneNumber,
+          employeur: employeur,
+          profession: profession,
+          date_naissance: date_naissance,
+          secteur: secteur,
+          adresse: adresse,
+          cin: cin,
+          etat_civil: etat_civil,
+          lien_facebook: lien_facebook,
+          parrain: parrain,
         },
       },
       options,
@@ -117,7 +118,7 @@ export default class UserRepository {
           password: data.password,
           firstName: data.firstName,
           fullName: data.fullName,
-        }
+        },
       ],
       options,
     );
@@ -145,9 +146,8 @@ export default class UserRepository {
     invalidateOldTokens: boolean,
     options: IRepositoryOptions,
   ) {
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const data: any = {
       password,
@@ -158,7 +158,11 @@ export default class UserRepository {
       data.jwtTokenInvalidBefore = new Date();
     }
 
-    await User(options.database).updateOne({ _id: id }, data, options);
+    await User(options.database).updateOne(
+      { _id: id },
+      data,
+      options,
+    );
 
     await AuditLogRepository.log(
       {
@@ -184,9 +188,8 @@ export default class UserRepository {
     data,
     options: IRepositoryOptions,
   ) {
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     data = this._preSave(data);
 
@@ -231,9 +234,8 @@ export default class UserRepository {
     email,
     options: IRepositoryOptions,
   ) {
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const { id } = await this.findByEmailWithoutAvatar(
       email,
@@ -277,9 +279,8 @@ export default class UserRepository {
     email,
     options: IRepositoryOptions,
   ) {
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const { id } = await this.findByEmailWithoutAvatar(
       email,
@@ -324,9 +325,8 @@ export default class UserRepository {
     data,
     options: IRepositoryOptions,
   ) {
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     data = this._preSave(data);
 
@@ -395,9 +395,8 @@ export default class UserRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
 
@@ -487,20 +486,22 @@ export default class UserRepository {
       ? { $and: criteriaAnd }
       : null;
 
-    let rows = await MongooseRepository.wrapWithSessionIfExists(
-      User(options.database)
-        .find(criteria)
-        .skip(skip)
-        .limit(limitEscaped)
-        .sort(sort)
-        .populate('tenants.tenant'),
-      options,
-    );
+    let rows =
+      await MongooseRepository.wrapWithSessionIfExists(
+        User(options.database)
+          .find(criteria)
+          .skip(skip)
+          .limit(limitEscaped)
+          .sort(sort)
+          .populate('tenants.tenant'),
+        options,
+      );
 
-    const count = await MongooseRepository.wrapWithSessionIfExists(
-      User(options.database).countDocuments(criteria),
-      options,
-    );
+    const count =
+      await MongooseRepository.wrapWithSessionIfExists(
+        User(options.database).countDocuments(criteria),
+        options,
+      );
 
     rows = this._mapUserForTenantForRows(
       rows,
@@ -585,9 +586,8 @@ export default class UserRepository {
     limit,
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: Array<any> = [
       {
@@ -605,17 +605,15 @@ export default class UserRepository {
           },
           {
             fullName: {
-              $regex: MongooseQueryUtils.escapeRegExp(
-                search,
-              ),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
             },
           },
           {
             email: {
-              $regex: MongooseQueryUtils.escapeRegExp(
-                search,
-              ),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
             },
           },
@@ -665,21 +663,21 @@ export default class UserRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      User(options.database)
-        .findById(id)
-        .populate('tenants.tenant')
-        .populate('parrain'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        User(options.database)
+          .findById(id)
+          .populate('tenants.tenant')
+          .populate('parrain'),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
     }
 
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     if (!options || !options.bypassPermissionValidation) {
       if (!isUserInTenant(record, currentTenant.id)) {
@@ -704,12 +702,13 @@ export default class UserRepository {
     id,
     options: IRepositoryOptions,
   ) {
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      User(options.database)
-        .findById(id)
-        .select('+password'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        User(options.database)
+          .findById(id)
+          .select('+password'),
+        options,
+      );
 
     if (!record) {
       return null;
@@ -763,9 +762,8 @@ export default class UserRepository {
     id,
     options: IRepositoryOptions,
   ) {
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     await User(options.database).updateOne(
       { _id: id },
@@ -846,14 +844,13 @@ export default class UserRepository {
       (tenantUser) =>
         tenantUser &&
         tenantUser.tenant &&
-        String(tenantUser.tenant.id) === String(tenant.id),
+        String(tenantUser.tenant._id) === String(tenant.id),
     );
 
     delete user.tenants;
 
     const status = tenantUser ? tenantUser.status : null;
     const roles = tenantUser ? tenantUser.roles : [];
-
 
     // If the user is only invited,
     // tenant members can only see its email
@@ -880,15 +877,18 @@ export default class UserRepository {
       status,
     };
   }
-  static async findByRoleAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant1 = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findByRoleAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant1 =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: Array<any> = [
       {
         tenants: {
-          $elemMatch: { tenant: currentTenant1.id }
+          $elemMatch: { tenant: currentTenant1.id },
         },
       },
     ];
@@ -900,17 +900,15 @@ export default class UserRepository {
           },
           {
             fullName: {
-              $regex: MongooseQueryUtils.escapeRegExp(
-                search,
-              ),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
             },
           },
           {
             email: {
-              $regex: MongooseQueryUtils.escapeRegExp(
-                search,
-              ),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
             },
           },
@@ -945,7 +943,6 @@ export default class UserRepository {
       id: user.id,
       label: buildText(user),
     }));
-
   }
 
   static async _fillRelationsAndFileDownloadUrls(
@@ -963,12 +960,11 @@ export default class UserRepository {
     if (output.tenants && output.tenants.length) {
       await Promise.all(
         output.tenants.map(async (userTenant) => {
-          userTenant.tenant.settings = await SettingsRepository.find(
-            {
+          userTenant.tenant.settings =
+            await SettingsRepository.find({
               currentTenant: userTenant.tenant,
               ...options,
-            },
-          );
+            });
         }),
       );
     }

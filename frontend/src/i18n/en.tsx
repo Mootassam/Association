@@ -888,7 +888,7 @@ const en = {
       },
     },
 
-    newsTag: {
+    tag: {
       name: 'newsTag',
       label: 'NewsTags',
       menu: 'NewsTags',

@@ -28,9 +28,7 @@ function MembershipView(props) {
       />
 
       <TextViewItem
-        label={i18n(
-          'entities.membership.fields.paymentMethod',
-        )}
+        label={i18n('entities.membership.fields.paymentMethod')}
         value={
           record.paymentMethod &&
           i18n(
@@ -53,7 +51,7 @@ function MembershipView(props) {
 
       <UserViewItem
         label={i18n('entities.membership.fields.member')}
-        value={record.user}
+        value={record.member}
       />
 
       <CampaignViewItem

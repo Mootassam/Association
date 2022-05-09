@@ -1,8 +1,7 @@
+import FormuleRepository from '../database/repositories/formuleRepository';
 import Error400 from '../errors/Error400';
 import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
-import FormuleRepository from '../database/repositories/formuleRepository';
-import MembershipRepository from '../database/repositories/membershipRepository';
 
 export default class FormuleService {
   options: IServiceOptions;
@@ -17,8 +16,6 @@ export default class FormuleService {
     );
 
     try {
-      data.membership = await MembershipRepository.filterIdsInTenant(data.membership, { ...this.options, session });
-
       const record = await FormuleRepository.create(data, {
         ...this.options,
         session,
@@ -46,8 +43,6 @@ export default class FormuleService {
     );
 
     try {
-      data.membership = await MembershipRepository.filterIdsInTenant(data.membership, { ...this.options, session });
-
       const record = await FormuleRepository.update(
         id,
         data,

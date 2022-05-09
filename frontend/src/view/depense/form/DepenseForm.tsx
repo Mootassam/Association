@@ -45,7 +45,7 @@ function DepenseForm(props) {
 
     return {
       facture: record.facture,
-      // charge: record.charge || [],
+      charges: record.charges || [],
       amount: record.amount,
       type: record.type,
       date: record.date

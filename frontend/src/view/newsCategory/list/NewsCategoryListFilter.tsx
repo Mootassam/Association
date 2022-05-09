@@ -21,14 +21,14 @@ const schema = yup.object().shape({
 
 const emptyValues = {
   name: null,
-};
+}
 
 const previewRenders = {
   name: {
     label: i18n('entities.newsCategory.fields.name'),
     render: filterRenders.generic(),
   },
-};
+}
 
 function NewsCategoryListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -49,12 +49,7 @@ function NewsCategoryListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(
-      actions.doFetch(
-        schema.cast(initialValues),
-        rawFilter,
-      ),
-    );
+    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -95,14 +90,12 @@ function NewsCategoryListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                <div className="col-lg-6 col-12">
-                  <InputFormItem
-                    name="name"
-                    label={i18n(
-                      'entities.newsCategory.fields.name',
-                    )}
-                  />
-                </div>
+                    <div className="col-lg-6 col-12">
+                      <InputFormItem
+                        name="name"
+                        label={i18n('entities.newsCategory.fields.name')}      
+                      />
+                    </div>
               </div>
 
               <div className="row">
@@ -115,7 +108,7 @@ function NewsCategoryListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />
+                    />{' '}
                     {i18n('common.search')}
                   </button>
                   <button
@@ -127,7 +120,8 @@ function NewsCategoryListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />
+                    />{' '}
+                    {i18n('common.reset')}
                   </button>
                 </div>
               </div>

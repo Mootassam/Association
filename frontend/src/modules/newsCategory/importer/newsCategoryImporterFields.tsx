@@ -18,12 +18,4 @@ export default [
       {},
     ),
   },
-  {
-    name: 'news',
-    label: i18n('entities.newsCategory.fields.news'),
-    schema: schemas.relationToMany(
-      i18n('entities.newsCategory.fields.news'),
-      {},
-    ),
-  },
 ];

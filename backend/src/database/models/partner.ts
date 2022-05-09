@@ -33,26 +33,26 @@ export default (database) => {
       country: {
         type: String,
       },
-      members: [{
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-      }],
+      members: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'user',
+        },
+      ],
       type: {
         type: String,
-        enum: [
-          "association",
-          "funder",
-          null
-        ],
+        enum: ['association', 'funder', null],
       },
-      group: [{
-        type: Schema.Types.ObjectId,
-        ref: 'group',
-      }],
+      groupes: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'group',
+        },
+      ],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -76,8 +76,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   PartnerSchema.virtual('id').get(function () {
     // @ts-ignore

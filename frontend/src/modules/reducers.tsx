@@ -35,7 +35,7 @@ import palier from 'src/modules/palier/palierReducers';
 import election from 'src/modules/election/electionReducers';
 import association from 'src/modules/association/associationReducers';
 import newsCategory from 'src/modules/newsCategory/newsCategoryReducers';
-import newsTag from 'src/modules/newsTag/newsTagReducers';
+import tag from 'src/modules/tag/tagReducers';
 import news from 'src/modules/news/newsReducers';
 import partner from 'src/modules/partner/partnerReducers';
 import group from 'src/modules/group/groupReducers';
@@ -87,7 +87,7 @@ export default (history) =>
     election,
     association,
     newsCategory,
-    newsTag,
+    tag,
     news,
     partner,
     group,

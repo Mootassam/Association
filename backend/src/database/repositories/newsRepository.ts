@@ -6,8 +6,6 @@ import { IRepositoryOptions } from './IRepositoryOptions';
 import lodash from 'lodash';
 import News from '../models/news';
 import FileRepository from './fileRepository';
-import NewsCategory from '../models/newsCategory';
-import NewsTag from '../models/newsTag';
 
 class NewsRepository {
   
@@ -41,21 +39,7 @@ class NewsRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'category',
-      NewsCategory(options.database),
-      'news',
-      options,
-    );
-
-    await MongooseRepository.refreshTwoWayRelationManyToMany(
-      record,
-      'tags',
-      NewsTag(options.database),
-      'news',
-      options,
-    );    
+    
 
     return this.findById(record.id, options);
   }
@@ -94,21 +78,7 @@ class NewsRepository {
 
     record = await this.findById(id, options);
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'category',
-      NewsCategory(options.database),
-      'news',
-      options,
-    );
 
-    await MongooseRepository.refreshTwoWayRelationManyToMany(
-      record,
-      'tags',
-      NewsTag(options.database),
-      'news',
-      options,
-    );
 
     return record;
   }
@@ -136,19 +106,7 @@ class NewsRepository {
       options,
     );
 
-    await MongooseRepository.destroyRelationToMany(
-      id,
-      NewsCategory(options.database),
-      'news',
-      options,
-    );
 
-    await MongooseRepository.destroyRelationToMany(
-      id,
-      NewsTag(options.database),
-      'news',
-      options,
-    );
   }
 
   static async filterIdInTenant(

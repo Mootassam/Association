@@ -35,15 +35,6 @@ function MembershipFormPage(props) {
   }, [dispatch, match.params.id]);
 
   const doSubmit = (id, data) => {
-    if (props.location.id) {
-      data.user = props.location.id;
-    }
-    if (props.location.campaign) {
-      data.campaign = props.location.campaign;
-    }
-    if (props.location.formule) {
-      data.formule = props.location.formule;
-    }
     if (isEditing) {
       dispatch(actions.doUpdate(id, data));
     } else {
@@ -68,15 +59,12 @@ function MembershipFormPage(props) {
 
         {dispatched && !initLoading && (
           <MembershipForm
-            userId={props.location.id}
-            campaignId={props.location.campaign}
-            formuleId={props.location.formule}
             saveLoading={saveLoading}
             initLoading={initLoading}
             record={record}
             isEditing={isEditing}
             onSubmit={doSubmit}
-            onCancel={() => getHistory().goBack()}
+            onCancel={() => getHistory().push('/membership')}
           />
         )}
       </ContentWrapper>

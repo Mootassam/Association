@@ -13,11 +13,12 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import MembershipListItem from 'src/view/membership/list/MembershipListItem';
-import ButtonIcon from 'src/view/shared/ButtonIcon';
 
 function FormuleListTable(props) {
-  const [recordIdToDestroy, setRecordIdToDestroy] =
-    useState(null);
+  const [
+    recordIdToDestroy,
+    setRecordIdToDestroy,
+  ] = useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -95,41 +96,47 @@ function FormuleListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
+                  <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
-                      className="adherent-control-input"
+                      className="custom-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
+                      className="custom-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'name'}
-                label={i18n('entities.formule.fields.name')}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'amount'}
-                label={i18n(
-                  'entities.formule.fields.amount',
-                )}
-                align="right"
-              />
-
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'name'}
+                  label={i18n(
+                    'entities.formule.fields.name',
+                  )}
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'amount'}
+                  label={i18n(
+                    'entities.formule.fields.amount',
+                  )}
+                  align="right"
+                />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.formule.fields.membership',
+                  )}
+                />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -154,10 +161,10 @@ function FormuleListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -168,7 +175,7 @@ function FormuleListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
@@ -178,20 +185,22 @@ function FormuleListTable(props) {
                   <td style={{ textAlign: 'right' }}>
                     {row.amount}
                   </td>
-
+                  <td>
+                    <MembershipListItem value={row.membership} />
+                  </td>
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
                       to={`/formule/${row.id}`}
                     >
-                      <i className={'fas fa-search'} />
+                      {i18n('common.view')}
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
                         to={`/formule/${row.id}/edit`}
                       >
-                        <i className="fas fa-edit" />
+                        {i18n('common.edit')}
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -202,7 +211,7 @@ function FormuleListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        <i className="fas fa-trash-alt" />
+                        {i18n('common.destroy')}
                       </button>
                     )}
                   </td>

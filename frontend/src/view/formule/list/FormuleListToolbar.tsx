@@ -67,23 +67,18 @@ function FormuleToolbar(props) {
     const disabled = !hasRows || loading;
 
     const button = (
-      <span
-        data-tip={i18n('common.export')}
-        data-for="charge-list-toolbar-export"
+      <button
+        className="btn btn-light"
+        disabled={disabled}
+        onClick={doExport}
+        type="button"
       >
-        <button
-          className="btnCircle btn-light"
-          disabled={disabled}
-          onClick={doExport}
-          type="button"
-        >
-          <ButtonIcon
-            loading={exportLoading}
-            iconClass="far fa-file-excel"
-          />
-        </button>
-        <ReactTooltip id="charge-list-toolbar-export" />
-      </span>
+        <ButtonIcon
+          loading={exportLoading}
+          iconClass="far fa-file-excel"
+        />{' '}
+        {i18n('common.export')}
+      </button>
     );
 
     if (disabled) {
@@ -110,24 +105,18 @@ function FormuleToolbar(props) {
     const disabled = !selectedKeys.length || loading;
 
     const button = (
-      <span
-        data-tip={i18n('common.destroy')}
-        data-tip-disable={disabled}
-        data-for="charge-list-toolbar-destroy"
+      <button
+        disabled={disabled}
+        className="btn btn-primary"
+        type="button"
+        onClick={doOpenDestroyAllConfirmModal}
       >
-        <button
-          disabled={disabled}
-          className="btn btn-primary"
-          type="button"
-          onClick={doOpenDestroyAllConfirmModal}
-        >
-          <ButtonIcon
-            loading={destroyLoading}
-            iconClass="far fa-trash-alt"
-          />
-        </button>
-        <ReactTooltip id="charge-list-toolbar-destroy" />
-      </span>
+        <ButtonIcon
+          loading={destroyLoading}
+          iconClass="far fa-trash-alt"
+        />{' '}
+        {i18n('common.destroy')}
+      </button>
     );
 
     if (disabled) {
@@ -150,35 +139,19 @@ function FormuleToolbar(props) {
     <Toolbar>
       {hasPermissionToCreate && (
         <Link to="/formule/new">
-          <span
-            data-tip={i18n('common.new')}
-            data-for="charge-list-toolbar-new-tooltip"
-          >
-            <button
-              className="btn btn-primary"
-              type="button"
-            >
-              <ButtonIcon iconClass="fas fa-plus" />
-            </button>
-            <ReactTooltip id="charge-list-toolbar-new-tooltip" />
-          </span>
+          <button className="btn btn-primary" type="button">
+            <ButtonIcon iconClass="fas fa-plus" />{' '}
+            {i18n('common.new')}
+          </button>
         </Link>
       )}
 
       {hasPermissionToImport && (
         <Link to="/formule/importer">
-          <span
-            data-tip={i18n('common.import')}
-            data-for="charge-list-toolbar-import-tooltip"
-          >
-            <button
-              className="btn btn-primary"
-              type="button"
-            >
-              <ButtonIcon iconClass="fas fa-upload" />
-            </button>
-            <ReactTooltip id="charge-list-toolbar-import-tooltip" />
-          </span>
+          <button className="btn btn-primary" type="button">
+            <ButtonIcon iconClass="fas fa-upload" />{' '}
+            {i18n('common.import')}
+          </button>
         </Link>
       )}
 
@@ -186,18 +159,10 @@ function FormuleToolbar(props) {
 
       {hasPermissionToAuditLogs && (
         <Link to="/audit-logs?entityNames=formule">
-          <span
-            data-tip={i18n('auditLog.menu')}
-            data-for="charge-list-toolbar-auditLog-tooltip"
-          >
-            <button
-              className="btnCircle btn-light"
-              type="button"
-            >
-              <ButtonIcon iconClass="fas fa-history" />
-            </button>
-            <ReactTooltip id="charge-list-toolbar-auditLog-tooltip" />
-          </span>
+          <button className="btn btn-light" type="button">
+            <ButtonIcon iconClass="fas fa-history" />{' '}
+            {i18n('auditLog.menu')}
+          </button>
         </Link>
       )}
 

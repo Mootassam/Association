@@ -15,11 +15,13 @@ import Pagination from 'src/view/shared/table/Pagination';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
 import FilesListView from 'src/view/shared/table/FileListView';
 import NewsCategoryListItem from 'src/view/newsCategory/list/NewsCategoryListItem';
-import NewsTagListItem from 'src/view/newsTag/list/NewsTagListItem';
+import TagListItem from 'src/view/tag/list/TagListItem';
 
 function NewsListTable(props) {
-  const [recordIdToDestroy, setRecordIdToDestroy] =
-    useState(null);
+  const [
+    recordIdToDestroy,
+    setRecordIdToDestroy,
+  ] = useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -97,71 +99,79 @@ function NewsListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
+                  <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
-                      className="adherent-control-input"
+                      className="custom-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
+                      className="custom-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'name'}
-                label={i18n('entities.news.fields.name')}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'type'}
-                label={i18n('entities.news.fields.type')}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'shortDescription'}
-                label={i18n(
-                  'entities.news.fields.shortDescription',
-                )}
-              />
-              <TableColumnHeader
-                label={i18n('entities.news.fields.image')}
-              />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.news.fields.attachements',
-                )}
-              />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.news.fields.category',
-                )}
-              />
-              <TableColumnHeader
-                label={i18n('entities.news.fields.tags')}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'published'}
-                label={i18n(
-                  'entities.news.fields.published',
-                )}
-              />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'name'}
+                  label={i18n(
+                    'entities.news.fields.name',
+                  )}
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'type'}
+                  label={i18n(
+                    'entities.news.fields.type',
+                  )}
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'shortDescription'}
+                  label={i18n(
+                    'entities.news.fields.shortDescription',
+                  )}
+                />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.news.fields.image',
+                  )}
+                />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.news.fields.attachements',
+                  )}
+                />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.news.fields.category',
+                  )}
+                />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.news.fields.tags',
+                  )}
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'published'}
+                  label={i18n(
+                    'entities.news.fields.published',
+                  )}
+                />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -186,10 +196,10 @@ function NewsListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -200,7 +210,7 @@ function NewsListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
@@ -224,12 +234,10 @@ function NewsListTable(props) {
                     />
                   </td>
                   <td>
-                    <NewsCategoryListItem
-                      value={row.category}
-                    />
+                    <NewsCategoryListItem value={row.category} />
                   </td>
                   <td>
-                    <NewsTagListItem value={row.tags} />
+                    <TagListItem value={row.tags} />
                   </td>
                   <td>
                     {row.published
@@ -241,14 +249,14 @@ function NewsListTable(props) {
                       className="btn btn-link"
                       to={`/news/${row.id}`}
                     >
-                      <i className={'fas fa-search'} />
+                      {i18n('common.view')}
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
                         to={`/news/${row.id}/edit`}
                       >
-                        <i className="fas fa-edit" />
+                        {i18n('common.edit')}
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -259,7 +267,7 @@ function NewsListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        <i className="fas fa-trash-alt" />
+                        {i18n('common.destroy')}
                       </button>
                     )}
                   </td>

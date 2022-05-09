@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 const emptyValues = {
   name: null,
   amountRange: [],
-};
+}
 
 const previewRenders = {
   name: {
@@ -37,7 +37,7 @@ const previewRenders = {
     label: i18n('entities.formule.fields.amountRange'),
     render: filterRenders.decimalRange(),
   },
-};
+}
 
 function FormuleListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -58,12 +58,7 @@ function FormuleListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(
-      actions.doFetch(
-        schema.cast(initialValues),
-        rawFilter,
-      ),
-    );
+    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -104,22 +99,18 @@ function FormuleListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                <div className="col-lg-6 col-12">
-                  <InputFormItem
-                    name="name"
-                    label={i18n(
-                      'entities.formule.fields.name',
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <InputRangeFormItem
-                    name="amountRange"
-                    label={i18n(
-                      'entities.formule.fields.amountRange',
-                    )}
-                  />
-                </div>
+                    <div className="col-lg-6 col-12">
+                      <InputFormItem
+                        name="name"
+                        label={i18n('entities.formule.fields.name')}      
+                      />
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <InputRangeFormItem
+                        name="amountRange"
+                        label={i18n('entities.formule.fields.amountRange')}      
+                      />
+                    </div>
               </div>
 
               <div className="row">
@@ -132,7 +123,7 @@ function FormuleListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />
+                    />{' '}
                     {i18n('common.search')}
                   </button>
                   <button
@@ -144,7 +135,8 @@ function FormuleListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />
+                    />{' '}
+                    {i18n('common.reset')}
                   </button>
                 </div>
               </div>

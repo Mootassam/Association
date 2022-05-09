@@ -15,8 +15,10 @@ import Pagination from 'src/view/shared/table/Pagination';
 import MembershipListItem from 'src/view/membership/list/MembershipListItem';
 
 function CampaignListTable(props) {
-  const [recordIdToDestroy, setRecordIdToDestroy] =
-    useState(null);
+  const [
+    recordIdToDestroy,
+    setRecordIdToDestroy,
+  ] = useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -94,74 +96,74 @@ function CampaignListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
+                  <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
-                      className="adherent-control-input"
+                      className="custom-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
+                      className="custom-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'name'}
-                label={i18n(
-                  'entities.campaign.fields.name',
-                )}
-              />
-              {/* <TableColumnHeader
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'name'}
+                  label={i18n(
+                    'entities.campaign.fields.name',
+                  )}
+                />
+                <TableColumnHeader
                   label={i18n(
                     'entities.campaign.fields.membership',
                   )}
-                /> */}
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'status'}
-                label={i18n(
-                  'entities.campaign.fields.status',
-                )}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'year'}
-                label={i18n(
-                  'entities.campaign.fields.year',
-                )}
-                align="right"
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'startDate'}
-                label={i18n(
-                  'entities.campaign.fields.startDate',
-                )}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'endDate'}
-                label={i18n(
-                  'entities.campaign.fields.endDate',
-                )}
-              />
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'status'}
+                  label={i18n(
+                    'entities.campaign.fields.status',
+                  )}
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'year'}
+                  label={i18n(
+                    'entities.campaign.fields.year',
+                  )}
+                  align="right"
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'startDate'}
+                  label={i18n(
+                    'entities.campaign.fields.startDate',
+                  )}
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'endDate'}
+                  label={i18n(
+                    'entities.campaign.fields.endDate',
+                  )}
+                />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -186,10 +188,10 @@ function CampaignListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -200,16 +202,16 @@ function CampaignListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
                     </div>
                   </th>
                   <td>{row.name}</td>
-                  {/* <td>
+                  <td>
                     <MembershipListItem value={row.membership} />
-                  </td> */}
+                  </td>
                   <td>
                     {row.status
                       ? i18n(
@@ -217,9 +219,7 @@ function CampaignListTable(props) {
                         )
                       : null}
                   </td>
-                  <td style={{ textAlign: 'right' }}>
-                    {row.year}
-                  </td>
+                  <td style={{ textAlign: 'right' }}>{row.year}</td>
                   <td>{row.startDate}</td>
                   <td>{row.endDate}</td>
                   <td className="td-actions">
@@ -227,14 +227,14 @@ function CampaignListTable(props) {
                       className="btn btn-link"
                       to={`/campaign/${row.id}`}
                     >
-                      <i className={'fas fa-search'} />
+                      {i18n('common.view')}
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
                         to={`/campaign/${row.id}/edit`}
                       >
-                        <i className="fas fa-edit" />
+                        {i18n('common.edit')}
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -245,7 +245,7 @@ function CampaignListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        <i className="fas fa-trash-alt" />
+                        {i18n('common.destroy')}
                       </button>
                     )}
                   </td>

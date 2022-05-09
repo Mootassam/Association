@@ -17,7 +17,11 @@ export default class ChargeService {
     );
 
     try {
-      data.depense = await DepenseRepository.filterIdInTenant(data.depense, { ...this.options, session });
+      data.depenses =
+        await DepenseRepository.filterIdInTenant(
+          data.depenses,
+          { ...this.options, session },
+        );
 
       const record = await ChargeRepository.create(data, {
         ...this.options,
@@ -46,7 +50,11 @@ export default class ChargeService {
     );
 
     try {
-      data.depense = await DepenseRepository.filterIdInTenant(data.depense, { ...this.options, session });
+      data.depenses =
+        await DepenseRepository.filterIdInTenant(
+          data.depenses,
+          { ...this.options, session },
+        );
 
       const record = await ChargeRepository.update(
         id,

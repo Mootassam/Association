@@ -898,7 +898,7 @@ const fr = {
       },
     },
 
-    newsTag: {
+    tag: {
       name: 'Étiqueter',
       label: 'Étiqueter',
       menu: 'Étiqueter',

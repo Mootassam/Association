@@ -2,7 +2,6 @@ import Error400 from '../errors/Error400';
 import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
 import NewsCategoryRepository from '../database/repositories/newsCategoryRepository';
-import NewsRepository from '../database/repositories/newsRepository';
 
 export default class NewsCategoryService {
   options: IServiceOptions;
@@ -17,7 +16,7 @@ export default class NewsCategoryService {
     );
 
     try {
-      data.news = await NewsRepository.filterIdsInTenant(data.news, { ...this.options, session });
+
 
       const record = await NewsCategoryRepository.create(data, {
         ...this.options,
@@ -46,7 +45,7 @@ export default class NewsCategoryService {
     );
 
     try {
-      data.news = await NewsRepository.filterIdsInTenant(data.news, { ...this.options, session });
+
 
       const record = await NewsCategoryRepository.update(
         id,

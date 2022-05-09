@@ -19,26 +19,26 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'user',
       },
-      members: [{
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-      }],
-      partners: [{
-        type: Schema.Types.ObjectId,
-        ref: 'partner',
-      }],
+      members: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'user',
+        },
+      ],
+      partners: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'partner',
+        },
+      ],
       type: {
         type: String,
-        enum: [
-          "administrative",
-          "cultural",
-          null
-        ],
+        enum: ['administrative', 'cultural', null],
       },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -62,8 +62,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   GroupSchema.virtual('id').get(function () {
     // @ts-ignore

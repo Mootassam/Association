@@ -106,7 +106,7 @@ require('./election').default(routes);
 require('./membership').default(routes);
 require('./news').default(routes);
 require('./newsCategory').default(routes);
-require('./newsTag').default(routes);
+require('./tag').default(routes);
 require('./objectif').default(routes);
 require('./partner').default(routes);
 

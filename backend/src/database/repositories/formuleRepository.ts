@@ -3,7 +3,6 @@ import MongooseQueryUtils from '../utils/mongooseQueryUtils';
 import AuditLogRepository from './auditLogRepository';
 import Error404 from '../../errors/Error404';
 import { IRepositoryOptions } from './IRepositoryOptions';
-import lodash from 'lodash';
 import Formule from '../models/formule';
 import Membership from '../models/membership';
 
@@ -57,11 +56,14 @@ class FormuleRepository {
     );
 
     let record = await MongooseRepository.wrapWithSessionIfExists(
-      Formule(options.database).findOne({_id: id, tenant: currentTenant.id}),
+      Formule(options.database).findById(id),
       options,
     );
 
-    if (!record) {
+    if (
+      !record ||
+      String(record.tenant) !== String(currentTenant.id)
+    ) {
       throw new Error404();
     }
 
@@ -103,11 +105,14 @@ class FormuleRepository {
     );
 
     let record = await MongooseRepository.wrapWithSessionIfExists(
-      Formule(options.database).findOne({_id: id, tenant: currentTenant.id}),
+      Formule(options.database).findById(id),
       options,
     );
 
-    if (!record) {
+    if (
+      !record ||
+      String(record.tenant) !== String(currentTenant.id)
+    ) {
       throw new Error404();
     }
 
@@ -126,38 +131,6 @@ class FormuleRepository {
       'formule',
       options,
     );
-  }
-
-  static async filterIdInTenant(
-    id,
-    options: IRepositoryOptions,
-  ) {
-    return lodash.get(
-      await this.filterIdsInTenant([id], options),
-      '[0]',
-      null,
-    );
-  }
-
-  static async filterIdsInTenant(
-    ids,
-    options: IRepositoryOptions,
-  ) {
-    if (!ids || !ids.length) {
-      return [];
-    }
-
-    const currentTenant =
-      MongooseRepository.getCurrentTenant(options);
-
-    const records = await Formule(options.database)
-      .find({
-        _id: { $in: ids },
-        tenant: currentTenant.id,
-      })
-      .select(['_id']);
-
-    return records.map((record) => record._id);
   }
 
   static async count(filter, options: IRepositoryOptions) {
@@ -181,16 +154,19 @@ class FormuleRepository {
 
     let record = await MongooseRepository.wrapWithSessionIfExists(
       Formule(options.database)
-        .findOne({_id: id, tenant: currentTenant.id})
+        .findById(id)
       .populate('membership'),
       options,
     );
 
-    if (!record) {
+    if (
+      !record ||
+      String(record.tenant) !== String(currentTenant.id)
+    ) {
       throw new Error404();
     }
 
-    return this._mapRelationshipsAndFillDownloadUrl(record);
+    return this._fillFileDownloadUrls(record);
   }
 
   static async findAndCountAll(
@@ -296,7 +272,7 @@ class FormuleRepository {
     ).countDocuments(criteria);
 
     rows = await Promise.all(
-      rows.map(this._mapRelationshipsAndFillDownloadUrl),
+      rows.map(this._fillFileDownloadUrls),
     );
 
     return { rows, count };
@@ -355,7 +331,7 @@ class FormuleRepository {
     );
   }
 
-  static async _mapRelationshipsAndFillDownloadUrl(record) {
+  static async _fillFileDownloadUrls(record) {
     if (!record) {
       return null;
     }
@@ -363,8 +339,6 @@ class FormuleRepository {
     const output = record.toObject
       ? record.toObject()
       : record;
-
-
 
 
 

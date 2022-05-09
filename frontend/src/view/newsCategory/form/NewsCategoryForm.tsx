@@ -8,7 +8,6 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import TextAreaFormItem from 'src/view/shared/form/items/TextAreaFormItem';
-import NewsAutocompleteFormItem from 'src/view/news/autocomplete/NewsAutocompleteFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -17,10 +16,6 @@ const schema = yup.object().shape({
   ),
   description: yupFormSchemas.string(
     i18n('entities.newsCategory.fields.description'),
-    {},
-  ),
-  news: yupFormSchemas.relationToMany(
-    i18n('entities.newsCategory.fields.news'),
     {},
   ),
 });
@@ -32,7 +27,6 @@ function NewsCategoryForm(props) {
     return {
       name: record.name,
       description: record.description,
-      news: record.news || [],
     };
   });
 
@@ -60,31 +54,16 @@ function NewsCategoryForm(props) {
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="name"
-                label={i18n(
-                  'entities.newsCategory.fields.name',
-                )}
+                label={i18n('entities.newsCategory.fields.name')}
                 required={false}
-                autoFocus
+              autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <TextAreaFormItem
                 name="description"
-                label={i18n(
-                  'entities.newsCategory.fields.description',
-                )}
+                label={i18n('entities.newsCategory.fields.description')}  
                 required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <NewsAutocompleteFormItem
-                name="news"
-                label={i18n(
-                  'entities.newsCategory.fields.news',
-                )}
-                required={false}
-                showCreate={!props.modal}
-                mode="multiple"
               />
             </div>
           </div>
@@ -99,8 +78,7 @@ function NewsCategoryForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />
-              &nbsp;
+              />{' '}
               {i18n('common.save')}
             </button>
 
@@ -110,8 +88,7 @@ function NewsCategoryForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>
-              &nbsp;
+              <i className="fas fa-undo"></i>{' '}
               {i18n('common.reset')}
             </button>
 
@@ -122,7 +99,7 @@ function NewsCategoryForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>&nbsp;
+                <i className="fas fa-times"></i>{' '}
                 {i18n('common.cancel')}
               </button>
             ) : null}

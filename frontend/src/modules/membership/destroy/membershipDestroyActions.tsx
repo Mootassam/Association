@@ -34,7 +34,7 @@ const membershipDestroyActions = {
 
       dispatch(listActions.doFetchCurrentFilter());
 
-      getHistory().go(0);
+      getHistory().push('/membership');
     } catch (error) {
       Errors.handle(error);
 
@@ -67,7 +67,7 @@ const membershipDestroyActions = {
         i18n('entities.membership.destroyAll.success'),
       );
 
-      getHistory().go(0);
+      getHistory().push('/membership');
     } catch (error) {
       Errors.handle(error);
 

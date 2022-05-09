@@ -14,7 +14,7 @@ export default (database) => {
         type: Boolean,
         default: false
       },
-      charge: [{
+      charges: [{
         type: Schema.Types.ObjectId,
         ref: 'charge',
       }],

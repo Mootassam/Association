@@ -91,7 +91,7 @@ export default [
     icon: 'fas fa-newspaper',
     label: i18n('common.news'),
     haveSubMenu: true,
-    subPaths: ['/news', '/news-tag', '/news-category'],
+    subPaths: ['/news', '/tag', '/news-category'],
     className: 'menu-li side-menue',
     subMenu: [
       {
@@ -102,10 +102,10 @@ export default [
       },
 
       {
-        path: '/news-tag',
-        permissionRequired: permissions.newsTagRead,
+        path: '/tag',
+        permissionRequired: permissions.tagRead,
         icon: 'fas fa-chevron-right',
-        label: i18n('entities.newsTag.menu'),
+        label: i18n('entities.tag.menu'),
       },
 
       {
