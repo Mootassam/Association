@@ -11,6 +11,7 @@ import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import paymentsettingsEnumerators from 'src/modules/paymentsettings/paymentsettingsEnumerators';
 import Storage from 'src/security/storage';
 import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
+import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -19,7 +20,7 @@ const schema = yup.object().shape({
   ),
   information: yupFormSchemas.string(
     i18n('entities.paymentsettings.fields.information'),
-    {},
+    { required: true },
   ),
   uniqueKeywords: yupFormSchemas.string(
     i18n('entities.paymentsettings.fields.uniqueKeywords'),
@@ -39,10 +40,6 @@ const schema = yup.object().shape({
       options: paymentsettingsEnumerators.status,
     },
   ),
-  type: yupFormSchemas.string(
-    i18n('entities.paymentsettings.fields.type'),
-    {},
-  ),
 });
 
 function PaymentsettingsForm(props) {
@@ -56,7 +53,6 @@ function PaymentsettingsForm(props) {
       photo: record.photo || [],
       text: record.text,
       status: record.status,
-      type: record.type,
     };
   });
 
@@ -92,12 +88,12 @@ function PaymentsettingsForm(props) {
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
+              <InputNumberFormItem
                 name="information"
                 label={i18n(
                   'entities.paymentsettings.fields.information',
                 )}
-                required={false}
+                required={true}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
@@ -144,15 +140,6 @@ function PaymentsettingsForm(props) {
                       `entities.paymentsettings.enumerators.status.${value}`,
                     ),
                   }),
-                )}
-                required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="type"
-                label={i18n(
-                  'entities.paymentsettings.fields.type',
                 )}
                 required={false}
               />

@@ -161,15 +161,7 @@ function PaymentsettingsListTable(props) {
                   'entities.paymentsettings.fields.status',
                 )}
               />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'type'}
-                label={i18n(
-                  'entities.paymentsettings.fields.type',
-                )}
-              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -228,7 +220,6 @@ function PaymentsettingsListTable(props) {
                         )
                       : null}
                   </td>
-                  <td>{row.type}</td>
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
