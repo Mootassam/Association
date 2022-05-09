@@ -15,10 +15,8 @@ import Pagination from 'src/view/shared/table/Pagination';
 import MembershipListItem from 'src/view/membership/list/MembershipListItem';
 
 function CampaignListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -113,57 +111,57 @@ function CampaignListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.campaign.fields.name',
-                  )}
-                />
-                <TableColumnHeader
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n(
+                  'entities.campaign.fields.name',
+                )}
+              />
+              {/* <TableColumnHeader
                   label={i18n(
                     'entities.campaign.fields.membership',
                   )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'status'}
-                  label={i18n(
-                    'entities.campaign.fields.status',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'year'}
-                  label={i18n(
-                    'entities.campaign.fields.year',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'startDate'}
-                  label={i18n(
-                    'entities.campaign.fields.startDate',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'endDate'}
-                  label={i18n(
-                    'entities.campaign.fields.endDate',
-                  )}
-                />
+                /> */}
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'status'}
+                label={i18n(
+                  'entities.campaign.fields.status',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'year'}
+                label={i18n(
+                  'entities.campaign.fields.year',
+                )}
+                align="right"
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'startDate'}
+                label={i18n(
+                  'entities.campaign.fields.startDate',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'endDate'}
+                label={i18n(
+                  'entities.campaign.fields.endDate',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -209,9 +207,9 @@ function CampaignListTable(props) {
                     </div>
                   </th>
                   <td>{row.name}</td>
-                  <td>
+                  {/* <td>
                     <MembershipListItem value={row.membership} />
-                  </td>
+                  </td> */}
                   <td>
                     {row.status
                       ? i18n(
@@ -219,7 +217,9 @@ function CampaignListTable(props) {
                         )
                       : null}
                   </td>
-                  <td style={{ textAlign: 'right' }}>{row.year}</td>
+                  <td style={{ textAlign: 'right' }}>
+                    {row.year}
+                  </td>
                   <td>{row.startDate}</td>
                   <td>{row.endDate}</td>
                   <td className="td-actions">
@@ -227,14 +227,14 @@ function CampaignListTable(props) {
                       className="btn btn-link"
                       to={`/campaign/${row.id}`}
                     >
-                      {i18n('common.view')}
+                      <i className={'fas fa-search'} />
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
                         to={`/campaign/${row.id}/edit`}
                       >
-                        {i18n('common.edit')}
+                        <i className="fas fa-edit" />
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -245,7 +245,7 @@ function CampaignListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        {i18n('common.destroy')}
+                        <i className="fas fa-trash-alt" />
                       </button>
                     )}
                   </td>

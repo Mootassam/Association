@@ -25,8 +25,8 @@ export default [
     render: exporterRenders.filesOrImages(),
   },
   {
-    name: 'member',
-    label: i18n('entities.membership.fields.member'),
+    name: 'user',
+    label: i18n('entities.membership.fields.user'),
     render: exporterRenders.relationToOne(),
   },
   {

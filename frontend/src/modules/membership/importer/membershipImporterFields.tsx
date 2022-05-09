@@ -1,5 +1,6 @@
 import schemas from 'src/modules/shared/yup/yupImporterSchemas';
-import { i18n } from 'src/i18n';import membershipEnumerators from 'src/modules/membership/membershipEnumerators';
+import { i18n } from 'src/i18n';
+import membershipEnumerators from 'src/modules/membership/membershipEnumerators';
 
 export default [
   {
@@ -8,7 +9,7 @@ export default [
     schema: schemas.enumerator(
       i18n('entities.membership.fields.status'),
       {
-        "options": membershipEnumerators.status
+        options: membershipEnumerators.status,
       },
     ),
   },
@@ -18,7 +19,7 @@ export default [
     schema: schemas.enumerator(
       i18n('entities.membership.fields.paymentMethod'),
       {
-        "options": membershipEnumerators.paymentMethod
+        options: membershipEnumerators.paymentMethod,
       },
     ),
   },
@@ -39,10 +40,10 @@ export default [
     ),
   },
   {
-    name: 'member',
-    label: i18n('entities.membership.fields.member'),
+    name: 'user',
+    label: i18n('entities.membership.fields.user'),
     schema: schemas.relationToOne(
-      i18n('entities.membership.fields.member'),
+      i18n('entities.membership.fields.user'),
       {},
     ),
   },

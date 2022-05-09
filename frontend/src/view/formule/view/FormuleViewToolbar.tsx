@@ -9,12 +9,11 @@ import destroySelectors from 'src/modules/formule/destroy/formuleDestroySelector
 import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Toolbar from 'src/view/shared/styles/Toolbar';
 import ButtonIcon from 'src/view/shared/ButtonIcon';
+import ReactTooltip from 'react-tooltip';
 
 function FormuleViewToolbar(props) {
-  const [
-    destroyConfirmVisible,
-    setDestroyConfirmVisible,
-  ] = useState(false);
+  const [destroyConfirmVisible, setDestroyConfirmVisible] =
+    useState(false);
 
   const dispatch = useDispatch();
 
@@ -51,7 +50,7 @@ function FormuleViewToolbar(props) {
       {hasPermissionToEdit && (
         <Link to={`/formule/${id}/edit`}>
           <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-edit" />{' '}
+            <ButtonIcon iconClass="fas fa-edit" />
             {i18n('common.edit')}
           </button>
         </Link>
@@ -67,7 +66,7 @@ function FormuleViewToolbar(props) {
           <ButtonIcon
             loading={destroyLoading}
             iconClass="fas fa-trash-alt"
-          />{' '}
+          />
           {i18n('common.destroy')}
         </button>
       )}
@@ -78,10 +77,18 @@ function FormuleViewToolbar(props) {
             id,
           )}`}
         >
-          <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="fas fa-history" />{' '}
-            {i18n('auditLog.menu')}
-          </button>
+          <span
+            data-tip={i18n('auditLog.menu')}
+            data-for="charge-list-toolbar-auditLog-tooltip"
+          >
+            <button
+              className="btnCircle btn-light"
+              type="button"
+            >
+              <ButtonIcon iconClass="fas fa-history" />
+            </button>
+            <ReactTooltip id="charge-list-toolbar-auditLog-tooltip" />
+          </span>
         </Link>
       )}
 

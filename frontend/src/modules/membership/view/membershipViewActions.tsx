@@ -28,7 +28,7 @@ const membershipViewActions = {
         type: membershipViewActions.FIND_ERROR,
       });
 
-      getHistory().push('/membership');
+      getHistory().goBack();
     }
   },
 };

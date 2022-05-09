@@ -13,18 +13,15 @@ export default (database) => {
       name: {
         type: String,
       },
-      membership: [{
-        type: Schema.Types.ObjectId,
-        ref: 'membership',
-      }],
+
       status: {
         type: String,
         enum: [
-          "published",
-          "draft",
-          "suspended",
-          "archived",
-          null
+          'published',
+          'draft',
+          'suspended',
+          'archived',
+          null,
         ],
       },
       year: {
@@ -62,8 +59,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   CampaignSchema.virtual('id').get(function () {
     // @ts-ignore

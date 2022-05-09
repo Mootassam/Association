@@ -13,6 +13,17 @@ import campaignEnumerators from 'src/modules/campaign/campaignEnumerators';
 import moment from 'moment';
 import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
 import MembershipAutocompleteFormItem from 'src/view/membership/autocomplete/MembershipAutocompleteFormItem';
+import {
+  Tabs,
+  Tab,
+  Container,
+  Row,
+  Col,
+} from 'react-bootstrap';
+import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
+import MembershipListFilter from 'src/view/membership/list/MembershipListFilter';
+import MembershipListTable from 'src/view/membership/list/MembershipListTable';
+import MembershipListToolbar from 'src/view/membership/list/MembershipListToolbar';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -26,7 +37,7 @@ const schema = yup.object().shape({
   status: yupFormSchemas.enumerator(
     i18n('entities.campaign.fields.status'),
     {
-      "options": campaignEnumerators.status
+      options: campaignEnumerators.status,
     },
   ),
   year: yupFormSchemas.integer(
@@ -52,8 +63,12 @@ function CampaignForm(props) {
       membership: record.membership || [],
       status: record.status,
       year: record.year,
-      startDate: record.startDate ? moment(record.startDate, 'YYYY-MM-DD').toDate() : null,
-      endDate: record.endDate ? moment(record.endDate, 'YYYY-MM-DD').toDate() : null,
+      startDate: record.startDate
+        ? moment(record.startDate, 'YYYY-MM-DD').toDate()
+        : null,
+      endDate: record.endDate
+        ? moment(record.endDate, 'YYYY-MM-DD').toDate()
+        : null,
     };
   });
 
@@ -64,7 +79,11 @@ function CampaignForm(props) {
   });
 
   const onSubmit = (values) => {
-    props.onSubmit(props.record?.id, values);
+    const data = {
+      membership: props.record.membership,
+      ...values,
+    };
+    props.onSubmit(props.record?.id, data);
   };
 
   const onReset = () => {
@@ -77,61 +96,88 @@ function CampaignForm(props) {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="row">
-            <div className="col-lg-7 col-md-8 col-12">
-              <InputFormItem
-                name="name"
-                label={i18n('entities.campaign.fields.name')}
-                required={false}
-              autoFocus
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <MembershipAutocompleteFormItem  
-                name="membership"
-                label={i18n('entities.campaign.fields.membership')}
-                required={false}
-                showCreate={!props.modal}
-                mode="multiple"
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <SelectFormItem
-                name="status"
-                label={i18n('entities.campaign.fields.status')}
-                options={campaignEnumerators.status.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.campaign.enumerators.status.${value}`,
-                    ),
-                  }),
-                )}
-                required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <InputNumberFormItem
-                name="year"
-                label={i18n('entities.campaign.fields.year')}  
-                required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <DatePickerFormItem
-                name="startDate"
-                label={i18n('entities.campaign.fields.startDate')}
-                required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <DatePickerFormItem
-                name="endDate"
-                label={i18n('entities.campaign.fields.endDate')}
-                required={false}
-              />
-            </div>
-          </div>
+          <Tabs
+            defaultActiveKey="information"
+            id="0"
+            className="mb-3"
+          >
+            <Tab eventKey="information" title="Information">
+              <Container fluid={true}>
+                <Row>
+                  <Col xs={8}>
+                    <InputFormItem
+                      name="name"
+                      label={i18n(
+                        'entities.campaign.fields.name',
+                      )}
+                      required={false}
+                      autoFocus
+                    />
+                  </Col>
+                  <Col>
+                    <SelectFormItem
+                      name="status"
+                      label={i18n(
+                        'entities.campaign.fields.status',
+                      )}
+                      options={campaignEnumerators.status.map(
+                        (value) => ({
+                          value,
+                          label: i18n(
+                            `entities.campaign.enumerators.status.${value}`,
+                          ),
+                        }),
+                      )}
+                      required={false}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <DatePickerFormItem
+                      name="startDate"
+                      label={i18n(
+                        'entities.campaign.fields.startDate',
+                      )}
+                      required={false}
+                    />
+                  </Col>
+                  <Col>
+                    <DatePickerFormItem
+                      name="endDate"
+                      label={i18n(
+                        'entities.campaign.fields.endDate',
+                      )}
+                      required={false}
+                    />
+                  </Col>
+                  <Col>
+                    <InputNumberFormItem
+                      name="year"
+                      label={i18n(
+                        'entities.campaign.fields.year',
+                      )}
+                      required={false}
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            </Tab>
+            <Tab
+              eventKey="membership"
+              title={i18n('entities.membership.menu')}
+            >
+              <ContentWrapper>
+                <MembershipListToolbar
+                  campaign={props.record.id}
+                />
+                <MembershipListFilter />
+                <MembershipListTable
+                  data={props.record.membership}
+                />
+              </ContentWrapper>
+            </Tab>
+          </Tabs>
 
           <div className="form-buttons">
             <button
@@ -143,7 +189,7 @@ function CampaignForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />{' '}
+              />
               {i18n('common.save')}
             </button>
 
@@ -153,7 +199,7 @@ function CampaignForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>{' '}
+              <i className="fas fa-undo"></i>
               {i18n('common.reset')}
             </button>
 
@@ -164,7 +210,7 @@ function CampaignForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>{' '}
+                <i className="fas fa-times"></i>
                 {i18n('common.cancel')}
               </button>
             ) : null}

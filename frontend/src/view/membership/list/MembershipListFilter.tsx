@@ -25,15 +25,15 @@ const schema = yup.object().shape({
   paymentMethod: yupFilterSchemas.enumerator(
     i18n('entities.membership.fields.paymentMethod'),
   ),
-  formule: yupFilterSchemas.relationToOne(
-    i18n('entities.membership.fields.formule'),
-  ),
-  member: yupFilterSchemas.relationToOne(
-    i18n('entities.membership.fields.member'),
-  ),
-  campaign: yupFilterSchemas.relationToOne(
-    i18n('entities.membership.fields.campaign'),
-  ),
+  // formule: yupFilterSchemas.relationToOne(
+  //   i18n('entities.membership.fields.formule'),
+  // ),
+  // user: yupFilterSchemas.relationToOne(
+  //   i18n('entities.membership.fields.user'),
+  // ),
+  // campaign: yupFilterSchemas.relationToOne(
+  //   i18n('entities.membership.fields.campaign'),
+  // ),
   amountRange: yupFilterSchemas.decimalRange(
     i18n('entities.membership.fields.amountRange'),
   ),
@@ -42,38 +42,42 @@ const schema = yup.object().shape({
 const emptyValues = {
   status: null,
   paymentMethod: null,
-  formule: null,
-  member: null,
-  campaign: null,
+  // formule: null,
+  // user: null,
+  // campaign: null,
   amountRange: [],
-}
+};
 
 const previewRenders = {
   status: {
     label: i18n('entities.membership.fields.status'),
-    render: filterRenders.enumerator('entities.membership.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.membership.enumerators.status',
+    ),
   },
   paymentMethod: {
     label: i18n('entities.membership.fields.paymentMethod'),
-    render: filterRenders.enumerator('entities.membership.enumerators.paymentMethod',),
+    render: filterRenders.enumerator(
+      'entities.membership.enumerators.paymentMethod',
+    ),
   },
-  formule: {
-      label: i18n('entities.membership.fields.formule'),
-      render: filterRenders.relationToOne(),
-    },
-  member: {
-    label: i18n('entities.membership.fields.member'),
-    render: filterRenders.relationToOne(),
-  },
-  campaign: {
-      label: i18n('entities.membership.fields.campaign'),
-      render: filterRenders.relationToOne(),
-    },
+  // formule: {
+  //   label: i18n('entities.membership.fields.formule'),
+  //   render: filterRenders.relationToOne(),
+  // },
+  // user: {
+  //   label: i18n('entities.membership.fields.user'),
+  //   render: filterRenders.relationToOne(),
+  // },
+  // campaign: {
+  //   label: i18n('entities.membership.fields.campaign'),
+  //   render: filterRenders.relationToOne(),
+  // },
   amountRange: {
     label: i18n('entities.membership.fields.amountRange'),
     render: filterRenders.decimalRange(),
   },
-}
+};
 
 function MembershipListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -94,7 +98,12 @@ function MembershipListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -135,58 +144,70 @@ function MembershipListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.membership.fields.status')}
-                        options={membershipEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.membership.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="paymentMethod"
-                        label={i18n('entities.membership.fields.paymentMethod')}
-                        options={membershipEnumerators.paymentMethod.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.membership.enumerators.paymentMethod.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <FormuleAutocompleteFormItem  
-                        name="formule"
-                        label={i18n('entities.membership.fields.formule')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <UserAutocompleteFormItem  
-                        name="member"
-                        label={i18n('entities.membership.fields.member')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <CampaignAutocompleteFormItem  
-                        name="campaign"
-                        label={i18n('entities.membership.fields.campaign')}        
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputRangeFormItem
-                        name="amountRange"
-                        label={i18n('entities.membership.fields.amountRange')}      
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.membership.fields.status',
+                    )}
+                    options={membershipEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.membership.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="paymentMethod"
+                    label={i18n(
+                      'entities.membership.fields.paymentMethod',
+                    )}
+                    options={membershipEnumerators.paymentMethod.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.membership.enumerators.paymentMethod.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                {/* <div className="col-lg-6 col-12">
+                  <FormuleAutocompleteFormItem
+                    name="formule"
+                    label={i18n(
+                      'entities.membership.fields.formule',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <UserAutocompleteFormItem
+                    name="user"
+                    label={i18n(
+                      'entities.membership.fields.user',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <CampaignAutocompleteFormItem
+                    name="campaign"
+                    label={i18n(
+                      'entities.membership.fields.campaign',
+                    )}
+                  />
+                </div> */}
+                <div className="col-lg-6 col-12">
+                  <InputRangeFormItem
+                    name="amountRange"
+                    label={i18n(
+                      'entities.membership.fields.amountRange',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -199,7 +220,7 @@ function MembershipListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -211,8 +232,7 @@ function MembershipListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
-                    {i18n('common.reset')}
+                    />
                   </button>
                 </div>
               </div>

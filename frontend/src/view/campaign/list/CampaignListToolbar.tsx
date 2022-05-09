@@ -67,17 +67,23 @@ function CampaignToolbar(props) {
     const disabled = !hasRows || loading;
 
     const button = (
-      <button
-        className="btn btn-light"
-        disabled={disabled}
-        onClick={doExport}
-        type="button"
+      <span
+        data-tip={i18n('common.export')}
+        data-for="charge-list-toolbar-export"
       >
-        <ButtonIcon
-          loading={exportLoading}
-          iconClass="far fa-file-excel"
-        />{' '}
-      </button>
+        <button
+          className="btnCircle btn-light"
+          disabled={disabled}
+          onClick={doExport}
+          type="button"
+        >
+          <ButtonIcon
+            loading={exportLoading}
+            iconClass="far fa-file-excel"
+          />
+        </button>
+        <ReactTooltip id="charge-list-toolbar-export" />
+      </span>
     );
 
     if (disabled) {
@@ -104,17 +110,24 @@ function CampaignToolbar(props) {
     const disabled = !selectedKeys.length || loading;
 
     const button = (
-      <button
-        disabled={disabled}
-        className="btn btn-primary"
-        type="button"
-        onClick={doOpenDestroyAllConfirmModal}
+      <span
+        data-tip={i18n('common.destroy')}
+        data-tip-disable={disabled}
+        data-for="charge-list-toolbar-destroy"
       >
-        <ButtonIcon
-          loading={destroyLoading}
-          iconClass="far fa-trash-alt"
-        />{' '}
-      </button>
+        <button
+          disabled={disabled}
+          className="btnCircle btn-primary"
+          type="button"
+          onClick={doOpenDestroyAllConfirmModal}
+        >
+          <ButtonIcon
+            loading={destroyLoading}
+            iconClass="far fa-trash-alt"
+          />
+        </button>
+        <ReactTooltip id="charge-list-toolbar-destroy" />
+      </span>
     );
 
     if (disabled) {
@@ -137,17 +150,35 @@ function CampaignToolbar(props) {
     <Toolbar>
       {hasPermissionToCreate && (
         <Link to="/campaign/new">
-          <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-plus" />{' '}
-          </button>
+          <span
+            data-tip={i18n('common.new')}
+            data-for="charge-list-toolbar-new-tooltip"
+          >
+            <button
+              className="btnCircle btn-primary"
+              type="button"
+            >
+              <ButtonIcon iconClass="fas fa-plus" />
+            </button>
+            <ReactTooltip id="charge-list-toolbar-new-tooltip" />
+          </span>
         </Link>
       )}
 
       {hasPermissionToImport && (
         <Link to="/campaign/importer">
-          <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-upload" />{' '}
-          </button>
+          <span
+            data-tip={i18n('common.import')}
+            data-for="charge-list-toolbar-import-tooltip"
+          >
+            <button
+              className="btnCircle btn-primary"
+              type="button"
+            >
+              <ButtonIcon iconClass="fas fa-upload" />
+            </button>
+            <ReactTooltip id="charge-list-toolbar-import-tooltip" />
+          </span>
         </Link>
       )}
 
@@ -155,9 +186,18 @@ function CampaignToolbar(props) {
 
       {hasPermissionToAuditLogs && (
         <Link to="/audit-logs?entityNames=campaign">
-          <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="fas fa-history" />{' '}
-          </button>
+          <span
+            data-tip={i18n('auditLog.menu')}
+            data-for="charge-list-toolbar-auditLog-tooltip"
+          >
+            <button
+              className="btnCircle btn-light"
+              type="button"
+            >
+              <ButtonIcon iconClass="fas fa-history" />
+            </button>
+            <ReactTooltip id="charge-list-toolbar-auditLog-tooltip" />
+          </span>
         </Link>
       )}
 

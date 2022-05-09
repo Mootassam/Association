@@ -231,7 +231,7 @@ function AutocompleteInMemoryFormItem(props) {
             i18n('autocomplete.noOptions')
           }
         />
-
+        {/* 
         {props.showCreate && props.hasPermissionToCreate ? (
           <button
             style={{ marginLeft: '16px', flexShrink: 0 }}
@@ -241,7 +241,7 @@ function AutocompleteInMemoryFormItem(props) {
           >
             <i className="fas fa-plus"></i>
           </button>
-        ) : null}
+        ) : null} */}
       </div>
 
       <div className="invalid-feedback">{errorMessage}</div>

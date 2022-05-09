@@ -41,7 +41,7 @@ const emptyValues = {
   yearRange: [],
   startDateRange: [],
   endDateRange: [],
-}
+};
 
 const previewRenders = {
   name: {
@@ -50,7 +50,9 @@ const previewRenders = {
   },
   status: {
     label: i18n('entities.campaign.fields.status'),
-    render: filterRenders.enumerator('entities.campaign.enumerators.status',),
+    render: filterRenders.enumerator(
+      'entities.campaign.enumerators.status',
+    ),
   },
   yearRange: {
     label: i18n('entities.campaign.fields.yearRange'),
@@ -64,7 +66,7 @@ const previewRenders = {
     label: i18n('entities.campaign.fields.endDateRange'),
     render: filterRenders.dateRange(),
   },
-}
+};
 
 function CampaignListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -85,7 +87,12 @@ function CampaignListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
+    dispatch(
+      actions.doFetch(
+        schema.cast(initialValues),
+        rawFilter,
+      ),
+    );
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -126,44 +133,54 @@ function CampaignListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                    <div className="col-lg-6 col-12">
-                      <InputFormItem
-                        name="name"
-                        label={i18n('entities.campaign.fields.name')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <SelectFormItem
-                        name="status"
-                        label={i18n('entities.campaign.fields.status')}
-                        options={campaignEnumerators.status.map(
-                          (value) => ({
-                            value,
-                            label: i18n(
-                              `entities.campaign.enumerators.status.${value}`,
-                            ),
-                          }),
-                        )}
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <InputNumberRangeFormItem
-                        name="yearRange"
-                        label={i18n('entities.campaign.fields.yearRange')}      
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="startDateRange"
-                        label={i18n('entities.campaign.fields.startDateRange')}    
-                      />
-                    </div>
-                    <div className="col-lg-6 col-12">
-                      <DatePickerRangeFormItem
-                        name="endDateRange"
-                        label={i18n('entities.campaign.fields.endDateRange')}    
-                      />
-                    </div>
+                <div className="col-lg-6 col-12">
+                  <InputFormItem
+                    name="name"
+                    label={i18n(
+                      'entities.campaign.fields.name',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="status"
+                    label={i18n(
+                      'entities.campaign.fields.status',
+                    )}
+                    options={campaignEnumerators.status.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.campaign.enumerators.status.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <InputNumberRangeFormItem
+                    name="yearRange"
+                    label={i18n(
+                      'entities.campaign.fields.yearRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="startDateRange"
+                    label={i18n(
+                      'entities.campaign.fields.startDateRange',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <DatePickerRangeFormItem
+                    name="endDateRange"
+                    label={i18n(
+                      'entities.campaign.fields.endDateRange',
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="row">
@@ -176,7 +193,7 @@ function CampaignListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />{' '}
+                    />
                     {i18n('common.search')}
                   </button>
                   <button
@@ -188,8 +205,7 @@ function CampaignListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />{' '}
-                    {i18n('common.reset')}
+                    />
                   </button>
                 </div>
               </div>

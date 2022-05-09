@@ -12,6 +12,8 @@ import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
+import MembershipListItem from 'src/view/membership/list/MembershipListItem';
+import ButtonIcon from 'src/view/shared/ButtonIcon';
 
 function FormuleListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -182,14 +184,14 @@ function FormuleListTable(props) {
                       className="btn btn-link"
                       to={`/formule/${row.id}`}
                     >
-                      {i18n('common.view')}
+                      <i className={'fas fa-search'} />
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
                         to={`/formule/${row.id}/edit`}
                       >
-                        {i18n('common.edit')}
+                        <i className="fas fa-edit" />
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -200,7 +202,7 @@ function FormuleListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        {i18n('common.destroy')}
+                        <i className="fas fa-trash-alt" />
                       </button>
                     )}
                   </td>

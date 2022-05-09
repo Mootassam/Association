@@ -119,7 +119,7 @@ export default [
 
   {
     id: '4',
-    path: '#membership',
+    path: '#memberships',
     permissionRequired: permissions.associationRead,
     icon: 'fas fa-user',
     label: i18n('common.membership'),
@@ -132,13 +132,6 @@ export default [
         permissionRequired: permissions.campaignRead,
         icon: 'fas fa-chevron-right',
         label: i18n('entities.campaign.menu'),
-      },
-
-      {
-        path: '/membership',
-        permissionRequired: permissions.membershipRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.membership.menu'),
       },
 
       {
