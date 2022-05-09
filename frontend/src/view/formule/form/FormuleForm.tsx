@@ -8,7 +8,6 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import TextAreaFormItem from 'src/view/shared/form/items/TextAreaFormItem';
-import MembershipAutocompleteFormItem from 'src/view/membership/autocomplete/MembershipAutocompleteFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -23,10 +22,6 @@ const schema = yup.object().shape({
     i18n('entities.formule.fields.amount'),
     {},
   ),
-  membership: yupFormSchemas.relationToMany(
-    i18n('entities.formule.fields.membership'),
-    {},
-  ),
 });
 
 function FormuleForm(props) {
@@ -37,7 +32,6 @@ function FormuleForm(props) {
       name: record.name,
       description: record.description,
       amount: record.amount,
-      membership: record.membership || [],
     };
   });
 
@@ -67,30 +61,25 @@ function FormuleForm(props) {
                 name="name"
                 label={i18n('entities.formule.fields.name')}
                 required={false}
-              autoFocus
+                autoFocus
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <TextAreaFormItem
                 name="description"
-                label={i18n('entities.formule.fields.description')}  
+                label={i18n(
+                  'entities.formule.fields.description',
+                )}
                 required={false}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
               <InputFormItem
                 name="amount"
-                label={i18n('entities.formule.fields.amount')}  
+                label={i18n(
+                  'entities.formule.fields.amount',
+                )}
                 required={false}
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <MembershipAutocompleteFormItem  
-                name="membership"
-                label={i18n('entities.formule.fields.membership')}
-                required={false}
-                showCreate={!props.modal}
-                mode="multiple"
               />
             </div>
           </div>

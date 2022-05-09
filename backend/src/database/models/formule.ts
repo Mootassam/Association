@@ -19,10 +19,7 @@ export default (database) => {
       amount: {
         type: Number,
       },
-      membership: [{
-        type: Schema.Types.ObjectId,
-        ref: 'membership',
-      }],
+
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
@@ -49,8 +46,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   FormuleSchema.virtual('id').get(function () {
     // @ts-ignore

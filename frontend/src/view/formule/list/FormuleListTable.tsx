@@ -12,14 +12,10 @@ import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
-import MembershipListItem from 'src/view/membership/list/MembershipListItem';
-import { Col, Container, Row } from 'react-bootstrap';
 
 function FormuleListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -114,30 +110,24 @@ function FormuleListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.formule.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'amount'}
-                  label={i18n(
-                    'entities.formule.fields.amount',
-                  )}
-                  align="right"
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.formule.fields.membership',
-                  )}
-                />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n('entities.formule.fields.name')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'amount'}
+                label={i18n(
+                  'entities.formule.fields.amount',
+                )}
+                align="right"
+              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -186,9 +176,7 @@ function FormuleListTable(props) {
                   <td style={{ textAlign: 'right' }}>
                     {row.amount}
                   </td>
-                  <td>
-                    <MembershipListItem value={row.membership} />
-                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
