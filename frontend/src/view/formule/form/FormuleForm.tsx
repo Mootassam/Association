@@ -16,10 +16,6 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
-import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
-import MembershipListFilter from 'src/view/membership/list/MembershipListFilter';
-import MembershipListTable from 'src/view/membership/list/MembershipListTable';
-import MembershipListToolbar from 'src/view/membership/list/MembershipListToolbar';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -34,10 +30,6 @@ const schema = yup.object().shape({
     i18n('entities.formule.fields.amount'),
     {},
   ),
-  membership: yupFormSchemas.relationToMany(
-    i18n('entities.formule.fields.membership'),
-    {},
-  ),
 });
 
 function FormuleForm(props) {
@@ -48,7 +40,6 @@ function FormuleForm(props) {
       name: record.name,
       description: record.description,
       amount: record.amount,
-      membership: record.membership || [],
     };
   });
 
@@ -114,20 +105,6 @@ function FormuleForm(props) {
                   </Col>
                 </Row>
               </Container>
-            </Tab>
-            <Tab
-              eventKey="membership"
-              title={i18n('entities.membership.menu')}
-            >
-              <ContentWrapper>
-                <MembershipListToolbar
-                  formule={props.record.id}
-                />
-                <MembershipListFilter />
-                <MembershipListTable
-                  data={props.record.membership}
-                />
-              </ContentWrapper>
             </Tab>
           </Tabs>
 

@@ -128,17 +128,16 @@ export default [
     className: 'menu-li side-menue',
     subMenu: [
       {
-        path: '/campaign',
-        permissionRequired: permissions.campaignRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.campaign.menu'),
-      },
-
-      {
         path: '/formule',
         permissionRequired: permissions.formuleRead,
         icon: 'fas fa-chevron-right',
         label: i18n('entities.formule.menu'),
+      },
+      {
+        path: '/campaign',
+        permissionRequired: permissions.campaignRead,
+        icon: 'fas fa-chevron-right',
+        label: i18n('entities.campaign.menu'),
       },
     ],
   },

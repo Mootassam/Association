@@ -30,10 +30,7 @@ const schema = yup.object().shape({
     i18n('entities.campaign.fields.name'),
     {},
   ),
-  membership: yupFormSchemas.relationToMany(
-    i18n('entities.campaign.fields.membership'),
-    {},
-  ),
+
   status: yupFormSchemas.enumerator(
     i18n('entities.campaign.fields.status'),
     {
@@ -60,7 +57,6 @@ function CampaignForm(props) {
 
     return {
       name: record.name,
-      membership: record.membership || [],
       status: record.status,
       year: record.year,
       startDate: record.startDate
@@ -163,20 +159,22 @@ function CampaignForm(props) {
                 </Row>
               </Container>
             </Tab>
-            <Tab
-              eventKey="membership"
-              title={i18n('entities.membership.menu')}
-            >
-              <ContentWrapper>
-                <MembershipListToolbar
-                  campaign={props.record.id}
-                />
-                <MembershipListFilter />
-                <MembershipListTable
-                  data={props.record.membership}
-                />
-              </ContentWrapper>
-            </Tab>
+            {props.record?.id && (
+              <Tab
+                eventKey="membership"
+                title={i18n('entities.membership.menu')}
+              >
+                <ContentWrapper>
+                  <MembershipListToolbar
+                    campaign={props.record.id}
+                  />
+                  <MembershipListFilter />
+                  <MembershipListTable
+                    data={props.record.membership}
+                  />
+                </ContentWrapper>
+              </Tab>
+            )}
           </Tabs>
 
           <div className="form-buttons">
