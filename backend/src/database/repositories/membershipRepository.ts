@@ -9,15 +9,12 @@ import Formule from '../models/formule';
 import Campaign from '../models/campaign';
 
 class MembershipRepository {
-  
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const [record] = await Membership(
       options.database,
@@ -25,10 +22,11 @@ class MembershipRepository {
       [
         {
           ...data,
+
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -40,34 +38,22 @@ class MembershipRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'formule',
-      Formule(options.database),
-      'membership',
-      options,
-    );
-
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'campaign',
-      Campaign(options.database),
-      'membership',
-      options,
-    );    
-
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Membership(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Membership(options.database).findById(id),
+        options,
+      );
 
     if (
       !record ||
@@ -80,9 +66,8 @@ class MembershipRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -116,14 +101,14 @@ class MembershipRepository {
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Membership(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Membership(options.database).findById(id),
+        options,
+      );
 
     if (
       !record ||
@@ -132,7 +117,10 @@ class MembershipRepository {
       throw new Error404();
     }
 
-    await Membership(options.database).deleteOne({ _id: id }, options);
+    await Membership(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -157,9 +145,8 @@ class MembershipRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Membership(options.database).countDocuments({
@@ -171,18 +158,18 @@ class MembershipRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Membership(options.database)
-        .findById(id)
-      .populate('formule')
-      .populate('member')
-      .populate('campaign'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Membership(options.database)
+          .findById(id)
+          .populate('formule')
+          .populate('member')
+          .populate('campaign'),
+        options,
+      );
 
     if (
       !record ||
@@ -198,12 +185,11 @@ class MembershipRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    
+
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
@@ -217,29 +203,25 @@ class MembershipRepository {
 
       if (filter.status) {
         criteriaAnd.push({
-          status: filter.status
+          status: filter.status,
         });
       }
 
       if (filter.paymentMethod) {
         criteriaAnd.push({
-          paymentMethod: filter.paymentMethod
+          paymentMethod: filter.paymentMethod,
         });
       }
 
       if (filter.formule) {
         criteriaAnd.push({
-          formule: MongooseQueryUtils.uuid(
-            filter.formule,
-          ),
+          formule: MongooseQueryUtils.uuid(filter.formule),
         });
       }
 
       if (filter.member) {
         criteriaAnd.push({
-          member: MongooseQueryUtils.uuid(
-            filter.member,
-          ),
+          member: MongooseQueryUtils.uuid(filter.member),
         });
       }
 
@@ -254,7 +236,11 @@ class MembershipRepository {
       if (filter.amountRange) {
         const [start, end] = filter.amountRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             amount: {
               $gte: start,
@@ -262,7 +248,11 @@ class MembershipRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             amount: {
               $lte: end,
@@ -330,14 +320,19 @@ class MembershipRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -345,7 +340,6 @@ class MembershipRepository {
           {
             _id: MongooseQueryUtils.uuid(search),
           },
-          
         ],
       });
     }
@@ -366,7 +360,12 @@ class MembershipRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Membership(options.database).modelName,
@@ -387,9 +386,10 @@ class MembershipRepository {
       ? record.toObject()
       : record;
 
-    output.attachements = await FileRepository.fillDownloadUrl(
-      output.attachements,
-    );
+    output.attachements =
+      await FileRepository.fillDownloadUrl(
+        output.attachements,
+      );
 
     return output;
   }

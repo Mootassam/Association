@@ -9,9 +9,13 @@ import ViewWrapper from 'src/view/shared/styles/ViewWrapper';
 import { i18n } from 'src/i18n';
 import moment from 'moment';
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
+import {
+  Tabs,
+  Tab,
+  Container,
+  Row,
+  Col,
+} from 'react-bootstrap';
 function UserView(props) {
   const { user, loading } = props;
 
@@ -21,135 +25,159 @@ function UserView(props) {
 
   return (
     <ViewWrapper>
-      <Row
-        style={{
-          backgroundColor: '#f0f2f5',
-          paddingBottom: '10px',
-        }}
+      <Tabs
+        defaultActiveKey="user Detaills"
+        id="0"
+        className="mb-3"
       >
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('user.fields.email')}
-            value={user.email}
-          />
-        </Col>
-        <Col sm={4}>
-          <CustomViewItem
-            label={i18n('user.fields.roles')}
-            value={user.roles}
-            render={(value) =>
-              value.map((roleId) => (
-                <div key={roleId}>
-                  <span>{Roles.labelOf(roleId)}</span>
-                </div>
-              ))
-            }
-          />
-        </Col>
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('user.fields.phoneNumber')}
-            value={user.phoneNumber}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('Secteur')}
-            value={user.secteur}
-          />
-        </Col>
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('Employeur')}
-            value={user.employeur}
-          />
-        </Col>
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('Profession')}
-            value={user.profession}
-          />
-        </Col>
-      </Row>
+        <Tab eventKey="user Detaills" title="user Detaills">
+          <Container fluid={true}>
+            <Row
+              style={{
+                backgroundColor: '#f0f2f5',
+                paddingBottom: '10px',
+              }}
+            >
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('user.fields.email')}
+                  value={user.email}
+                />
+              </Col>
+              <Col sm={4}>
+                <CustomViewItem
+                  label={i18n('user.fields.roles')}
+                  value={user.roles}
+                  render={(value) =>
+                    value.map((roleId) => (
+                      <div key={roleId}>
+                        <span>{Roles.labelOf(roleId)}</span>
+                      </div>
+                    ))
+                  }
+                />
+              </Col>
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('user.fields.phoneNumber')}
+                  value={user.phoneNumber}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('Secteur')}
+                  value={user.secteur}
+                />
+              </Col>
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('Employeur')}
+                  value={user.employeur}
+                />
+              </Col>
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('Profession')}
+                  value={user.profession}
+                />
+              </Col>
+            </Row>
 
-      <Row
-        style={{
-          backgroundColor: '#f0f2f5',
-          paddingBottom: '10px',
-        }}
-      >
-        <Col sm={4}>
-          {user.date_naissance && (
-            <TextViewItem
-              label={i18n('date naissance')}
-              value={moment(user.date_naissance).format(
-                'DD-MM-YYYY',
-              )}
-            />
-          )}
-        </Col>
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('Adresse')}
-            value={user.adresse}
-          />
-        </Col>
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('C.I.N')}
-            value={user.cin}
-          />
-        </Col>
-      </Row>
+            <Row
+              style={{
+                backgroundColor: '#f0f2f5',
+                paddingBottom: '10px',
+              }}
+            >
+              <Col sm={4}>
+                {user.date_naissance && (
+                  <TextViewItem
+                    label={i18n('date naissance')}
+                    value={moment(
+                      user.date_naissance,
+                    ).format('DD-MM-YYYY')}
+                  />
+                )}
+              </Col>
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('Adresse')}
+                  value={user.adresse}
+                />
+              </Col>
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('C.I.N')}
+                  value={user.cin}
+                />
+              </Col>
+            </Row>
 
-      <Row>
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('Etat Civil')}
-            value={
-              user.etat_civil && i18n(`${user.etat_civil}`)
-            }
-          />
-        </Col>
-        <Col sm={4}>
-          <TextViewItem
-            label={i18n('Lien Facebook')}
-            value={user.lien_facebook}
-          />
-        </Col>
-        <Col sm={4}>
-          <ImagesViewItem
-            label={i18n('user.fields.avatars')}
-            value={user.avatars}
-          />
-        </Col>
-      </Row>
+            <Row>
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('Etat Civil')}
+                  value={
+                    user.etat_civil &&
+                    i18n(`${user.etat_civil}`)
+                  }
+                />
+              </Col>
+              <Col sm={4}>
+                <TextViewItem
+                  label={i18n('Lien Facebook')}
+                  value={user.lien_facebook}
+                />
+              </Col>
+              <Col sm={4}>
+                <ImagesViewItem
+                  label={i18n('user.fields.avatars')}
+                  value={user.avatars}
+                />
+              </Col>
+            </Row>
 
-      <Row
-        style={{
-          backgroundColor: '#f0f2f5',
-          paddingBottom: '10px',
-        }}
-      >
-        <Col sm={4}>
-          {user.parrain ? (
-            <TextViewItem
-              label={i18n('Parrain')}
-              value={user.parrain.email}
-            />
-          ) : null}
-        </Col>
-        <Col sm={4}>
-          <CustomViewItem
-            label={i18n('Statut')}
-            value={user.stat}
-            render={(value) => <UserStatut value={value} />}
-          />
-        </Col>
-        <Col sm={4}></Col>
-      </Row>
+            <Row
+              style={{
+                backgroundColor: '#f0f2f5',
+                paddingBottom: '10px',
+              }}
+            >
+              <Col sm={4}>
+                {user.parrain ? (
+                  <TextViewItem
+                    label={i18n('Parrain')}
+                    value={user.parrain.email}
+                  />
+                ) : null}
+              </Col>
+              <Col sm={4}>
+                <CustomViewItem
+                  label={i18n('Statut')}
+                  value={user.stat}
+                  render={(value) => (
+                    <UserStatut value={value} />
+                  )}
+                />
+              </Col>
+              <Col sm={4}></Col>
+            </Row>
+          </Container>
+        </Tab>
+
+        <Tab eventKey="Adhesions" title="Adhesions">
+          <Container fluid={true}>
+            <h2>Adhesions</h2>
+          </Container>
+        </Tab>
+        <Tab eventKey="Dons" title="Dons">
+          <Container fluid={true}>
+            <h2>Dons</h2>
+          </Container>
+        </Tab>
+      </Tabs>
     </ViewWrapper>
   );
 }

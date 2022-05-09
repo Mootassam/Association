@@ -13,20 +13,11 @@ export default (database) => {
     {
       status: {
         type: String,
-        enum: [
-          "paid",
-          "waiting",
-          null
-        ],
+        enum: ['paid', 'waiting', null],
       },
       paymentMethod: {
         type: String,
-        enum: [
-          "cash",
-          "check",
-          "bank",
-          null
-        ],
+        enum: ['cash', 'check', 'bank', null],
       },
       formule: {
         type: Schema.Types.ObjectId,
@@ -70,8 +61,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   MembershipSchema.virtual('id').get(function () {
     // @ts-ignore

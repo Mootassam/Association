@@ -16,10 +16,13 @@ export default class MembershipService {
     );
 
     try {
-      const record = await MembershipRepository.create(data, {
-        ...this.options,
-        session,
-      });
+      const record = await MembershipRepository.create(
+        data,
+        {
+          ...this.options,
+          session,
+        },
+      );
 
       await MongooseRepository.commitTransaction(session);
 
