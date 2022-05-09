@@ -6,6 +6,7 @@ import ProductListToolbar from 'src/view/product/list/ProductListToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function ProductListPage(props) {
   return (
@@ -18,11 +19,18 @@ function ProductListPage(props) {
       />
 
       <ContentWrapper>
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>
           {i18n('entities.product.list.title')}
         </PageTitle>
-
+        </Col>
+            <Col md="auto">
         <ProductListToolbar />
+        </Col>
+          </Row>
+        </Container>
         <ProductListFilter />
         <ProductListTable />
       </ContentWrapper>

@@ -6,6 +6,7 @@ import CouponsListToolbar from 'src/view/coupons/list/CouponsListToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function CouponsListPage(props) {
   return (
@@ -18,11 +19,19 @@ function CouponsListPage(props) {
       />
 
       <ContentWrapper>
+          
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>
           {i18n('entities.coupons.list.title')}
         </PageTitle>
-
+        </Col>
+            <Col md="auto">
         <CouponsListToolbar />
+        </Col>
+          </Row>
+        </Container>
         <CouponsListFilter />
         <CouponsListTable />
       </ContentWrapper>

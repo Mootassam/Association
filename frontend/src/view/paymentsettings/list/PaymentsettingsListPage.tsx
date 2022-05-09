@@ -6,6 +6,7 @@ import PaymentsettingsListToolbar from 'src/view/paymentsettings/list/Paymentset
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function PaymentsettingsListPage(props) {
   return (
@@ -18,11 +19,18 @@ function PaymentsettingsListPage(props) {
       />
 
       <ContentWrapper>
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>
           {i18n('entities.paymentsettings.list.title')}
         </PageTitle>
-
+        </Col>
+            <Col md="auto">
         <PaymentsettingsListToolbar />
+        </Col>
+          </Row>
+        </Container>
         <PaymentsettingsListFilter />
         <PaymentsettingsListTable />
       </ContentWrapper>

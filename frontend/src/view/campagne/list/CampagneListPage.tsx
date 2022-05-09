@@ -6,6 +6,7 @@ import CampagneListToolbar from 'src/view/campagne/list/CampagneListToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function CampagneListPage(props) {
   return (
@@ -18,11 +19,18 @@ function CampagneListPage(props) {
       />
 
       <ContentWrapper>
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>
           {i18n('entities.campagne.list.title')}
         </PageTitle>
-
+        </Col>
+            <Col md="auto">
         <CampagneListToolbar />
+        </Col>
+          </Row>
+        </Container>
         <CampagneListFilter />
         <CampagneListTable />
       </ContentWrapper>

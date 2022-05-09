@@ -6,6 +6,7 @@ import ShippingserviceListToolbar from 'src/view/shippingservice/list/Shippingse
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function ShippingserviceListPage(props) {
   return (
@@ -18,11 +19,18 @@ function ShippingserviceListPage(props) {
       />
 
       <ContentWrapper>
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>
           {i18n('entities.shippingservice.list.title')}
         </PageTitle>
-
+     </Col>
+            <Col md="auto">
         <ShippingserviceListToolbar />
+        </Col>
+          </Row>
+        </Container>
         <ShippingserviceListFilter />
         <ShippingserviceListTable />
       </ContentWrapper>
