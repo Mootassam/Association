@@ -6,6 +6,7 @@ import MembershipListToolbar from 'src/view/membership/list/MembershipListToolba
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function MembershipListPage(props) {
   return (
@@ -18,11 +19,18 @@ function MembershipListPage(props) {
       />
 
       <ContentWrapper>
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>
           {i18n('entities.membership.list.title')}
         </PageTitle>
-
+        </Col>
+            <Col md="auto">
         <MembershipListToolbar />
+        </Col>
+          </Row>
+        </Container>
         <MembershipListFilter />
         <MembershipListTable />
       </ContentWrapper>

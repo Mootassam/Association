@@ -77,7 +77,6 @@ function NewsToolbar(props) {
           loading={exportLoading}
           iconClass="far fa-file-excel"
         />{' '}
-        {i18n('common.export')}
       </button>
     );
 
@@ -115,7 +114,6 @@ function NewsToolbar(props) {
           loading={destroyLoading}
           iconClass="far fa-trash-alt"
         />{' '}
-        {i18n('common.destroy')}
       </button>
     );
 
@@ -141,7 +139,6 @@ function NewsToolbar(props) {
         <Link to="/news/new">
           <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-plus" />{' '}
-            {i18n('common.new')}
           </button>
         </Link>
       )}
@@ -150,7 +147,6 @@ function NewsToolbar(props) {
         <Link to="/news/importer">
           <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-upload" />{' '}
-            {i18n('common.import')}
           </button>
         </Link>
       )}
@@ -161,7 +157,6 @@ function NewsToolbar(props) {
         <Link to="/audit-logs?entityNames=news">
           <button className="btn btn-light" type="button">
             <ButtonIcon iconClass="fas fa-history" />{' '}
-            {i18n('auditLog.menu')}
           </button>
         </Link>
       )}

@@ -56,7 +56,6 @@ function UserToolbar(props) {
           loading={exportLoading}
           iconClass="far fa-file-excel"
         />
-        {i18n('common.export')}
       </button>
     );
 

@@ -7,6 +7,7 @@ import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
 import { useRouteMatch } from 'react-router-dom';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function AttributeOptionsListPage(props) {
   const match = useRouteMatch();
@@ -22,12 +23,20 @@ function AttributeOptionsListPage(props) {
       />
 
       <ContentWrapper>
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>
           {i18n('entities.attributeOptions.list.title')}
         </PageTitle>
+        </Col>
+            <Col md="auto">
         <AttributeOptionsListToolbar
           ProductId={nameProduct}
         />
+           </Col>
+          </Row>
+        </Container>
         <AttributeOptionsListFilter
           productName={nameProduct}
         />

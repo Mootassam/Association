@@ -6,6 +6,7 @@ import PageTitle from 'src/view/shared/styles/PageTitle';
 import UserFilter from 'src/view/user/list/UserFilter';
 import UserTable from 'src/view/user/list/UserTable';
 import UserToolbar from 'src/view/user/list/UserToolbar';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function UserPage() {
   return (
@@ -18,9 +19,16 @@ function UserPage() {
       />
 
       <ContentWrapper>
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>{i18n('user.title')}</PageTitle>
-
+        </Col>
+            <Col md="auto">
         <UserToolbar />
+        </Col>
+          </Row>
+        </Container>
         <UserFilter />
         <UserTable />
       </ContentWrapper>

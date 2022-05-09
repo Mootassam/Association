@@ -16,6 +16,7 @@ import FilesListView from 'src/view/shared/table/FileListView';
 import DonsFormModal from 'src/view/dons/form/DonsFormModal';
 import VotesFormModal from 'src/view/votes/form/VotesFormModal';
 import { useForm } from 'react-hook-form';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function ProjetListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =

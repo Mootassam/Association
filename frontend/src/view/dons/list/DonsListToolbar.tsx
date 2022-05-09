@@ -120,7 +120,6 @@ function DonsToolbar(props) {
           loading={destroyLoading}
           iconClass="far fa-trash-alt"
         />
-        {i18n('common.destroy')}
       </button>
     );
 

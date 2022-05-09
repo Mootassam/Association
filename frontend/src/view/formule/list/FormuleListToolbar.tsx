@@ -77,7 +77,6 @@ function FormuleToolbar(props) {
           loading={exportLoading}
           iconClass="far fa-file-excel"
         />{' '}
-        {i18n('common.export')}
       </button>
     );
 
@@ -115,7 +114,6 @@ function FormuleToolbar(props) {
           loading={destroyLoading}
           iconClass="far fa-trash-alt"
         />{' '}
-        {i18n('common.destroy')}
       </button>
     );
 
@@ -141,7 +139,6 @@ function FormuleToolbar(props) {
         <Link to="/formule/new">
           <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-plus" />{' '}
-            {i18n('common.new')}
           </button>
         </Link>
       )}
@@ -150,7 +147,6 @@ function FormuleToolbar(props) {
         <Link to="/formule/importer">
           <button className="btn btn-primary" type="button">
             <ButtonIcon iconClass="fas fa-upload" />{' '}
-            {i18n('common.import')}
           </button>
         </Link>
       )}
@@ -161,7 +157,6 @@ function FormuleToolbar(props) {
         <Link to="/audit-logs?entityNames=formule">
           <button className="btn btn-light" type="button">
             <ButtonIcon iconClass="fas fa-history" />{' '}
-            {i18n('auditLog.menu')}
           </button>
         </Link>
       )}

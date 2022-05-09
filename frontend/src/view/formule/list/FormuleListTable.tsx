@@ -13,6 +13,7 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import MembershipListItem from 'src/view/membership/list/MembershipListItem';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function FormuleListTable(props) {
   const [

@@ -6,6 +6,7 @@ import TagListToolbar from 'src/view/tag/list/TagListToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function TagListPage(props) {
   return (
@@ -18,11 +19,18 @@ function TagListPage(props) {
       />
 
       <ContentWrapper>
+      <Container fluid={true}>
+          <Row>
+            <Col xs={9}>
         <PageTitle>
           {i18n('entities.tag.list.title')}
         </PageTitle>
-
+        </Col>
+            <Col md="auto">
         <TagListToolbar />
+        </Col>
+          </Row>
+        </Container>
         <TagListFilter />
         <TagListTable />
       </ContentWrapper>

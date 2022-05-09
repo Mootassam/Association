@@ -183,7 +183,6 @@ function AttributeOptionsToolbar(props) {
         <Link to="/audit-logs?entityNames=attributeOptions">
           <button className="btn btn-light" type="button">
             <ButtonIcon iconClass="fas fa-history" />
-            {i18n('auditLog.menu')}
           </button>
         </Link>
       )}
