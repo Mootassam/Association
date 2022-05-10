@@ -95,12 +95,11 @@ export default [
     className: 'menu-li side-menue',
     subMenu: [
       {
-        path: '/news',
-        permissionRequired: permissions.newsRead,
+        path: '/news-category',
+        permissionRequired: permissions.newsCategoryRead,
         icon: 'fas fa-chevron-right',
-        label: i18n('entities.news.menu'),
+        label: i18n('entities.newsCategory.menu'),
       },
-
       {
         path: '/tag',
         permissionRequired: permissions.tagRead,
@@ -109,10 +108,10 @@ export default [
       },
 
       {
-        path: '/news-category',
-        permissionRequired: permissions.newsCategoryRead,
+        path: '/news',
+        permissionRequired: permissions.newsRead,
         icon: 'fas fa-chevron-right',
-        label: i18n('entities.newsCategory.menu'),
+        label: i18n('entities.news.menu'),
       },
     ],
   },

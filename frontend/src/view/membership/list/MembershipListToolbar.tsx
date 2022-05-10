@@ -102,49 +102,49 @@ function MembershipToolbar(props) {
     return button;
   };
 
-  const renderDestroyButton = () => {
-    if (!hasPermissionToDestroy) {
-      return null;
-    }
+  // const renderDestroyButton = () => {
+  //   if (!hasPermissionToDestroy) {
+  //     return null;
+  //   }
 
-    const disabled = !selectedKeys.length || loading;
+  //   const disabled = !selectedKeys.length || loading;
 
-    const button = (
-      <span
-        data-tip={i18n('common.destroy')}
-        data-tip-disable={disabled}
-        data-for="charge-list-toolbar-destroy"
-      >
-        <button
-          disabled={disabled}
-          className="btnCircle btn-primary"
-          type="button"
-          onClick={doOpenDestroyAllConfirmModal}
-        >
-          <ButtonIcon
-            loading={destroyLoading}
-            iconClass="far fa-trash-alt"
-          />
-        </button>
-        <ReactTooltip id="charge-list-toolbar-destroy" />
-      </span>
-    );
+  //   const button = (
+  //     <span
+  //       data-tip={i18n('common.destroy')}
+  //       data-tip-disable={disabled}
+  //       data-for="charge-list-toolbar-destroy"
+  //     >
+  //       <button
+  //         disabled={disabled}
+  //         className="btnCircle btn-primary"
+  //         type="button"
+  //         onClick={doOpenDestroyAllConfirmModal}
+  //       >
+  //         <ButtonIcon
+  //           loading={destroyLoading}
+  //           iconClass="far fa-trash-alt"
+  //         />
+  //       </button>
+  //       <ReactTooltip id="charge-list-toolbar-destroy" />
+  //     </span>
+  //   );
 
-    if (disabled) {
-      return (
-        <span
-          data-tip={i18n('common.mustSelectARow')}
-          data-tip-disable={!disabled}
-          data-for="membership-list-toolbar-destroy-tooltip"
-        >
-          {button}
-          <ReactTooltip id="membership-list-toolbar-destroy-tooltip" />
-        </span>
-      );
-    }
+  //   if (disabled) {
+  //     return (
+  //       <span
+  //         data-tip={i18n('common.mustSelectARow')}
+  //         data-tip-disable={!disabled}
+  //         data-for="membership-list-toolbar-destroy-tooltip"
+  //       >
+  //         {button}
+  //         <ReactTooltip id="membership-list-toolbar-destroy-tooltip" />
+  //       </span>
+  //     );
+  //   }
 
-    return button;
-  };
+  //   return button;
+  // };
 
   return (
     <Toolbar>
@@ -172,7 +172,7 @@ function MembershipToolbar(props) {
         </Link>
       )}
 
-      {hasPermissionToImport && (
+      {/* {hasPermissionToImport && (
         <Link to="/membership/importer">
           <span
             data-tip={i18n('common.import')}
@@ -187,11 +187,11 @@ function MembershipToolbar(props) {
             <ReactTooltip id="charge-list-toolbar-import-tooltip" />
           </span>
         </Link>
-      )}
+      )} */}
 
-      {renderDestroyButton()}
+      {/* {renderDestroyButton()} */}
 
-      {hasPermissionToAuditLogs && (
+      {/* {hasPermissionToAuditLogs && (
         <Link to="/audit-logs?entityNames=membership">
           <span
             data-tip={i18n('auditLog.menu')}
@@ -206,9 +206,9 @@ function MembershipToolbar(props) {
             <ReactTooltip id="charge-list-toolbar-auditLog-tooltip" />
           </span>
         </Link>
-      )}
+      )} */}
 
-      {renderExportButton()}
+      {/* {renderExportButton()} */}
 
       {destroyAllConfirmVisible && (
         <ConfirmModal

@@ -145,7 +145,7 @@ function MembershipListTable(props) {
                   )}
                   align="right"
                 />
-          
+
                 <TableColumnHeader className="th-actions" />
               </tr>
             ) : (
@@ -181,7 +181,6 @@ function MembershipListTable(props) {
                   )}
                 />
 
-     
                 <TableColumnHeader
                   label={i18n(
                     'entities.membership.fields.member',
@@ -262,7 +261,7 @@ function MembershipListTable(props) {
                         )
                       : null}
                   </td>
-               
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
@@ -324,12 +323,9 @@ function MembershipListTable(props) {
                         )
                       : null}
                   </td>
-
-              
                   <td>
                     <UserListItem value={row.user} />
                   </td>
-
                   <td style={{ textAlign: 'right' }}>
                     {row.amount}
                   </td>
@@ -348,7 +344,7 @@ function MembershipListTable(props) {
                         <i className="fas fa-edit" />
                       </Link>
                     )}
-                    {hasPermissionToDestroy && (
+                    {/* {hasPermissionToDestroy && (
                       <button
                         className="btn btn-link"
                         type="button"
@@ -358,7 +354,7 @@ function MembershipListTable(props) {
                       >
                         <i className="fas fa-trash-alt" />
                       </button>
-                    )}
+                    )} */}
                   </td>
                 </tr>
               ))}
