@@ -121,6 +121,9 @@ function BrandsListTable(props) {
                 )}
               </TableColumnHeader>
               <TableColumnHeader
+                label={i18n('entities.brands.fields.photo')}
+              />
+              <TableColumnHeader
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
@@ -134,9 +137,7 @@ function BrandsListTable(props) {
                 name={'slug'}
                 label={i18n('entities.brands.fields.slug')}
               />
-              <TableColumnHeader
-                label={i18n('entities.brands.fields.photo')}
-              />
+
               <TableColumnHeader
                 onSort={doChangeSort}
                 hasRows={hasRows}
@@ -199,11 +200,11 @@ function BrandsListTable(props) {
                       </label>
                     </div>
                   </th>
-                  <td>{row.name}</td>
-                  <td>{row.slug}</td>
                   <td>
                     <ImagesListView value={row.photo} />
                   </td>
+                  <td>{row.name}</td>
+                  <td>{row.slug}</td>
                   <td>
                     <select
                       className="form-control"
