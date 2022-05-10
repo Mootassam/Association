@@ -3,10 +3,13 @@ import MongooseQueryUtils from '../utils/mongooseQueryUtils';
 import AuditLogRepository from './auditLogRepository';
 import Error404 from '../../errors/Error404';
 import { IRepositoryOptions } from './IRepositoryOptions';
+import lodash from 'lodash';
 import Membership from '../models/membership';
+import UserRepository from './userRepository';
 import FileRepository from './fileRepository';
 import Formule from '../models/formule';
 import Campaign from '../models/campaign';
+import User from '../models/user';
 
 class MembershipRepository {
   static async create(data, options: IRepositoryOptions) {
@@ -22,7 +25,6 @@ class MembershipRepository {
       [
         {
           ...data,
-
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
@@ -35,6 +37,29 @@ class MembershipRepository {
       AuditLogRepository.CREATE,
       record.id,
       data,
+      options,
+    );
+
+    await MongooseRepository.refreshTwoWayRelationOneToMany(
+      record,
+      'formule',
+      Formule(options.database),
+      'membership',
+      options,
+    );
+
+    await MongooseRepository.refreshTwoWayRelationOneToMany(
+      record,
+      'campaign',
+      Campaign(options.database),
+      'membership',
+      options,
+    );
+    await MongooseRepository.refreshTwoWayRelationOneToMany(
+      record,
+      'user',
+      User(options.database),
+      'membership',
       options,
     );
 
@@ -51,14 +76,14 @@ class MembershipRepository {
 
     let record =
       await MongooseRepository.wrapWithSessionIfExists(
-        Membership(options.database).findById(id),
+        Membership(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
         options,
       );
 
-    if (
-      !record ||
-      String(record.tenant) !== String(currentTenant.id)
-    ) {
+    if (!record) {
       throw new Error404();
     }
 
@@ -97,6 +122,14 @@ class MembershipRepository {
       options,
     );
 
+    await MongooseRepository.refreshTwoWayRelationOneToMany(
+      record,
+      'user',
+      User(options.database),
+      'membership',
+      options,
+    );
+
     return record;
   }
 
@@ -106,14 +139,14 @@ class MembershipRepository {
 
     let record =
       await MongooseRepository.wrapWithSessionIfExists(
-        Membership(options.database).findById(id),
+        Membership(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
         options,
       );
 
-    if (
-      !record ||
-      String(record.tenant) !== String(currentTenant.id)
-    ) {
+    if (!record) {
       throw new Error404();
     }
 
@@ -144,6 +177,38 @@ class MembershipRepository {
     );
   }
 
+  static async filterIdInTenant(
+    id,
+    options: IRepositoryOptions,
+  ) {
+    return lodash.get(
+      await this.filterIdsInTenant([id], options),
+      '[0]',
+      null,
+    );
+  }
+
+  static async filterIdsInTenant(
+    ids,
+    options: IRepositoryOptions,
+  ) {
+    if (!ids || !ids.length) {
+      return [];
+    }
+
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
+
+    const records = await Membership(options.database)
+      .find({
+        _id: { $in: ids },
+        tenant: currentTenant.id,
+      })
+      .select(['_id']);
+
+    return records.map((record) => record._id);
+  }
+
   static async count(filter, options: IRepositoryOptions) {
     const currentTenant =
       MongooseRepository.getCurrentTenant(options);
@@ -164,21 +229,18 @@ class MembershipRepository {
     let record =
       await MongooseRepository.wrapWithSessionIfExists(
         Membership(options.database)
-          .findById(id)
+          .findOne({ _id: id, tenant: currentTenant.id })
           .populate('formule')
-          .populate('member')
+          .populate('user')
           .populate('campaign'),
         options,
       );
 
-    if (
-      !record ||
-      String(record.tenant) !== String(currentTenant.id)
-    ) {
+    if (!record) {
       throw new Error404();
     }
 
-    return this._fillFileDownloadUrls(record);
+    return this._mapRelationshipsAndFillDownloadUrl(record);
   }
 
   static async findAndCountAll(
@@ -219,9 +281,9 @@ class MembershipRepository {
         });
       }
 
-      if (filter.member) {
+      if (filter.user) {
         criteriaAnd.push({
-          member: MongooseQueryUtils.uuid(filter.member),
+          user: MongooseQueryUtils.uuid(filter.user),
         });
       }
 
@@ -306,7 +368,7 @@ class MembershipRepository {
       .limit(limitEscaped)
       .sort(sort)
       .populate('formule')
-      .populate('member')
+      .populate('user')
       .populate('campaign');
 
     const count = await Membership(
@@ -314,7 +376,7 @@ class MembershipRepository {
     ).countDocuments(criteria);
 
     rows = await Promise.all(
-      rows.map(this._fillFileDownloadUrls),
+      rows.map(this._mapRelationshipsAndFillDownloadUrl),
     );
 
     return { rows, count };
@@ -377,7 +439,7 @@ class MembershipRepository {
     );
   }
 
-  static async _fillFileDownloadUrls(record) {
+  static async _mapRelationshipsAndFillDownloadUrl(record) {
     if (!record) {
       return null;
     }
@@ -390,6 +452,10 @@ class MembershipRepository {
       await FileRepository.fillDownloadUrl(
         output.attachements,
       );
+
+    output.user = UserRepository.cleanupForRelationships(
+      output.user,
+    );
 
     return output;
   }

@@ -24,7 +24,7 @@ export default (database) => {
         ref: 'formule',
       },
       attachements: [FileSchema],
-      member: {
+      user: {
         type: Schema.Types.ObjectId,
         ref: 'user',
       },
@@ -38,6 +38,7 @@ export default (database) => {
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,

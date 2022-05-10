@@ -1,7 +1,10 @@
-import MembershipRepository from '../database/repositories/membershipRepository';
 import Error400 from '../errors/Error400';
 import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
+import MembershipRepository from '../database/repositories/membershipRepository';
+import FormuleRepository from '../database/repositories/formuleRepository';
+import CampaignRepository from '../database/repositories/campaignRepository';
+import UserRepository from '../database/repositories/userRepository';
 
 export default class MembershipService {
   options: IServiceOptions;
@@ -16,6 +19,21 @@ export default class MembershipService {
     );
 
     try {
+      data.formule =
+        await FormuleRepository.filterIdInTenant(
+          data.formule,
+          { ...this.options, session },
+        );
+      data.user = await UserRepository.filterIdInTenant(
+        data.user,
+        { ...this.options, session },
+      );
+      data.campaign =
+        await CampaignRepository.filterIdInTenant(
+          data.campaign,
+          { ...this.options, session },
+        );
+
       const record = await MembershipRepository.create(
         data,
         {
@@ -46,6 +64,21 @@ export default class MembershipService {
     );
 
     try {
+      data.formule =
+        await FormuleRepository.filterIdInTenant(
+          data.formule,
+          { ...this.options, session },
+        );
+      data.user = await UserRepository.filterIdInTenant(
+        data.user,
+        { ...this.options, session },
+      );
+      data.campaign =
+        await CampaignRepository.filterIdInTenant(
+          data.campaign,
+          { ...this.options, session },
+        );
+
       const record = await MembershipRepository.update(
         id,
         data,
