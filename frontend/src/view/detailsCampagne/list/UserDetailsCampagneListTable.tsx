@@ -145,11 +145,7 @@ function UserDetailsCampagneListTable(props) {
                   )}
                   align="right"
                 />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.membership.fields.attachements',
-                  )}
-                />
+
                 <TableColumnHeader className="th-actions" />
               </tr>
             ) : (
@@ -185,11 +181,6 @@ function UserDetailsCampagneListTable(props) {
                   )}
                 />
 
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.membership.fields.attachements',
-                  )}
-                />
                 <TableColumnHeader
                   label={i18n(
                     'entities.membership.fields.member',
@@ -270,11 +261,7 @@ function UserDetailsCampagneListTable(props) {
                         )
                       : null}
                   </td>
-                  <td>
-                    <FilesListView
-                      value={row.attachements}
-                    />
-                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
@@ -337,11 +324,6 @@ function UserDetailsCampagneListTable(props) {
                       : null}
                   </td>
 
-                  <td>
-                    <FilesListView
-                      value={row.attachements}
-                    />
-                  </td>
                   <td>
                     <UserListItem value={row.user} />
                   </td>

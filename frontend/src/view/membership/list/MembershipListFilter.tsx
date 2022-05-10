@@ -80,6 +80,7 @@ const previewRenders = {
 };
 
 function MembershipListFilter(props) {
+  const { campaign } = props;
   const rawFilter = useSelector(selectors.selectRawFilter);
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
@@ -98,6 +99,7 @@ function MembershipListFilter(props) {
   });
 
   useEffect(() => {
+    initialValues.campaign = campaign;
     dispatch(
       actions.doFetch(
         schema.cast(initialValues),
@@ -109,6 +111,8 @@ function MembershipListFilter(props) {
 
   const onSubmit = (values) => {
     const rawValues = form.getValues();
+    rawFilter.campaign = campaign;
+    values.campaign = campaign;
     dispatch(actions.doFetch(values, rawValues));
     setExpanded(false);
   };

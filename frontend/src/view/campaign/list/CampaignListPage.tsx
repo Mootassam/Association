@@ -31,7 +31,6 @@ function CampaignListPage(props) {
             </Col>
           </Row>
         </Container>
-
         <CampaignListFilter />
         <CampaignListTable />
       </ContentWrapper>

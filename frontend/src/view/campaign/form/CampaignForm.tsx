@@ -168,7 +168,9 @@ function CampaignForm(props) {
                   <MembershipListToolbar
                     campaign={props.record.id}
                   />
-                  <MembershipListFilter />
+                  <MembershipListFilter
+                    campaign={props.record.id}
+                  />
                   <MembershipListTable
                     data={props.record.membership}
                   />
