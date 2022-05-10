@@ -15,8 +15,10 @@ import Pagination from 'src/view/shared/table/Pagination';
 import UserListItem from 'src/view/user/list/UserListItem';
 
 function VotesListTable(props) {
-  const [recordIdToDestroy, setRecordIdToDestroy] =
-    useState(null);
+  const [
+    recordIdToDestroy,
+    setRecordIdToDestroy,
+  ] = useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -94,34 +96,38 @@ function VotesListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
+                  <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
-                      className="adherent-control-input"
+                      className="custom-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
+                      className="custom-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-              <TableColumnHeader
-                label={i18n('Titre Projet')}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'votes'}
-                label={i18n('entities.votes.fields.votes')}
-                align="right"
-              />
+                <TableColumnHeader
+                  label={i18n(
+                    'Titre Projet',
+                  )}
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'votes'}
+                  label={i18n(
+                    'entities.votes.fields.votes',
+                  )}
+                  align="right"
+                />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -146,10 +152,10 @@ function VotesListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -160,16 +166,16 @@ function VotesListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
                     </div>
                   </th>
-                  <td>{row.titre}</td>
-                  <td style={{ textAlign: 'right' }}>
-                    {row.votes}
+                  <td>
+                    {row.titre}
                   </td>
+                  <td style={{ textAlign: 'right' }}>{row.votes}</td>
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

@@ -40,7 +40,7 @@ function UserDetailsToolbar(props) {
         </Tab>
 
         <Tab eventKey="Votes" title="Votes">
-          <UserVotesListPage user={match.params.id} />v
+          <UserVotesListPage user={match.params.id} />
         </Tab>
         <Tab eventKey="dons" title="Dons">
           <UserDonsListPage user={match.params.id} />

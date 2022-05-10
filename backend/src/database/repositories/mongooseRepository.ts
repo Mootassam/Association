@@ -123,6 +123,45 @@ export default class MongooseRepository {
 
     await targetModel.updateMany(
       {
+        _id: [{ $in: record[sourceProperty] }],
+      },
+      { [targetProperty]: record._id },
+      options,
+    );
+
+    await targetModel.updateMany(
+      {
+        _id: { $nin: record[sourceProperty] },
+        [targetProperty]: record._id,
+      },
+      { [targetProperty]: null },
+      options,
+    );
+  }
+
+  static async refreshTwoWayRelation(
+    record,
+    sourceModel,
+    sourceProperty,
+    targetModel,
+    targetProperty,
+    options: IRepositoryOptions,
+  ) {
+    await sourceModel.updateMany(
+      {
+        _id: { $nin: record._id },
+        [sourceProperty]: { $in: record[sourceProperty] },
+      },
+      {
+        $pullAll: {
+          [sourceProperty]: record[sourceProperty],
+        },
+      },
+      options,
+    );
+
+    await targetModel.updateMany(
+      {
         _id: { $in: record[sourceProperty] },
       },
       { [targetProperty]: record._id },

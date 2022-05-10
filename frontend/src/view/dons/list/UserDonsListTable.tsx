@@ -16,8 +16,10 @@ import UserListItem from 'src/view/user/list/UserListItem';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
 
 function DonsListTable(props) {
-  const [recordIdToDestroy, setRecordIdToDestroy] =
-    useState(null);
+  const [
+    recordIdToDestroy,
+    setRecordIdToDestroy,
+  ] = useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -95,48 +97,52 @@ function DonsListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
+                  <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
-                      className="adherent-control-input"
+                      className="custom-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
+                      className="custom-control-label"
                     >
                       &#160;
                     </label>
                   </div>
                 )}
               </TableColumnHeader>
-              <TableColumnHeader
-                label={i18n('Titre Projet')}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'montant'}
-                label={i18n('entities.dons.fields.montant')}
-                align="right"
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'typePaiement'}
-                label={i18n(
-                  'entities.dons.fields.typePaiement',
-                )}
-              />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.dons.fields.attachements',
-                )}
-              />
+                <TableColumnHeader
+                  label={i18n(
+                    'Titre Projet',
+                  )}
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'montant'}
+                  label={i18n(
+                    'entities.dons.fields.montant',
+                  )}
+                  align="right"
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'typePaiement'}
+                  label={i18n(
+                    'entities.dons.fields.typePaiement',
+                  )}
+                />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.dons.fields.attachements',
+                  )}
+                />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -161,10 +167,10 @@ function DonsListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -175,13 +181,15 @@ function DonsListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
                     </div>
                   </th>
-                  <td>{row.titre}</td>
+                  <td>
+                    {row.titre}
+                  </td>
                   <td style={{ textAlign: 'right' }}>
                     {row.montant}
                   </td>
@@ -193,9 +201,7 @@ function DonsListTable(props) {
                       : null}
                   </td>
                   <td>
-                    <ImagesListView
-                      value={row.attachements}
-                    />
+                    <ImagesListView value={row.attachements} />
                   </td>
                   <td className="td-actions">
                     <Link

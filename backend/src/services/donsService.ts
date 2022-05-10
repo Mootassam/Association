@@ -1,7 +1,7 @@
-import DonsRepository from '../database/repositories/donsRepository';
-import Error400 from '../errors/Error400';
-import MongooseRepository from '../database/repositories/mongooseRepository';
-import { IServiceOptions } from './IServiceOptions';
+import DonsRepository from "../database/repositories/donsRepository";
+import Error400 from "../errors/Error400";
+import MongooseRepository from "../database/repositories/mongooseRepository";
+import { IServiceOptions } from "./IServiceOptions";
 
 export default class DonsService {
   options: IServiceOptions;
@@ -11,9 +11,8 @@ export default class DonsService {
   }
 
   async create(data) {
-    
     const session = await MongooseRepository.createSession(
-      this.options.database,
+      this.options.database
     );
 
     try {
@@ -31,7 +30,7 @@ export default class DonsService {
       MongooseRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'dons',
+        "dons"
       );
 
       throw error;
@@ -40,18 +39,14 @@ export default class DonsService {
 
   async update(id, data) {
     const session = await MongooseRepository.createSession(
-      this.options.database,
+      this.options.database
     );
 
     try {
-      const record = await DonsRepository.update(
-        id,
-        data,
-        {
-          ...this.options,
-          session,
-        },
-      );
+      const record = await DonsRepository.update(id, data, {
+        ...this.options,
+        session,
+      });
 
       await MongooseRepository.commitTransaction(session);
 
@@ -62,7 +57,7 @@ export default class DonsService {
       MongooseRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'dons',
+        "dons"
       );
 
       throw error;
@@ -71,7 +66,7 @@ export default class DonsService {
 
   async destroyAll(ids) {
     const session = await MongooseRepository.createSession(
-      this.options.database,
+      this.options.database
     );
 
     try {
@@ -94,39 +89,29 @@ export default class DonsService {
   }
 
   async findAllAutocomplete(search, limit) {
-    return DonsRepository.findAllAutocomplete(
-      search,
-      limit,
-      this.options,
-    );
+    return DonsRepository.findAllAutocomplete(search, limit, this.options);
   }
 
   async findAndCountAll(args) {
-    return DonsRepository.findAndCountAll(
-      args,
-      this.options,
-    );
+    return DonsRepository.findAndCountAll(args, this.options);
   }
 
   async findDonsAndCountAll(args) {
-    return DonsRepository.findDonsAndCountAll(
-      args,
-      this.options,
-    );
+    return DonsRepository.findDonsAndCountAll(args, this.options);
   }
 
   async import(data, importHash) {
     if (!importHash) {
       throw new Error400(
         this.options.language,
-        'importer.errors.importHashRequired',
+        "importer.errors.importHashRequired"
       );
     }
 
     if (await this._isImportHashExistent(importHash)) {
       throw new Error400(
         this.options.language,
-        'importer.errors.importHashExistent',
+        "importer.errors.importHashExistent"
       );
     }
 
@@ -143,9 +128,16 @@ export default class DonsService {
       {
         importHash,
       },
-      this.options,
+      this.options
     );
 
     return count > 0;
+  }
+
+  // !api for mobile   //
+  // !list Votes for the currentUser //
+
+  async findDons() {
+    return DonsRepository.findDons(this.options);
   }
 }

@@ -67,23 +67,17 @@ function ProjetToolbar(props) {
     const disabled = !hasRows || loading;
 
     const button = (
-      <span
-        data-tip={i18n('common.export')}
-        data-for="charge-list-toolbar-export"
+      <button
+        className="btn btn-light"
+        disabled={disabled}
+        onClick={doExport}
+        type="button"
       >
-        <button
-          className="btnCircle btn-light"
-          disabled={disabled}
-          onClick={doExport}
-          type="button"
-        >
-          <ButtonIcon
-            loading={exportLoading}
-            iconClass="far fa-file-excel"
-          />
-        </button>
-        <ReactTooltip id="charge-list-toolbar-export" />
-      </span>
+        <ButtonIcon
+          loading={exportLoading}
+          iconClass="far fa-file-excel"
+        />{' '}
+      </button>
     );
 
     if (disabled) {
@@ -119,7 +113,7 @@ function ProjetToolbar(props) {
         <ButtonIcon
           loading={destroyLoading}
           iconClass="far fa-trash-alt"
-        />
+        />{' '}
       </button>
     );
 
@@ -143,35 +137,17 @@ function ProjetToolbar(props) {
     <Toolbar>
       {hasPermissionToCreate && (
         <Link to="/projet/new">
-          <span
-            data-tip={i18n('common.new')}
-            data-for="charge-list-toolbar-new-tooltip"
-          >
-            <button
-              className="btn btn-primary"
-              type="button"
-            >
-              <ButtonIcon iconClass="fas fa-plus" />
-            </button>
-            <ReactTooltip id="charge-list-toolbar-new-tooltip" />
-          </span>
+          <button className="btn btn-primary" type="button">
+            <ButtonIcon iconClass="fas fa-plus" />{' '}
+          </button>
         </Link>
       )}
 
       {hasPermissionToImport && (
         <Link to="/projet/importer">
-          <span
-            data-tip={i18n('common.import')}
-            data-for="charge-list-toolbar-import-tooltip"
-          >
-            <button
-              className="btn btn-primary"
-              type="button"
-            >
-              <ButtonIcon iconClass="fas fa-upload" />
-            </button>
-            <ReactTooltip id="charge-list-toolbar-import-tooltip" />
-          </span>
+          <button className="btn btn-primary" type="button">
+            <ButtonIcon iconClass="fas fa-upload" />{' '}
+          </button>
         </Link>
       )}
 
@@ -179,18 +155,9 @@ function ProjetToolbar(props) {
 
       {hasPermissionToAuditLogs && (
         <Link to="/audit-logs?entityNames=projet">
-          <span
-            data-tip={i18n('auditLog.menu')}
-            data-for="charge-list-toolbar-auditLog-tooltip"
-          >
-            <button
-              className="btnCircle btn-light"
-              type="button"
-            >
-              <ButtonIcon iconClass="fas fa-history" />
-            </button>
-            <ReactTooltip id="charge-list-toolbar-auditLog-tooltip" />
-          </span>
+          <button className="btn btn-light" type="button">
+            <ButtonIcon iconClass="fas fa-history" />{' '}
+          </button>
         </Link>
       )}
 

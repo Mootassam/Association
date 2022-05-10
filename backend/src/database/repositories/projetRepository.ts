@@ -38,7 +38,7 @@ class ProjetRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
+    await MongooseRepository.refreshTwoWayRelation(
       record,
       Projet(options.database),
       'votes',
@@ -47,7 +47,7 @@ class ProjetRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
+    await MongooseRepository.refreshTwoWayRelation(
       record,
       Projet(options.database),
       'dons',
@@ -455,9 +455,9 @@ class ProjetRepository {
       .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
-      .sort(sort);
-    // .populate('vote')
-    // .populate('don');
+      .sort(sort)
+      .populate('votes')
+      .populate('dons');
 
     const count = await Projet(
       options.database,

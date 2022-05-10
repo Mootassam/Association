@@ -26,8 +26,8 @@ const schema = yup.object().shape({
 const emptyValues = {
   adherent: null,
   votesRange: [],
-  projet: null,
-};
+  projet:null
+}
 
 const previewRenders = {
   adherent: {
@@ -38,9 +38,11 @@ const previewRenders = {
     label: i18n('entities.votes.fields.votesRange'),
     render: filterRenders.range(),
   },
-};
+}
 
 function ProjetVotesListFilter(props) {
+
+
   const rawFilter = useSelector(selectors.selectRawFilter);
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
@@ -59,21 +61,16 @@ function ProjetVotesListFilter(props) {
   });
 
   useEffect(() => {
-    initialValues.projet = props.idprojet;
-
-    dispatch(
-      actions.doFetch(
-        schema.cast(initialValues),
-        rawFilter,
-      ),
-    );
+    initialValues.projet=props.idprojet;
+    
+    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
     // eslint-disable-next-line
   }, [dispatch]);
 
   const onSubmit = (values) => {
     const rawValues = form.getValues();
-    rawValues.projet = props.idprojet;
-    values.projet = props.idprojet;
+    rawValues.projet= props.idprojet;
+    values.projet= props.idprojet;
     dispatch(actions.doFetch(values, rawValues));
     setExpanded(false);
   };
@@ -109,25 +106,23 @@ function ProjetVotesListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                <div className="col-lg-6 col-12">
-                  <UserAutocompleteFormItem
-                    name="adherent"
-                    label={i18n(
-                      'entities.votes.fields.adherent',
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <InputNumberRangeFormItem
-                    name="votesRange"
-                    label={i18n(
-                      'entities.votes.fields.votesRange',
-                    )}
-                  />
-                </div>
-                <div style={{ display: 'none' }}>
-                  <input name="projet" />
-                </div>
+                    <div className="col-lg-6 col-12">
+                      <UserAutocompleteFormItem  
+                        name="adherent"
+                        label={i18n('entities.votes.fields.adherent')}        
+                      />
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <InputNumberRangeFormItem
+                        name="votesRange"
+                        label={i18n('entities.votes.fields.votesRange')}      
+                      />
+                    </div>
+                    <div style={{ display: 'none' }}>
+                    <input
+                        name="projet"
+                    />
+                    </div>
               </div>
 
               <div className="row">
@@ -140,7 +135,7 @@ function ProjetVotesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />
+                    />{' '}
                     {i18n('common.search')}
                   </button>
                   <button
@@ -152,7 +147,7 @@ function ProjetVotesListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />
+                    />{' '}
                     {i18n('common.reset')}
                   </button>
                 </div>

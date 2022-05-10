@@ -7,15 +7,12 @@ import Campagne from '../models/campagne';
 import DetailsCampagne from '../models/detailsCampagne';
 import DetailsCampagneRepository from './detailsCampagneRepository';
 class CampagneRepository {
-
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const [record] = await Campagne(
       options.database,
@@ -26,7 +23,7 @@ class CampagneRepository {
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -41,15 +38,19 @@ class CampagneRepository {
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Campagne(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Campagne(options.database).findById(id),
+        options,
+      );
 
     if (
       !record ||
@@ -62,9 +63,8 @@ class CampagneRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -81,18 +81,21 @@ class CampagneRepository {
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Campagne(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Campagne(options.database).findById(id),
+        options,
+      );
 
     if (record.details) {
-      record.details.forEach(detail => {
-        DetailsCampagneRepository.destroy(detail._id, options)
+      record.details.forEach((detail) => {
+        DetailsCampagneRepository.destroy(
+          detail._id,
+          options,
+        );
       });
     }
 
@@ -103,7 +106,10 @@ class CampagneRepository {
       throw new Error404();
     }
 
-    await Campagne(options.database).deleteOne({ _id: id }, options);
+    await Campagne(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -111,14 +117,11 @@ class CampagneRepository {
       record,
       options,
     );
-
-
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Campagne(options.database).countDocuments({
@@ -130,16 +133,16 @@ class CampagneRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Campagne(options.database)
-        .findById(id)
-        .populate('details'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Campagne(options.database)
+          .findById(id)
+          .populate('details'),
+        options,
+      );
 
     if (
       !record ||
@@ -155,9 +158,8 @@ class CampagneRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
 
@@ -186,7 +188,11 @@ class CampagneRepository {
       if (filter.anneeRange) {
         const [start, end] = filter.anneeRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             annee: {
               $gte: start,
@@ -194,7 +200,11 @@ class CampagneRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             annee: {
               $lte: end,
@@ -206,7 +216,11 @@ class CampagneRepository {
       if (filter.datedebutRange) {
         const [start, end] = filter.datedebutRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             datedebut: {
               $gte: start,
@@ -214,7 +228,11 @@ class CampagneRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             datedebut: {
               $lte: end,
@@ -226,7 +244,11 @@ class CampagneRepository {
       if (filter.datefinRange) {
         const [start, end] = filter.datefinRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             datefin: {
               $gte: start,
@@ -234,7 +256,11 @@ class CampagneRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             datefin: {
               $lte: end,
@@ -245,7 +271,7 @@ class CampagneRepository {
 
       if (filter.statut) {
         criteriaAnd.push({
-          statut: filter.statut
+          statut: filter.statut,
         });
       }
 
@@ -306,14 +332,19 @@ class CampagneRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -342,7 +373,12 @@ class CampagneRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Campagne(options.database).modelName,
@@ -362,8 +398,6 @@ class CampagneRepository {
     const output = record.toObject
       ? record.toObject()
       : record;
-
-
 
     return output;
   }

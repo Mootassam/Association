@@ -23,10 +23,10 @@ function VotesFormModal(props) {
       setSaveLoading(true);
       const { id } = await VotesService.create(data);
       const record = await VotesService.find(id);
-      await Message.success(
+      (window as any).$(modalRef.current).modal('hide');
+      Message.success(
         i18n('entities.votes.create.success'),
       );
-      (window as any).$(modalRef.current).modal('hide');
       props.onSuccess(record);
     } catch (error) {
       (window as any).$(modalRef.current).modal('hide');

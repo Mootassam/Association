@@ -1,7 +1,7 @@
-import VotesRepository from '../database/repositories/votesRepository';
-import Error400 from '../errors/Error400';
-import MongooseRepository from '../database/repositories/mongooseRepository';
-import { IServiceOptions } from './IServiceOptions';
+import VotesRepository from "../database/repositories/votesRepository";
+import Error400 from "../errors/Error400";
+import MongooseRepository from "../database/repositories/mongooseRepository";
+import { IServiceOptions } from "./IServiceOptions";
 
 export default class VotesService {
   options: IServiceOptions;
@@ -11,9 +11,8 @@ export default class VotesService {
   }
 
   async create(data) {
-
     const session = await MongooseRepository.createSession(
-      this.options.database,
+      this.options.database
     );
 
     try {
@@ -31,7 +30,7 @@ export default class VotesService {
       MongooseRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'votes',
+        "votes"
       );
 
       throw error;
@@ -40,18 +39,14 @@ export default class VotesService {
 
   async update(id, data) {
     const session = await MongooseRepository.createSession(
-      this.options.database,
+      this.options.database
     );
 
     try {
-      const record = await VotesRepository.update(
-        id,
-        data,
-        {
-          ...this.options,
-          session,
-        },
-      );
+      const record = await VotesRepository.update(id, data, {
+        ...this.options,
+        session,
+      });
 
       await MongooseRepository.commitTransaction(session);
 
@@ -62,36 +57,19 @@ export default class VotesService {
       MongooseRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'votes',
+        "votes"
       );
 
       throw error;
     }
   }
 
-  // async destroyAll(ids) {
-  //   const session = await MongooseRepository.createSession(
-  //     this.options.database,
-  //   );
-
-  //   try {
-  //     for (const id of ids) {
-  //       await VotesRepository.destroy(id, {
-  //         ...this.options,
-  //         session,
-  //       });
-  //     }
-
-  //     await MongooseRepository.commitTransaction(session);
-  //   } catch (error) {
-  //     await MongooseRepository.abortTransaction(session);
-  //     throw error;
-  //   }
-  // }
-
+  async extractIds() {
+    const id = VotesRepository.extractIds(this.options);
+  }
   async destroyAll(ids) {
     const session = await MongooseRepository.createSession(
-      this.options.database,
+      this.options.database
     );
 
     try {
@@ -114,39 +92,29 @@ export default class VotesService {
   }
 
   async findAllAutocomplete(search, limit) {
-    return VotesRepository.findAllAutocomplete(
-      search,
-      limit,
-      this.options,
-    );
+    return VotesRepository.findAllAutocomplete(search, limit, this.options);
   }
 
   async findAndCountAll(args) {
-    return VotesRepository.findAndCountAll(
-      args,
-      this.options,
-    );
+    return VotesRepository.findAndCountAll(args, this.options);
   }
 
   async findVotesAndCountAll(args) {
-    return VotesRepository.findVotesAndCountAll(
-      args,
-      this.options,
-    );
+    return VotesRepository.findVotesAndCountAll(args, this.options);
   }
 
   async import(data, importHash) {
     if (!importHash) {
       throw new Error400(
         this.options.language,
-        'importer.errors.importHashRequired',
+        "importer.errors.importHashRequired"
       );
     }
 
     if (await this._isImportHashExistent(importHash)) {
       throw new Error400(
         this.options.language,
-        'importer.errors.importHashExistent',
+        "importer.errors.importHashExistent"
       );
     }
 
@@ -163,9 +131,15 @@ export default class VotesService {
       {
         importHash,
       },
-      this.options,
+      this.options
     );
 
     return count > 0;
+  }
+  // !api for mobile   //
+  // !list Votes for the currentUser //
+
+  async findVotes() {
+    return VotesRepository.findVotes(this.options);
   }
 }

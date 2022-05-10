@@ -11,8 +11,10 @@ import Toolbar from 'src/view/shared/styles/Toolbar';
 import ButtonIcon from 'src/view/shared/ButtonIcon';
 
 function ProjetViewToolbar(props) {
-  const [destroyConfirmVisible, setDestroyConfirmVisible] =
-    useState(false);
+  const [
+    destroyConfirmVisible,
+    setDestroyConfirmVisible,
+  ] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -49,7 +51,7 @@ function ProjetViewToolbar(props) {
       {hasPermissionToEdit && (
         <Link to={`/projet/${id}/edit`}>
           <button className="btn btn-primary" type="button">
-            <ButtonIcon iconClass="fas fa-edit" />
+            <ButtonIcon iconClass="fas fa-edit" />{' '}
             {i18n('common.edit')}
           </button>
         </Link>
@@ -65,7 +67,7 @@ function ProjetViewToolbar(props) {
           <ButtonIcon
             loading={destroyLoading}
             iconClass="fas fa-trash-alt"
-          />
+          />{' '}
           {i18n('common.destroy')}
         </button>
       )}
@@ -77,7 +79,7 @@ function ProjetViewToolbar(props) {
           )}`}
         >
           <button className="btn btn-light" type="button">
-            <ButtonIcon iconClass="fas fa-history" />
+            <ButtonIcon iconClass="fas fa-history" />{' '}
             {i18n('auditLog.menu')}
           </button>
         </Link>

@@ -36,15 +36,6 @@ class CampaignRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      Campaign(options.database),
-      'membership',
-      Membership(options.database),
-      'campaign',
-      options,
-    );
-
     return this.findById(record.id, options);
   }
 

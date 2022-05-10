@@ -16,7 +16,6 @@ import FilesListView from 'src/view/shared/table/FileListView';
 import DonsFormModal from 'src/view/dons/form/DonsFormModal';
 import VotesFormModal from 'src/view/votes/form/VotesFormModal';
 import { useForm } from 'react-hook-form';
-import { Col, Container, Row } from 'react-bootstrap';
 
 function ProjetListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -161,17 +160,17 @@ function ProjetListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
+                  <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
-                      className="adherent-control-input"
+                      className="custom-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
+                      className="custom-control-label"
                     >
                       &#160;
                     </label>
@@ -233,10 +232,10 @@ function ProjetListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -247,7 +246,7 @@ function ProjetListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>

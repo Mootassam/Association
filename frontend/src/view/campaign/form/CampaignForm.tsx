@@ -76,7 +76,7 @@ function CampaignForm(props) {
 
   const onSubmit = (values) => {
     const data = {
-      membership: props.record.membership,
+      membership: props.record?.membership,
       ...values,
     };
     props.onSubmit(props.record?.id, data);

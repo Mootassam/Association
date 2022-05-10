@@ -19,7 +19,7 @@ const schema = yup.object().shape({
   adherent: yupFormSchemas.relationToOne(
     i18n('entities.dons.fields.adherent'),
     {
-      required: true,
+      "required": true
     },
   ),
   montant: yupFormSchemas.decimal(
@@ -29,8 +29,8 @@ const schema = yup.object().shape({
   typePaiement: yupFormSchemas.enumerator(
     i18n('entities.dons.fields.typePaiement'),
     {
-      required: true,
-      options: donsEnumerators.typePaiement,
+      "required": true,
+      "options": donsEnumerators.typePaiement
     },
   ),
   attachements: yupFormSchemas.images(
@@ -65,6 +65,7 @@ function DonsForm(props) {
       props.onSubmit(props.record?.id, values);
     } else {
       props.onSubmit(props.record?.id, values);
+
     }
   };
 
@@ -78,17 +79,11 @@ function DonsForm(props) {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Row
-            style={{
-              paddingBottom: '10px',
-            }}
-          >
+          <Row style={{ backgroundColor: '#f0f2f5', paddingBottom: '10px' }}>
             <Col sm={6}>
               <UserAutocompleteFormItem
                 name="adherent"
-                label={i18n(
-                  'entities.dons.fields.adherent',
-                )}
+                label={i18n('entities.dons.fields.adherent')}
                 required={true}
                 showCreate={false}
               />
@@ -96,9 +91,7 @@ function DonsForm(props) {
             <Col sm={3}>
               <SelectFormItem
                 name="typePaiement"
-                label={i18n(
-                  'entities.dons.fields.typePaiement',
-                )}
+                label={i18n('entities.dons.fields.typePaiement')}
                 options={donsEnumerators.typePaiement.map(
                   (value) => ({
                     value,
@@ -122,9 +115,7 @@ function DonsForm(props) {
             <Col sm={6}>
               <ImagesFormItem
                 name="attachements"
-                label={i18n(
-                  'entities.dons.fields.attachements',
-                )}
+                label={i18n('entities.dons.fields.attachements')}
                 required={false}
                 storage={Storage.values.donsAttachements}
                 max={undefined}
@@ -133,10 +124,14 @@ function DonsForm(props) {
           </Row>
           <div className="row">
             <div style={{ display: 'none' }}>
-              <InputFormItem name="projet" />
+              <InputFormItem
+                name="projet"
+              />
             </div>
             <div style={{ display: 'none' }}>
-              <InputFormItem name="titre" />
+              <InputFormItem
+                name="titre"
+              />
             </div>
           </div>
 
@@ -150,8 +145,7 @@ function DonsForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />
-              &nbsp;
+              />{' '}
               {i18n('common.save')}
             </button>
 
@@ -161,8 +155,7 @@ function DonsForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>
-              &nbsp;
+              <i className="fas fa-undo"></i>{' '}
               {i18n('common.reset')}
             </button>
 
@@ -173,7 +166,7 @@ function DonsForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>&nbsp;
+                <i className="fas fa-times"></i>{' '}
                 {i18n('common.cancel')}
               </button>
             ) : null}

@@ -148,11 +148,7 @@ function ProjetForm(props) {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Row
-            style={{
-              paddingBottom: '10px',
-            }}
-          >
+          <Row style={{ paddingBottom: '10px' }}>
             <Col sm={4}>
               <InputFormItem
                 name="titre"
@@ -226,11 +222,7 @@ function ProjetForm(props) {
             </Col>
           </Row>
 
-          <Row
-            style={{
-              paddingBottom: '10px',
-            }}
-          >
+          <Row style={{ paddingBottom: '10px' }}>
             <Col sm={4}>
               <InputFormItem
                 name="lieu"
@@ -281,11 +273,7 @@ function ProjetForm(props) {
             </Col>
           </Row>
 
-          <Row
-            style={{
-              paddingBottom: '10px',
-            }}
-          >
+          <Row style={{ paddingBottom: '10px' }}>
             <Col sm={4}>
               <ImagesFormItem
                 name="photos"
@@ -333,8 +321,7 @@ function ProjetForm(props) {
               <ButtonIcon
                 loading={props.saveLoading}
                 iconClass="far fa-save"
-              />
-              &nbsp;
+              />{' '}
               {i18n('common.save')}
             </button>
 
@@ -344,8 +331,7 @@ function ProjetForm(props) {
               disabled={props.saveLoading}
               onClick={onReset}
             >
-              <i className="fas fa-undo"></i>
-              &nbsp;
+              <i className="fas fa-undo"></i>{' '}
               {i18n('common.reset')}
             </button>
 
@@ -356,7 +342,7 @@ function ProjetForm(props) {
                 disabled={props.saveLoading}
                 onClick={() => props.onCancel()}
               >
-                <i className="fas fa-times"></i>&nbsp;
+                <i className="fas fa-times"></i>{' '}
                 {i18n('common.cancel')}
               </button>
             ) : null}

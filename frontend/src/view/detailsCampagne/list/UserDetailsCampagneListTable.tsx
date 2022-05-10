@@ -14,6 +14,7 @@ import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import UserListItem from 'src/view/user/list/UserListItem';
 import FilesListView from 'src/view/shared/table/FileListView';
+import CampaignListItem from 'src/view/campaign/list/CampaignListItem';
 
 function UserDetailsCampagneListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -116,6 +117,11 @@ function UserDetailsCampagneListTable(props) {
                   )}
                 </TableColumnHeader>
                 <TableColumnHeader
+                  label={i18n(
+                    'entities.membership.fields.campaign',
+                  )}
+                />
+                <TableColumnHeader
                   onSort={doChangeSort}
                   hasRows={hasRows}
                   sorter={sorter}
@@ -171,6 +177,11 @@ function UserDetailsCampagneListTable(props) {
                     </div>
                   )}
                 </TableColumnHeader>
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.membership.fields.campaign',
+                  )}
+                />
                 <TableColumnHeader
                   onSort={doChangeSort}
                   hasRows={hasRows}
@@ -316,6 +327,11 @@ function UserDetailsCampagneListTable(props) {
                       </label>
                     </div>
                   </th>
+                  <td>
+                    <CampaignListItem
+                      value={row.campaign}
+                    />
+                  </td>
                   <td>
                     {row.status
                       ? i18n(

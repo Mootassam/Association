@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactStars from 'react-stars';
+import ReactStars from "react-stars";
 import { Link } from 'react-router-dom';
 import { i18n } from 'src/i18n';
 import votesSelectors from 'src/modules/votes/votesSelectors';
@@ -16,8 +16,10 @@ import Pagination from 'src/view/shared/table/Pagination';
 import UserListItem from 'src/view/user/list/UserListItem';
 
 function VotesListTable(props) {
-  const [recordIdToDestroy, setRecordIdToDestroy] =
-    useState(null);
+  const [
+    recordIdToDestroy,
+    setRecordIdToDestroy,
+  ] = useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -95,17 +97,17 @@ function VotesListTable(props) {
             <tr>
               <TableColumnHeader className="th-checkbox">
                 {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
+                  <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
-                      className="adherent-control-input"
+                      className="custom-control-input"
                       id="table-header-checkbox"
                       checked={Boolean(isAllSelected)}
                       onChange={() => doToggleAllSelected()}
                     />
                     <label
                       htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
+                      className="custom-control-label"
                     >
                       &#160;
                     </label>
@@ -122,7 +124,9 @@ function VotesListTable(props) {
                 hasRows={hasRows}
                 sorter={sorter}
                 name={'votes'}
-                label={i18n('entities.votes.fields.votes')}
+                label={i18n(
+                  'entities.votes.fields.votes',
+                )}
                 align="left"
               />
               <TableColumnHeader className="th-actions" />
@@ -149,10 +153,10 @@ function VotesListTable(props) {
               rows.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -163,7 +167,7 @@ function VotesListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
@@ -178,8 +182,7 @@ function VotesListTable(props) {
                       size={28}
                       edit={false}
                       value={row.votes}
-                      activeColor="#ffd700"
-                    />
+                      activeColor="#ffd700" />
                   </td>
                   <td className="td-actions">
                     <Link
@@ -204,7 +207,6 @@ function VotesListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        {i18n('common.destroy')}
                       </button>
                     )}
                   </td>

@@ -23,10 +23,8 @@ function DonsFormModal(props) {
       setSaveLoading(true);
       const { id } = await DonsService.create(data);
       const record = await DonsService.find(id);
-      await Message.success(
-        i18n('entities.votes.create.success'),
-      );
       (window as any).$(modalRef.current).modal('hide');
+      Message.success(i18n('entities.dons.create.success'));
       props.onSuccess(record);
     } catch (error) {
       (window as any).$(modalRef.current).modal('hide');

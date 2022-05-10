@@ -60,9 +60,7 @@ const donsFormActions = {
         type: donsFormActions.CREATE_SUCCESS,
       });
 
-      Message.success(
-        i18n('entities.dons.create.success'),
-      );
+      Message.success(i18n('entities.dons.create.success'));
 
       getHistory().push('/projet');
     } catch (error) {
@@ -86,9 +84,7 @@ const donsFormActions = {
         type: donsFormActions.UPDATE_SUCCESS,
       });
 
-      Message.success(
-        i18n('entities.dons.update.success'),
-      );
+      Message.success(i18n('entities.dons.update.success'));
 
       getHistory().push('/projet');
     } catch (error) {
