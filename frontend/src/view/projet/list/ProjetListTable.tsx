@@ -203,11 +203,7 @@ function ProjetListTable(props) {
                   'entities.projet.fields.statutProjet',
                 )}
               />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.projet.fields.attachements',
-                )}
-              />
+
               <TableColumnHeader
                 label={i18n(
                   'entities.projet.fields.budget',
@@ -272,11 +268,7 @@ function ProjetListTable(props) {
                         )
                       : null}
                   </td>
-                  <td>
-                    <FilesListView
-                      value={row.attachements}
-                    />
-                  </td>
+
                   <td>{row.budget}</td>
                   <td className="td-actions">
                     {hasPermissionToCreate && (

@@ -67,7 +67,6 @@ function PalierForm(props) {
           <ViewWrapper>
             <Row
               style={{
-                backgroundColor: '#f0f2f5',
                 paddingBottom: '10px',
               }}
             >

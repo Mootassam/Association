@@ -83,7 +83,6 @@ function CampagneView(props) {
           <ViewWrapper style={{ marginTop: '10px' }}>
             <Row
               style={{
-                backgroundColor: '#f0f2f5',
                 paddingBottom: '10px',
               }}
             >

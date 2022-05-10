@@ -98,7 +98,6 @@ function DetailsCampagneForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Row
             style={{
-              backgroundColor: '#f0f2f5',
               paddingBottom: '10px',
             }}
           >
@@ -187,7 +186,6 @@ function DetailsCampagneForm(props) {
           </Row>
           <Row
             style={{
-              backgroundColor: '#f0f2f5',
               paddingBottom: '10px',
             }}
           >

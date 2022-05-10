@@ -156,7 +156,6 @@ function UserNewForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Row
             style={{
-              backgroundColor: '#f0f2f5',
               paddingBottom: '10px',
             }}
           >
@@ -225,7 +224,6 @@ function UserNewForm(props) {
 
           <Row
             style={{
-              backgroundColor: '#f0f2f5',
               paddingBottom: '10px',
             }}
           >

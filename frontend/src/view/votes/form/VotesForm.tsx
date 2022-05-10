@@ -70,7 +70,6 @@ function VotesForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Row
             style={{
-              backgroundColor: '#f0f2f5',
               paddingBottom: '10px',
             }}
           >

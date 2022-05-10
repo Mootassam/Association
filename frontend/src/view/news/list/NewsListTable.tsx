@@ -18,10 +18,8 @@ import NewsCategoryListItem from 'src/view/newsCategory/list/NewsCategoryListIte
 import TagListItem from 'src/view/tag/list/TagListItem';
 
 function NewsListTable(props) {
-  const [
-    recordIdToDestroy,
-    setRecordIdToDestroy,
-  ] = useState(null);
+  const [recordIdToDestroy, setRecordIdToDestroy] =
+    useState(null);
   const dispatch = useDispatch();
 
   const findLoading = useSelector(selectors.selectLoading);
@@ -116,62 +114,39 @@ function NewsListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'name'}
-                  label={i18n(
-                    'entities.news.fields.name',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'type'}
-                  label={i18n(
-                    'entities.news.fields.type',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'shortDescription'}
-                  label={i18n(
-                    'entities.news.fields.shortDescription',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.news.fields.image',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.news.fields.attachements',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.news.fields.category',
-                  )}
-                />
-                <TableColumnHeader
-                  label={i18n(
-                    'entities.news.fields.tags',
-                  )}
-                />
-                <TableColumnHeader
-                  onSort={doChangeSort}
-                  hasRows={hasRows}
-                  sorter={sorter}
-                  name={'published'}
-                  label={i18n(
-                    'entities.news.fields.published',
-                  )}
-                />
+              <TableColumnHeader
+                label={i18n('entities.news.fields.image')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'name'}
+                label={i18n('entities.news.fields.name')}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'type'}
+                label={i18n('entities.news.fields.type')}
+              />
+
+              <TableColumnHeader
+                label={i18n(
+                  'entities.news.fields.category',
+                )}
+              />
+
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'published'}
+                label={i18n(
+                  'entities.news.fields.published',
+                )}
+              />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -216,6 +191,9 @@ function NewsListTable(props) {
                       </label>
                     </div>
                   </th>
+                  <td>
+                    <ImagesListView value={row.image} />
+                  </td>
                   <td>{row.name}</td>
                   <td>
                     {row.type
@@ -224,21 +202,13 @@ function NewsListTable(props) {
                         )
                       : null}
                   </td>
-                  <td>{row.shortDescription}</td>
+
                   <td>
-                    <ImagesListView value={row.image} />
-                  </td>
-                  <td>
-                    <FilesListView
-                      value={row.attachements}
+                    <NewsCategoryListItem
+                      value={row.category}
                     />
                   </td>
-                  <td>
-                    <NewsCategoryListItem value={row.category} />
-                  </td>
-                  <td>
-                    <TagListItem value={row.tags} />
-                  </td>
+
                   <td>
                     {row.published
                       ? i18n('common.yes')

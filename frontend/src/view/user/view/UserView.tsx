@@ -23,7 +23,6 @@ function UserView(props) {
     <ViewWrapper>
       <Row
         style={{
-          backgroundColor: '#f0f2f5',
           paddingBottom: '10px',
         }}
       >
@@ -76,7 +75,6 @@ function UserView(props) {
 
       <Row
         style={{
-          backgroundColor: '#f0f2f5',
           paddingBottom: '10px',
         }}
       >
@@ -129,7 +127,6 @@ function UserView(props) {
 
       <Row
         style={{
-          backgroundColor: '#f0f2f5',
           paddingBottom: '10px',
         }}
       >
