@@ -99,6 +99,7 @@ function UserAdhesionsListFilter(props) {
   });
 
   useEffect(() => {
+    initialValues.user = user;
     dispatch(
       actions.doFetch(
         schema.cast(initialValues),
@@ -110,8 +111,8 @@ function UserAdhesionsListFilter(props) {
 
   const onSubmit = (values) => {
     const rawValues = form.getValues();
-    rawValues.iduser = user;
-    values.iduser = user;
+    rawValues.user = user;
+    values.user = user;
     dispatch(actions.doFetch(values, rawValues));
     setExpanded(false);
   };
