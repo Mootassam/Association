@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { i18n } from 'src/i18n';
-import detailsCampagneSelectors from 'src/modules/detailsCampagne/detailsCampagneSelectors';
-import destroyActions from 'src/modules/detailsCampagne/destroy/detailsCampagneDestroyActions';
-import destroySelectors from 'src/modules/detailsCampagne/destroy/detailsCampagneDestroySelectors';
-import actions from 'src/modules/detailsCampagne/list/detailsCampagneListActions';
-import selectors from 'src/modules/detailsCampagne/list/detailsCampagneListSelectors';
+import membershipSelectors from 'src/modules/membership/membershipSelectors';
+import destroyActions from 'src/modules/membership/destroy/membershipDestroyActions';
+import destroySelectors from 'src/modules/membership/destroy/membershipDestroySelectors';
+import actions from 'src/modules/membership/list/membershipListActions';
+import selectors from 'src/modules/membership/list/membershipListSelectors';
 import TableColumnHeader from 'src/view/shared/table/TableColumnHeader';
 import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
-//import UserListItem from 'src/view/user/list/UserListItem';
+import UserListItem from 'src/view/user/list/UserListItem';
 import FilesListView from 'src/view/shared/table/FileListView';
-import PalierListItem from 'src/view/palier/list/PalierListItem';
-//import  CampagneListItem from 'src/view/campagne/list/CampagneListItem';
 
 function UserDetailsCampagneListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -43,10 +41,10 @@ function UserDetailsCampagneListTable(props) {
     selectors.selectIsAllSelected,
   );
   const hasPermissionToEdit = useSelector(
-    detailsCampagneSelectors.selectPermissionToEdit,
+    membershipSelectors.selectPermissionToEdit,
   );
   const hasPermissionToDestroy = useSelector(
-    detailsCampagneSelectors.selectPermissionToDestroy,
+    membershipSelectors.selectPermissionToDestroy,
   );
 
   const doOpenDestroyConfirmModal = (id) => {
@@ -94,68 +92,123 @@ function UserDetailsCampagneListTable(props) {
       <div className="table-responsive">
         <table className="table table-striped     mt-2">
           <thead className="thead">
-            <tr>
-              <TableColumnHeader className="th-checkbox">
-                {hasRows && (
-                  <div className="adherent-control adherent-checkbox">
-                    <input
-                      type="checkbox"
-                      className="adherent-control-input"
-                      id="table-header-checkbox"
-                      checked={Boolean(isAllSelected)}
-                      onChange={() => doToggleAllSelected()}
-                    />
-                    <label
-                      htmlFor="table-header-checkbox"
-                      className="adherent-control-label"
-                    >
-                      &#160;
-                    </label>
-                  </div>
-                )}
-              </TableColumnHeader>
-              <TableColumnHeader
-                label={i18n('Titre Campagne')}
-              />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.detailsCampagne.fields.palier',
-                )}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'statutPay'}
-                label={i18n(
-                  'entities.detailsCampagne.fields.statutPay',
-                )}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'montant'}
-                label={i18n(
-                  'entities.detailsCampagne.fields.montant',
-                )}
-              />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.detailsCampagne.fields.facture',
-                )}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'typePay'}
-                label={i18n(
-                  'entities.detailsCampagne.fields.typePay',
-                )}
-              />
-              <TableColumnHeader className="th-actions" />
-            </tr>
+            {props.data ? (
+              <tr>
+                <TableColumnHeader className="th-checkbox">
+                  {hasRows && (
+                    <div className="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        id="table-header-checkbox"
+                        checked={Boolean(isAllSelected)}
+                        onChange={() =>
+                          doToggleAllSelected()
+                        }
+                      />
+                      <label
+                        htmlFor="table-header-checkbox"
+                        className="custom-control-label"
+                      >
+                        &#160;
+                      </label>
+                    </div>
+                  )}
+                </TableColumnHeader>
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'status'}
+                  label={i18n(
+                    'entities.membership.fields.status',
+                  )}
+                />
+
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'amount'}
+                  label={i18n(
+                    'entities.membership.fields.amount',
+                  )}
+                  align="right"
+                />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'paymentMethod'}
+                  label={i18n(
+                    'entities.membership.fields.paymentMethod',
+                  )}
+                  align="right"
+                />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.membership.fields.attachements',
+                  )}
+                />
+                <TableColumnHeader className="th-actions" />
+              </tr>
+            ) : (
+              <tr>
+                <TableColumnHeader className="th-checkbox">
+                  {hasRows && (
+                    <div className="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        id="table-header-checkbox"
+                        checked={Boolean(isAllSelected)}
+                        onChange={() =>
+                          doToggleAllSelected()
+                        }
+                      />
+                      <label
+                        htmlFor="table-header-checkbox"
+                        className="custom-control-label"
+                      >
+                        &#160;
+                      </label>
+                    </div>
+                  )}
+                </TableColumnHeader>
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'status'}
+                  label={i18n(
+                    'entities.membership.fields.status',
+                  )}
+                />
+
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.membership.fields.attachements',
+                  )}
+                />
+                <TableColumnHeader
+                  label={i18n(
+                    'entities.membership.fields.member',
+                  )}
+                />
+
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'amount'}
+                  label={i18n(
+                    'entities.membership.fields.amount',
+                  )}
+                  align="right"
+                />
+                <TableColumnHeader className="th-actions" />
+              </tr>
+            )}
           </thead>
           <tbody>
             {loading && (
@@ -175,13 +228,14 @@ function UserDetailsCampagneListTable(props) {
               </tr>
             )}
             {!loading &&
-              rows.map((row) => (
+              props.data &&
+              props.data.map((row) => (
                 <tr key={row.id}>
                   <th className="th-checkbox" scope="row">
-                    <div className="adherent-control adherent-checkbox">
+                    <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
-                        className="adherent-control-input"
+                        className="custom-control-input"
                         id={`table-header-checkbox-${row.id}`}
                         checked={selectedKeys.includes(
                           row.id,
@@ -192,47 +246,48 @@ function UserDetailsCampagneListTable(props) {
                       />
                       <label
                         htmlFor={`table-header-checkbox-${row.id}`}
-                        className="adherent-control-label"
+                        className="custom-control-label"
                       >
                         &#160;
                       </label>
                     </div>
                   </th>
-                  <td>{row.titre}</td>
                   <td>
-                    <PalierListItem value={row.palier} />
-                  </td>
-                  <td>
-                    {row.statutPay
+                    {row.status
                       ? i18n(
-                          `entities.detailsCampagne.enumerators.statutPay.${row.statutPay}`,
+                          `entities.membership.enumerators.status.${row.status}`,
                         )
                       : null}
                   </td>
-                  <td>{row.montant}</td>
-                  <td>
-                    <FilesListView value={row.facture} />
+
+                  <td style={{ textAlign: 'right' }}>
+                    {row.amount}
                   </td>
-                  <td>
-                    {row.typePay
+                  <td style={{ textAlign: 'right' }}>
+                    {row.paymentMethod
                       ? i18n(
-                          `entities.detailsCampagne.enumerators.typePay.${row.typePay}`,
+                          `entities.membership.enumerators.paymentMethod.${row.paymentMethod}`,
                         )
                       : null}
+                  </td>
+                  <td>
+                    <FilesListView
+                      value={row.attachements}
+                    />
                   </td>
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
-                      to={`/details-campagne/${row.id}`}
+                      to={`/membership/${row.id}`}
                     >
-                      {i18n('common.view')}
+                      <i className={'fas fa-search'} />
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
-                        to={`/details-campagne/${row.id}/edit`}
+                        to={`/membership/${row.id}/edit`}
                       >
-                        {i18n('common.edit')}
+                        <i className="fas fa-edit" />
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -243,7 +298,81 @@ function UserDetailsCampagneListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        {i18n('common.destroy')}
+                        <i className="fas fa-trash-alt" />
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            {!loading &&
+              !props.data &&
+              rows.map((row) => (
+                <tr key={row.id}>
+                  <th className="th-checkbox" scope="row">
+                    <div className="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        id={`table-header-checkbox-${row.id}`}
+                        checked={selectedKeys.includes(
+                          row.id,
+                        )}
+                        onChange={() =>
+                          doToggleOneSelected(row.id)
+                        }
+                      />
+                      <label
+                        htmlFor={`table-header-checkbox-${row.id}`}
+                        className="custom-control-label"
+                      >
+                        &#160;
+                      </label>
+                    </div>
+                  </th>
+                  <td>
+                    {row.status
+                      ? i18n(
+                          `entities.membership.enumerators.status.${row.status}`,
+                        )
+                      : null}
+                  </td>
+
+                  <td>
+                    <FilesListView
+                      value={row.attachements}
+                    />
+                  </td>
+                  <td>
+                    <UserListItem value={row.user} />
+                  </td>
+
+                  <td style={{ textAlign: 'right' }}>
+                    {row.amount}
+                  </td>
+                  <td className="td-actions">
+                    <Link
+                      className="btn btn-link"
+                      to={`/membership/${row.id}`}
+                    >
+                      <i className={'fas fa-search'} />
+                    </Link>
+                    {hasPermissionToEdit && (
+                      <Link
+                        className="btn btn-link"
+                        to={`/membership/${row.id}/edit`}
+                      >
+                        <i className="fas fa-edit" />
+                      </Link>
+                    )}
+                    {hasPermissionToDestroy && (
+                      <button
+                        className="btn btn-link"
+                        type="button"
+                        onClick={() =>
+                          doOpenDestroyConfirmModal(row.id)
+                        }
+                      >
+                        <i className="fas fa-trash-alt" />
                       </button>
                     )}
                   </td>

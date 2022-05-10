@@ -92,7 +92,7 @@ const privateRoutes = [
   },
   {
     path: '/user/:id',
-    loader: () => import('src/view/user/view/UserViewPage'),
+    loader: () => import('src/view/user/view/UserDetails'),
     permissionRequired: permissions.userRead,
     exact: true,
   },

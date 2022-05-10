@@ -1,6 +1,6 @@
 import { i18n } from 'src/i18n';
-import actions from 'src/modules/detailsCampagne/list/detailsCampagneListActions';
-import selectors from 'src/modules/detailsCampagne/list/detailsCampagneListSelectors';
+import actions from 'src/modules/membership/list/membershipListActions';
+import selectors from 'src/modules/membership/list/membershipListSelectors';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -14,77 +14,73 @@ import filterRenders from 'src/modules/shared/filter/filterRenders';
 import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import UserAutocompleteFormItem from 'src/view/user/autocomplete/UserAutocompleteFormItem';
 import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
-import detailsCampagneEnumerators from 'src/modules/detailsCampagne/detailsCampagneEnumerators';
-import PalierAutocompleteFormItem from 'src/view/palier/autocomplete/PalierAutocompleteFormItem';
+import membershipEnumerators from 'src/modules/membership/membershipEnumerators';
+import FormuleAutocompleteFormItem from 'src/view/formule/autocomplete/FormuleAutocompleteFormItem';
+import CampaignAutocompleteFormItem from 'src/view/campaign/autocomplete/CampaignAutocompleteFormItem';
 
 const schema = yup.object().shape({
-  adherent: yupFilterSchemas.relationToOne(
-    i18n('entities.detailsCampagne.fields.adherent'),
+  status: yupFilterSchemas.enumerator(
+    i18n('entities.membership.fields.status'),
   ),
-  titre: yupFilterSchemas.relationToOne(
-    i18n('entities.detailsCampagne.fields.titre'),
+  paymentMethod: yupFilterSchemas.enumerator(
+    i18n('entities.membership.fields.paymentMethod'),
   ),
-  palier: yupFilterSchemas.relationToOne(
-    i18n('entities.detailsCampagne.fields.palier'),
-  ),
-  statutPay: yupFilterSchemas.enumerator(
-    i18n('entities.detailsCampagne.fields.statutPay'),
-  ),
-  montantRange: yupFilterSchemas.decimalRange(
-    i18n('entities.detailsCampagne.fields.montantRange'),
-  ),
-  typePay: yupFilterSchemas.enumerator(
-    i18n('entities.detailsCampagne.fields.typePay'),
+  // formule: yupFilterSchemas.relationToOne(
+  //   i18n('entities.membership.fields.formule'),
+  // ),
+  // user: yupFilterSchemas.relationToOne(
+  //   i18n('entities.membership.fields.user'),
+  // ),
+  // campaign: yupFilterSchemas.relationToOne(
+  //   i18n('entities.membership.fields.campaign'),
+  // ),
+  amountRange: yupFilterSchemas.decimalRange(
+    i18n('entities.membership.fields.amountRange'),
   ),
 });
 
 const emptyValues = {
-  adherent: null,
-  palier: null,
-  statutPay: null,
-  montantRange: [],
-  typePay: null,
-  iduser: null,
-  titre: null,
+  status: null,
+  paymentMethod: null,
+  // formule: null,
+  // user: null,
+  // campaign: null,
+  amountRange: [],
 };
 
 const previewRenders = {
-  adherent: {
-    label: i18n('entities.detailsCampagne.fields.adherent'),
-    render: filterRenders.relationToOne(),
-  },
-  /*titre: {
-    label: i18n('entities.detailsCampagne.fields.adherent'),
-    render: filterRenders.relationToOne(),
-  },*/
-  palier: {
-    label: i18n('entities.detailsCampagne.fields.palier'),
-    render: filterRenders.relationToOne(),
-  },
-  statutPay: {
-    label: i18n(
-      'entities.detailsCampagne.fields.statutPay',
-    ),
+  status: {
+    label: i18n('entities.membership.fields.status'),
     render: filterRenders.enumerator(
-      'entities.detailsCampagne.enumerators.statutPay',
+      'entities.membership.enumerators.status',
     ),
   },
-  montantRange: {
-    label: i18n(
-      'entities.detailsCampagne.fields.montantRange',
+  paymentMethod: {
+    label: i18n('entities.membership.fields.paymentMethod'),
+    render: filterRenders.enumerator(
+      'entities.membership.enumerators.paymentMethod',
     ),
+  },
+  // formule: {
+  //   label: i18n('entities.membership.fields.formule'),
+  //   render: filterRenders.relationToOne(),
+  // },
+  // user: {
+  //   label: i18n('entities.membership.fields.user'),
+  //   render: filterRenders.relationToOne(),
+  // },
+  // campaign: {
+  //   label: i18n('entities.membership.fields.campaign'),
+  //   render: filterRenders.relationToOne(),
+  // },
+  amountRange: {
+    label: i18n('entities.membership.fields.amountRange'),
     render: filterRenders.decimalRange(),
-  },
-  typePay: {
-    label: i18n('entities.detailsCampagne.fields.typePay'),
-    render: filterRenders.enumerator(
-      'entities.detailsCampagne.enumerators.typePay',
-    ),
   },
 };
 
-function UserDetailsCampagneListFilter(props) {
-  const { user } = props;
+function UserAdhesionsListFilter(props) {
+  const { user, match } = props;
   const rawFilter = useSelector(selectors.selectRawFilter);
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
@@ -103,10 +99,8 @@ function UserDetailsCampagneListFilter(props) {
   });
 
   useEffect(() => {
-    initialValues.iduser = user;
-    //initialValues.titre=props.titre;
     dispatch(
-      actions.doFetch_adhesion(
+      actions.doFetch(
         schema.cast(initialValues),
         rawFilter,
       ),
@@ -118,7 +112,6 @@ function UserDetailsCampagneListFilter(props) {
     const rawValues = form.getValues();
     rawValues.iduser = user;
     values.iduser = user;
-    //rawValues.titre= props.titre;
     dispatch(actions.doFetch(values, rawValues));
     setExpanded(false);
   };
@@ -132,7 +125,7 @@ function UserDetailsCampagneListFilter(props) {
     Object.keys(emptyValues).forEach((key) => {
       form.setValue(key, emptyValues[key]);
     });
-    //dispatch(actions.doReset());
+    dispatch(actions.doReset());
     setExpanded(false);
   };
 
@@ -155,63 +148,68 @@ function UserDetailsCampagneListFilter(props) {
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
                 <div className="col-lg-6 col-12">
-                  <UserAutocompleteFormItem
-                    name="adherent"
-                    label={i18n(
-                      'entities.detailsCampagne.fields.adherent',
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <PalierAutocompleteFormItem
-                    name="palier"
-                    label={i18n(
-                      'entities.detailsCampagne.fields.palier',
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
                   <SelectFormItem
-                    name="statutPay"
+                    name="status"
                     label={i18n(
-                      'entities.detailsCampagne.fields.statutPay',
+                      'entities.membership.fields.status',
                     )}
-                    options={detailsCampagneEnumerators.statutPay.map(
+                    options={membershipEnumerators.status.map(
                       (value) => ({
                         value,
                         label: i18n(
-                          `entities.detailsCampagne.enumerators.statutPay.${value}`,
+                          `entities.membership.enumerators.status.${value}`,
                         ),
                       }),
                     )}
                   />
                 </div>
+                <div className="col-lg-6 col-12">
+                  <SelectFormItem
+                    name="paymentMethod"
+                    label={i18n(
+                      'entities.membership.fields.paymentMethod',
+                    )}
+                    options={membershipEnumerators.paymentMethod.map(
+                      (value) => ({
+                        value,
+                        label: i18n(
+                          `entities.membership.enumerators.paymentMethod.${value}`,
+                        ),
+                      }),
+                    )}
+                  />
+                </div>
+                {/* <div className="col-lg-6 col-12">
+                  <FormuleAutocompleteFormItem
+                    name="formule"
+                    label={i18n(
+                      'entities.membership.fields.formule',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <UserAutocompleteFormItem
+                    name="user"
+                    label={i18n(
+                      'entities.membership.fields.user',
+                    )}
+                  />
+                </div>
+                <div className="col-lg-6 col-12">
+                  <CampaignAutocompleteFormItem
+                    name="campaign"
+                    label={i18n(
+                      'entities.membership.fields.campaign',
+                    )}
+                  />
+                </div> */}
                 <div className="col-lg-6 col-12">
                   <InputRangeFormItem
-                    name="montantRange"
+                    name="amountRange"
                     label={i18n(
-                      'entities.detailsCampagne.fields.montantRange',
+                      'entities.membership.fields.amountRange',
                     )}
                   />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <SelectFormItem
-                    name="typePay"
-                    label={i18n(
-                      'entities.detailsCampagne.fields.typePay',
-                    )}
-                    options={detailsCampagneEnumerators.typePay.map(
-                      (value) => ({
-                        value,
-                        label: i18n(
-                          `entities.detailsCampagne.enumerators.typePay.${value}`,
-                        ),
-                      }),
-                    )}
-                  />
-                </div>
-                <div style={{ display: 'none' }}>
-                  <input name="iduser" />
                 </div>
               </div>
 
@@ -238,7 +236,6 @@ function UserDetailsCampagneListFilter(props) {
                       loading={props.loading}
                       iconClass="fas fa-undo"
                     />
-                    {i18n('common.reset')}
                   </button>
                 </div>
               </div>
@@ -250,4 +247,4 @@ function UserDetailsCampagneListFilter(props) {
   );
 }
 
-export default UserDetailsCampagneListFilter;
+export default UserAdhesionsListFilter;
