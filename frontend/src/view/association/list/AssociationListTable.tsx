@@ -30,6 +30,7 @@ function AssociationListTable(props) {
   const loading = findLoading || destroyLoading;
 
   const rows = useSelector(selectors.selectRows);
+
   const pagination = useSelector(
     selectors.selectPagination,
   );

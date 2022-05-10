@@ -148,7 +148,7 @@ function AssociationToolbar(props) {
 
   return (
     <Toolbar>
-      {hasPermissionToCreate && (
+      {hasPermissionToCreate && !hasRows && (
         <Link to="/association/new">
           <span
             data-tip={i18n('common.new')}
