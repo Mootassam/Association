@@ -844,7 +844,7 @@ export default class UserRepository {
       (tenantUser) =>
         tenantUser &&
         tenantUser.tenant &&
-        String(tenantUser.tenant._id) === String(tenant.id),
+        String(tenantUser.tenant.id) === String(tenant.id),
     );
 
     delete user.tenants;

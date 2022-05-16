@@ -19,7 +19,6 @@ export default class UserEditor {
 
   async update(data) {
     this.data = data;
-
     await this._validate();
 
     try {
@@ -29,6 +28,7 @@ export default class UserEditor {
 
       await this._loadUser();
       await this._updateAtDatabase();
+      await this._updateUserAtDatabase();
 
       await MongooseRepository.commitTransaction(
         this.session,
@@ -67,7 +67,7 @@ export default class UserEditor {
       );
     }
   }
-  
+
   async _updateAtDatabase() {
     await TenantUserRepository.updateRoles(
       this.options.currentTenant.id,
@@ -76,7 +76,25 @@ export default class UserEditor {
       this.options,
     );
   }
-
+  async _updateUserAtDatabase() {
+    await UserRepository.updateUser(
+      this.options.currentTenant.id,
+      this.data.id,
+      this.data.fullName,
+      this.data.phoneNumber,
+      this.data.employeur,
+      this.data.profession,
+      this.data.date_naissance,
+      this.data.secteur,
+      this.data.adresse,
+      this.data.cin,
+      this.data.etat_civil,
+      this.data.lien_facebook,
+      this.data.parrain,
+      // this.data.stat,
+      this.options,
+    );
+  }
   /**
    * Checks if the user is removing the responsable for the plan
    */
@@ -116,11 +134,12 @@ export default class UserEditor {
       return false;
     }
 
-    const tenantUser = this.options.currentUser.tenants.find(
-      (userTenant) =>
-        userTenant.tenant.id ===
-        this.options.currentTenant.id,
-    );
+    const tenantUser =
+      this.options.currentUser.tenants.find(
+        (userTenant) =>
+          userTenant.tenant.id ===
+          this.options.currentTenant.id,
+      );
 
     return tenantUser.roles.includes(Roles.values.admin);
   }

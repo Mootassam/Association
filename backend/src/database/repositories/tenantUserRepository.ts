@@ -5,21 +5,20 @@ import Roles from '../../security/roles';
 import crypto from 'crypto';
 import { IRepositoryOptions } from './IRepositoryOptions';
 
-
 export default class TenantUserRepository {
-  
   static async findByInvitationToken(
     invitationToken,
     options: IRepositoryOptions,
   ) {
-    let user = await MongooseRepository.wrapWithSessionIfExists(
-      User(options.database)
-        .findOne({
-          tenants: { $elemMatch: { invitationToken } },
-        })
-        .populate('tenants.tenant'),
-      options,
-    );
+    let user =
+      await MongooseRepository.wrapWithSessionIfExists(
+        User(options.database)
+          .findOne({
+            tenants: { $elemMatch: { invitationToken } },
+          })
+          .populate('tenants.tenant'),
+        options,
+      );
 
     if (!user) {
       return null;
@@ -74,16 +73,17 @@ export default class TenantUserRepository {
       options,
     );
   }
-  
+
   static async destroy(
     tenantId,
     id,
     options: IRepositoryOptions,
   ) {
-    const user = await MongooseRepository.wrapWithSessionIfExists(
-      User(options.database).findById(id),
-      options,
-    );
+    const user =
+      await MongooseRepository.wrapWithSessionIfExists(
+        User(options.database).findById(id),
+        options,
+      );
 
     await User(options.database).updateOne(
       { _id: id },
@@ -107,14 +107,15 @@ export default class TenantUserRepository {
       options,
     );
   }
-  
+
   static async updateRoles(tenantId, id, roles, options) {
-    const user = await MongooseRepository.wrapWithSessionIfExists(
-      User(options.database)
-        .findById(id)
-        .populate('tenants.tenant'),
-      options,
-    );
+    const user =
+      await MongooseRepository.wrapWithSessionIfExists(
+        User(options.database)
+          .findById(id)
+          .populate('tenants.tenant'),
+        options,
+      );
 
     let tenantUser = user.tenants.find((userTenant) => {
       return userTenant.tenant.id === tenantId;
@@ -198,15 +199,15 @@ export default class TenantUserRepository {
     invitationToken,
     options: IRepositoryOptions,
   ) {
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     // This tenant user includes the User data
-    let invitationTenantUser = await this.findByInvitationToken(
-      invitationToken,
-      options,
-    );
+    let invitationTenantUser =
+      await this.findByInvitationToken(
+        invitationToken,
+        options,
+      );
 
     let existingTenantUser = currentUser.tenants.find(
       (userTenant) =>

@@ -244,6 +244,7 @@ function ElectionForm(props) {
                   )}
                   required={false}
                   showCreate={!props.modal}
+                  election="true"
                   mode="multiple"
                 />
               </div>

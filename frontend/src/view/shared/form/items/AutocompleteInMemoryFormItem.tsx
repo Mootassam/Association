@@ -27,6 +27,7 @@ function AutocompleteInMemoryFormItem(props) {
     isClearable,
     mapper,
     fetchFn,
+    election,
   } = props;
 
   const originalValue = watch(name);
@@ -231,8 +232,10 @@ function AutocompleteInMemoryFormItem(props) {
             i18n('autocomplete.noOptions')
           }
         />
-        {/* 
-        {props.showCreate && props.hasPermissionToCreate ? (
+
+        {election &&
+        props.showCreate &&
+        props.hasPermissionToCreate ? (
           <button
             style={{ marginLeft: '16px', flexShrink: 0 }}
             className="btn btn-primary"
@@ -241,7 +244,7 @@ function AutocompleteInMemoryFormItem(props) {
           >
             <i className="fas fa-plus"></i>
           </button>
-        ) : null} */}
+        ) : null}
       </div>
 
       <div className="invalid-feedback">{errorMessage}</div>
@@ -274,6 +277,7 @@ AutocompleteInMemoryFormItem.propTypes = {
   isClearable: PropTypes.bool,
   showCreate: PropTypes.bool,
   hasPermissionToCreate: PropTypes.bool,
+  election: PropTypes.bool,
 };
 
 export default AutocompleteInMemoryFormItem;

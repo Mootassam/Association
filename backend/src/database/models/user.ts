@@ -17,47 +17,43 @@ export default (database) => {
       secteur: {
         type: String,
         enum: [
-          "AGRO_ALIMENTAIRE",
-          "ASSURANCES",
-          "AUDIOVISUEL",
-          "BANCAIRE",
-          "CHIMIE",
-          "COMPOSANTS_AUTOMOBILES",
-          "DISTRIBUTION",
-          "DISTRIBUTION_AUTOMOBILE",
-          "DIVERS",
-          "FINANCIER",
-          "HOLDING",
-          "IMMOBILIER",
-          "INDUSTRIEL",
-          "LEASING",
-          "LOGISTIQUE_TRANSPORT",
-          "PHARMACEUTIQUE",
-          "SANTÉ",
-          "TOURSIME",
-          "INFORMATION_TECHNOLOGY",
-          null
+          'AGRO_ALIMENTAIRE',
+          'ASSURANCES',
+          'AUDIOVISUEL',
+          'BANCAIRE',
+          'CHIMIE',
+          'COMPOSANTS_AUTOMOBILES',
+          'DISTRIBUTION',
+          'DISTRIBUTION_AUTOMOBILE',
+          'DIVERS',
+          'FINANCIER',
+          'HOLDING',
+          'IMMOBILIER',
+          'INDUSTRIEL',
+          'LEASING',
+          'LOGISTIQUE_TRANSPORT',
+          'PHARMACEUTIQUE',
+          'SANTÉ',
+          'TOURSIME',
+          'INFORMATION_TECHNOLOGY',
+          null,
         ],
       },
       profession: {
         type: String,
-        maxlength: 24
+        maxlength: 24,
       },
       adresse: {
         type: String,
-        maxlength: 24
+        maxlength: 24,
       },
       cin: {
         type: String,
-        maxlength: 8
+        maxlength: 8,
       },
       etat_civil: {
         type: String,
-        enum: [
-          "marié",
-          "célébataire",
-          null
-        ],
+        enum: ['marié', 'célébataire', null],
       },
       lien_facebook: {
         type: String,
