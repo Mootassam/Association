@@ -6,22 +6,27 @@ import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import TextViewItem from 'src/view/shared/view/TextViewItem';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-function DonsListPage(props) {
+import selectors from 'src/modules/dons/list/donsListSelectors';
+import { useSelector } from 'react-redux';
 
+function DonsListPage(props) {
+  const dons = useSelector(selectors.selectRows);
   let average = 0;
+  let totalDons = 0;
   if (props.idprojet) {
-    let totalFunds = 0;
-    for (let i = 0; i < props.idprojet.dons.length; i++) {
-      totalFunds = totalFunds + props.idprojet.dons[i].montant;
-    }
-    average = totalFunds;
+    dons
+      .filter((item) => item.projet === props.idprojet.id)
+      .reduce(
+        (accu, next) => (totalDons = accu + next.montant),
+        0,
+      );
+    average = totalDons / dons.length;
   }
 
   return (
     <>
       <ContentWrapper>
-        {props.idprojet ?
-
+        {props.idprojet ? (
           <Row>
             <Col sm={2}>
               <TextViewItem
@@ -31,25 +36,23 @@ function DonsListPage(props) {
             </Col>
             <Col sm={2}>
               <TextViewItem
-                label={i18n('entities.projet.fields.budget')}
+                label={i18n(
+                  'entities.projet.fields.budget',
+                )}
                 value={props.idprojet.budget}
               />
             </Col>
-            <Col sm={8}>
-            </Col>
+            <Col sm={8}></Col>
           </Row>
-
-          :
-          null
-        }
-        {props.idprojet ?
+        ) : null}
+        {props.idprojet ? (
           <div>
-            <ProjetDonsListFilter idprojet={props.idprojet._id} />
+            <ProjetDonsListFilter
+              idprojet={props.idprojet._id}
+            />
             <DonsListTable />
           </div>
-          :
-          null
-        }
+        ) : null}
       </ContentWrapper>
     </>
   );
