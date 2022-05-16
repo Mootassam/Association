@@ -179,10 +179,7 @@ class ProjetRepository {
 
     let record =
       await MongooseRepository.wrapWithSessionIfExists(
-        Projet(options.database)
-          .findById(id)
-          .populate('votes')
-          .populate('dons'),
+        Projet(options.database).findById(id),
         options,
       );
 
@@ -455,9 +452,7 @@ class ProjetRepository {
       .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
-      .sort(sort)
-      .populate('votes')
-      .populate('dons');
+      .sort(sort);
 
     const count = await Projet(
       options.database,
