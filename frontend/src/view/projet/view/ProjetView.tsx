@@ -38,7 +38,6 @@ function ProjetView(props) {
     <ViewWrapper>
       <Row
         style={{
-          backgroundColor: '#f0f2f5',
           paddingBottom: '10px',
         }}
       >
@@ -100,7 +99,6 @@ function ProjetView(props) {
 
       <Row
         style={{
-          backgroundColor: '#f0f2f5',
           paddingBottom: '10px',
         }}
       >
@@ -173,7 +171,6 @@ function ProjetView(props) {
 
       <Row
         style={{
-          backgroundColor: '#f0f2f5',
           paddingBottom: '10px',
         }}
       >
