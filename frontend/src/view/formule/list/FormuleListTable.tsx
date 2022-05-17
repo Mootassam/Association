@@ -123,6 +123,15 @@ function FormuleListTable(props) {
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
+                name={'description'}
+                label={i18n(
+                  'entities.formule.fields.description',
+                )}
+              />
+              <TableColumnHeader
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
                 name={'amount'}
                 label={i18n(
                   'entities.formule.fields.amount',
@@ -174,18 +183,19 @@ function FormuleListTable(props) {
                       </label>
                     </div>
                   </th>
+                  <td>{row.description}</td>
                   <td>{row.name}</td>
                   <td style={{ textAlign: 'right' }}>
                     {row.amount}
                   </td>
 
                   <td className="td-actions">
-                    <Link
+                    {/* <Link
                       className="btn btn-link"
                       to={`/formule/${row.id}`}
                     >
                       <i className={'fas fa-search'} />
-                    </Link>
+                    </Link> */}
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"

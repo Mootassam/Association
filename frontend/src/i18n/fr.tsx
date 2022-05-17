@@ -1179,12 +1179,12 @@ const fr = {
 
     membership: {
       name: 'Adhésions',
-      label: 'Adhésionss',
-      menu: 'Adhésionss',
+      label: 'Adhésions',
+      menu: 'Adhésions',
       exporterFileName: 'membership_export',
       list: {
-        menu: 'Adhésionss',
-        title: 'Adhésionss',
+        menu: 'Adhésions',
+        title: 'Adhésions',
       },
       create: {
         success: 'Adhésions enregistré avec succès',
@@ -1218,7 +1218,7 @@ const fr = {
       enumerators: {
         status: {
           paid: 'Payé',
-          waiting: 'Attendre',
+          waiting: 'En attente',
         },
         paymentMethod: {
           cash: 'Espèces',
@@ -1235,7 +1235,7 @@ const fr = {
         title: 'Voir Adhésions',
       },
       importer: {
-        title: 'Import Adhésionss',
+        title: 'Import Adhésions',
         fileName: 'membership_import_template',
         hint: 'Les colonnes Fichiers/Images doivent contenir les URL des fichiers séparés par un espace.',
       },

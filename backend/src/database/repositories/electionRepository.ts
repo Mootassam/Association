@@ -11,15 +11,12 @@ import Association from '../models/association';
 import Objectif from '../models/objectif';
 
 class ElectionRepository {
-  
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const [record] = await Election(
       options.database,
@@ -30,7 +27,7 @@ class ElectionRepository {
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -42,35 +39,25 @@ class ElectionRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationManyToMany(
-      record,
-      'association',
-      Association(options.database),
-      'elections',
-      options,
-    );    
-
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      Election(options.database),
-      'objectifs',
-      Objectif(options.database),
-      'election',
-      options,
-    );  
-
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Election(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Election(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -80,9 +67,8 @@ class ElectionRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -96,41 +82,30 @@ class ElectionRepository {
 
     record = await this.findById(id, options);
 
-    await MongooseRepository.refreshTwoWayRelationManyToMany(
-      record,
-      'association',
-      Association(options.database),
-      'elections',
-      options,
-    );
-
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      Election(options.database),
-      'objectifs',
-      Objectif(options.database),
-      'election',
-      options,
-    );
-
     return record;
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Election(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Election(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
     }
 
-    await Election(options.database).deleteOne({ _id: id }, options);
+    await Election(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -187,9 +162,8 @@ class ElectionRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Election(options.database).countDocuments({
@@ -201,18 +175,18 @@ class ElectionRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Election(options.database)
-        .findOne({_id: id, tenant: currentTenant.id})
-      .populate('members')
-      .populate('association')
-      .populate('objectifs'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Election(options.database)
+          .findOne({ _id: id, tenant: currentTenant.id })
+          .populate('members')
+          .populate('association')
+          .populate('objetifs'),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -225,12 +199,11 @@ class ElectionRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    
+
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
@@ -256,7 +229,11 @@ class ElectionRepository {
       if (filter.startDateRange) {
         const [start, end] = filter.startDateRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             startDate: {
               $gte: start,
@@ -264,7 +241,11 @@ class ElectionRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             startDate: {
               $lte: end,
@@ -276,7 +257,11 @@ class ElectionRepository {
       if (filter.endDateRange) {
         const [start, end] = filter.endDateRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             endDate: {
               $gte: start,
@@ -284,7 +269,11 @@ class ElectionRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             endDate: {
               $lte: end,
@@ -337,8 +326,7 @@ class ElectionRepository {
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)
-      .populate('members')
-      .populate('association');
+      .populate('members');
 
     const count = await Election(
       options.database,
@@ -351,14 +339,19 @@ class ElectionRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -368,10 +361,11 @@ class ElectionRepository {
           },
           {
             name: {
-              $regex: MongooseQueryUtils.escapeRegExp(search),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
-            }
-          },          
+            },
+          },
         ],
       });
     }
@@ -392,7 +386,12 @@ class ElectionRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Election(options.database).modelName,
@@ -417,7 +416,9 @@ class ElectionRepository {
       output.pv,
     );
 
-    output.members = UserRepository.cleanupForRelationships(output.members);
+    output.members = UserRepository.cleanupForRelationships(
+      output.members,
+    );
 
     return output;
   }

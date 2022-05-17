@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import { i18n } from 'src/i18n';
 import ElectionListFilter from 'src/view/election/list/ElectionListFilter';
 import ElectionListTable from 'src/view/election/list/ElectionListTable';
@@ -7,6 +6,7 @@ import ElectionListToolbar from 'src/view/election/list/ElectionListToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function ElectionListPage(props) {
   return (
@@ -31,7 +31,6 @@ function ElectionListPage(props) {
             </Col>
           </Row>
         </Container>
-
         <ElectionListFilter />
         <ElectionListTable />
       </ContentWrapper>

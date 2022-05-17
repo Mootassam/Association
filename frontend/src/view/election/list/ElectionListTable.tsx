@@ -15,6 +15,7 @@ import Pagination from 'src/view/shared/table/Pagination';
 import UserListItem from 'src/view/user/list/UserListItem';
 import FilesListView from 'src/view/shared/table/FileListView';
 import AssociationListItem from 'src/view/association/list/AssociationListItem';
+import ObjectifListItem from 'src/view/objectif/list/ObjectifListItem';
 
 function ElectionListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -148,11 +149,7 @@ function ElectionListTable(props) {
               <TableColumnHeader
                 label={i18n('entities.election.fields.pv')}
               />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.election.fields.association',
-                )}
-              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -206,24 +203,20 @@ function ElectionListTable(props) {
                   <td>
                     <FilesListView value={row.pv} />
                   </td>
-                  <td>
-                    <AssociationListItem
-                      value={row.association}
-                    />
-                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"
                       to={`/election/${row.id}`}
                     >
-                      <i className={'fas fa-search'} />
+                      {i18n('common.view')}
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
                         to={`/election/${row.id}/edit`}
                       >
-                        <i className="fas fa-edit" />
+                        {i18n('common.edit')}
                       </Link>
                     )}
                     {hasPermissionToDestroy && (
@@ -234,7 +227,7 @@ function ElectionListTable(props) {
                           doOpenDestroyConfirmModal(row.id)
                         }
                       >
-                        <i className="fas fa-trash-alt" />
+                        {i18n('common.destroy')}
                       </button>
                     )}
                   </td>

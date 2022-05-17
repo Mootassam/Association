@@ -34,6 +34,11 @@ export default [
     render: exporterRenders.relationToMany(),
   },
   {
+    name: 'objetifs',
+    label: i18n('entities.election.fields.objectifs'),
+    render: exporterRenders.relationToMany(),
+  },
+  {
     name: 'createdAt',
     label: i18n('entities.election.fields.createdAt'),
     render: exporterRenders.datetime(),

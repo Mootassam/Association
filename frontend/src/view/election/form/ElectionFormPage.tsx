@@ -15,17 +15,7 @@ function ElectionFormPage(props) {
   const [dispatched, setDispatched] = useState(false);
   const dispatch = useDispatch();
   const match = useRouteMatch();
-  const getAssociation = () => {
-    const associationASString =
-      localStorage.getItem('association') || null;
 
-    if (associationASString) {
-      return JSON.parse(associationASString);
-    }
-
-    return null;
-  };
-  const association = getAssociation();
   const initLoading = useSelector(
     selectors.selectInitLoading,
   );
@@ -45,7 +35,6 @@ function ElectionFormPage(props) {
   }, [dispatch, match.params.id]);
 
   const doSubmit = (id, data) => {
-    data.association = association.rows[0].id;
     if (isEditing) {
       dispatch(actions.doUpdate(id, data));
     } else {

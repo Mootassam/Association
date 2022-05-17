@@ -30,7 +30,7 @@ const emptyValues = {
   name: null,
   startDateRange: [],
   endDateRange: [],
-};
+}
 
 const previewRenders = {
   name: {
@@ -45,7 +45,7 @@ const previewRenders = {
     label: i18n('entities.election.fields.endDateRange'),
     render: filterRenders.dateRange(),
   },
-};
+}
 
 function ElectionListFilter(props) {
   const rawFilter = useSelector(selectors.selectRawFilter);
@@ -66,12 +66,7 @@ function ElectionListFilter(props) {
   });
 
   useEffect(() => {
-    dispatch(
-      actions.doFetch(
-        schema.cast(initialValues),
-        rawFilter,
-      ),
-    );
+    dispatch(actions.doFetch(schema.cast(initialValues), rawFilter));
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -112,30 +107,24 @@ function ElectionListFilter(props) {
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="row">
-                <div className="col-lg-6 col-12">
-                  <InputFormItem
-                    name="name"
-                    label={i18n(
-                      'entities.election.fields.name',
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <DatePickerRangeFormItem
-                    name="startDateRange"
-                    label={i18n(
-                      'entities.election.fields.startDateRange',
-                    )}
-                  />
-                </div>
-                <div className="col-lg-6 col-12">
-                  <DatePickerRangeFormItem
-                    name="endDateRange"
-                    label={i18n(
-                      'entities.election.fields.endDateRange',
-                    )}
-                  />
-                </div>
+                    <div className="col-lg-6 col-12">
+                      <InputFormItem
+                        name="name"
+                        label={i18n('entities.election.fields.name')}      
+                      />
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <DatePickerRangeFormItem
+                        name="startDateRange"
+                        label={i18n('entities.election.fields.startDateRange')}    
+                      />
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <DatePickerRangeFormItem
+                        name="endDateRange"
+                        label={i18n('entities.election.fields.endDateRange')}    
+                      />
+                    </div>
               </div>
 
               <div className="row">
@@ -148,7 +137,7 @@ function ElectionListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-search"
-                    />
+                    />{' '}
                     {i18n('common.search')}
                   </button>
                   <button
@@ -160,7 +149,8 @@ function ElectionListFilter(props) {
                     <ButtonIcon
                       loading={props.loading}
                       iconClass="fas fa-undo"
-                    />
+                    />{' '}
+                    {i18n('common.reset')}
                   </button>
                 </div>
               </div>

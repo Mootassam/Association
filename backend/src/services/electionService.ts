@@ -3,8 +3,8 @@ import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
 import ElectionRepository from '../database/repositories/electionRepository';
 import AssociationRepository from '../database/repositories/associationRepository';
-import UserRepository from '../database/repositories/userRepository';
 import ObjectifRepository from '../database/repositories/objectifRepository';
+import UserRepository from '../database/repositories/userRepository';
 
 export default class ElectionService {
   options: IServiceOptions;
@@ -21,7 +21,8 @@ export default class ElectionService {
     try {
       data.members = await UserRepository.filterIdsInTenant(data.members, { ...this.options, session });
       data.association = await AssociationRepository.filterIdsInTenant(data.association, { ...this.options, session });
-      data.objectifs = await ObjectifRepository.filterIdsInTenant(data.objectifs, { ...this.options, session });
+      data.objetifs = await ObjectifRepository.filterIdsInTenant(data.objetifs, { ...this.options, session });
+
       const record = await ElectionRepository.create(data, {
         ...this.options,
         session,
@@ -51,6 +52,7 @@ export default class ElectionService {
     try {
       data.members = await UserRepository.filterIdsInTenant(data.members, { ...this.options, session });
       data.association = await AssociationRepository.filterIdsInTenant(data.association, { ...this.options, session });
+      data.objetifs = await ObjectifRepository.filterIdsInTenant(data.objetifs, { ...this.options, session });
 
       const record = await ElectionRepository.update(
         id,

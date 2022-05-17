@@ -30,7 +30,7 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'association',
       }],
-      objectifs: [{
+      objetifs: [{
         type: Schema.Types.ObjectId,
         ref: 'objectif',
       }],

@@ -1,5 +1,6 @@
 import schemas from 'src/modules/shared/yup/yupImporterSchemas';
-import { i18n } from 'src/i18n';import moment from 'moment';
+import { i18n } from 'src/i18n';
+import moment from 'moment';
 
 export default [
   {
@@ -8,7 +9,7 @@ export default [
     schema: schemas.string(
       i18n('entities.election.fields.name'),
       {
-        "required": true
+        required: true,
       },
     ),
   },
@@ -27,7 +28,10 @@ export default [
       i18n('entities.election.fields.startDate'),
       {},
     ),
-   render: (value) => value && value instanceof Date ? moment(value).format('YYYY-MM-DD') : value,
+    render: (value) =>
+      value && value instanceof Date
+        ? moment(value).format('YYYY-MM-DD')
+        : value,
   },
   {
     name: 'endDate',
@@ -36,7 +40,10 @@ export default [
       i18n('entities.election.fields.endDate'),
       {},
     ),
-   render: (value) => value && value instanceof Date ? moment(value).format('YYYY-MM-DD') : value,
+    render: (value) =>
+      value && value instanceof Date
+        ? moment(value).format('YYYY-MM-DD')
+        : value,
   },
   {
     name: 'pv',
@@ -51,6 +58,14 @@ export default [
     label: i18n('entities.election.fields.association'),
     schema: schemas.relationToMany(
       i18n('entities.election.fields.association'),
+      {},
+    ),
+  },
+  {
+    name: 'objetifs',
+    label: i18n('entities.election.fields.objectifs'),
+    schema: schemas.relationToMany(
+      i18n('entities.election.fields.objectifs'),
       {},
     ),
   },
