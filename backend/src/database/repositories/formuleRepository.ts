@@ -168,9 +168,10 @@ class FormuleRepository {
 
     let record =
       await MongooseRepository.wrapWithSessionIfExists(
-        Formule(options.database)
-          .findOne({ _id: id, tenant: currentTenant.id })
-          .populate('membership'),
+        Formule(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
         options,
       );
 
@@ -283,8 +284,7 @@ class FormuleRepository {
       .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
-      .sort(sort)
-      .populate('membership');
+      .sort(sort);
 
     const count = await Formule(
       options.database,
