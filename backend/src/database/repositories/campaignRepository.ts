@@ -79,15 +79,6 @@ class CampaignRepository {
 
     record = await this.findById(id, options);
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      Campaign(options.database),
-      'membership',
-      Membership(options.database),
-      'campaign',
-      options,
-    );
-
     return record;
   }
 

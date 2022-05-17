@@ -210,7 +210,7 @@ const fr = {
           projet_ca: 'Projet CA',
         },
         statutProjet: {
-          draft: 'Ébauche',
+          draft: 'Brouillon',
           actif: 'Actif',
           canceled: 'Annulé',
           closed: 'Fermé',
@@ -318,8 +318,8 @@ const fr = {
       enumerators: {
         typePaiement: {
           paymee: 'Paymee',
-          cb: 'carte bancaire',
-          virement: 'Transférer',
+          cb: 'Carte bancaire',
+          virement: 'Virement',
           especes: 'Espèces',
         },
       },
@@ -899,25 +899,25 @@ const fr = {
     },
 
     tag: {
-      name: 'Étiqueter',
-      label: 'Étiqueter',
-      menu: 'Étiqueter',
+      name: 'Tags',
+      label: 'Tags',
+      menu: 'Tags',
       exporterFileName: 'newsTag_export',
       list: {
-        menu: 'Étiqueter',
-        title: 'Étiqueter',
+        menu: 'Tags',
+        title: 'Tags',
       },
       create: {
-        success: 'NewsTag enregistré avec succès',
+        success: 'Tag enregistré avec succès',
       },
       update: {
-        success: 'NewsTag enregistré avec succès',
+        success: 'Tag enregistré avec succès',
       },
       destroy: {
         success: 'Balise dactualités supprimée avec succès',
       },
       destroyAll: {
-        success: 'NewsTag(s) supprimé(s) avec succès',
+        success: 'Tag(s) supprimé(s) avec succès',
       },
       edit: {
         title: 'Modifier NewsTag',
@@ -935,14 +935,14 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'Nouveau NewsTag',
+        title: 'Nouveau Tag',
       },
       view: {
-        title: 'Afficher les actualitésTag',
+        title: 'Afficher les actualités',
       },
       importer: {
-        title: 'Importer des NewsTags',
-        fileName: 'newsTag_import_template',
+        title: 'Importer des Tags',
+        fileName: 'Tag_import_template',
         hint: 'Les colonnes Fichiers/Images doivent contenir les URL des fichiers séparés par un espace.',
       },
     },
@@ -1051,7 +1051,7 @@ const fr = {
       enumerators: {
         type: {
           association: 'Association',
-          funder: 'Funder',
+          funder: 'Bailleur de fonds',
         },
       },
       placeholders: {},
@@ -1222,7 +1222,7 @@ const fr = {
         },
         paymentMethod: {
           cash: 'Espèces',
-          check: 'Vérifier',
+          check: 'Chéque',
           bank: 'Banque',
         },
       },
@@ -1270,8 +1270,8 @@ const fr = {
         name: 'Nom',
         membership: 'Adhésions',
         status: 'Statut',
-        yearRange: 'An',
-        year: 'An',
+        yearRange: 'Année',
+        year: 'Année',
         startDateRange: 'Date de début',
         startDate: 'Date de début',
         endDateRange: 'Date de fin',
@@ -1283,7 +1283,7 @@ const fr = {
       enumerators: {
         status: {
           published: 'Publié',
-          draft: 'Ébauche',
+          draft: 'Brouillon',
           suspended: 'Suspendu',
           archived: 'Archivé',
         },
@@ -1333,8 +1333,8 @@ const fr = {
         title: 'Titre',
         description: 'Description',
         status: 'Statut',
-        yearRange: 'An',
-        year: 'An',
+        yearRange: 'Année',
+        year: 'Année',
         progression: 'progrès',
         startDateRange: 'Date de début',
         startDate: 'Date de début',
@@ -1347,8 +1347,8 @@ const fr = {
       },
       enumerators: {
         status: {
-          achieved: 'Atteint',
-          waiting: 'Attendre',
+          achieved: 'Terminé',
+          waiting: 'En Attente',
         },
       },
       placeholders: {},
@@ -1404,7 +1404,7 @@ const fr = {
       enumerators: {
         type: {
           'e-commerce': 'E-commerce',
-          boutique: 'Shop',
+          boutique: 'Boutique',
         },
       },
       placeholders: {},
@@ -1461,7 +1461,7 @@ const fr = {
       },
       enumerators: {
         type: {
-          salaires: 'Salaries',
+          salaires: 'Salaires',
           loyers: 'Loyers',
           impots: 'Impôts',
         },
@@ -1517,7 +1517,7 @@ const fr = {
       },
       enumerators: {
         type: {
-          salaires: 'Salaries',
+          salaires: 'Salaires',
           loyers: 'Loyers',
           impots: 'Impôts',
         },
@@ -2386,7 +2386,7 @@ const fr = {
       INFORMATION_TECHNOLOGY: 'Information Technology',
     },
     maritalStatus: {
-      célébataire: 'Seul',
+      célébataire: 'Célébataire',
       marié: 'Marié',
     },
     status: {
@@ -2465,7 +2465,7 @@ const fr = {
       tenantName: 'Workspace Name',
       tenantId: 'Workspace',
       tenantUrl: 'Workspace URL',
-      plan: 'Plan',
+      plan: 'PlAnnée',
     },
     enumerators: {},
     new: {
@@ -2503,7 +2503,7 @@ const fr = {
     },
 
     pricingPeriod: '/month',
-    current: 'Current Plan',
+    current: 'Current PlAnnée',
     subscribe: 'Subscribe',
     manage: 'Manage Subscription',
     cancelAtPeriodEnd:
@@ -2546,7 +2546,7 @@ const fr = {
     colors: {
       default: 'Dark',
       light: 'Light',
-      cyan: 'Cyan',
+      cyan: 'CyAnnée',
       'geek-blue': 'Geek Blue',
       gold: 'Gold',
       lime: 'Lime',

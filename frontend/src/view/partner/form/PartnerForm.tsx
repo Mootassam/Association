@@ -200,7 +200,7 @@ function PartnerForm(props) {
                 required={false}
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <GroupAutocompleteFormItem
                 name="group"
                 label={i18n(
@@ -210,7 +210,7 @@ function PartnerForm(props) {
                 showCreate={!props.modal}
                 mode="multiple"
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="form-buttons">

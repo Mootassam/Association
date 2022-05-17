@@ -18,8 +18,14 @@ export default class PartnerService {
     );
 
     try {
-      data.members = await UserRepository.filterIdsInTenant(data.members, { ...this.options, session });
-      data.group = await GroupRepository.filterIdsInTenant(data.group, { ...this.options, session });
+      data.members = await UserRepository.filterIdsInTenant(
+        data.members,
+        { ...this.options, session },
+      );
+      // data.group = await GroupRepository.filterIdsInTenant(
+      //   data.group,
+      //   { ...this.options, session },
+      // );
 
       const record = await PartnerRepository.create(data, {
         ...this.options,
@@ -48,8 +54,14 @@ export default class PartnerService {
     );
 
     try {
-      data.members = await UserRepository.filterIdsInTenant(data.members, { ...this.options, session });
-      data.group = await GroupRepository.filterIdsInTenant(data.group, { ...this.options, session });
+      data.members = await UserRepository.filterIdsInTenant(
+        data.members,
+        { ...this.options, session },
+      );
+      // data.group = await GroupRepository.filterIdsInTenant(
+      //   data.group,
+      //   { ...this.options, session },
+      // );
 
       const record = await PartnerRepository.update(
         id,

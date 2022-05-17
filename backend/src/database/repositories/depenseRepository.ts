@@ -39,15 +39,6 @@ class DepenseRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      Depense(options.database),
-      'charge',
-      Charge(options.database),
-      'depense',
-      options,
-    );
-
     return this.findById(record.id, options);
   }
 
@@ -111,15 +102,6 @@ class DepenseRepository {
     );
 
     record = await this.findById(id, options);
-
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      Depense(options.database),
-      'charge',
-      Charge(options.database),
-      'depense',
-      options,
-    );
 
     return record;
   }

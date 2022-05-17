@@ -180,11 +180,7 @@ function PartnerListTable(props) {
                 name={'type'}
                 label={i18n('entities.partner.fields.type')}
               />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.partner.fields.group',
-                )}
-              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -248,9 +244,7 @@ function PartnerListTable(props) {
                         )
                       : null}
                   </td>
-                  <td>
-                    <GroupListItem value={row.groupes} />
-                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

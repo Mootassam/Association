@@ -77,15 +77,6 @@ class FormuleRepository {
 
     record = await this.findById(id, options);
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
-      record,
-      Formule(options.database),
-      'membership',
-      Membership(options.database),
-      'formule',
-      options,
-    );
-
     return record;
   }
 

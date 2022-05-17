@@ -20,7 +20,7 @@ function DonsListPage(props) {
         (accu, next) => (totalDons = accu + next.montant),
         0,
       );
-    average = totalDons / dons.length;
+    average = totalDons + dons.length;
   }
 
   return (

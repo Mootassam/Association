@@ -99,7 +99,7 @@ class ProjetRepository {
 
     record = await this.findById(id, options);
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
+    await MongooseRepository.refreshTwoWayRelation(
       record,
       Projet(options.database),
       'votes',
@@ -108,7 +108,7 @@ class ProjetRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationManyToOne(
+    await MongooseRepository.refreshTwoWayRelation(
       record,
       Projet(options.database),
       'dons',
