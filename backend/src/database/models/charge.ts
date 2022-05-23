@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
+import FileSchema from './schemas/fileSchema';
 
 export default (database) => {
   try {
@@ -24,6 +25,10 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'depense',
       },
+      details: {
+        type: String,
+      },
+      attachements: [FileSchema],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',

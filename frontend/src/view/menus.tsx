@@ -75,13 +75,6 @@ export default [
         icon: 'fas fa-chevron-right',
         label: i18n('entities.partner.menu'),
       },
-
-      {
-        path: '/group',
-        permissionRequired: permissions.groupRead,
-        icon: 'fas fa-chevron-right',
-        label: i18n('entities.group.menu'),
-      },
     ],
   },
   {

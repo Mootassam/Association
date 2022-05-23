@@ -795,8 +795,8 @@ const fr = {
 
     association: {
       name: 'Associations',
-      label: 'Associations',
-      menu: 'Associations',
+      label: 'Association',
+      menu: 'Association',
       exporterFileName: 'association_export',
       list: {
         menu: 'Associations',
@@ -1571,7 +1571,7 @@ const fr = {
         specificationDesciption:
           'Spécification Description',
         isSpecification: 'Est la spécification',
-        details: 'Details',
+        details: 'Description',
         photo: 'Photo',
         discountPriceRange: 'Prix ​​bas',
         discountPrice: 'Prix ​​actuel',
@@ -2327,7 +2327,7 @@ const fr = {
       description: 'Accès complet à toutes les ressources',
     },
     adherent: {
-      label: 'Rôle personnalisé',
+      label: 'Adherent',
       description: 'Accès aux rôles personnalisés',
     },
   },

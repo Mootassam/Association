@@ -9,7 +9,9 @@ import ElectionViewToolbar from 'src/view/election/view/ElectionViewToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
-
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import ElectionObjectifs from 'src/view/election/view/ElectionObjectifs';
 function ElectionPage() {
   const dispatch = useDispatch();
   const match = useRouteMatch();
@@ -37,8 +39,24 @@ function ElectionPage() {
         </PageTitle>
 
         <ElectionViewToolbar match={match} />
+        <Tabs
+          defaultActiveKey="informations"
+          id="tab-inf-user"
+        >
+          <Tab eventKey="informations" title="Informations">
+            <ElectionView
+              loading={loading}
+              record={record}
+            />
+          </Tab>
 
-        <ElectionView loading={loading} record={record} />
+          <Tab eventKey="Objectifs" title="Objectifs">
+            <ElectionObjectifs
+              loading={loading}
+              record={record}
+            />
+          </Tab>
+        </Tabs>
       </ContentWrapper>
     </>
   );

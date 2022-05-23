@@ -10,6 +10,9 @@ import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem'
 import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import chargeEnumerators from 'src/modules/charge/chargeEnumerators';
 import DepenseAutocompleteFormItem from 'src/view/depense/autocomplete/DepenseAutocompleteFormItem';
+import FilesFormItem from 'src/view/shared/form/items/FilesFormItem';
+import Storage from 'src/security/storage';
+import TextAreaFormItem from 'src/view/shared/form/items/TextAreaFormItem';
 
 const schema = yup.object().shape({
   type: yupFormSchemas.enumerator(
@@ -22,6 +25,16 @@ const schema = yup.object().shape({
     i18n('entities.charge.fields.amount'),
     {},
   ),
+  attachements: yupFormSchemas.files(
+    i18n('entities.projet.fields.attachements'),
+    {},
+  ),
+  details: yupFormSchemas.string(
+    i18n('entities.product.fields.details'),
+    {
+      required: true,
+    },
+  ),
 });
 
 function ChargeForm(props) {
@@ -31,6 +44,9 @@ function ChargeForm(props) {
     return {
       type: record.type,
       amount: record.amount,
+      attachements: record.attachements || [],
+      details: record.details,
+
       // depense: record.depense,
     };
   });
@@ -78,6 +94,27 @@ function ChargeForm(props) {
                   'entities.charge.fields.amount',
                 )}
                 required={false}
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
+              <TextAreaFormItem
+                name="details"
+                label={i18n(
+                  'entities.product.fields.details',
+                )}
+                required={true}
+              />
+            </div>
+            <div className="col-lg-7 col-md-8 col-12">
+              <FilesFormItem
+                name="attachements"
+                label={i18n(
+                  'entities.projet.fields.attachements',
+                )}
+                required={false}
+                storage={Storage.values.projetAttachements}
+                max={undefined}
+                formats={undefined}
               />
             </div>
           </div>

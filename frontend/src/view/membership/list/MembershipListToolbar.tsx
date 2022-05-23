@@ -117,7 +117,7 @@ function MembershipToolbar(props) {
   //     >
   //       <button
   //         disabled={disabled}
-  //         className="btnCircle btn-primary"
+  //         className="btn btn-primary"
   //         type="button"
   //         onClick={doOpenDestroyAllConfirmModal}
   //       >
@@ -157,18 +157,9 @@ function MembershipToolbar(props) {
             formule: props.formule,
           }}
         >
-          <span
-            data-tip={i18n('common.new')}
-            data-for="charge-list-toolbar-new-tooltip"
-          >
-            <button
-              className="btnCircle btn-primary"
-              type="button"
-            >
-              <ButtonIcon iconClass="fas fa-plus" />
-            </button>
-            <ReactTooltip id="charge-list-toolbar-new-tooltip" />
-          </span>
+          <button className="btn btn-primary" type="button">
+            <ButtonIcon iconClass="fas fa-plus" />{' '}
+          </button>
         </Link>
       )}
 
@@ -179,7 +170,7 @@ function MembershipToolbar(props) {
             data-for="charge-list-toolbar-import-tooltip"
           >
             <button
-              className="btnCircle btn-primary"
+              className="btn btn-primary"
               type="button"
             >
               <ButtonIcon iconClass="fas fa-upload" />
