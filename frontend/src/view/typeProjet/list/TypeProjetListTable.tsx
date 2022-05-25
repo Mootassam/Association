@@ -2,51 +2,31 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { i18n } from 'src/i18n';
-import projetSelectors from 'src/modules/projet/projetSelectors';
-import destroyActions from 'src/modules/projet/destroy/projetDestroyActions';
-import destroySelectors from 'src/modules/projet/destroy/projetDestroySelectors';
-import actions from 'src/modules/projet/list/projetListActions';
-import selectors from 'src/modules/projet/list/projetListSelectors';
+import typeProjetSelectors from 'src/modules/typeProjet/typeProjetSelectors';
+import destroyActions from 'src/modules/typeProjet/destroy/typeProjetDestroyActions';
+import destroySelectors from 'src/modules/typeProjet/destroy/typeProjetDestroySelectors';
+import actions from 'src/modules/typeProjet/list/typeProjetListActions';
+import selectors from 'src/modules/typeProjet/list/typeProjetListSelectors';
 import TableColumnHeader from 'src/view/shared/table/TableColumnHeader';
 import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
-import FilesListView from 'src/view/shared/table/FileListView';
-import DonsFormModal from 'src/view/dons/form/DonsFormModal';
-import VotesFormModal from 'src/view/votes/form/VotesFormModal';
-import { useForm } from 'react-hook-form';
-import TypeProjetListItem from 'src/view/typeProjet/list/TypeProjetListItem';
 
-function ProjetListTable(props) {
-  const [recordIdToDestroy, setRecordIdToDestroy] =
-    useState(null);
-  const [recordIdprojet, setRecordIdprojet] =
-    useState(null);
-  const [recordIdtitre, setRecordIdtitre] = useState(null);
-  const { setValue, getValues } = useForm();
-  const [modalDonsVisible, setModalDonsVisible] =
-    useState<boolean>(false);
-  const [modalVotesVisible, setModalVotesVisible] =
-    useState<boolean>(false);
+
+function TypeProjetListTable(props) {
+  const [
+    recordIdToDestroy,
+    setRecordIdToDestroy,
+  ] = useState(null);
   const dispatch = useDispatch();
-  const doCloseDonsModal = () => {
-    setModalDonsVisible(false);
-  };
-  const doCloseVotesModal = () => {
-    setModalVotesVisible(false);
-  };
-  let idprojet;
-  let titre;
 
   const findLoading = useSelector(selectors.selectLoading);
 
   const destroyLoading = useSelector(
     destroySelectors.selectLoading,
   );
-  const hasPermissionToCreate = useSelector(
-    projetSelectors.selectPermissionToCreate,
-  );
+
   const loading = findLoading || destroyLoading;
 
   const rows = useSelector(selectors.selectRows);
@@ -62,26 +42,11 @@ function ProjetListTable(props) {
     selectors.selectIsAllSelected,
   );
   const hasPermissionToEdit = useSelector(
-    projetSelectors.selectPermissionToEdit,
+    typeProjetSelectors.selectPermissionToEdit,
   );
   const hasPermissionToDestroy = useSelector(
-    projetSelectors.selectPermissionToDestroy,
+    typeProjetSelectors.selectPermissionToDestroy,
   );
-
-  const doOpenModalDons = (id, titre) => {
-    idprojet = id;
-    setRecordIdprojet(id);
-    titre = titre;
-    setRecordIdtitre(titre);
-    setModalDonsVisible(true);
-  };
-  const doOpenModalVotes = (id, titre) => {
-    idprojet = id;
-    setRecordIdprojet(id);
-    titre = titre;
-    setRecordIdtitre(titre);
-    setModalVotesVisible(true);
-  };
 
   const doOpenDestroyConfirmModal = (id) => {
     setRecordIdToDestroy(id);
@@ -123,36 +88,6 @@ function ProjetListTable(props) {
     dispatch(actions.doToggleOneSelected(id));
   };
 
-  const doCreateDonsSuccess = (record) => {
-    const { name, mode } = props;
-    if (mode && mode === 'multiple') {
-      setValue(name, [
-        ...(getValues()[name] || []),
-        record,
-        props.idprojet,
-        props.titre,
-      ]);
-    } else {
-      setValue(name, [record, props.idprojet, props.titre]);
-    }
-
-    doCloseDonsModal();
-  };
-  const doCreateVotesSuccess = (record) => {
-    const { name, mode } = props;
-    if (mode && mode === 'multiple') {
-      setValue(name, [
-        ...(getValues()[name] || []),
-        record,
-        props.idprojet,
-        props.titre,
-      ]);
-    } else {
-      setValue(name, [record, props.idprojet, props.titre]);
-    }
-
-    doCloseVotesModal();
-  };
   return (
     <TableWrapper>
       <div className="table-responsive">
@@ -178,33 +113,15 @@ function ProjetListTable(props) {
                   </div>
                 )}
               </TableColumnHeader>
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'titre'}
-                label={i18n('entities.projet.fields.titre')}
-              />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.projet.fields.typeProjet',
-                )}
-              />
-              <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'statutProjet'}
-                label={i18n(
-                  'entities.projet.fields.statutProjet',
-                )}
-              />
-
-              <TableColumnHeader
-                label={i18n(
-                  'entities.projet.fields.budget',
-                )}
-              />
+                <TableColumnHeader
+                  onSort={doChangeSort}
+                  hasRows={hasRows}
+                  sorter={sorter}
+                  name={'nom'}
+                  label={i18n(
+                    'entities.typeProjet.fields.nom',
+                  )}
+                />
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -249,61 +166,18 @@ function ProjetListTable(props) {
                       </label>
                     </div>
                   </th>
-                  <td>{row.titre}</td>
-                  <td>
-                    <TypeProjetListItem
-                      value={row.typeProjet}
-                    />
-                  </td>
-                  <td>
-                    {row.statutProjet
-                      ? i18n(
-                          `entities.projet.enumerators.statutProjet.${row.statutProjet}`,
-                        )
-                      : null}
-                  </td>
-
-                  <td>{row.budget}</td>
+                  <td>{row.nom}</td>
                   <td className="td-actions">
-                    {hasPermissionToCreate && (
-                      <Link
-                        className="btn btn-link"
-                        onClick={() => {
-                          doOpenModalVotes(
-                            row.id,
-                            row.titre,
-                          );
-                        }}
-                      >
-                        {i18n('Votes')}
-                      </Link>
-                    )}
-                    {hasPermissionToCreate && (
-                      <Link
-                        className="btn btn-link"
-                        onClick={() => {
-                          doOpenModalDons(
-                            row.id,
-                            row.titre,
-                          );
-                        }}
-                      >
-                        {i18n('Dons')}
-                      </Link>
-                    )}
                     <Link
                       className="btn btn-link"
-                      to={{
-                        pathname: `/projet/${row.id}`,
-                        state: { idprojet: row.id },
-                      }}
+                      to={`/type-projet/${row.id}`}
                     >
                       {i18n('common.view')}
                     </Link>
                     {hasPermissionToEdit && (
                       <Link
                         className="btn btn-link"
-                        to={`/projet/${row.id}/edit`}
+                        to={`/type-projet/${row.id}/edit`}
                       >
                         {i18n('common.edit')}
                       </Link>
@@ -331,28 +205,10 @@ function ProjetListTable(props) {
         disabled={loading}
         pagination={pagination}
       />
-      {modalDonsVisible && (
-        <DonsFormModal
-          onClose={doCloseDonsModal}
-          onSuccess={doCreateDonsSuccess}
-          recordIdprojet={recordIdprojet}
-          recordIdtitre={recordIdtitre}
-        />
-      )}
-      {modalVotesVisible && (
-        <VotesFormModal
-          onClose={doCloseVotesModal}
-          onSuccess={doCreateVotesSuccess}
-          recordIdprojet={recordIdprojet}
-          recordIdtitre={recordIdtitre}
-        />
-      )}
 
       {recordIdToDestroy && (
         <ConfirmModal
-          title={`Êtes-vous sûr de supprimer?
-          Les données relatives au projet seront supprimées aussi,
-          cette action est irréversible.`}
+          title={i18n('common.areYouSure')}
           onConfirm={() => doDestroy(recordIdToDestroy)}
           onClose={() => doCloseDestroyConfirmModal()}
           okText={i18n('common.yes')}
@@ -363,4 +219,4 @@ function ProjetListTable(props) {
   );
 }
 
-export default ProjetListTable;
+export default TypeProjetListTable;

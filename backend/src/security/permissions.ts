@@ -2126,6 +2126,64 @@ class Permissions {
           plans.enterprise,
         ],
       },
+
+      typeProjetImport: {
+        id: 'typeProjetImport',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      typeProjetCreate: {
+        id: 'typeProjetCreate',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeProjetEdit: {
+        id: 'typeProjetEdit',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeProjetDestroy: {
+        id: 'typeProjetDestroy',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeProjetRead: {
+        id: 'typeProjetRead',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      typeProjetAutocomplete: {
+        id: 'typeProjetAutocomplete',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
       partnerImport: {
         id: 'partnerImport',
         allowedRoles: [roles.admin, roles.adherent],

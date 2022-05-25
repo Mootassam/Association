@@ -109,7 +109,7 @@ require('./newsCategory').default(routes);
 require('./tag').default(routes);
 require('./objectif').default(routes);
 require('./partner').default(routes);
-
+require('./typeProjet').default(routes);
 // Loads the Tenant if the :tenantId param is passed
 routes.param('tenantId', tenantMiddleware);
 

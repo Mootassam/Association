@@ -16,11 +16,7 @@ export default (database) => {
       },
       type: {
         type: String,
-        enum: [
-          "news",
-          "appelOffre",
-          null
-        ],
+        enum: ['news', 'appelOffre', null],
       },
       shortDescription: {
         type: String,
@@ -34,18 +30,20 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'newsCategory',
       },
-      tags: [{
-        type: Schema.Types.ObjectId,
-        ref: 'tag',
-      }],
+      tags: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'tag',
+        },
+      ],
       published: {
         type: Boolean,
-        default: false
+        default: false,
       },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -69,8 +67,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   NewsSchema.virtual('id').get(function () {
     // @ts-ignore

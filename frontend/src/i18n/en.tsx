@@ -44,6 +44,54 @@ const en = {
   },
 
   entities: {
+    typeProjet: {
+      name: 'typeProjet',
+      label: 'TypeProjets',
+      menu: 'TypeProjets',
+      exporterFileName: 'typeProjet_export',
+      list: {
+        menu: 'TypeProjets',
+        title: 'TypeProjets',
+      },
+      create: {
+        success: 'TypeProjet successfully saved',
+      },
+      update: {
+        success: 'TypeProjet successfully saved',
+      },
+      destroy: {
+        success: 'TypeProjet successfully deleted',
+      },
+      destroyAll: {
+        success: 'TypeProjet(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit TypeProjet',
+      },
+      fields: {
+        id: 'Id',
+        nom: 'Nom',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {
+        nom: 'Nom',
+      },
+      hints: {},
+      new: {
+        title: 'New TypeProjet',
+      },
+      view: {
+        title: 'View TypeProjet',
+      },
+      importer: {
+        title: 'Import TypeProjets',
+        fileName: 'typeProjet_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
     category: {
       name: 'category',
       label: 'Categories',
@@ -216,7 +264,9 @@ const en = {
           closed: 'Closed',
         },
       },
-      placeholders: {},
+      placeholders: {
+        typeProjet: 'Type',
+      },
       hints: {},
       new: {
         title: 'New Project',
@@ -2304,6 +2354,10 @@ const en = {
     adherent: {
       label: 'adherent Role',
       description: 'adherent role access',
+    },
+    member: {
+      label: 'Member',
+      description: 'Member role access',
     },
   },
 

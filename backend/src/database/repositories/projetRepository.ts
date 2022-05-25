@@ -10,6 +10,7 @@ import Votes from '../models/votes';
 import Dons from '../models/dons';
 import VotesRepository from './votesRepository';
 import DonsRepository from './donsRepository';
+import TypeProjetRepository from './typeProjetRepository';
 
 class ProjetRepository {
   static async create(data, options: IRepositoryOptions) {
@@ -120,6 +121,27 @@ class ProjetRepository {
     return record;
   }
 
+  static async filterIdsInTenant(
+    ids,
+    options: IRepositoryOptions,
+  ) {
+    if (!ids || !ids.length) {
+      return [];
+    }
+
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
+
+    const records = await Projet(options.database)
+      .find({
+        _id: { $in: ids },
+        tenant: currentTenant.id,
+      })
+      .select(['_id']);
+
+    return records.map((record) => record._id);
+  }
+
   static async destroy(id, options: IRepositoryOptions) {
     const currentTenant =
       MongooseRepository.getCurrentTenant(options);
@@ -133,6 +155,12 @@ class ProjetRepository {
       record.votes.forEach((vote) => {
         VotesRepository.destroy(vote._id, options);
       });
+    }
+    if (record.typeProjet) {
+      TypeProjetRepository.destroy(
+        record.typeProjet,
+        options,
+      );
     }
     if (record.dons) {
       record.dons.forEach((don) => {
@@ -179,7 +207,9 @@ class ProjetRepository {
 
     let record =
       await MongooseRepository.wrapWithSessionIfExists(
-        Projet(options.database).findById(id),
+        Projet(options.database)
+          .findOne({ _id: id, tenant: currentTenant.id })
+          .populate('typeProjet'),
         options,
       );
 
@@ -452,7 +482,8 @@ class ProjetRepository {
       .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
-      .sort(sort);
+      .sort(sort)
+      .populate('typeProjet');
 
     const count = await Projet(
       options.database,

@@ -17,6 +17,7 @@ import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
 import FilesFormItem from 'src/view/shared/form/items/FilesFormItem';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import TypeProjetAutocompleteFormItem from 'src/view/typeProjet/autocomplete/TypeProjetAutocompleteFormItem';
 
 const schema = yup.object().shape({
   titre: yupFormSchemas.string(
@@ -37,11 +38,10 @@ const schema = yup.object().shape({
       required: true,
     },
   ),
-  typeProjet: yupFormSchemas.enumerator(
+  typeProjet: yupFormSchemas.relationToOne(
     i18n('entities.projet.fields.typeProjet'),
     {
       required: true,
-      options: projetEnumerators.typeProjet,
     },
   ),
   statutProjet: yupFormSchemas.enumerator(
@@ -178,7 +178,19 @@ function ProjetForm(props) {
           </Row>
           <Row>
             <Col sm={4}>
-              <SelectFormItem
+              <TypeProjetAutocompleteFormItem
+                name="typeProjet"
+                label={i18n(
+                  'entities.projet.fields.typeProjet',
+                )}
+                placeholder={i18n(
+                  'entities.projet.placeholders.typeProjet',
+                )}
+                required={true}
+                showCreate={!props.modal}
+                election={true}
+              />
+              {/* <SelectFormItem
                 name="typeProjet"
                 label={i18n(
                   'entities.projet.fields.typeProjet',
@@ -192,7 +204,7 @@ function ProjetForm(props) {
                   }),
                 )}
                 required={true}
-              />
+              /> */}
             </Col>
             <Col sm={4}>
               <SelectFormItem

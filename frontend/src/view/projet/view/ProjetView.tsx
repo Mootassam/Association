@@ -13,6 +13,7 @@ import ReactStars from 'react-stars';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useSelector } from 'react-redux';
+import TypeProjetViewItem from 'src/view/typeProjet/view/TypeProjetViewItem';
 
 function ProjetView(props) {
   const { record, loading } = props;
@@ -64,16 +65,11 @@ function ProjetView(props) {
       </Row>
       <Row>
         <Col sm={4}>
-          <TextViewItem
+          <TypeProjetViewItem
             label={i18n(
               'entities.projet.fields.typeProjet',
             )}
-            value={
-              record.typeProjet &&
-              i18n(
-                `entities.projet.enumerators.typeProjet.${record.typeProjet}`,
-              )
-            }
+            value={record.typeProjet}
           />
         </Col>
         <Col sm={4}>

@@ -1,10 +1,9 @@
-import ProjetRepository from '../database/repositories/projetRepository';
 import Error400 from '../errors/Error400';
 import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
 import TypeProjetRepository from '../database/repositories/typeProjetRepository';
 
-export default class ProjetService {
+export default class TypeProjetService {
   options: IServiceOptions;
 
   constructor(options) {
@@ -17,24 +16,25 @@ export default class ProjetService {
     );
 
     try {
-      data.typeProjet =
-        await TypeProjetRepository.filterIdInTenant(
-          data.typeProjet,
-          { ...this.options, session },
-        );
-      const record = await ProjetRepository.create(data, {
+
+
+      const record = await TypeProjetRepository.create(data, {
         ...this.options,
         session,
       });
+
       await MongooseRepository.commitTransaction(session);
+
       return record;
     } catch (error) {
       await MongooseRepository.abortTransaction(session);
+
       MongooseRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'projet',
+        'typeProjet',
       );
+
       throw error;
     }
   }
@@ -45,12 +45,9 @@ export default class ProjetService {
     );
 
     try {
-      data.typeProjet =
-        await TypeProjetRepository.filterIdInTenant(
-          data.typeProjet,
-          { ...this.options, session },
-        );
-      const record = await ProjetRepository.update(
+
+
+      const record = await TypeProjetRepository.update(
         id,
         data,
         {
@@ -68,7 +65,7 @@ export default class ProjetService {
       MongooseRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'projet',
+        'typeProjet',
       );
 
       throw error;
@@ -82,7 +79,7 @@ export default class ProjetService {
 
     try {
       for (const id of ids) {
-        await ProjetRepository.destroy(id, {
+        await TypeProjetRepository.destroy(id, {
           ...this.options,
           session,
         });
@@ -96,11 +93,11 @@ export default class ProjetService {
   }
 
   async findById(id) {
-    return ProjetRepository.findById(id, this.options);
+    return TypeProjetRepository.findById(id, this.options);
   }
 
   async findAllAutocomplete(search, limit) {
-    return ProjetRepository.findAllAutocomplete(
+    return TypeProjetRepository.findAllAutocomplete(
       search,
       limit,
       this.options,
@@ -108,7 +105,7 @@ export default class ProjetService {
   }
 
   async findAndCountAll(args) {
-    return ProjetRepository.findAndCountAll(
+    return TypeProjetRepository.findAndCountAll(
       args,
       this.options,
     );
@@ -138,7 +135,7 @@ export default class ProjetService {
   }
 
   async _isImportHashExistent(importHash) {
-    const count = await ProjetRepository.count(
+    const count = await TypeProjetRepository.count(
       {
         importHash,
       },

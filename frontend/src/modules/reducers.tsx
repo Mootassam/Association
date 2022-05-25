@@ -46,6 +46,7 @@ import objectif from 'src/modules/objectif/objectifReducers';
 import entree from 'src/modules/entree/entreeReducers';
 import depense from 'src/modules/depense/depenseReducers';
 import charge from 'src/modules/charge/chargeReducers';
+import typeProjet from 'src/modules/typeProjet/typeProjetReducers';
 import { combineReducers } from 'redux';
 
 export default (history) =>
@@ -98,4 +99,5 @@ export default (history) =>
     entree,
     depense,
     charge,
+    typeProjet,
   });
