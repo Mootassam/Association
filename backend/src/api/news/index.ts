@@ -27,4 +27,9 @@ export default (app) => {
     `/tenant/:tenantId/news/:id`,
     require('./newsFind').default,
   );
+
+  app.get(
+    `/tenant/:tenantId/news/count`,
+    require('./Newscount').default,
+  );
 };

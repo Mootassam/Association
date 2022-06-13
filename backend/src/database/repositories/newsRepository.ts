@@ -359,21 +359,26 @@ class NewsRepository {
     if (!record) {
       return null;
     }
-
     const output = record.toObject
       ? record.toObject()
       : record;
-
     output.image = await FileRepository.fillDownloadUrl(
       output.image,
     );
-
     output.attachements =
       await FileRepository.fillDownloadUrl(
         output.attachements,
       );
-
     return output;
+  }
+
+  static async TotaleNews(options: IRepositoryOptions) {
+    let criteria: any = [];
+    const count = await News(
+      options.database,
+    ).countDocuments(criteria);
+
+    return count;
   }
 }
 

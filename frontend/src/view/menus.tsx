@@ -59,7 +59,7 @@ export default [
     icon: 'fas fa-users',
     label: i18n('common.community'),
     haveSubMenu: true,
-    subPaths: ['/user', '/partner', '/group'],
+    subPaths: ['/user', '/partner', '/group', '/objectif'],
     className: 'menu-li side-menue',
     subMenu: [
       {
@@ -68,9 +68,14 @@ export default [
         icon: 'fas fa-chevron-right',
         label: i18n('user.menu'),
       },
-
       {
         path: '/partner',
+        permissionRequired: permissions.partnerRead,
+        icon: 'fas fa-chevron-right',
+        label: i18n('entities.partner.menu'),
+      },
+      {
+        path: '/objectif',
         permissionRequired: permissions.partnerRead,
         icon: 'fas fa-chevron-right',
         label: i18n('entities.partner.menu'),

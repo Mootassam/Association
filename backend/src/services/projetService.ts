@@ -39,6 +39,16 @@ export default class ProjetService {
     }
   }
 
+  async ProjetStatus() {
+    return ProjetRepository.ProjetStatus(this.options);
+  }
+  async ProjetType() {
+    return ProjetRepository.ProjetType(this.options);
+  }
+
+  async CountProjet() {
+    return ProjetRepository.TotaleProjet(this.options);
+  }
   async update(id, data) {
     const session = await MongooseRepository.createSession(
       this.options.database,

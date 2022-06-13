@@ -42,7 +42,7 @@ function ElectionView(props) {
         value={record.pv}
       />
 
-      <AssociationViewItem
+      {/* <AssociationViewItem
         label={i18n('entities.election.fields.association')}
         value={record.association}
       />
@@ -50,7 +50,7 @@ function ElectionView(props) {
       <ObjectifViewItem
         label={i18n('entities.election.fields.objectifs')}
         value={record.objetifs}
-      />
+      /> */}
     </ViewWrapper>
   );
 }

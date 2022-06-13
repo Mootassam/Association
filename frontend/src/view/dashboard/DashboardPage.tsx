@@ -20,7 +20,7 @@ const DashboardPage = (props) => {
         }}
       >
         <div className="row no-gutters">
-          <div
+          {/* <div
             style={{
               paddingLeft: '12px',
               paddingRight: '12px',
@@ -31,8 +31,8 @@ const DashboardPage = (props) => {
             <div className="bg-white p-2 border rounded">
               <DashboardDoughnutChart />
             </div>
-          </div>
-          <div
+          </div> */}
+          {/* <div
             style={{
               paddingLeft: '12px',
               paddingRight: '12px',
@@ -43,14 +43,14 @@ const DashboardPage = (props) => {
             <div className="bg-white p-2 border rounded">
               <DashboardMixChartTwo />
             </div>
-          </div>
+          </div> */}
           <div
             style={{
               paddingLeft: '12px',
               paddingRight: '12px',
               paddingBottom: '24px',
             }}
-            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4"
+            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
           >
             <div className="bg-white p-2 border rounded">
               <DashboardBarChart />
@@ -70,7 +70,7 @@ const DashboardPage = (props) => {
             </div>
           </div>
 
-          <div
+          {/* <div
             style={{
               paddingLeft: '12px',
               paddingRight: '12px',
@@ -81,9 +81,9 @@ const DashboardPage = (props) => {
             <div className="bg-white p-2 border rounded">
               <DashboardPolarChart />
             </div>
-          </div>
+          </div> */}
 
-          <div
+          {/* <div
             style={{
               paddingLeft: '12px',
               paddingRight: '12px',
@@ -94,8 +94,8 @@ const DashboardPage = (props) => {
             <div className="bg-white p-2 border rounded">
               <DashboardHorizontalBarChart />
             </div>
-          </div>
-          <div
+          </div> */}
+          {/* <div
             style={{
               paddingLeft: '12px',
               paddingRight: '12px',
@@ -106,8 +106,8 @@ const DashboardPage = (props) => {
             <div className="bg-white p-2 border rounded">
               <DashboardLineChart />
             </div>
-          </div>
-          <div
+          </div> */}
+          {/* <div
             style={{
               paddingLeft: '12px',
               paddingRight: '12px',
@@ -118,18 +118,8 @@ const DashboardPage = (props) => {
             <div className="bg-white p-2 border rounded">
               <DashboardRadarChart />
             </div>
-          </div>
+          </div> */}
         </div>
-        <p
-          style={{
-            marginTop: '16px',
-            width: '100%',
-            textAlign: 'center',
-            color: 'grey',
-          }}
-        >
-          {i18n('dashboard.message')}
-        </p>
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import { IServiceOptions } from './IServiceOptions';
 import PartnerRepository from '../database/repositories/partnerRepository';
 import GroupRepository from '../database/repositories/groupRepository';
 import UserRepository from '../database/repositories/userRepository';
+import { IRepositoryOptions } from '../database/repositories/IRepositoryOptions';
 
 export default class PartnerService {
   options: IServiceOptions;
@@ -125,6 +126,10 @@ export default class PartnerService {
       args,
       this.options,
     );
+  }
+
+  async CountPartenar() {
+    return PartnerRepository.TotalePartenaire(this.options);
   }
 
   async import(data, importHash) {

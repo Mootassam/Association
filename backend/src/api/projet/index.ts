@@ -27,4 +27,18 @@ export default (app) => {
     `/tenant/:tenantId/projet/:id`,
     require('./projetFind').default,
   );
+  app.get(
+    `/tenant/:tenantId/project/count`,
+    require('./Count').default,
+  );
+
+  app.get(
+    `/tenant/:tenantId/project/status`,
+    require('./ProjetStatus').default,
+  );
+
+  app.get(
+    `/tenant/:tenantId/project/type`,
+    require('./ProjetType').default,
+  );
 };

@@ -428,6 +428,14 @@ class PartnerRepository {
 
     return output;
   }
-}
 
+  static async TotalePartenaire(
+    options: IRepositoryOptions,
+  ) {
+    let rows = await Partner(options.database).aggregate([
+      { $group: { _id: null, count: { $sum: 1 } } },
+    ]);
+    return rows;
+  }
+}
 export default PartnerRepository;

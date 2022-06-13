@@ -585,6 +585,90 @@ class ProjetRepository {
 
     return output;
   }
+  static async TotaleProjet(options: IRepositoryOptions) {
+    let rows = await Projet(options.database).aggregate([
+      { $group: { _id: null, count: { $sum: 1 } } },
+    ]);
+    return rows;
+  }
+
+  static async ProjetStatus(options: IRepositoryOptions) {
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
+
+    let record = await Projet(options.database)
+      .aggregate([
+        // {
+        //   $match: {
+        //     assignedTo: Object(currentUser._id),
+        //     testimonyType: 'testimony',
+        //   },
+        // },
+        {
+          $group: {
+            _id: '$statutProjet',
+            statutProjet: {
+              $push: '$statutProjet',
+            },
+          },
+        },
+        // {
+        //   $lookup: {
+        //     from: 'testimonycategories',
+        //     localField: 'category',
+        //     foreignField: '_id',
+        //     as: 'cat',
+        //   },
+        // },
+        {
+          $project: {
+            statutProjet: 1,
+            count: { $size: '$statutProjet' },
+          },
+        },
+      ])
+      .allowDiskUse();
+    return record;
+  }
+
+  static async ProjetType(options: IRepositoryOptions) {
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
+
+    let record = await Projet(options.database)
+      .aggregate([
+        // {
+        //   $match: {
+        //     assignedTo: Object(currentUser._id),
+        //     testimonyType: 'testimony',
+        //   },
+        // },
+        {
+          $group: {
+            _id: '$typeProjet',
+            typeProjet: {
+              $push: '$typeProjet',
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: 'typeprojets',
+            localField: 'typeProjet',
+            foreignField: '_id',
+            as: 'projet',
+          },
+        },
+        {
+          $project: {
+            'projet.nom': 1,
+            count: { $size: '$typeProjet' },
+          },
+        },
+      ])
+      .allowDiskUse();
+    return record;
+  }
 }
 
 export default ProjetRepository;

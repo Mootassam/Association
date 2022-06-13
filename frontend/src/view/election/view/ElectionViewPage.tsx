@@ -12,6 +12,8 @@ import PageTitle from 'src/view/shared/styles/PageTitle';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import ElectionObjectifs from 'src/view/election/view/ElectionObjectifs';
+import ObjectifListFilter from 'src/view/objectif/list/ObjectifListFilter';
+import ObjectifListTable from 'src/view/objectif/list/ObjectifListTable';
 function ElectionPage() {
   const dispatch = useDispatch();
   const match = useRouteMatch();
@@ -51,10 +53,13 @@ function ElectionPage() {
           </Tab>
 
           <Tab eventKey="Objectifs" title="Objectifs">
-            <ElectionObjectifs
+            {/* <ElectionObjectifs
               loading={loading}
               record={record}
-            />
+            /> */}
+            <br />
+            <ObjectifListFilter record={record} />
+            <ObjectifListTable />
           </Tab>
         </Tabs>
       </ContentWrapper>

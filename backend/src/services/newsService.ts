@@ -18,8 +18,15 @@ export default class NewsService {
     );
 
     try {
-      data.category = await NewsCategoryRepository.filterIdInTenant(data.category, { ...this.options, session });
-      data.tags = await TagRepository.filterIdsInTenant(data.tags, { ...this.options, session });
+      data.category =
+        await NewsCategoryRepository.filterIdInTenant(
+          data.category,
+          { ...this.options, session },
+        );
+      data.tags = await TagRepository.filterIdsInTenant(
+        data.tags,
+        { ...this.options, session },
+      );
 
       const record = await NewsRepository.create(data, {
         ...this.options,
@@ -48,17 +55,20 @@ export default class NewsService {
     );
 
     try {
-      data.category = await NewsCategoryRepository.filterIdInTenant(data.category, { ...this.options, session });
-      data.tags = await TagRepository.filterIdsInTenant(data.tags, { ...this.options, session });
-
-      const record = await NewsRepository.update(
-        id,
-        data,
-        {
-          ...this.options,
-          session,
-        },
+      data.category =
+        await NewsCategoryRepository.filterIdInTenant(
+          data.category,
+          { ...this.options, session },
+        );
+      data.tags = await TagRepository.filterIdsInTenant(
+        data.tags,
+        { ...this.options, session },
       );
+
+      const record = await NewsRepository.update(id, data, {
+        ...this.options,
+        session,
+      });
 
       await MongooseRepository.commitTransaction(session);
 
@@ -147,5 +157,9 @@ export default class NewsService {
     );
 
     return count > 0;
+  }
+
+  async CountNews() {
+    return NewsRepository.TotaleNews(this.options);
   }
 }

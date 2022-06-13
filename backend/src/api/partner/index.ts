@@ -27,4 +27,9 @@ export default (app) => {
     `/tenant/:tenantId/partner/:id`,
     require('./partnerFind').default,
   );
+  // Count //
+  app.get(
+    `/tenant/:tenantId/partner/count`,
+    require('./partnerCount').default,
+  );
 };

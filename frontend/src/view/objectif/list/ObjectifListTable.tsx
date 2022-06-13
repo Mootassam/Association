@@ -25,8 +25,7 @@ function ObjectifListTable(props) {
   );
 
   const loading = findLoading || destroyLoading;
-
-  const rows = props.data;
+  const rows = useSelector(selectors.selectRows);
   const pagination = useSelector(
     selectors.selectPagination,
   );
