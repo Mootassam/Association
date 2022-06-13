@@ -11,6 +11,7 @@ import Dons from '../models/dons';
 import VotesRepository from './votesRepository';
 import DonsRepository from './donsRepository';
 import TypeProjetRepository from './typeProjetRepository';
+import objectif from '../models/objectif';
 
 class ProjetRepository {
   static async create(data, options: IRepositoryOptions) {
@@ -596,34 +597,20 @@ class ProjetRepository {
     const currentUser =
       MongooseRepository.getCurrentUser(options);
 
-    let record = await Projet(options.database)
+    let record = await objectif(options.database)
       .aggregate([
-        // {
-        //   $match: {
-        //     assignedTo: Object(currentUser._id),
-        //     testimonyType: 'testimony',
-        //   },
-        // },
         {
           $group: {
-            _id: '$statutProjet',
-            statutProjet: {
-              $push: '$statutProjet',
+            _id: '$status',
+            status: {
+              $push: '$status',
             },
           },
         },
-        // {
-        //   $lookup: {
-        //     from: 'testimonycategories',
-        //     localField: 'category',
-        //     foreignField: '_id',
-        //     as: 'cat',
-        //   },
-        // },
         {
           $project: {
-            statutProjet: 1,
-            count: { $size: '$statutProjet' },
+            status: 1,
+            count: { $size: '$status' },
           },
         },
       ])

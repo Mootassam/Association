@@ -6,17 +6,15 @@ import { IRepositoryOptions } from './IRepositoryOptions';
 import lodash from 'lodash';
 import Objectif from '../models/objectif';
 import Election from '../models/election';
+import objectif from '../models/objectif';
 
 class ObjectifRepository {
-  
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const [record] = await Objectif(
       options.database,
@@ -27,7 +25,7 @@ class ObjectifRepository {
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -45,20 +43,27 @@ class ObjectifRepository {
       Election(options.database),
       'objectifs',
       options,
-    );    
+    );
 
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Objectif(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Objectif(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -68,9 +73,8 @@ class ObjectifRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -96,20 +100,26 @@ class ObjectifRepository {
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Objectif(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Objectif(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
     }
 
-    await Objectif(options.database).deleteOne({ _id: id }, options);
+    await Objectif(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -159,9 +169,8 @@ class ObjectifRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Objectif(options.database).countDocuments({
@@ -173,16 +182,16 @@ class ObjectifRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Objectif(options.database)
-        .findOne({_id: id, tenant: currentTenant.id})
-      .populate('election'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Objectif(options.database)
+          .findOne({ _id: id, tenant: currentTenant.id })
+          .populate('election'),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -195,12 +204,11 @@ class ObjectifRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    
+
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
@@ -215,7 +223,11 @@ class ObjectifRepository {
       if (filter.numberRange) {
         const [start, end] = filter.numberRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             number: {
               $gte: start,
@@ -223,7 +235,11 @@ class ObjectifRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             number: {
               $lte: end,
@@ -256,14 +272,18 @@ class ObjectifRepository {
 
       if (filter.status) {
         criteriaAnd.push({
-          status: filter.status
+          status: filter.status,
         });
       }
 
       if (filter.yearRange) {
         const [start, end] = filter.yearRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             year: {
               $gte: start,
@@ -271,7 +291,11 @@ class ObjectifRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             year: {
               $lte: end,
@@ -283,7 +307,11 @@ class ObjectifRepository {
       if (filter.startDateRange) {
         const [start, end] = filter.startDateRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             startDate: {
               $gte: start,
@@ -291,7 +319,11 @@ class ObjectifRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             startDate: {
               $lte: end,
@@ -303,7 +335,11 @@ class ObjectifRepository {
       if (filter.endDateRange) {
         const [start, end] = filter.endDateRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             endDate: {
               $gte: start,
@@ -311,7 +347,11 @@ class ObjectifRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             endDate: {
               $lte: end,
@@ -385,14 +425,19 @@ class ObjectifRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -402,10 +447,11 @@ class ObjectifRepository {
           },
           {
             title: {
-              $regex: MongooseQueryUtils.escapeRegExp(search),
+              $regex:
+                MongooseQueryUtils.escapeRegExp(search),
               $options: 'i',
-            }
-          },          
+            },
+          },
         ],
       });
     }
@@ -426,7 +472,12 @@ class ObjectifRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Objectif(options.database).modelName,
@@ -447,11 +498,43 @@ class ObjectifRepository {
       ? record.toObject()
       : record;
 
-
-
-
-
     return output;
+  }
+
+  static async ObjectifStat(options: IRepositoryOptions) {
+    let record = await objectif(options.database)
+      .aggregate([
+        // {
+        //   $match: {
+        //     assignedTo: Object(currentUser._id),
+        //     testimonyType: 'testimony',
+        //   },
+        // },
+        {
+          $group: {
+            _id: '$status',
+            status: {
+              $push: '$status',
+            },
+          },
+        },
+        // {
+        //   $lookup: {
+        //     from: 'typeprojets',
+        //     localField: 'typeProjet',
+        //     foreignField: '_id',
+        //     as: 'projet',
+        //   },
+        // },
+        {
+          $project: {
+            status: 1,
+            count: { $size: '$status' },
+          },
+        },
+      ])
+      .allowDiskUse();
+    return record;
   }
 }
 

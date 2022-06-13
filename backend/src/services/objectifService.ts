@@ -11,13 +11,21 @@ export default class ObjectifService {
     this.options = options;
   }
 
+  async ObjectifStat() {
+    return ObjectifRepository.ObjectifStat(this.options);
+  }
+
   async create(data) {
     const session = await MongooseRepository.createSession(
       this.options.database,
     );
 
     try {
-      data.election = await ElectionRepository.filterIdInTenant(data.election, { ...this.options, session });
+      data.election =
+        await ElectionRepository.filterIdInTenant(
+          data.election,
+          { ...this.options, session },
+        );
 
       const record = await ObjectifRepository.create(data, {
         ...this.options,
@@ -46,7 +54,11 @@ export default class ObjectifService {
     );
 
     try {
-      data.election = await ElectionRepository.filterIdInTenant(data.election, { ...this.options, session });
+      data.election =
+        await ElectionRepository.filterIdInTenant(
+          data.election,
+          { ...this.options, session },
+        );
 
       const record = await ObjectifRepository.update(
         id,

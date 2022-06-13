@@ -27,4 +27,8 @@ export default (app) => {
     `/tenant/:tenantId/objectif/:id`,
     require('./objectifFind').default,
   );
+  app.get(
+    `/tenant/:tenantId/objectifs`,
+    require('./objectifStatus').default,
+  );
 };

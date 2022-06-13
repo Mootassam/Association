@@ -21,11 +21,7 @@ export default (database) => {
       },
       status: {
         type: String,
-        enum: [
-          "achieved",
-          "waiting",
-          null
-        ],
+        enum: ['achieved', 'waiting', null],
       },
       year: {
         type: Number,
@@ -42,12 +38,12 @@ export default (database) => {
       },
       progression: {
         type: Number,
-        max: 100
+        max: 100,
       },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -71,8 +67,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   ObjectifSchema.virtual('id').get(function () {
     // @ts-ignore
