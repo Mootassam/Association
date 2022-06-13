@@ -437,5 +437,7 @@ class PartnerRepository {
     ]);
     return rows;
   }
+
+  //
 }
 export default PartnerRepository;

@@ -132,6 +132,10 @@ export default class PartnerService {
     return PartnerRepository.TotalePartenaire(this.options);
   }
 
+  async CountUser() {
+    return UserRepository.CountUser(this.options);
+  }
+
   async import(data, importHash) {
     if (!importHash) {
       throw new Error400(

@@ -43,4 +43,9 @@ export default (app) => {
     `/tenant/:tenantId/userVotesList`,
     require('./userVotesList').default,
   );
+
+  app.get(
+    `/tenant/:tenantId/userc`,
+    require('./Count').default,
+  );
 };

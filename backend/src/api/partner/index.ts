@@ -29,7 +29,7 @@ export default (app) => {
   );
   // Count //
   app.get(
-    `/tenant/:tenantId/partner/count`,
+    `/tenant/:tenantId/partnerc`,
     require('./partnerCount').default,
   );
 };

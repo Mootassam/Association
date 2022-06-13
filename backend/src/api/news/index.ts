@@ -29,7 +29,7 @@ export default (app) => {
   );
 
   app.get(
-    `/tenant/:tenantId/news/count`,
+    `/tenant/:tenantId/newsc`,
     require('./Newscount').default,
   );
 };

@@ -1016,4 +1016,11 @@ export default class UserRepository {
       bypassPermissionValidation: true,
     });
   }
+
+  static async CountUser(options: IRepositoryOptions) {
+    let rows = await User(options.database).aggregate([
+      { $group: { _id: null, count: { $sum: 1 } } },
+    ]);
+    return rows;
+  }
 }

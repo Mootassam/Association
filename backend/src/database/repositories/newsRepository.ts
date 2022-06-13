@@ -6,6 +6,7 @@ import { IRepositoryOptions } from './IRepositoryOptions';
 import lodash from 'lodash';
 import News from '../models/news';
 import FileRepository from './fileRepository';
+import news from '../models/news';
 
 class NewsRepository {
   static async create(data, options: IRepositoryOptions) {
@@ -373,12 +374,10 @@ class NewsRepository {
   }
 
   static async TotaleNews(options: IRepositoryOptions) {
-    let criteria: any = [];
-    const count = await News(
-      options.database,
-    ).countDocuments(criteria);
-
-    return count;
+    let rows = await news(options.database).aggregate([
+      { $group: { _id: null, count: { $sum: 1 } } },
+    ]);
+    return rows;
   }
 }
 
