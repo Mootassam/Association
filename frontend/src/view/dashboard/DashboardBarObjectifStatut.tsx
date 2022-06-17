@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { i18n } from 'src/i18n';
+import DashboardService from 'src/modules/dashboard/DashboardService';
 
 const data = {
   labels: [
@@ -48,9 +49,34 @@ const options = {
 };
 
 export default function DashboardBarObjectifStatut(props) {
+  const [chartData, setChartData] = useState({});
+  useEffect(() => {
+    DashboardService.objectifStatus().then(async (res) => {
+      console.log('====================================');
+      console.log(res, 'im res function');
+      console.log('====================================');
+      setChartData({
+        labels: res.map((crypto) => crypto._id),
+
+        datasets: [
+          {
+            label: ' Object Status',
+            data: res.map((crypto) => crypto.count),
+            backgroundColor: [
+              '#ffbb11',
+              '#ecf0f1',
+              '#50AF95',
+              '#f3ba2f',
+              '#2a71d0',
+            ],
+          },
+        ],
+      });
+    });
+  }, []);
   return (
     <Bar
-      data={data}
+      data={chartData}
       options={options}
       width={100}
       height={50}

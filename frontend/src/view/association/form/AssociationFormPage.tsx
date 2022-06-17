@@ -47,7 +47,10 @@ function AssociationFormPage(props) {
       <Breadcrumb
         items={[
           [i18n('dashboard.menu'), '/'],
-          [i18n('entities.association.menu'), '/association'],
+          [
+            i18n('entities.association.menu'),
+            '/association',
+          ],
           [title],
         ]}
       />
@@ -64,7 +67,9 @@ function AssociationFormPage(props) {
             record={record}
             isEditing={isEditing}
             onSubmit={doSubmit}
-            onCancel={() => getHistory().push('/association')}
+            onCancel={() =>
+              getHistory().push('/association')
+            }
           />
         )}
       </ContentWrapper>

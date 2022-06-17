@@ -17,14 +17,10 @@ const options = {
   },
 };
 const data = {
-  labels: [
-    i18n('dashboard.charts.red'),
-    i18n('dashboard.charts.blue'),
-    i18n('dashboard.charts.yellow'),
-  ],
+  labels: label,
   datasets: [
     {
-      data: [300, 50, 100],
+      data: counts,
       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
       hoverBackgroundColor: [
         '#FF6384',
@@ -36,14 +32,31 @@ const data = {
 };
 
 export default function DashboardBarProjetType(props) {
+  const [chartData, setChartData] = useState({});
+
   useEffect(() => {
     DashboardService.ProjetStatus().then((res) => {
-      res.forEach((element) => {
-        label.push(element._id);
-        counts.push(element.count);
+      setChartData({
+        labels: res.map((item) => item._id),
+        datasets: [
+          {
+            label: 'type',
+            data: res.map((item) => item.count),
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+            ],
+            hoverBackgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+            ],
+          },
+        ],
       });
     });
   }, []);
 
-  return <Doughnut options={options} data={data} />;
+  return <Doughnut options={options} data={chartData} />;
 }

@@ -10,5 +10,10 @@ export default function DashboardPartnerCount(props) {
       SetCount(res[0].count);
     });
   }, []);
-  return <h3>{Count}</h3>;
+  return (
+    <h3>
+      Partener Count <br />
+      {Count}
+    </h3>
+  );
 }

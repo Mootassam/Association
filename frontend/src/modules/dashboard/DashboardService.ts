@@ -25,6 +25,13 @@ export default class DashboardService {
     return response.data;
   }
 
+  static async objectifStatus() {
+    const tenantId = AuthCurrentTenant.get();
+    const response = await authAxios.get(
+      `/tenant/${tenantId}/objectifs`,
+    );
+    return response.data;
+  }
   static async partnerCount() {
     const tenantId = AuthCurrentTenant.get();
     const response = await authAxios.get(

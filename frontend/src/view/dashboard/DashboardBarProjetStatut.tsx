@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { i18n } from 'src/i18n';
 import DashboardService from 'src/modules/dashboard/DashboardService';
@@ -6,14 +6,10 @@ let label: string[] = [];
 let counts: number[] = [];
 let datasets = [
   {
-    label: 'Dataset 1',
-    data: [1],
+    type: 'bar' as const,
+    label: label,
+    data: counts,
     backgroundColor: 'rgba(255, 99, 132, 0.5)',
-  },
-  {
-    label: 'Dataset 2',
-    data: [3],
-    backgroundColor: 'rgba(53, 162, 235, 0.5)',
   },
 ];
 
@@ -30,7 +26,7 @@ const options = {
   },
   title: {
     display: true,
-    text: 'Dashboard Bar Projet Type',
+    text: 'Dashboard Bar Projet Status',
   },
   scales: {
     xAxes: [
@@ -50,21 +46,35 @@ const options = {
 };
 
 export default function DashboardBarProjetStatut(props) {
+  const [chartData, setChartData] = useState({});
+
   useEffect(() => {
-    DashboardService.ProjetType().then((res) => {
-      res.forEach((element) => {
-        element.projet.forEach((element) => {
-          label.push(element.nom);
-        });
-        counts.push(element.count);
+    DashboardService.ProjetType().then(async (res) => {
+      setChartData({
+        labels: res.map((crypto) =>
+          crypto.projet.map((item) => item.nom),
+        ),
+
+        datasets: [
+          {
+            label: 'Status',
+            data: res.map((crypto) => crypto.count),
+            backgroundColor: [
+              '#ffbb11',
+              '#ecf0f1',
+              '#50AF95',
+              '#f3ba2f',
+              '#2a71d0',
+            ],
+          },
+        ],
       });
     });
   }, []);
 
-  useEffect(() => {}, []);
   return (
     <Bar
-      data={data}
+      data={chartData}
       options={options}
       width={100}
       height={50}
