@@ -62,17 +62,18 @@ const objectifListActions = {
       });
 
       const filter = selectors.selectFilter(getState());
-      const response = await ObjectifService.list(
-        filter,
-        selectors.selectOrderBy(getState()),
-        null,
-        null,
-      );
+      // const response = await ObjectifService.list(
+      //   object,
+      //   filter,
+      //   selectors.selectOrderBy(getState()),
+      //   null,
+      //   null,
+      // );
 
-      new Exporter(
-        exporterFields,
-        i18n('entities.objectif.exporterFileName'),
-      ).transformAndExportAsExcelFile(response.rows);
+      // new Exporter(
+      //   exporterFields,
+      //   i18n('entities.objectif.exporterFileName'),
+      // ).transformAndExportAsExcelFile(response.rows);
 
       dispatch({
         type: objectifListActions.EXPORT_SUCCESS,
@@ -86,17 +87,15 @@ const objectifListActions = {
     }
   },
 
-  doChangePagination: (pagination) => async (
-    dispatch,
-    getState,
-  ) => {
-    dispatch({
-      type: objectifListActions.PAGINATION_CHANGED,
-      payload: pagination,
-    });
+  doChangePagination:
+    (pagination) => async (dispatch, getState) => {
+      dispatch({
+        type: objectifListActions.PAGINATION_CHANGED,
+        payload: pagination,
+      });
 
-    dispatch(objectifListActions.doFetchCurrentFilter());
-  },
+      dispatch(objectifListActions.doFetchCurrentFilter());
+    },
 
   doChangeSort: (sorter) => async (dispatch, getState) => {
     dispatch({
@@ -107,47 +106,58 @@ const objectifListActions = {
     dispatch(objectifListActions.doFetchCurrentFilter());
   },
 
-  doFetchCurrentFilter: () => async (
-    dispatch,
-    getState,
-  ) => {
-    const filter = selectors.selectFilter(getState());
-    const rawFilter = selectors.selectRawFilter(getState());
-    dispatch(objectifListActions.doFetch(filter, rawFilter, true));
-  },
-
-  doFetch: (filter?, rawFilter?, keepPagination = false) => async (
-    dispatch,
-    getState,
-  ) => {
-    try {
-      dispatch({
-        type: objectifListActions.FETCH_STARTED,
-        payload: { filter, rawFilter, keepPagination },
-      });
-
-      const response = await ObjectifService.list(
-        filter,
-        selectors.selectOrderBy(getState()),
-        selectors.selectLimit(getState()),
-        selectors.selectOffset(getState()),
+  doFetchCurrentFilter:
+    () => async (dispatch, getState) => {
+      const filter = selectors.selectFilter(getState());
+      const rawFilter = selectors.selectRawFilter(
+        getState(),
       );
+      dispatch(
+        objectifListActions.doFetch(
+          filter,
+          rawFilter,
+          true,
+        ),
+      );
+    },
 
-      dispatch({
-        type: objectifListActions.FETCH_SUCCESS,
-        payload: {
-          rows: response.rows,
-          count: response.count,
-        },
-      });
-    } catch (error) {
-      Errors.handle(error);
+  doFetch:
+    (
+      object?,
+      filter?,
+      rawFilter?,
+      keepPagination = false,
+    ) =>
+    async (dispatch, getState) => {
+      try {
+        dispatch({
+          type: objectifListActions.FETCH_STARTED,
+          payload: { filter, rawFilter, keepPagination },
+        });
 
-      dispatch({
-        type: objectifListActions.FETCH_ERROR,
-      });
-    }
-  },
+        const response = await ObjectifService.list(
+          object,
+          filter,
+          selectors.selectOrderBy(getState()),
+          selectors.selectLimit(getState()),
+          selectors.selectOffset(getState()),
+        );
+
+        dispatch({
+          type: objectifListActions.FETCH_SUCCESS,
+          payload: {
+            rows: response.rows,
+            count: response.count,
+          },
+        });
+      } catch (error) {
+        Errors.handle(error);
+
+        dispatch({
+          type: objectifListActions.FETCH_ERROR,
+        });
+      }
+    },
 };
 
 export default objectifListActions;

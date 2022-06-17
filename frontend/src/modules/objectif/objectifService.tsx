@@ -76,8 +76,15 @@ export default class ObjectifService {
     return response.data;
   }
 
-  static async list(filter, orderBy, limit, offset) {
+  static async list(
+    object,
+    filter,
+    orderBy,
+    limit,
+    offset,
+  ) {
     const params = {
+      object,
       filter,
       orderBy,
       limit,

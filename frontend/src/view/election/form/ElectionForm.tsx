@@ -62,7 +62,7 @@ function ElectionForm(props) {
         ? moment(record.endDate, 'YYYY-MM-DD').toDate()
         : null,
       pv: record.pv || [],
-      association: record.association || [],
+      association: record.association,
       objetifs: record.objetifs || [],
     };
   });

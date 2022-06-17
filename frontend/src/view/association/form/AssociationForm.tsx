@@ -50,10 +50,6 @@ const schema = yup.object().shape({
     i18n('entities.association.fields.admins'),
     {},
   ),
-  elections: yupFormSchemas.relationToMany(
-    i18n('entities.association.fields.elections'),
-    {},
-  ),
 });
 
 function AssociationForm(props) {
@@ -69,7 +65,6 @@ function AssociationForm(props) {
       city: record.city,
       country: record.country,
       admins: record.admins || [],
-      elections: record.elections || [],
     };
   });
 
@@ -165,17 +160,6 @@ function AssociationForm(props) {
                 name="admins"
                 label={i18n(
                   'entities.association.fields.admins',
-                )}
-                required={false}
-                showCreate={!props.modal}
-                mode="multiple"
-              />
-            </div>
-            <div className="col-lg-7 col-md-8 col-12">
-              <ElectionAutocompleteFormItem
-                name="elections"
-                label={i18n(
-                  'entities.association.fields.elections',
                 )}
                 required={false}
                 showCreate={!props.modal}

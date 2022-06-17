@@ -40,28 +40,7 @@ class MembershipRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'formule',
-      Formule(options.database),
-      'membership',
-      options,
-    );
-
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'campaign',
-      Campaign(options.database),
-      'membership',
-      options,
-    );
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'user',
-      User(options.database),
-      'membership',
-      options,
-    );
+   
 
     return this.findById(record.id, options);
   }

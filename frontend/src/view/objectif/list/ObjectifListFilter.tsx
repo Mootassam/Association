@@ -42,6 +42,7 @@ const schema = yup.object().shape({
 });
 
 const emptyValues = {
+  object: [],
   numberRange: [],
   title: null,
   description: null,
@@ -101,10 +102,12 @@ function ObjectifListFilter(props) {
     defaultValues: initialValues,
     mode: 'all',
   });
+  let objectsId = props.record?.objetifs;
 
   useEffect(() => {
     dispatch(
       actions.doFetch(
+        props.record?.objetifs,
         schema.cast(initialValues),
         rawFilter,
       ),

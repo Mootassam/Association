@@ -2,7 +2,6 @@ import PermissionChecker from '../../services/user/permissionChecker';
 import ApiResponseHandler from '../apiResponseHandler';
 import Permissions from '../../security/permissions';
 import ProjetService from '../../services/projetService';
-import ObjectifService from '../../services/objectifService';
 
 export default async (req, res, next) => {
   try {
@@ -10,9 +9,9 @@ export default async (req, res, next) => {
       Permissions.values.projetRead,
     );
 
-    const payload = await new ObjectifService(
+    const payload = await new ProjetService(
       req,
-    ).ObjectifStat();
+    ).ProjetType();
 
     await ApiResponseHandler.success(req, res, payload);
   } catch (error) {

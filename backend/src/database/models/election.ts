@@ -15,10 +15,12 @@ export default (database) => {
         type: String,
         required: true,
       },
-      members: [{
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-      }],
+      members: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'user',
+        },
+      ],
       startDate: {
         type: String,
       },
@@ -26,18 +28,20 @@ export default (database) => {
         type: String,
       },
       pv: [FileSchema],
-      association: [{
+      association: {
         type: Schema.Types.ObjectId,
         ref: 'association',
-      }],
-      objetifs: [{
-        type: Schema.Types.ObjectId,
-        ref: 'objectif',
-      }],
+      },
+      objetifs: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'objectif',
+        },
+      ],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -61,8 +65,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   ElectionSchema.virtual('id').get(function () {
     // @ts-ignore

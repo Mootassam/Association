@@ -11,15 +11,12 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 class DetailsCampagneRepository {
-
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
     const [record] = await DetailsCampagne(
       options.database,
@@ -30,7 +27,7 @@ class DetailsCampagneRepository {
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -42,26 +39,22 @@ class DetailsCampagneRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'campagne',
-      Campagne(options.database),
-      'details',
-      options,
-    );
-
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      DetailsCampagne(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        DetailsCampagne(options.database).findById(id),
+        options,
+      );
 
     if (
       !record ||
@@ -74,9 +67,8 @@ class DetailsCampagneRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -90,26 +82,20 @@ class DetailsCampagneRepository {
 
     record = await this.findById(id, options);
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'campagne',
-      Campagne(options.database),
-      'details',
-      options,
-    );
+    
 
     return record;
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      DetailsCampagne(options.database).findById(id),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        DetailsCampagne(options.database).findById(id),
+        options,
+      );
 
     if (
       !record ||
@@ -118,7 +104,10 @@ class DetailsCampagneRepository {
       throw new Error404();
     }
 
-    await DetailsCampagne(options.database).deleteOne({ _id: id }, options);
+    await DetailsCampagne(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -136,9 +125,8 @@ class DetailsCampagneRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       DetailsCampagne(options.database).countDocuments({
@@ -150,16 +138,16 @@ class DetailsCampagneRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      DetailsCampagne(options.database)
-        .findById(id)
-        .populate('adherent')
-        .populate('palier'),
-      options);
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        DetailsCampagne(options.database)
+          .findById(id)
+          .populate('adherent')
+          .populate('palier'),
+        options,
+      );
 
     if (
       !record ||
@@ -175,13 +163,13 @@ class DetailsCampagneRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    let idcampagne = new mongoose.Types.ObjectId(filter.campagne)
-
+    let idcampagne = new mongoose.Types.ObjectId(
+      filter.campagne,
+    );
 
     criteriaAnd.push({
       tenant: currentTenant.id,
@@ -205,27 +193,29 @@ class DetailsCampagneRepository {
 
       if (filter.palier) {
         criteriaAnd.push({
-          palier: MongooseQueryUtils.uuid(
-            filter.palier,
-          ),
+          palier: MongooseQueryUtils.uuid(filter.palier),
         });
       }
 
       if (filter.statutPay) {
         criteriaAnd.push({
-          statutPay: filter.statutPay
+          statutPay: filter.statutPay,
         });
       }
       if (filter.campagne) {
         criteriaAnd.push({
-          campagne: idcampagne
+          campagne: idcampagne,
         });
       }
 
       if (filter.montantRange) {
         const [start, end] = filter.montantRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             montant: {
               $gte: start,
@@ -233,7 +223,11 @@ class DetailsCampagneRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             montant: {
               $lte: end,
@@ -244,7 +238,7 @@ class DetailsCampagneRepository {
 
       if (filter.typePay) {
         criteriaAnd.push({
-          typePay: filter.typePay
+          typePay: filter.typePay,
         });
       }
 
@@ -310,14 +304,12 @@ class DetailsCampagneRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
 
-    let iduser = new mongoose.Types.ObjectId(filter.iduser)
-
+    let iduser = new mongoose.Types.ObjectId(filter.iduser);
 
     criteriaAnd.push({
       tenant: currentTenant.id,
@@ -336,28 +328,29 @@ class DetailsCampagneRepository {
 
       if (filter.palier) {
         criteriaAnd.push({
-          palier: MongooseQueryUtils.uuid(
-            filter.palier,
-          ),
+          palier: MongooseQueryUtils.uuid(filter.palier),
         });
       }
 
       if (filter.statutPay) {
         criteriaAnd.push({
-          statutPay: filter.statutPay
+          statutPay: filter.statutPay,
         });
       }
 
       if (filter.titre) {
         criteriaAnd.push({
           titre: filter.titre,
-
         });
       }
       if (filter.montantRange) {
         const [start, end] = filter.montantRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             montant: {
               $gte: start,
@@ -365,7 +358,11 @@ class DetailsCampagneRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             montant: {
               $lte: end,
@@ -376,7 +373,7 @@ class DetailsCampagneRepository {
 
       if (filter.typePay) {
         criteriaAnd.push({
-          typePay: filter.typePay
+          typePay: filter.typePay,
         });
       }
 
@@ -419,17 +416,13 @@ class DetailsCampagneRepository {
       ? { $and: criteriaAnd }
       : null;
 
-
-
     let rows = await DetailsCampagne(options.database)
       .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)
       .populate('adherent')
-      .populate('palier')
-
-
+      .populate('palier');
 
     const count = await DetailsCampagne(
       options.database,
@@ -442,16 +435,19 @@ class DetailsCampagneRepository {
     return { rows, count };
   }
 
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
-
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
-
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -459,7 +455,6 @@ class DetailsCampagneRepository {
           {
             _id: MongooseQueryUtils.uuid(search),
           },
-
         ],
       });
     }
@@ -480,10 +475,16 @@ class DetailsCampagneRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
-        entityName: DetailsCampagne(options.database).modelName,
+        entityName: DetailsCampagne(options.database)
+          .modelName,
         entityId: id,
         action,
         values: data,

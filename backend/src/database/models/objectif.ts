@@ -32,10 +32,6 @@ export default (database) => {
       endDate: {
         type: String,
       },
-      election: {
-        type: Schema.Types.ObjectId,
-        ref: 'election',
-      },
       progression: {
         type: Number,
         max: 100,

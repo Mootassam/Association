@@ -31,18 +31,17 @@ export default (database) => {
       country: {
         type: String,
       },
-      admins: [{
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-      }],
-      elections: [{
-        type: Schema.Types.ObjectId,
-        ref: 'election',
-      }],
+      admins: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'user',
+        },
+      ],
+
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -66,8 +65,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   AssociationSchema.virtual('id').get(function () {
     // @ts-ignore

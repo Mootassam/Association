@@ -8,26 +8,21 @@ import Charge from '../models/charge';
 import Depense from '../models/depense';
 
 class ChargeRepository {
-  
   static async create(data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    const currentUser = MongooseRepository.getCurrentUser(
-      options,
-    );
+    const currentUser =
+      MongooseRepository.getCurrentUser(options);
 
-    const [record] = await Charge(
-      options.database,
-    ).create(
+    const [record] = await Charge(options.database).create(
       [
         {
           ...data,
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
-        }
+        },
       ],
       options,
     );
@@ -39,26 +34,25 @@ class ChargeRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'depense',
-      Depense(options.database),
-      'charge',
-      options,
-    );    
-
     return this.findById(record.id, options);
   }
 
-  static async update(id, data, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async update(
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Charge(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Charge(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -68,9 +62,8 @@ class ChargeRepository {
       { _id: id },
       {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(
-          options,
-        ).id,
+        updatedBy:
+          MongooseRepository.getCurrentUser(options).id,
       },
       options,
     );
@@ -84,32 +77,30 @@ class ChargeRepository {
 
     record = await this.findById(id, options);
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'depense',
-      Depense(options.database),
-      'charge',
-      options,
-    );
-
     return record;
   }
 
   static async destroy(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Charge(options.database).findOne({_id: id, tenant: currentTenant.id}),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Charge(options.database).findOne({
+          _id: id,
+          tenant: currentTenant.id,
+        }),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
     }
 
-    await Charge(options.database).deleteOne({ _id: id }, options);
+    await Charge(options.database).deleteOne(
+      { _id: id },
+      options,
+    );
 
     await this._createAuditLog(
       AuditLogRepository.DELETE,
@@ -159,9 +150,8 @@ class ChargeRepository {
   }
 
   static async count(filter, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     return MongooseRepository.wrapWithSessionIfExists(
       Charge(options.database).countDocuments({
@@ -173,16 +163,16 @@ class ChargeRepository {
   }
 
   static async findById(id, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let record = await MongooseRepository.wrapWithSessionIfExists(
-      Charge(options.database)
-        .findOne({_id: id, tenant: currentTenant.id})
-      .populate('depense'),
-      options,
-    );
+    let record =
+      await MongooseRepository.wrapWithSessionIfExists(
+        Charge(options.database)
+          .findOne({ _id: id, tenant: currentTenant.id })
+          .populate('depense'),
+        options,
+      );
 
     if (!record) {
       throw new Error404();
@@ -195,12 +185,11 @@ class ChargeRepository {
     { filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
     let criteriaAnd: any = [];
-    
+
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
@@ -214,14 +203,18 @@ class ChargeRepository {
 
       if (filter.type) {
         criteriaAnd.push({
-          type: filter.type
+          type: filter.type,
         });
       }
 
       if (filter.amountRange) {
         const [start, end] = filter.amountRange;
 
-        if (start !== undefined && start !== null && start !== '') {
+        if (
+          start !== undefined &&
+          start !== null &&
+          start !== ''
+        ) {
           criteriaAnd.push({
             amount: {
               $gte: start,
@@ -229,7 +222,11 @@ class ChargeRepository {
           });
         }
 
-        if (end !== undefined && end !== null && end !== '') {
+        if (
+          end !== undefined &&
+          end !== null &&
+          end !== ''
+        ) {
           criteriaAnd.push({
             amount: {
               $lte: end,
@@ -240,9 +237,7 @@ class ChargeRepository {
 
       if (filter.depense) {
         criteriaAnd.push({
-          depense: MongooseQueryUtils.uuid(
-            filter.depense,
-          ),
+          depense: MongooseQueryUtils.uuid(filter.depense),
         });
       }
 
@@ -303,14 +298,19 @@ class ChargeRepository {
     return { rows, count };
   }
 
-  static async findAllAutocomplete(search, limit, options: IRepositoryOptions) {
-    const currentTenant = MongooseRepository.getCurrentTenant(
-      options,
-    );
+  static async findAllAutocomplete(
+    search,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant =
+      MongooseRepository.getCurrentTenant(options);
 
-    let criteriaAnd: Array<any> = [{
-      tenant: currentTenant.id,
-    }];
+    let criteriaAnd: Array<any> = [
+      {
+        tenant: currentTenant.id,
+      },
+    ];
 
     if (search) {
       criteriaAnd.push({
@@ -318,7 +318,6 @@ class ChargeRepository {
           {
             _id: MongooseQueryUtils.uuid(search),
           },
-          
         ],
       });
     }
@@ -339,7 +338,12 @@ class ChargeRepository {
     }));
   }
 
-  static async _createAuditLog(action, id, data, options: IRepositoryOptions) {
+  static async _createAuditLog(
+    action,
+    id,
+    data,
+    options: IRepositoryOptions,
+  ) {
     await AuditLogRepository.log(
       {
         entityName: Charge(options.database).modelName,
@@ -359,10 +363,6 @@ class ChargeRepository {
     const output = record.toObject
       ? record.toObject()
       : record;
-
-
-
-
 
     return output;
   }

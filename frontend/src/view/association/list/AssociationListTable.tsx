@@ -14,7 +14,6 @@ import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import UserListItem from 'src/view/user/list/UserListItem';
 import ImagesListView from 'src/view/shared/table/ImagesListView';
-import ElectionListItem from 'src/view/election/list/ElectionListItem';
 
 function AssociationListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -179,11 +178,7 @@ function AssociationListTable(props) {
                   'entities.association.fields.admins',
                 )}
               />
-              <TableColumnHeader
-                label={i18n(
-                  'entities.association.fields.elections',
-                )}
-              />
+
               <TableColumnHeader className="th-actions" />
             </tr>
           </thead>
@@ -242,11 +237,7 @@ function AssociationListTable(props) {
                   <td>
                     <UserListItem value={row.admins} />
                   </td>
-                  <td>
-                    <ElectionListItem
-                      value={row.elections}
-                    />
-                  </td>
+
                   <td className="td-actions">
                     <Link
                       className="btn btn-link"

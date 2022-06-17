@@ -86,17 +86,15 @@ const couponsListActions = {
     }
   },
 
-  doChangePagination: (pagination) => async (
-    dispatch,
-    getState,
-  ) => {
-    dispatch({
-      type: couponsListActions.PAGINATION_CHANGED,
-      payload: pagination,
-    });
+  doChangePagination:
+    (pagination) => async (dispatch, getState) => {
+      dispatch({
+        type: couponsListActions.PAGINATION_CHANGED,
+        payload: pagination,
+      });
 
-    dispatch(couponsListActions.doFetchCurrentFilter());
-  },
+      dispatch(couponsListActions.doFetchCurrentFilter());
+    },
 
   doChangeSort: (sorter) => async (dispatch, getState) => {
     dispatch({
@@ -107,47 +105,48 @@ const couponsListActions = {
     dispatch(couponsListActions.doFetchCurrentFilter());
   },
 
-  doFetchCurrentFilter: () => async (
-    dispatch,
-    getState,
-  ) => {
-    const filter = selectors.selectFilter(getState());
-    const rawFilter = selectors.selectRawFilter(getState());
-    dispatch(couponsListActions.doFetch(filter, rawFilter, true));
-  },
-
-  doFetch: (filter?, rawFilter?, keepPagination = false) => async (
-    dispatch,
-    getState,
-  ) => {
-    try {
-      dispatch({
-        type: couponsListActions.FETCH_STARTED,
-        payload: { filter, rawFilter, keepPagination },
-      });
-
-      const response = await CouponsService.list(
-        filter,
-        selectors.selectOrderBy(getState()),
-        selectors.selectLimit(getState()),
-        selectors.selectOffset(getState()),
+  doFetchCurrentFilter:
+    () => async (dispatch, getState) => {
+      const filter = selectors.selectFilter(getState());
+      const rawFilter = selectors.selectRawFilter(
+        getState(),
       );
+      dispatch(
+        couponsListActions.doFetch(filter, rawFilter, true),
+      );
+    },
 
-      dispatch({
-        type: couponsListActions.FETCH_SUCCESS,
-        payload: {
-          rows: response.rows,
-          count: response.count,
-        },
-      });
-    } catch (error) {
-      Errors.handle(error);
+  doFetch:
+    (filter?, rawFilter?, keepPagination = false) =>
+    async (dispatch, getState) => {
+      try {
+        dispatch({
+          type: couponsListActions.FETCH_STARTED,
+          payload: { filter, rawFilter, keepPagination },
+        });
 
-      dispatch({
-        type: couponsListActions.FETCH_ERROR,
-      });
-    }
-  },
+        const response = await CouponsService.list(
+          filter,
+          selectors.selectOrderBy(getState()),
+          selectors.selectLimit(getState()),
+          selectors.selectOffset(getState()),
+        );
+
+        dispatch({
+          type: couponsListActions.FETCH_SUCCESS,
+          payload: {
+            rows: response.rows,
+            count: response.count,
+          },
+        });
+      } catch (error) {
+        Errors.handle(error);
+
+        dispatch({
+          type: couponsListActions.FETCH_ERROR,
+        });
+      }
+    },
 };
 
 export default couponsListActions;

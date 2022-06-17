@@ -37,14 +37,6 @@ class ObjectifRepository {
       options,
     );
 
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'election',
-      Election(options.database),
-      'objectifs',
-      options,
-    );
-
     return this.findById(record.id, options);
   }
 
@@ -55,7 +47,6 @@ class ObjectifRepository {
   ) {
     const currentTenant =
       MongooseRepository.getCurrentTenant(options);
-
     let record =
       await MongooseRepository.wrapWithSessionIfExists(
         Objectif(options.database).findOne({
@@ -87,14 +78,6 @@ class ObjectifRepository {
     );
 
     record = await this.findById(id, options);
-
-    await MongooseRepository.refreshTwoWayRelationOneToMany(
-      record,
-      'election',
-      Election(options.database),
-      'objectifs',
-      options,
-    );
 
     return record;
   }
@@ -201,14 +184,12 @@ class ObjectifRepository {
   }
 
   static async findAndCountAll(
-    { filter, limit = 0, offset = 0, orderBy = '' },
+    { object, filter, limit = 0, offset = 0, orderBy = '' },
     options: IRepositoryOptions,
   ) {
     const currentTenant =
       MongooseRepository.getCurrentTenant(options);
-
     let criteriaAnd: any = [];
-
     criteriaAnd.push({
       tenant: currentTenant.id,
     });
@@ -406,9 +387,18 @@ class ObjectifRepository {
     const criteria = criteriaAnd.length
       ? { $and: criteriaAnd }
       : null;
+    console.log(object);
 
+    let criteriaIn = [
+      '62a88fc5d89d466c69bcf17a',
+      '62a762069d7406521d245f57',
+    ];
+
+    const createIn = criteriaIn.length
+      ? { _id: { $in: criteriaIn } }
+      : null;
     let rows = await Objectif(options.database)
-      .find(criteria)
+      .find(createIn)
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)

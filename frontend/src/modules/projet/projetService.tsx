@@ -113,4 +113,30 @@ export default class ProjetService {
 
     return response.data;
   }
+
+  static async ProjetTotale() {
+    const tenantId = AuthCurrentTenant.get();
+    const response = await authAxios.get(
+      `/tenant/${tenantId}/project/count`,
+    );
+
+    return response.data;
+  }
+
+  static async ProjetStatus() {
+    const tenantId = AuthCurrentTenant.get();
+    const response = await authAxios.get(
+      `/tenant/${tenantId}/project/status`,
+    );
+
+    return response.data;
+  }
+  static async ProjetType() {
+    const tenantId = AuthCurrentTenant.get();
+    const response = await authAxios.get(
+      `/tenant/${tenantId}/project/type`,
+    );
+
+    return response.data;
+  }
 }

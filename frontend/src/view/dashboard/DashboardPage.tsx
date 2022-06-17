@@ -1,13 +1,14 @@
 import React from 'react';
 import { i18n } from 'src/i18n';
 import DashboardBarChart from 'src/view/dashboard/DashboardBarChart';
-import DashboardDoughnutChart from 'src/view/dashboard/DashboardDoughnutChart';
-import DashboardHorizontalBarChart from 'src/view/dashboard/DashboardHorizontalBarChart';
-import DashboardLineChart from 'src/view/dashboard/DashboardLineChart';
+import DashboardBarObjectifStatut from 'src/view/dashboard/DashboardBarObjectifStatut';
+import DashboardBarProjetStatut from 'src/view/dashboard/DashboardBarProjetStatut';
+import DashboardBarProjetType from 'src/view/dashboard/DashboardBarProjetType';
+import DashboardProjectCount from 'src/view/dashboard/DashboardProjectCount';
 import DashboardMixChartOne from 'src/view/dashboard/DashboardMixChartOne';
-import DashboardMixChartTwo from 'src/view/dashboard/DashboardMixChartTwo';
-import DashboardPolarChart from 'src/view/dashboard/DashboardPolarChart';
-import DashboardRadarChart from 'src/view/dashboard/DashboardRadarChart';
+import DashboardPartnerCount from 'src/view/dashboard/DashboardPartnerCount';
+import DashboardNewsCount from 'src/view/dashboard/DashboardNewsCount';
+import DashboardAdherentCount from 'src/view/dashboard/DashboardAdherentCount';
 
 const DashboardPage = (props) => {
   return (
@@ -26,10 +27,10 @@ const DashboardPage = (props) => {
               paddingRight: '12px',
               paddingBottom: '24px',
             }}
-            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4"
+            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-3"
           >
             <div className="bg-white p-2 border rounded">
-              <DashboardDoughnutChart />
+              <DashboardProjectCount />
             </div>
           </div>
           <div
@@ -38,10 +39,10 @@ const DashboardPage = (props) => {
               paddingRight: '12px',
               paddingBottom: '24px',
             }}
-            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4"
+            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-3"
           >
             <div className="bg-white p-2 border rounded">
-              <DashboardMixChartTwo />
+              <DashboardPartnerCount />
             </div>
           </div>
           <div
@@ -50,13 +51,24 @@ const DashboardPage = (props) => {
               paddingRight: '12px',
               paddingBottom: '24px',
             }}
-            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
+            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-3"
           >
             <div className="bg-white p-2 border rounded">
-              <DashboardBarChart />
+              <DashboardNewsCount />
             </div>
           </div>
-
+          <div
+            style={{
+              paddingLeft: '12px',
+              paddingRight: '12px',
+              paddingBottom: '24px',
+            }}
+            className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-3"
+          >
+            <div className="bg-white p-2 border rounded">
+              <DashboardAdherentCount />
+            </div>
+          </div>
           <div
             style={{
               paddingLeft: '12px',
@@ -79,7 +91,7 @@ const DashboardPage = (props) => {
             className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
           >
             <div className="bg-white p-2 border rounded">
-              <DashboardPolarChart />
+              <DashboardBarChart />
             </div>
           </div>
 
@@ -92,7 +104,7 @@ const DashboardPage = (props) => {
             className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4"
           >
             <div className="bg-white p-2 border rounded">
-              <DashboardHorizontalBarChart />
+              <DashboardBarProjetType />
             </div>
           </div>
           <div
@@ -104,7 +116,7 @@ const DashboardPage = (props) => {
             className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4"
           >
             <div className="bg-white p-2 border rounded">
-              <DashboardLineChart />
+              <DashboardBarProjetStatut />
             </div>
           </div>
           <div
@@ -116,10 +128,20 @@ const DashboardPage = (props) => {
             className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4"
           >
             <div className="bg-white p-2 border rounded">
-              <DashboardRadarChart />
+              <DashboardBarObjectifStatut />
             </div>
           </div>
         </div>
+        <p
+          style={{
+            marginTop: '16px',
+            width: '100%',
+            textAlign: 'center',
+            color: 'grey',
+          }}
+        >
+          {i18n('dashboard.message')}
+        </p>
       </div>
     </>
   );
