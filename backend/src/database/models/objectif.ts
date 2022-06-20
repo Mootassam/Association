@@ -36,6 +36,10 @@ export default (database) => {
         type: Number,
         max: 100,
       },
+      election: {
+        type: Schema.Types.ObjectId,
+        ref: 'election',
+      },
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',

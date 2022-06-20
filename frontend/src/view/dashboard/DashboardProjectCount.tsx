@@ -5,7 +5,7 @@ import DashboardService from 'src/modules/dashboard/DashboardService';
 import DashboardWrapper from 'src/view/layout/styles/DashboardWrapper';
 
 export default function DashboardProjectCount(props) {
-  const [Count, SetCount] = useState();
+  const [Count, SetCount] = useState(0);
   useEffect(() => {
     DashboardService.ProjetCount().then((res) => {
       SetCount(res[0].count);

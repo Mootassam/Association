@@ -2,7 +2,6 @@ import Error400 from '../errors/Error400';
 import MongooseRepository from '../database/repositories/mongooseRepository';
 import { IServiceOptions } from './IServiceOptions';
 import ObjectifRepository from '../database/repositories/objectifRepository';
-import ElectionRepository from '../database/repositories/electionRepository';
 
 export default class ObjectifService {
   options: IServiceOptions;
@@ -21,19 +20,11 @@ export default class ObjectifService {
     );
 
     try {
-      data.election =
-        await ElectionRepository.filterIdInTenant(
-          data.election,
-          { ...this.options, session },
-        );
-
       const record = await ObjectifRepository.create(data, {
         ...this.options,
         session,
       });
-
       await MongooseRepository.commitTransaction(session);
-
       return record;
     } catch (error) {
       await MongooseRepository.abortTransaction(session);
@@ -54,12 +45,6 @@ export default class ObjectifService {
     );
 
     try {
-      data.election =
-        await ElectionRepository.filterIdInTenant(
-          data.election,
-          { ...this.options, session },
-        );
-
       const record = await ObjectifRepository.update(
         id,
         data,

@@ -17,11 +17,21 @@ export default class ElectionService {
     const session = await MongooseRepository.createSession(
       this.options.database,
     );
-
     try {
-      data.members = await UserRepository.filterIdsInTenant(data.members, { ...this.options, session });
-      data.association = await AssociationRepository.filterIdsInTenant(data.association, { ...this.options, session });
-      data.objetifs = await ObjectifRepository.filterIdsInTenant(data.objetifs, { ...this.options, session });
+      data.members = await UserRepository.filterIdsInTenant(
+        data.members,
+        { ...this.options, session },
+      );
+      data.association =
+        await AssociationRepository.filterIdsInTenant(
+          data.association,
+          { ...this.options, session },
+        );
+      // data.objetifs =
+      //   await ObjectifRepository.filterIdsInTenant(
+      //     data.objetifs,
+      //     { ...this.options, session },
+      //   );
 
       const record = await ElectionRepository.create(data, {
         ...this.options,
@@ -50,9 +60,20 @@ export default class ElectionService {
     );
 
     try {
-      data.members = await UserRepository.filterIdsInTenant(data.members, { ...this.options, session });
-      data.association = await AssociationRepository.filterIdsInTenant(data.association, { ...this.options, session });
-      data.objetifs = await ObjectifRepository.filterIdsInTenant(data.objetifs, { ...this.options, session });
+      data.members = await UserRepository.filterIdsInTenant(
+        data.members,
+        { ...this.options, session },
+      );
+      data.association =
+        await AssociationRepository.filterIdsInTenant(
+          data.association,
+          { ...this.options, session },
+        );
+      // data.objetifs =
+      //   await ObjectifRepository.filterIdsInTenant(
+      //     data.objetifs,
+      //     { ...this.options, session },
+      //   );
 
       const record = await ElectionRepository.update(
         id,

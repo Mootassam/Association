@@ -28,34 +28,45 @@ const schema = yup.object().shape({
   ),
   email: yupFormSchemas.string(
     i18n('entities.association.fields.email'),
-    {},
+    {
+      required: true,
+    },
   ),
   phone: yupFormSchemas.string(
     i18n('entities.association.fields.phone'),
-    {},
+    {
+      required: true,
+    },
   ),
   postalCode: yupFormSchemas.integer(
     i18n('entities.association.fields.postalCode'),
-    {},
+    {
+      required: true,
+    },
   ),
   city: yupFormSchemas.string(
     i18n('entities.association.fields.city'),
-    {},
+    {
+      required: true,
+    },
   ),
   country: yupFormSchemas.string(
     i18n('entities.association.fields.country'),
-    {},
+    {
+      required: true,
+    },
   ),
   admins: yupFormSchemas.relationToMany(
     i18n('entities.association.fields.admins'),
-    {},
+    {
+      required: true,
+    },
   ),
 });
 
 function AssociationForm(props) {
   const [initialValues] = useState(() => {
     const record = props.record || {};
-
     return {
       name: record.name,
       logo: record.logo || [],

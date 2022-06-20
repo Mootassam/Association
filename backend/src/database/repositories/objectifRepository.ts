@@ -12,16 +12,15 @@ class ObjectifRepository {
   static async create(data, options: IRepositoryOptions) {
     const currentTenant =
       MongooseRepository.getCurrentTenant(options);
-
     const currentUser =
       MongooseRepository.getCurrentUser(options);
-
     const [record] = await Objectif(
       options.database,
     ).create(
       [
         {
           ...data,
+
           tenant: currentTenant.id,
           createdBy: currentUser.id,
           updatedBy: currentUser.id,
@@ -29,14 +28,12 @@ class ObjectifRepository {
       ],
       options,
     );
-
     await this._createAuditLog(
       AuditLogRepository.CREATE,
       record.id,
       data,
       options,
     );
-
     return this.findById(record.id, options);
   }
 
@@ -387,22 +384,12 @@ class ObjectifRepository {
     const criteria = criteriaAnd.length
       ? { $and: criteriaAnd }
       : null;
-    console.log(object);
 
-    let criteriaIn = [
-      '62a88fc5d89d466c69bcf17a',
-      '62a762069d7406521d245f57',
-    ];
-
-    const createIn = criteriaIn.length
-      ? { _id: { $in: criteriaIn } }
-      : null;
     let rows = await Objectif(options.database)
-      .find(createIn)
+      .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
-      .sort(sort)
-      .populate('election');
+      .sort(sort);
 
     const count = await Objectif(
       options.database,

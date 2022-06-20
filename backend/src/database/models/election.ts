@@ -32,12 +32,12 @@ export default (database) => {
         type: Schema.Types.ObjectId,
         ref: 'association',
       },
-      objetifs: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'objectif',
-        },
-      ],
+      // objetifs: [
+      //   {
+      //     type: Schema.Types.ObjectId,
+      //     ref: 'objectif',
+      //   },
+      // ],
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',

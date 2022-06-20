@@ -12,7 +12,6 @@ import Spinner from 'src/view/shared/Spinner';
 import PageTitle from 'src/view/shared/styles/PageTitle';
 
 function ObjectifFormPage(props) {
-  const electionId = localStorage.getItem('electionId');
   const [dispatched, setDispatched] = useState(false);
   const dispatch = useDispatch();
   const match = useRouteMatch();
@@ -36,7 +35,6 @@ function ObjectifFormPage(props) {
   }, [dispatch, match.params.id]);
 
   const doSubmit = (id, data) => {
-    data.election = electionId;
     if (isEditing) {
       dispatch(actions.doUpdate(id, data));
     } else {
@@ -53,12 +51,9 @@ function ObjectifFormPage(props) {
           [title],
         ]}
       />
-
       <ContentWrapper>
         <PageTitle>{title}</PageTitle>
-
         {initLoading && <Spinner />}
-
         {dispatched && !initLoading && (
           <ObjectifForm
             saveLoading={saveLoading}

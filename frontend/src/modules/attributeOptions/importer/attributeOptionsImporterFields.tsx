@@ -36,7 +36,9 @@ export default [
   },
   {
     name: 'attributeId',
-    label: i18n('entities.attributeOptions.fields.attributeId'),
+    label: i18n(
+      'entities.attributeOptions.fields.attributeId',
+    ),
     schema: schemas.relationToOne(
       i18n('entities.attributeOptions.fields.attributeId'),
       {},

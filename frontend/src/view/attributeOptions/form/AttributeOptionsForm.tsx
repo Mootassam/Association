@@ -36,12 +36,8 @@ const schema = yup.object().shape({
 
 function AttributeOptionsForm(props) {
   const { itemId } = props;
-  console.log('====================================');
-  console.log(itemId);
-  console.log('====================================');
   const [initialValues] = useState(() => {
     const record = props.record || {};
-
     return {
       name: record.name,
       price: record.price,

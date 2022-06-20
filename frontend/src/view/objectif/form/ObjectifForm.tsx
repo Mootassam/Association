@@ -13,8 +13,15 @@ import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import objectifEnumerators from 'src/modules/objectif/objectifEnumerators';
 import moment from 'moment';
 import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
+import ElectionAutocompleteFormItem from 'src/view/election/autocomplete/ElectionAutocompleteFormItem';
 
 const schema = yup.object().shape({
+  election: yupFormSchemas.relationToOne(
+    i18n('entities.objectif.fields.election'),
+    {
+      required: true,
+    },
+  ),
   number: yupFormSchemas.integer(
     i18n('entities.objectif.fields.number'),
     {},
@@ -27,16 +34,21 @@ const schema = yup.object().shape({
   ),
   title: yupFormSchemas.string(
     i18n('entities.objectif.fields.title'),
-    {},
+    {
+      required: true,
+    },
   ),
   description: yupFormSchemas.string(
     i18n('entities.objectif.fields.description'),
-    {},
+    {
+      required: true,
+    },
   ),
   status: yupFormSchemas.enumerator(
     i18n('entities.objectif.fields.status'),
     {
       options: objectifEnumerators.status,
+      required: true,
     },
   ),
   year: yupFormSchemas.integer(
@@ -58,6 +70,7 @@ function ObjectifForm(props) {
     const record = props.record || {};
 
     return {
+      election: record.election,
       number: record.number,
       progression: record.progression,
       title: record.title,
@@ -174,6 +187,17 @@ function ObjectifForm(props) {
                   'entities.objectif.fields.endDate',
                 )}
                 required={false}
+              />
+            </div>
+
+            <div className="col-lg-7 col-md-8 col-12">
+              <ElectionAutocompleteFormItem
+                name="election"
+                label={i18n(
+                  'entities.objectif.fields.election',
+                )}
+                required={true}
+                showCreate={!props.modal}
               />
             </div>
           </div>

@@ -14,6 +14,8 @@ import Tab from 'react-bootstrap/Tab';
 import ElectionObjectifs from 'src/view/election/view/ElectionObjectifs';
 import ObjectifListFilter from 'src/view/objectif/list/ObjectifListFilter';
 import ObjectifListTable from 'src/view/objectif/list/ObjectifListTable';
+import ObjectifListToolbar from 'src/view/objectif/list/ObjectifListToolbar';
+
 function ElectionPage() {
   const dispatch = useDispatch();
   const match = useRouteMatch();
@@ -57,6 +59,8 @@ function ElectionPage() {
               loading={loading}
               record={record}
             /> */}
+            <br />
+            {/* <ObjectifListToolbar /> */}
             <br />
             <ObjectifListFilter record={record} />
             <ObjectifListTable />

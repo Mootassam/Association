@@ -35,9 +35,7 @@ function ObjectifPage() {
         <PageTitle>
           {i18n('entities.objectif.view.title')}
         </PageTitle>
-
         <ObjectifViewToolbar match={match} />
-
         <ObjectifView loading={loading} record={record} />
       </ContentWrapper>
     </>

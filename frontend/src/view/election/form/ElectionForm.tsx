@@ -13,7 +13,7 @@ import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
 import Storage from 'src/security/storage';
 import FilesFormItem from 'src/view/shared/form/items/FilesFormItem';
 import AssociationAutocompleteFormItem from 'src/view/association/autocomplete/AssociationAutocompleteFormItem';
-import ObjectifAutocompleteFormItem from 'src/view/objectif/autocomplete/ObjectifAutocompleteFormItem';
+// import ObjectifAutocompleteFormItem from 'src/view/objectif/autocomplete/ObjectifAutocompleteFormItem';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(
@@ -24,34 +24,43 @@ const schema = yup.object().shape({
   ),
   members: yupFormSchemas.relationToMany(
     i18n('entities.election.fields.members'),
-    {},
+    {
+      required: true,
+    },
   ),
   startDate: yupFormSchemas.date(
     i18n('entities.election.fields.startDate'),
-    {},
+    {
+      required: true,
+    },
   ),
   endDate: yupFormSchemas.date(
     i18n('entities.election.fields.endDate'),
-    {},
+    {
+      required: true,
+    },
   ),
   pv: yupFormSchemas.files(
     i18n('entities.election.fields.pv'),
     {},
   ),
-  association: yupFormSchemas.relationToMany(
+  association: yupFormSchemas.relationToOne(
     i18n('entities.election.fields.association'),
-    {},
+    {
+      required: true,
+    },
   ),
-  objetifs: yupFormSchemas.relationToMany(
-    i18n('entities.election.fields.objectifs'),
-    {},
-  ),
+  // objetifs: yupFormSchemas.relationToMany(
+  //   i18n('entities.election.fields.objectifs'),
+  //   {
+  //     required: true,
+  //   },
+  // ),
 });
 
 function ElectionForm(props) {
   const [initialValues] = useState(() => {
     const record = props.record || {};
-
     return {
       name: record.name,
       members: record.members || [],
@@ -115,16 +124,17 @@ function ElectionForm(props) {
                 label={i18n(
                   'entities.election.fields.startDate',
                 )}
-                required={false}
+                required={true}
               />
             </div>
+
             <div className="col-lg-7 col-md-8 col-12">
               <DatePickerFormItem
                 name="endDate"
                 label={i18n(
                   'entities.election.fields.endDate',
                 )}
-                required={false}
+                required={true}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
@@ -143,22 +153,21 @@ function ElectionForm(props) {
                 label={i18n(
                   'entities.election.fields.association',
                 )}
-                required={false}
+                required={true}
                 showCreate={!props.modal}
-                mode="multiple"
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <ObjectifAutocompleteFormItem
                 name="objetifs"
                 label={i18n(
                   'entities.election.fields.objectifs',
                 )}
-                required={false}
+                required={true}
                 showCreate={!props.modal}
                 mode="multiple"
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="form-buttons">

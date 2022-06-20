@@ -182,16 +182,14 @@ class ElectionRepository {
       await MongooseRepository.wrapWithSessionIfExists(
         Election(options.database)
           .findOne({ _id: id, tenant: currentTenant.id })
-          .populate('members')
-          .populate('association')
-          .populate('objetifs'),
+          .populate('members'),
+        // .populate('association')
+        // .populate('objetifs'),
         options,
       );
-
     if (!record) {
       throw new Error404();
     }
-
     return this._mapRelationshipsAndFillDownloadUrl(record);
   }
 
