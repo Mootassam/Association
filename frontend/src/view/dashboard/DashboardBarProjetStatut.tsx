@@ -26,7 +26,7 @@ const options = {
   },
   title: {
     display: true,
-    text: 'Dashboard Bar Projet Status',
+    text: i18n('dashboard.charts.projectS'),
   },
   scales: {
     xAxes: [
@@ -57,7 +57,7 @@ export default function DashboardBarProjetStatut(props) {
 
         datasets: [
           {
-            label: 'Status',
+            label: i18n('dashboard.charts.projectS'),
             data: res.map((crypto) => crypto.count),
             backgroundColor: [
               '#ffbb11',

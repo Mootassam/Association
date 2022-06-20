@@ -18,7 +18,7 @@ export default function DashboardPartnerCount(props) {
       </div>
       <div className="text">
         <h3>{Count}</h3>
-        <p> Partner Count</p>
+        <p> {i18n('dashboard.charts.partner')}</p>
       </div>
     </DashboardWrapper>
   );

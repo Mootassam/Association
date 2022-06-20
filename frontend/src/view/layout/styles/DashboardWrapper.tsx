@@ -3,7 +3,6 @@ const DashboardWrapper = styled.div`
   display: flex !important;
   padding: 43px 30px;
   width: 100%;
-  border-radius: 5px;
   align-items: start;
   justify-content: center;
   gap: 4rem;

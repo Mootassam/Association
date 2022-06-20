@@ -47,4 +47,12 @@ export default class DashboardService {
     );
     return response.data;
   }
+
+  static async AdhrentCount() {
+    const tenantId = AuthCurrentTenant.get();
+    const response = await authAxios.get(
+      `/tenant/${tenantId}/userc`,
+    );
+    return response.data;
+  }
 }

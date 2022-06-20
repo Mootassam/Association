@@ -6,7 +6,7 @@ import DashboardWrapper from 'src/view/layout/styles/DashboardWrapper';
 export default function DashboardAdherentCount(props) {
   const [Count, SetCount] = useState();
   useEffect(() => {
-    DashboardService.ProjetCount().then((res) => {
+    DashboardService.AdhrentCount().then((res) => {
       SetCount(res[0].count);
     });
   }, []);
@@ -17,7 +17,7 @@ export default function DashboardAdherentCount(props) {
       </div>
       <div className="text">
         <h3>{Count}</h3>
-        <p> Adherent Count</p>
+        <p> {i18n('dashboard.charts.adherent')}</p>
       </div>
     </DashboardWrapper>
   );

@@ -13,7 +13,7 @@ const options = {
   },
   title: {
     display: true,
-    text: 'Dashboard Bar Projet Type',
+    text: i18n('dashboard.charts.projectT'),
   },
 };
 const data = {

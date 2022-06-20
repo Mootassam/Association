@@ -18,7 +18,7 @@ export default function DashboardProjectCount(props) {
       </div>
       <div className="text">
         <h3>{Count}</h3>
-        <p> Project Count</p>
+        <p> {i18n('dashboard.charts.project')}</p>
       </div>
     </DashboardWrapper>
   );

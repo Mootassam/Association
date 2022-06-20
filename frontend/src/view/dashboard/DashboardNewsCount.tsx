@@ -17,7 +17,7 @@ export default function DashboardNewsCount(props) {
       </div>
       <div className="text">
         <h3>{Count}</h3>
-        <p> News Count</p>
+        <p> {i18n('dashboard.charts.news')}</p>
       </div>
     </DashboardWrapper>
   );

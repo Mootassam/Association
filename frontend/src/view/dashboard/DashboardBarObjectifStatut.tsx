@@ -32,7 +32,7 @@ const options = {
   },
   title: {
     display: true,
-    text: 'Dashboard Bar Objectif Statut',
+    text: i18n('dashboard.charts.objectif'),
   },
   scales: {
     xAxes: [
@@ -52,17 +52,15 @@ export default function DashboardBarObjectifStatut(props) {
   const [chartData, setChartData] = useState({});
   useEffect(() => {
     DashboardService.objectifStatus().then(async (res) => {
-      console.log('====================================');
-      console.log(res, 'im res function');
-      console.log('====================================');
       setChartData({
         labels: res.map((crypto) => crypto._id),
 
         datasets: [
           {
-            label: ' Object Status',
+            label: i18n('dashboard.charts.objectif'),
             data: res.map((crypto) => crypto.count),
             backgroundColor: [
+              '#50AF95',
               '#ffbb11',
               '#ecf0f1',
               '#50AF95',
