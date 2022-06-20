@@ -1,16 +1,15 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
 import { i18n } from 'src/i18n';
-import EntreeService from 'src/modules/entree/entreeService';
-import { getHistory } from 'src/modules/store';
-import Chart from 'react-chartjs-2';
-import DepenseService from 'src/modules/depense/depenseService';
 import ChargeService from 'src/modules/charge/chargeService';
-
-export default function DashboardBarChart(props) {
+import DepenseService from 'src/modules/depense/depenseService';
+import Chart from 'react-chartjs-2';
+import { getHistory } from 'src/modules/store';
+export default function DashboardMixChartOne(props) {
   const options = {
     onClick: function (evt, element) {
-      getHistory().push('/entree');
+      getHistory().push('/depense');
     },
     title: {
       display: true,
@@ -35,29 +34,46 @@ export default function DashboardBarChart(props) {
     },
   };
 
-  const [entree, setEntree] = useState([
+  const [charge, setCharge] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
+  const [depense, setDepense] = useState([
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
+  let chargeArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  let entreeArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let depenseArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   useEffect(() => {
-    EntreeService.list('', '', '', '').then((res) => {
+    DepenseService.list('', '', '', '').then((res) => {
       for (let i = 0; i < res.rows.length; i++) {
-        for (let j = 0; j < entreeArray.length; j++) {
+        for (let j = 0; j < depenseArray.length; j++) {
           if (
             moment(res.rows[i].date).month() === j &&
             moment(res.rows[i].date).year() ===
               moment().year()
           ) {
-            entreeArray[j] += res.rows[i].amount;
+            depenseArray[j] += res.rows[i].amount;
           }
         }
       }
-      setEntree(entreeArray);
+      setDepense(depenseArray);
+    });
+    ChargeService.list('', '', '', '').then((res) => {
+      for (let i = 0; i < res.rows.length; i++) {
+        for (let j = 0; j < chargeArray.length; j++) {
+          if (
+            moment(res.rows[i].date).month() === j &&
+            moment(res.rows[i].date).year() ===
+              moment().year()
+          ) {
+            chargeArray[j] += res.rows[i].amount;
+          }
+        }
+      }
+      setCharge(chargeArray);
     });
   }, []);
-
   const labels = [
     i18n('dashboard.charts.months.1'),
     i18n('dashboard.charts.months.2'),
@@ -77,14 +93,23 @@ export default function DashboardBarChart(props) {
     datasets: [
       {
         type: 'line' as const,
-        label: i18n('entities.entree.menu'),
-        backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgb(75, 192, 192)',
+        label: i18n('entities.depense.menu'),
+        backgroundColor: '#D32F2F',
+        borderColor: '#D32F2F',
+        data: depense,
         borderWidth: 2,
-        data: entree,
+        fill: false,
+      },
+      {
+        type: 'bar' as const,
+        label: i18n('entities.charge.menu'),
+        backgroundColor: 'rgb(53, 162, 235)',
+        borderColor: 'rgb(53, 162, 235)',
+        borderWidth: 2,
+        fill: false,
+        data: charge,
       },
     ],
   };
-
   return <Chart type="bar" data={data} options={options} />;
 }
