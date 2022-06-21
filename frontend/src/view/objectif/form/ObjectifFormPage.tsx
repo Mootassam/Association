@@ -25,6 +25,8 @@ function ObjectifFormPage(props) {
   const record = useSelector(selectors.selectRecord);
 
   const isEditing = Boolean(match.params.id);
+  const electionId = match.params.name;
+
   const title = isEditing
     ? i18n('entities.objectif.edit.title')
     : i18n('entities.objectif.new.title');
@@ -56,6 +58,7 @@ function ObjectifFormPage(props) {
         {initLoading && <Spinner />}
         {dispatched && !initLoading && (
           <ObjectifForm
+            electionId={electionId}
             saveLoading={saveLoading}
             initLoading={initLoading}
             record={record}

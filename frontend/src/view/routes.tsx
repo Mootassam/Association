@@ -1502,7 +1502,7 @@ const privateRoutes = [
     exact: true,
   },
   {
-    path: '/objectif/new',
+    path: '/objectif/new/:name',
     loader: () =>
       import('src/view/objectif/form/ObjectifFormPage'),
     permissionRequired: permissions.objectifCreate,

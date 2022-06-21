@@ -60,9 +60,15 @@ function ElectionPage() {
               record={record}
             /> */}
             <br />
-            {/* <ObjectifListToolbar /> */}
             <br />
-            <ObjectifListFilter record={record} />
+            <ObjectifListToolbar
+              electionId={match.params.id}
+            />
+            <br />
+            <ObjectifListFilter
+              electionId={match.params.id}
+              record={record}
+            />
             <ObjectifListTable />
           </Tab>
         </Tabs>

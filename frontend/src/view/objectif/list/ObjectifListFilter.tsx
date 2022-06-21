@@ -86,6 +86,8 @@ const previewRenders = {
 };
 
 function ObjectifListFilter(props) {
+  const { electionId } = props;
+
   const rawFilter = useSelector(selectors.selectRawFilter);
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
@@ -102,9 +104,9 @@ function ObjectifListFilter(props) {
     defaultValues: initialValues,
     mode: 'all',
   });
-  let objectsId = props.record?.objetifs;
 
   useEffect(() => {
+    initialValues.election = electionId;
     dispatch(
       actions.doFetch(
         props.record?.objetifs,
@@ -117,7 +119,7 @@ function ObjectifListFilter(props) {
 
   const onSubmit = (values) => {
     const rawValues = form.getValues();
-    // rawValues.id = props.record.id;
+    rawValues.election = electionId;
     dispatch(actions.doFetch(values, rawValues));
     setExpanded(false);
   };

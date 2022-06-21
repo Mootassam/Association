@@ -14,6 +14,8 @@ import Toolbar from 'src/view/shared/styles/Toolbar';
 import ReactTooltip from 'react-tooltip';
 
 function ObjectifToolbar(props) {
+  const { electionId } = props;
+
   const [
     destroyAllConfirmVisible,
     setDestroyAllConfirmVisible,
@@ -149,7 +151,7 @@ function ObjectifToolbar(props) {
   return (
     <Toolbar>
       {hasPermissionToCreate && (
-        <Link to="/objectif/new">
+        <Link to={`/objectif/new/${electionId}`}>
           <span
             data-tip={i18n('common.new')}
             data-for="charge-list-toolbar-new-tooltip"
@@ -165,7 +167,7 @@ function ObjectifToolbar(props) {
         </Link>
       )}
 
-      {hasPermissionToImport && (
+      {/* {hasPermissionToImport && (
         <Link to="/objectif/importer">
           <span
             data-tip={i18n('common.import')}
@@ -180,10 +182,10 @@ function ObjectifToolbar(props) {
             <ReactTooltip id="charge-list-toolbar-import-tooltip" />
           </span>
         </Link>
-      )}
+      )} */}
 
-      {renderDestroyButton()}
-
+      {/* {renderDestroyButton()} */}
+      {/* 
       {hasPermissionToAuditLogs && (
         <Link to="/audit-logs?entityNames=objectif">
           <span
@@ -199,9 +201,9 @@ function ObjectifToolbar(props) {
             <ReactTooltip id="charge-list-toolbar-auditLog-tooltip" />
           </span>
         </Link>
-      )}
+      )} */}
 
-      {renderExportButton()}
+      {/* {renderExportButton()} */}
 
       {destroyAllConfirmVisible && (
         <ConfirmModal

@@ -18,9 +18,7 @@ import ElectionAutocompleteFormItem from 'src/view/election/autocomplete/Electio
 const schema = yup.object().shape({
   election: yupFormSchemas.relationToOne(
     i18n('entities.objectif.fields.election'),
-    {
-      required: true,
-    },
+    {},
   ),
   number: yupFormSchemas.integer(
     i18n('entities.objectif.fields.number'),
@@ -66,6 +64,7 @@ const schema = yup.object().shape({
 });
 
 function ObjectifForm(props) {
+  const { electionId } = props;
   const [initialValues] = useState(() => {
     const record = props.record || {};
 
@@ -93,6 +92,7 @@ function ObjectifForm(props) {
   });
 
   const onSubmit = (values) => {
+    values.election = electionId;
     props.onSubmit(props.record?.id, values);
   };
 
@@ -190,7 +190,7 @@ function ObjectifForm(props) {
               />
             </div>
 
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <ElectionAutocompleteFormItem
                 name="election"
                 label={i18n(
@@ -199,7 +199,7 @@ function ObjectifForm(props) {
                 required={true}
                 showCreate={!props.modal}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="form-buttons">
