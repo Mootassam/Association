@@ -132,16 +132,6 @@ const DashboardPage = (props) => {
             </div>
           </div>
         </div>
-        <p
-          style={{
-            marginTop: '16px',
-            width: '100%',
-            textAlign: 'center',
-            color: 'grey',
-          }}
-        >
-          {i18n('dashboard.message')}
-        </p>
       </div>
     </>
   );

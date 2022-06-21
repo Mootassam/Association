@@ -1,62 +1,94 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useEffect, useState } from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { i18n } from 'src/i18n';
 import DashboardService from 'src/modules/dashboard/DashboardService';
-let label: string[] = [''];
-let counts: number[] = [];
+
 const options = {
   responsive: true,
   legend: {
-    display: true,
+    display: false,
     position: 'top' as const,
   },
   title: {
     display: true,
     text: i18n('dashboard.charts.projectT'),
   },
-};
-const data = {
-  labels: label,
-  datasets: [
-    {
-      data: counts,
-      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-      hoverBackgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56',
-      ],
-    },
-  ],
+  scales: {
+    xAxes: [
+      {
+        display: true,
+      },
+    ],
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+          callback: function (value) {
+            if (value % 1 === 0) {
+              return value;
+            }
+          },
+        },
+        display: true,
+      },
+    ],
+  },
 };
 
 export default function DashboardBarProjetType(props) {
   const [chartData, setChartData] = useState({});
 
   useEffect(() => {
-    DashboardService.ProjetStatus().then((res) => {
+    DashboardService.ProjetType().then(async (res) => {
       setChartData({
-        labels: res.map((item) => item._id),
+        labels: res.map((crypto) =>
+          crypto.projet.map((item) => item.nom),
+        ),
         datasets: [
           {
-            label: 'type',
-            data: res.map((item) => item.count),
             backgroundColor: [
-              '#FF6384',
-              '#36A2EB',
-              '#FFCE56',
+              '#97a7b6',
+              '#e6a9b3',
+              '#dce1e6',
+              '#5098cd',
+              '#73c779',
+              '#b5afd1',
+              '#0093a6',
             ],
             hoverBackgroundColor: [
-              '#FF6384',
-              '#36A2EB',
-              '#FFCE56',
+              '#97a7b6',
+              '#e6a9b3',
+              '#dce1e6',
+              '#5098cd',
+              '#73c779',
+              '#b5afd1',
+              '#0093a6',
             ],
+            borderWidth: 1,
+            hoverBorderWidth: 2,
+            borderColor: [
+              '#97a7b6',
+              '#e6a9b3',
+              '#dce1e6',
+              '#5098cd',
+              '#73c779',
+              '#b5afd1',
+              '#0093a6',
+            ],
+            borderAlign: 'inner',
+            data: res.map((crypto) => crypto.count),
           },
         ],
       });
     });
   }, []);
 
-  return <Doughnut options={options} data={chartData} />;
+  return (
+    <Bar
+      data={chartData}
+      options={options}
+      width={100}
+      height={50}
+    />
+  );
 }

@@ -27,12 +27,12 @@ const data = {
 const options = {
   responsive: true,
   legend: {
-    display: true,
+    display: false,
     position: 'top' as const,
   },
   title: {
     display: true,
-    text: i18n('dashboard.charts.objectif'),
+    text: i18n('dashboard.charts.projectT'),
   },
   scales: {
     xAxes: [
@@ -42,6 +42,14 @@ const options = {
     ],
     yAxes: [
       {
+        ticks: {
+          beginAtZero: true,
+          callback: function (value) {
+            if (value % 1 === 0) {
+              return value;
+            }
+          },
+        },
         display: true,
       },
     ],
@@ -57,7 +65,7 @@ export default function DashboardBarObjectifStatut(props) {
 
         datasets: [
           {
-            label: i18n('dashboard.charts.objectif'),
+            // label: i18n('dashboard.charts.objectif'),
             data: res.map((crypto) => crypto.count),
             backgroundColor: [
               '#50AF95',

@@ -597,7 +597,7 @@ class ProjetRepository {
     const currentUser =
       MongooseRepository.getCurrentUser(options);
 
-    let record = await objectif(options.database)
+    let record = await Projet(options.database)
       .aggregate([
         {
           $group: {
