@@ -483,8 +483,7 @@ class ProjetRepository {
       .find(criteria)
       .skip(skip)
       .limit(limitEscaped)
-      .sort(sort)
-      .populate('typeProjet');
+      .sort(sort);
 
     const count = await Projet(
       options.database,
@@ -601,9 +600,9 @@ class ProjetRepository {
       .aggregate([
         {
           $group: {
-            _id: '$status',
+            _id: '$statutProjet',
             status: {
-              $push: '$status',
+              $push: '$statutProjet',
             },
           },
         },

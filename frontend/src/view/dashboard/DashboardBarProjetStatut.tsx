@@ -23,11 +23,11 @@ export default function DashboardBarProjetStatut(props) {
   useEffect(() => {
     DashboardService.ProjetStatus().then((res) => {
       setChartData({
-        labels: ['1', '3', '5'],
+        labels: res.map((item) => item._id),
         datasets: [
           {
             // label: 'type',
-            data: [3, 4, 5],
+            data: res.map((item) => item.count),
             backgroundColor: [
               '#FF6384',
               '#36A2EB',
