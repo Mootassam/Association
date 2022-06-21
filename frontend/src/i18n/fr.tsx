@@ -2653,6 +2653,7 @@ const fr = {
       news: 'Nombre des actualités',
       project: 'Nombre des projets ',
       partner: 'Nombre des partenaires',
+      nodata: 'aucune donnée à afficher',
     },
   },
   errors: {

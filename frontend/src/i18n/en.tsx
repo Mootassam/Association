@@ -2627,6 +2627,7 @@ const en = {
       news: 'Number of news',
       project: 'Number of projects',
       partner: 'Number of partners',
+      nodata: 'no data to display',
     },
   },
   errors: {
