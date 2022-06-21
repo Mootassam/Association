@@ -22,11 +22,11 @@ export default class ElectionService {
         data.members,
         { ...this.options, session },
       );
-      data.association =
-        await AssociationRepository.filterIdsInTenant(
-          data.association,
-          { ...this.options, session },
-        );
+      // data.association =
+      //   await AssociationRepository.filterIdsInTenant(
+      //     data.association,
+      //     { ...this.options, session },
+      //   );
       // data.objetifs =
       //   await ObjectifRepository.filterIdsInTenant(
       //     data.objetifs,
@@ -64,11 +64,11 @@ export default class ElectionService {
         data.members,
         { ...this.options, session },
       );
-      data.association =
-        await AssociationRepository.filterIdsInTenant(
-          data.association,
-          { ...this.options, session },
-        );
+      // data.association =
+      //   await AssociationRepository.filterIdsInTenant(
+      //     data.association,
+      //     { ...this.options, session },
+      //   );
       // data.objetifs =
       //   await ObjectifRepository.filterIdsInTenant(
       //     data.objetifs,

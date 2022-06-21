@@ -44,12 +44,10 @@ const schema = yup.object().shape({
     i18n('entities.election.fields.pv'),
     {},
   ),
-  association: yupFormSchemas.relationToOne(
-    i18n('entities.election.fields.association'),
-    {
-      required: true,
-    },
-  ),
+  // association: yupFormSchemas.relationToOne(
+  //   i18n('entities.election.fields.association'),
+  //   {},
+  // ),
   // objetifs: yupFormSchemas.relationToMany(
   //   i18n('entities.election.fields.objectifs'),
   //   {
@@ -71,7 +69,6 @@ function ElectionForm(props) {
         ? moment(record.endDate, 'YYYY-MM-DD').toDate()
         : null,
       pv: record.pv || [],
-      association: record.association,
       objetifs: record.objetifs || [],
     };
   });
@@ -147,7 +144,7 @@ function ElectionForm(props) {
                 formats={undefined}
               />
             </div>
-            <div className="col-lg-7 col-md-8 col-12">
+            {/* <div className="col-lg-7 col-md-8 col-12">
               <AssociationAutocompleteFormItem
                 name="association"
                 label={i18n(
@@ -156,7 +153,7 @@ function ElectionForm(props) {
                 required={true}
                 showCreate={!props.modal}
               />
-            </div>
+            </div> */}
             {/* <div className="col-lg-7 col-md-8 col-12">
               <ObjectifAutocompleteFormItem
                 name="objetifs"

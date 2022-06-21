@@ -182,8 +182,8 @@ class ElectionRepository {
       await MongooseRepository.wrapWithSessionIfExists(
         Election(options.database)
           .findOne({ _id: id, tenant: currentTenant.id })
-          .populate('members')
-          .populate('association'),
+          .populate('members'),
+        // .populate('association'),
         options,
       );
     if (!record) {
