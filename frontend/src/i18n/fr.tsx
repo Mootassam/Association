@@ -54,16 +54,16 @@ const fr = {
         title: 'TypeProjets',
       },
       create: {
-        success: 'TypeProjet successfully saved',
+        success: 'TypeProjet  enregistrée avec succès',
       },
       update: {
-        success: 'TypeProjet successfully saved',
+        success: 'TypeProjet  enregistrée avec succès',
       },
       destroy: {
-        success: 'TypeProjet successfully deleted',
+        success: 'TypeProjet supprimée avec succès',
       },
       destroyAll: {
-        success: 'TypeProjet(s) successfully deleted',
+        success: 'TypeProjet(s) supprimée avec succès',
       },
       edit: {
         title: 'Edit TypeProjet',
@@ -81,10 +81,10 @@ const fr = {
       },
       hints: {},
       new: {
-        title: 'New TypeProjet',
+        title: 'Nouvelle TypeProjet',
       },
       view: {
-        title: 'View TypeProjet',
+        title: 'Afficher TypeProjet',
       },
       importer: {
         title: 'Import TypeProjets',
@@ -93,28 +93,31 @@ const fr = {
       },
     },
     typeDepense: {
-      name: 'typeDepense',
-      label: 'TypeDepenses',
-      menu: 'TypeDepenses',
+      name: 'Type du Dépendance',
+      label: 'Type du Dépendance',
+      menu: 'Type du Dépendance',
       exporterFileName: 'typeDepense_export',
       list: {
-        menu: 'TypeDepenses',
-        title: 'TypeDepenses',
+        menu: 'Type du Dépendance',
+        title: 'Type du Dépendance',
       },
       create: {
-        success: 'TypeDepense successfully saved',
+        success:
+          'Type du Dépendance  enregistrée avec succès',
       },
       update: {
-        success: 'TypeDepense successfully saved',
+        success:
+          'Type du Dépendance  enregistrée avec succès',
       },
       destroy: {
-        success: 'TypeDepense successfully deleted',
+        success: 'Type du Dépendance supprimée avec succès',
       },
       destroyAll: {
-        success: 'TypeDepense(s) successfully deleted',
+        success:
+          'Type du Dépendance(s) supprimée avec succès',
       },
       edit: {
-        title: 'Edit TypeDepense',
+        title: 'Edit type du Dépendance',
       },
       fields: {
         id: 'Id',
@@ -127,10 +130,10 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New TypeDepense',
+        title: 'Nouvelle type du Dépendance',
       },
       view: {
-        title: 'View TypeDepense',
+        title: 'Afficher type du Dépendance',
       },
       importer: {
         title: 'Import TypeDepenses',
@@ -140,28 +143,28 @@ const fr = {
     },
 
     typeCharge: {
-      name: 'typeCharge',
-      label: 'TypeCharges',
-      menu: 'TypeCharges',
-      exporterFileName: 'typeCharge_export',
+      name: 'Type de frais',
+      label: 'Type de frais',
+      menu: 'Type de frais',
+      exporterFileName: 'Type_de_frais',
       list: {
-        menu: 'TypeCharges',
-        title: 'TypeCharges',
+        menu: 'Type de frais',
+        title: 'Type de frais',
       },
       create: {
-        success: 'TypeCharge successfully saved',
+        success: 'Type de frais  enregistrée avec succès',
       },
       update: {
-        success: 'TypeCharge successfully saved',
+        success: 'Type de frais  enregistrée avec succès',
       },
       destroy: {
-        success: 'TypeCharge successfully deleted',
+        success: 'Type de frais supprimée avec succès',
       },
       destroyAll: {
-        success: 'TypeCharge(s) successfully deleted',
+        success: 'Type de frais(s) supprimée avec succès',
       },
       edit: {
-        title: 'Edit TypeCharge',
+        title: 'Edit Type de frais',
       },
       fields: {
         id: 'Id',
@@ -174,14 +177,14 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New TypeCharge',
+        title: 'Nouvelle Type de frais',
       },
       view: {
-        title: 'View TypeCharge',
+        title: 'Afficher Type de frais',
       },
       importer: {
-        title: 'Import TypeCharges',
-        fileName: 'typeCharge_import_template',
+        title: 'Import Type de frais',
+        fileName: 'Type_de_frais_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
@@ -192,27 +195,27 @@ const fr = {
       menu: 'type de chiffre daffaires',
       exporterFileName: 'type_de_chiffre_daffaires_export',
       list: {
-        menu: 'TypeRevenues',
-        title: 'TypeRevenues',
+        menu: 'Type de chiffre daffaires',
+        title: 'Type de chiffre daffaires',
       },
       create: {
         success:
-          'type de chiffre daffaires successfully saved',
+          'Type de chiffre daffaires  enregistrée avec succès',
       },
       update: {
         success:
-          'type de chiffre daffaires successfully saved',
+          'Type de chiffre daffaires  enregistrée avec succès',
       },
       destroy: {
         success:
-          'type de chiffre daffaires successfully deleted',
+          'Type de chiffre daffaires supprimée avec succès',
       },
       destroyAll: {
         success:
-          'type de chiffre daffaires(s) successfully deleted',
+          'Type de chiffre daffaires(s) supprimée avec succès',
       },
       edit: {
-        title: 'Edit type de chiffre daffaires',
+        title: 'Modifier type de chiffre daffaires',
       },
       fields: {
         id: 'Id',
@@ -225,10 +228,10 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New TypeRevenue',
+        title: 'Nouveau type de chiffre daffaire',
       },
       view: {
-        title: 'View TypeRevenue',
+        title: 'Afficher type de chiffre daffaire',
       },
       importer: {
         title: 'Import TypeRevenues',
@@ -1047,7 +1050,7 @@ const fr = {
       name: 'actualités Catégorie',
       label: 'Catégories',
       menu: 'Catégories',
-      exporterFileName: 'newsCategory_export',
+      exporterFileName: 'NouvellesCategory_export',
       list: {
         menu: 'Catégories',
         title: 'Catégories',
@@ -1087,7 +1090,7 @@ const fr = {
       },
       importer: {
         title: 'Importer des catégories',
-        fileName: 'newsCategory_import_template',
+        fileName: 'NouvellesCategory_import_template',
         hint: 'Les colonnes Fichiers/Images doivent contenir les URL des fichiers séparés par un espace.',
       },
     },
@@ -1096,7 +1099,7 @@ const fr = {
       name: 'Tags',
       label: 'Tags',
       menu: 'Tags',
-      exporterFileName: 'newsTag_export',
+      exporterFileName: 'NouvellesTag_export',
       list: {
         menu: 'Tags',
         title: 'Tags',
@@ -1145,7 +1148,7 @@ const fr = {
       name: 'Actualités',
       label: 'Actualités',
       menu: 'Actualités',
-      exporterFileName: 'news_export',
+      exporterFileName: 'Nouvelles_export',
       list: {
         menu: 'Actualités',
         title: 'Actualités',
@@ -1196,7 +1199,7 @@ const fr = {
       },
       importer: {
         title: 'Importer des Actualité',
-        fileName: 'news_import_template',
+        fileName: 'Nouvelles_import_template',
         hint: 'Les colonnes Fichiers/Images doivent contenir les URL des fichiers séparés par un espace.',
       },
     },
@@ -1359,10 +1362,10 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New Formule',
+        title: 'Nouvelle Formule',
       },
       view: {
-        title: 'View Formule',
+        title: 'Afficher Formule',
       },
       importer: {
         title: 'Import Formules',
@@ -2400,10 +2403,10 @@ const fr = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New Review',
+        title: 'Nouvelle Review',
       },
       view: {
-        title: 'View Review',
+        title: 'Afficher Review',
       },
       importer: {
         title: 'Import Reviews',
@@ -2668,10 +2671,10 @@ const fr = {
     },
     enumerators: {},
     new: {
-      title: 'New Workspace',
+      title: 'Nouvelle Workspace',
     },
     invitation: {
-      view: 'View Invitations',
+      view: 'Afficher Invitations',
       invited: 'Invited',
       accept: 'Accept Invitation',
       decline: 'Decline Invitation',

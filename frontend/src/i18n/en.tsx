@@ -1733,28 +1733,28 @@ const en = {
       },
     },
     typeDepense: {
-      name: 'typeDepense',
-      label: 'TypeDepenses',
-      menu: 'TypeDepenses',
-      exporterFileName: 'typeDepense_export',
+      name: 'type Depense',
+      label: 'Type Depenses',
+      menu: 'Type Depenses',
+      exporterFileName: 'Type Depense_export',
       list: {
-        menu: 'TypeDepenses',
-        title: 'TypeDepenses',
+        menu: 'Type Depenses',
+        title: 'Type Depenses',
       },
       create: {
-        success: 'TypeDepense successfully saved',
+        success: 'Type Depense successfully saved',
       },
       update: {
-        success: 'TypeDepense successfully saved',
+        success: 'Type Depense successfully saved',
       },
       destroy: {
-        success: 'TypeDepense successfully deleted',
+        success: 'Type Depense successfully deleted',
       },
       destroyAll: {
-        success: 'TypeDepense(s) successfully deleted',
+        success: 'Type Depense(s) successfully deleted',
       },
       edit: {
-        title: 'Edit TypeDepense',
+        title: 'Edit type Depense',
       },
       fields: {
         id: 'Id',
@@ -1767,38 +1767,38 @@ const en = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New TypeDepense',
+        title: 'New type Depense',
       },
       view: {
-        title: 'View TypeDepense',
+        title: 'View type Depense',
       },
       importer: {
-        title: 'Import TypeDepenses',
-        fileName: 'typeDepense_import_template',
+        title: 'Import Type Depenses',
+        fileName: 'Type Depense_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
 
     typeCharge: {
-      name: 'typeCharge',
-      label: 'TypeCharges',
-      menu: 'TypeCharges',
-      exporterFileName: 'typeCharge_export',
+      name: 'Type Charge',
+      label: 'Type Charges',
+      menu: 'Type Charges',
+      exporterFileName: 'type_Charge_export',
       list: {
-        menu: 'TypeCharges',
-        title: 'TypeCharges',
+        menu: 'Type Charges',
+        title: 'Type Charges',
       },
       create: {
-        success: 'TypeCharge successfully saved',
+        success: 'Type Charge successfully saved',
       },
       update: {
-        success: 'TypeCharge successfully saved',
+        success: 'Type Charge successfully saved',
       },
       destroy: {
-        success: 'TypeCharge successfully deleted',
+        success: 'Type Charge successfully deleted',
       },
       destroyAll: {
-        success: 'TypeCharge(s) successfully deleted',
+        success: 'Type Charge(s) successfully deleted',
       },
       edit: {
         title: 'Edit TypeCharge',
@@ -1814,41 +1814,41 @@ const en = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New TypeCharge',
+        title: 'New Type Charge',
       },
       view: {
-        title: 'View TypeCharge',
+        title: 'View Type Charge',
       },
       importer: {
         title: 'Import TypeCharges',
-        fileName: 'typeCharge_import_template',
+        fileName: 'Type Charge_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
 
     typeRevenue: {
-      name: 'typeRevenue',
-      label: 'TypeRevenues',
-      menu: 'TypeRevenues',
-      exporterFileName: 'typeRevenue_export',
+      name: 'Type Revenue',
+      label: 'Type Revenues',
+      menu: 'Type Revenues',
+      exporterFileName: 'type_Revenue_export',
       list: {
-        menu: 'TypeRevenues',
-        title: 'TypeRevenues',
+        menu: 'Type Revenues',
+        title: 'Type Revenues',
       },
       create: {
-        success: 'TypeRevenue successfully saved',
+        success: 'Type Revenue successfully saved',
       },
       update: {
-        success: 'TypeRevenue successfully saved',
+        success: 'Type Revenue successfully saved',
       },
       destroy: {
-        success: 'TypeRevenue successfully deleted',
+        success: 'Type Revenue successfully deleted',
       },
       destroyAll: {
-        success: 'TypeRevenue(s) successfully deleted',
+        success: 'Type Revenue(s) successfully deleted',
       },
       edit: {
-        title: 'Edit TypeRevenue',
+        title: 'Edit Type Revenue',
       },
       fields: {
         id: 'Id',
@@ -1861,14 +1861,14 @@ const en = {
       placeholders: {},
       hints: {},
       new: {
-        title: 'New TypeRevenue',
+        title: 'New Type Revenue',
       },
       view: {
-        title: 'View TypeRevenue',
+        title: 'View Type Revenue',
       },
       importer: {
         title: 'Import TypeRevenues',
-        fileName: 'typeRevenue_import_template',
+        fileName: 'Type Revenue_import_template',
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
