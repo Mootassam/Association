@@ -212,7 +212,7 @@ const fr = {
       },
       fields: {
         id: 'Id',
-        nom: 'Nom',
+        nom: 'Type',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',

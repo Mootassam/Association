@@ -12,6 +12,7 @@ import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
+import TypeRevenueListItem from 'src/view/typeRevenue/list/TypeRevenueListItem';
 
 function EntreeListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -111,11 +112,9 @@ function EntreeListTable(props) {
                 )}
               </TableColumnHeader>
               <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'type'}
-                label={i18n('entities.entree.fields.type')}
+                label={i18n(
+                  'entities.typeRevenue.fields.nom',
+                )}
               />
               <TableColumnHeader
                 onSort={doChangeSort}
@@ -188,11 +187,9 @@ function EntreeListTable(props) {
                     </div>
                   </th>
                   <td>
-                    {row.type
-                      ? i18n(
-                          `entities.entree.enumerators.type.${row.type}`,
-                        )
-                      : null}
+                    <TypeRevenueListItem
+                      value={row.entreeType}
+                    />
                   </td>
                   <td>{row.sourceLink}</td>
                   <td style={{ textAlign: 'right' }}>
