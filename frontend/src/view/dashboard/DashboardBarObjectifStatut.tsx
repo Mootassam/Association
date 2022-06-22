@@ -64,7 +64,11 @@ export default function DashboardBarObjectifStatut(props) {
       count.current = res.length;
 
       setChartData({
-        labels: res.map((crypto) => crypto._id),
+        labels: res.map((crypto) =>
+          i18n(
+            `entities.objectif.enumerators.status.${crypto._id}`,
+          ),
+        ),
 
         datasets: [
           {

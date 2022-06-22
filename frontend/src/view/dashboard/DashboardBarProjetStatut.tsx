@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { i18n } from 'src/i18n';
 import DashboardService from 'src/modules/dashboard/DashboardService';
+import projetEnumerators from 'src/modules/projet/projetEnumerators';
 let label: string[] = [''];
 let counts: number[] = [];
 const options = {
@@ -26,7 +27,11 @@ export default function DashboardBarProjetStatut(props) {
       count.current = res.length;
 
       setChartData({
-        labels: res.map((item) => item._id),
+        labels: res.map((item) =>
+          i18n(
+            `entities.projet.enumerators.statutProjet.${item._id}`,
+          ),
+        ),
         datasets: [
           {
             // label: 'type',
