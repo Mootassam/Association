@@ -196,7 +196,8 @@ class DepenseRepository {
       await MongooseRepository.wrapWithSessionIfExists(
         Depense(options.database)
           .findOne({ _id: id, tenant: currentTenant.id })
-          .populate('charge'),
+          .populate('charge')
+          .populate('depenseType'),
         options,
       );
 
@@ -346,7 +347,8 @@ class DepenseRepository {
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)
-      .populate('charge');
+      .populate('charge')
+      .populate('depenseType');
 
     const count = await Depense(
       options.database,

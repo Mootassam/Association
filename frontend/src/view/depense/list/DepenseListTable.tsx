@@ -13,6 +13,7 @@ import Spinner from 'src/view/shared/Spinner';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import ChargeListItem from 'src/view/charge/list/ChargeListItem';
+import TypeDepenseListItem from 'src/view/typeDepense/list/TypeDepenseListItem';
 
 function DepenseListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -120,11 +121,7 @@ function DepenseListTable(props) {
                   'entities.depense.fields.facture',
                 )}
               />
-              {/* <TableColumnHeader
-                label={i18n(
-                  'entities.depense.fields.charge',
-                )}
-              /> */}
+
               <TableColumnHeader
                 onSort={doChangeSort}
                 hasRows={hasRows}
@@ -136,11 +133,9 @@ function DepenseListTable(props) {
                 align="right"
               />
               <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'type'}
-                label={i18n('entities.depense.fields.type')}
+                label={i18n(
+                  'entities.typeDepense.fields.nom',
+                )}
               />
               <TableColumnHeader
                 onSort={doChangeSort}
@@ -205,11 +200,9 @@ function DepenseListTable(props) {
                     {row.amount}
                   </td>
                   <td>
-                    {row.type
-                      ? i18n(
-                          `entities.depense.enumerators.type.${row.type}`,
-                        )
-                      : null}
+                    <TypeDepenseListItem
+                      value={row.depenseType}
+                    />
                   </td>
                   <td>{row.date}</td>
                   <td className="td-actions">

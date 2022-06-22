@@ -12,23 +12,21 @@ export default (database) => {
     {
       facture: {
         type: Boolean,
-        default: false
+        default: false,
       },
-      charges: [{
-        type: Schema.Types.ObjectId,
-        ref: 'charge',
-      }],
+      charges: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'charge',
+        },
+      ],
       amount: {
         type: Number,
       },
-      type: {
-        type: String,
-        enum: [
-          "salaires",
-          "loyers",
-          "impots",
-          null
-        ],
+      depenseType: {
+        type: Schema.Types.ObjectId,
+        ref: 'typeDepense',
+        required: true,
       },
       date: {
         type: String,
@@ -36,7 +34,7 @@ export default (database) => {
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -60,8 +58,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   DepenseSchema.virtual('id').get(function () {
     // @ts-ignore

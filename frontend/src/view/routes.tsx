@@ -1677,6 +1677,135 @@ const privateRoutes = [
     permissionRequired: permissions.categoryRead,
     exact: true,
   },
+  {
+    path: '/type-depense',
+    loader: () =>
+      import(
+        'src/view/typeDepense/list/TypeDepenseListPage'
+      ),
+    permissionRequired: permissions.typeDepenseRead,
+    exact: true,
+  },
+  {
+    path: '/type-depense/new',
+    loader: () =>
+      import(
+        'src/view/typeDepense/form/TypeDepenseFormPage'
+      ),
+    permissionRequired: permissions.typeDepenseCreate,
+    exact: true,
+  },
+  {
+    path: '/type-depense/importer',
+    loader: () =>
+      import(
+        'src/view/typeDepense/importer/TypeDepenseImporterPage'
+      ),
+    permissionRequired: permissions.typeDepenseImport,
+    exact: true,
+  },
+  {
+    path: '/type-depense/:id/edit',
+    loader: () =>
+      import(
+        'src/view/typeDepense/form/TypeDepenseFormPage'
+      ),
+    permissionRequired: permissions.typeDepenseEdit,
+    exact: true,
+  },
+  {
+    path: '/type-depense/:id',
+    loader: () =>
+      import(
+        'src/view/typeDepense/view/TypeDepenseViewPage'
+      ),
+    permissionRequired: permissions.typeDepenseRead,
+    exact: true,
+  },
+
+  {
+    path: '/type-charge',
+    loader: () =>
+      import('src/view/typeCharge/list/TypeChargeListPage'),
+    permissionRequired: permissions.typeChargeRead,
+    exact: true,
+  },
+  {
+    path: '/type-charge/new',
+    loader: () =>
+      import('src/view/typeCharge/form/TypeChargeFormPage'),
+    permissionRequired: permissions.typeChargeCreate,
+    exact: true,
+  },
+  {
+    path: '/type-charge/importer',
+    loader: () =>
+      import(
+        'src/view/typeCharge/importer/TypeChargeImporterPage'
+      ),
+    permissionRequired: permissions.typeChargeImport,
+    exact: true,
+  },
+  {
+    path: '/type-charge/:id/edit',
+    loader: () =>
+      import('src/view/typeCharge/form/TypeChargeFormPage'),
+    permissionRequired: permissions.typeChargeEdit,
+    exact: true,
+  },
+  {
+    path: '/type-charge/:id',
+    loader: () =>
+      import('src/view/typeCharge/view/TypeChargeViewPage'),
+    permissionRequired: permissions.typeChargeRead,
+    exact: true,
+  },
+
+  {
+    path: '/type-revenue',
+    loader: () =>
+      import(
+        'src/view/typeRevenue/list/TypeRevenueListPage'
+      ),
+    permissionRequired: permissions.typeRevenueRead,
+    exact: true,
+  },
+  {
+    path: '/type-revenue/new',
+    loader: () =>
+      import(
+        'src/view/typeRevenue/form/TypeRevenueFormPage'
+      ),
+    permissionRequired: permissions.typeRevenueCreate,
+    exact: true,
+  },
+  {
+    path: '/type-revenue/importer',
+    loader: () =>
+      import(
+        'src/view/typeRevenue/importer/TypeRevenueImporterPage'
+      ),
+    permissionRequired: permissions.typeRevenueImport,
+    exact: true,
+  },
+  {
+    path: '/type-revenue/:id/edit',
+    loader: () =>
+      import(
+        'src/view/typeRevenue/form/TypeRevenueFormPage'
+      ),
+    permissionRequired: permissions.typeRevenueEdit,
+    exact: true,
+  },
+  {
+    path: '/type-revenue/:id',
+    loader: () =>
+      import(
+        'src/view/typeRevenue/view/TypeRevenueViewPage'
+      ),
+    permissionRequired: permissions.typeRevenueRead,
+    exact: true,
+  },
 ].filter(Boolean);
 
 const publicRoutes = [

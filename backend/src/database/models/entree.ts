@@ -10,13 +10,10 @@ export default (database) => {
 
   const EntreeSchema = new Schema(
     {
-      type: {
-        type: String,
-        enum: [
-          "e-commerce",
-          "boutique",
-          null
-        ],
+      entreeType: {
+        type: Schema.Types.ObjectId,
+        ref: 'typeRevenue',
+        required: true,
       },
       sourceLink: {
         type: String,
@@ -30,7 +27,7 @@ export default (database) => {
       tenant: {
         type: Schema.Types.ObjectId,
         ref: 'tenant',
-        required: true
+        required: true,
       },
       createdBy: {
         type: Schema.Types.ObjectId,
@@ -54,8 +51,6 @@ export default (database) => {
       },
     },
   );
-
-  
 
   EntreeSchema.virtual('id').get(function () {
     // @ts-ignore

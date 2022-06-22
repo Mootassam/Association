@@ -48,6 +48,9 @@ import depense from 'src/modules/depense/depenseReducers';
 import charge from 'src/modules/charge/chargeReducers';
 import typeProjet from 'src/modules/typeProjet/typeProjetReducers';
 import dashboard from 'src/modules/dashboard/DashboardReducers';
+import typeDepense from 'src/modules/typeDepense/typeDepenseReducers';
+import typeCharge from 'src/modules/typeCharge/typeChargeReducers';
+import typeRevenue from 'src/modules/typeRevenue/typeRevenueReducers';
 import { combineReducers } from 'redux';
 
 export default (history) =>
@@ -102,4 +105,7 @@ export default (history) =>
     charge,
     typeProjet,
     dashboard,
+    typeDepense,
+    typeCharge,
+    typeRevenue,
   });

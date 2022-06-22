@@ -13,12 +13,13 @@ import DepenseAutocompleteFormItem from 'src/view/depense/autocomplete/DepenseAu
 import FilesFormItem from 'src/view/shared/form/items/FilesFormItem';
 import Storage from 'src/security/storage';
 import TextAreaFormItem from 'src/view/shared/form/items/TextAreaFormItem';
+import TypeChargeAutocompleteFormItem from 'src/view/typeCharge/autocomplete/TypeChargeAutocompleteFormItem';
 
 const schema = yup.object().shape({
-  type: yupFormSchemas.enumerator(
-    i18n('entities.charge.fields.type'),
+  chargeType: yupFormSchemas.relationToOne(
+    i18n('entities.projet.fields.typeProjet'),
     {
-      options: chargeEnumerators.type,
+      required: true,
     },
   ),
   amount: yupFormSchemas.integer(
@@ -42,12 +43,10 @@ function ChargeForm(props) {
     const record = props.record || {};
 
     return {
-      type: record.type,
+      chargeType: record.chargeType,
       amount: record.amount,
       attachements: record.attachements || [],
       details: record.details,
-
-      // depense: record.depense,
     };
   });
 
@@ -73,18 +72,17 @@ function ChargeForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
-              <SelectFormItem
-                name="type"
-                label={i18n('entities.charge.fields.type')}
-                options={chargeEnumerators.type.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.charge.enumerators.type.${value}`,
-                    ),
-                  }),
+              <TypeChargeAutocompleteFormItem
+                name="chargeType"
+                label={i18n(
+                  'entities.projet.fields.typeProjet',
                 )}
-                required={false}
+                placeholder={i18n(
+                  'entities.projet.placeholders.typeProjet',
+                )}
+                required={true}
+                showCreate={!props.modal}
+                election={true}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">

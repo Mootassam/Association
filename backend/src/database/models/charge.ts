@@ -11,9 +11,10 @@ export default (database) => {
 
   const ChargeSchema = new Schema(
     {
-      type: {
-        type: String,
-        enum: ['salaires', 'loyers', 'impots', null],
+      chargeType: {
+        type: Schema.Types.ObjectId,
+        ref: 'typeCharge',
+        required: true,
       },
       amount: {
         type: Number,

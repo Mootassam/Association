@@ -13,6 +13,7 @@ import depenseEnumerators from 'src/modules/depense/depenseEnumerators';
 import moment from 'moment';
 import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
 import ChargeAutocompleteFormItem from 'src/view/charge/autocomplete/ChargeAutocompleteFormItem';
+import TypeDepenseAutocompleteFormItem from 'src/view/typeDepense/autocomplete/TypeDepenseAutocompleteFormItem';
 
 const schema = yup.object().shape({
   facture: yupFormSchemas.boolean(
@@ -27,10 +28,10 @@ const schema = yup.object().shape({
     i18n('entities.depense.fields.amount'),
     {},
   ),
-  type: yupFormSchemas.enumerator(
-    i18n('entities.depense.fields.type'),
+  depenseType: yupFormSchemas.relationToOne(
+    i18n('entities.projet.fields.typeProjet'),
     {
-      options: depenseEnumerators.type,
+      required: true,
     },
   ),
   date: yupFormSchemas.date(
@@ -46,6 +47,7 @@ function DepenseForm(props) {
     return {
       facture: record.facture,
       // charge: record.charge || [],
+      depenseType: record.depenseType,
       amount: record.amount,
       type: record.type,
       date: record.date
@@ -102,18 +104,17 @@ function DepenseForm(props) {
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">
-              <SelectFormItem
-                name="type"
-                label={i18n('entities.depense.fields.type')}
-                options={depenseEnumerators.type.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.depense.enumerators.type.${value}`,
-                    ),
-                  }),
+              <TypeDepenseAutocompleteFormItem
+                name="depenseType"
+                label={i18n(
+                  'entities.typeDepense.fields.nom',
                 )}
-                required={false}
+                placeholder={i18n(
+                  'entities.typeDepense.fields.nom',
+                )}
+                required={true}
+                showCreate={!props.modal}
+                election={true}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">

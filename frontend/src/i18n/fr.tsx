@@ -92,6 +92,146 @@ const fr = {
         hint: 'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
+    typeDepense: {
+      name: 'typeDepense',
+      label: 'TypeDepenses',
+      menu: 'TypeDepenses',
+      exporterFileName: 'typeDepense_export',
+      list: {
+        menu: 'TypeDepenses',
+        title: 'TypeDepenses',
+      },
+      create: {
+        success: 'TypeDepense successfully saved',
+      },
+      update: {
+        success: 'TypeDepense successfully saved',
+      },
+      destroy: {
+        success: 'TypeDepense successfully deleted',
+      },
+      destroyAll: {
+        success: 'TypeDepense(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit TypeDepense',
+      },
+      fields: {
+        id: 'Id',
+        nom: 'Type',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New TypeDepense',
+      },
+      view: {
+        title: 'View TypeDepense',
+      },
+      importer: {
+        title: 'Import TypeDepenses',
+        fileName: 'typeDepense_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    typeCharge: {
+      name: 'typeCharge',
+      label: 'TypeCharges',
+      menu: 'TypeCharges',
+      exporterFileName: 'typeCharge_export',
+      list: {
+        menu: 'TypeCharges',
+        title: 'TypeCharges',
+      },
+      create: {
+        success: 'TypeCharge successfully saved',
+      },
+      update: {
+        success: 'TypeCharge successfully saved',
+      },
+      destroy: {
+        success: 'TypeCharge successfully deleted',
+      },
+      destroyAll: {
+        success: 'TypeCharge(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit TypeCharge',
+      },
+      fields: {
+        id: 'Id',
+        nom: 'Nom',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New TypeCharge',
+      },
+      view: {
+        title: 'View TypeCharge',
+      },
+      importer: {
+        title: 'Import TypeCharges',
+        fileName: 'typeCharge_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    typeRevenue: {
+      name: 'typeRevenue',
+      label: 'TypeRevenues',
+      menu: 'TypeRevenues',
+      exporterFileName: 'typeRevenue_export',
+      list: {
+        menu: 'TypeRevenues',
+        title: 'TypeRevenues',
+      },
+      create: {
+        success: 'TypeRevenue successfully saved',
+      },
+      update: {
+        success: 'TypeRevenue successfully saved',
+      },
+      destroy: {
+        success: 'TypeRevenue successfully deleted',
+      },
+      destroyAll: {
+        success: 'TypeRevenue(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit TypeRevenue',
+      },
+      fields: {
+        id: 'Id',
+        nom: 'Nom',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {},
+      placeholders: {},
+      hints: {},
+      new: {
+        title: 'New TypeRevenue',
+      },
+      view: {
+        title: 'View TypeRevenue',
+      },
+      importer: {
+        title: 'Import TypeRevenues',
+        fileName: 'typeRevenue_import_template',
+        hint: 'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
     category: {
       name: 'Catégorie',
       label: 'Categories',

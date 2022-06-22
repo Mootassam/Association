@@ -12,12 +12,13 @@ import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import entreeEnumerators from 'src/modules/entree/entreeEnumerators';
 import moment from 'moment';
 import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
+import TypeRevenueAutocompleteFormItem from 'src/view/typeRevenue/autocomplete/TypeRevenueAutocompleteFormItem';
 
 const schema = yup.object().shape({
-  type: yupFormSchemas.enumerator(
-    i18n('entities.entree.fields.type'),
+  entreeType: yupFormSchemas.relationToOne(
+    i18n('entities.projet.fields.typeProjet'),
     {
-      options: entreeEnumerators.type,
+      required: true,
     },
   ),
   sourceLink: yupFormSchemas.string(
@@ -39,7 +40,7 @@ function EntreeForm(props) {
     const record = props.record || {};
 
     return {
-      type: record.type,
+      entreeType: record.entreeType,
       sourceLink: record.sourceLink,
       amount: record.amount,
       date: record.date
@@ -70,18 +71,17 @@ function EntreeForm(props) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="row">
             <div className="col-lg-7 col-md-8 col-12">
-              <SelectFormItem
-                name="type"
-                label={i18n('entities.entree.fields.type')}
-                options={entreeEnumerators.type.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.entree.enumerators.type.${value}`,
-                    ),
-                  }),
+              <TypeRevenueAutocompleteFormItem
+                name="entreeType"
+                label={i18n(
+                  'entities.projet.fields.typeProjet',
                 )}
-                required={false}
+                placeholder={i18n(
+                  'entities.projet.placeholders.typeProjet',
+                )}
+                required={true}
+                showCreate={!props.modal}
+                election={true}
               />
             </div>
             <div className="col-lg-7 col-md-8 col-12">

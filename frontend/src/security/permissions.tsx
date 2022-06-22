@@ -2587,6 +2587,180 @@ class Permissions {
           plans.enterprise,
         ],
       },
+
+      typeDepenseImport: {
+        id: 'typeDepenseImport',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      typeDepenseCreate: {
+        id: 'typeDepenseCreate',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeDepenseEdit: {
+        id: 'typeDepenseEdit',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeDepenseDestroy: {
+        id: 'typeDepenseDestroy',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeDepenseRead: {
+        id: 'typeDepenseRead',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      typeDepenseAutocomplete: {
+        id: 'typeDepenseAutocomplete',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+
+      typeChargeImport: {
+        id: 'typeChargeImport',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      typeChargeCreate: {
+        id: 'typeChargeCreate',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeChargeEdit: {
+        id: 'typeChargeEdit',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeChargeDestroy: {
+        id: 'typeChargeDestroy',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeChargeRead: {
+        id: 'typeChargeRead',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      typeChargeAutocomplete: {
+        id: 'typeChargeAutocomplete',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+
+      typeRevenueImport: {
+        id: 'typeRevenueImport',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      typeRevenueCreate: {
+        id: 'typeRevenueCreate',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeRevenueEdit: {
+        id: 'typeRevenueEdit',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeRevenueDestroy: {
+        id: 'typeRevenueDestroy',
+        allowedRoles: [roles.admin],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+        allowedStorage: [],
+      },
+      typeRevenueRead: {
+        id: 'typeRevenueRead',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
+      typeRevenueAutocomplete: {
+        id: 'typeRevenueAutocomplete',
+        allowedRoles: [roles.admin, roles.adherent],
+        allowedPlans: [
+          plans.free,
+          plans.growth,
+          plans.enterprise,
+        ],
+      },
     };
   }
 

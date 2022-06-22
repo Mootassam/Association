@@ -112,6 +112,9 @@ require('./partner').default(routes);
 require('./typeProjet').default(routes);
 // Loads the Tenant if the :tenantId param is passed
 routes.param('tenantId', tenantMiddleware);
+require('./typeDepense').default(routes);
+require('./typeCharge').default(routes);
+require('./typeRevenue').default(routes);
 
 // Add the routes to the /api endpoint
 app.use('/api', routes);

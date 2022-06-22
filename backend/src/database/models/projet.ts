@@ -29,7 +29,6 @@ export default (database) => {
         required: true,
         enum: ['draft', 'actif', 'canceled', 'closed'],
       },
-
       typeProjet: {
         type: Schema.Types.ObjectId,
         ref: 'typeProjet',
