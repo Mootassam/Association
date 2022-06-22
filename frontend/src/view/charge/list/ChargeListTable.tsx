@@ -14,6 +14,7 @@ import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import Pagination from 'src/view/shared/table/Pagination';
 import DepenseListItem from 'src/view/depense/list/DepenseListItem';
 import moment from 'moment';
+import TypeChargeListItem from 'src/view/typeCharge/list/TypeChargeListItem';
 
 function ChargeListTable(props) {
   const [recordIdToDestroy, setRecordIdToDestroy] =
@@ -113,11 +114,9 @@ function ChargeListTable(props) {
                 )}
               </TableColumnHeader>
               <TableColumnHeader
-                onSort={doChangeSort}
-                hasRows={hasRows}
-                sorter={sorter}
-                name={'type'}
-                label={i18n('entities.charge.fields.type')}
+                label={i18n(
+                  'entities.typeCharge.fields.nom',
+                )}
               />
               <TableColumnHeader
                 onSort={doChangeSort}
@@ -186,11 +185,9 @@ function ChargeListTable(props) {
                     </div>
                   </th>
                   <td>
-                    {row.type
-                      ? i18n(
-                          `entities.charge.enumerators.type.${row.type}`,
-                        )
-                      : null}
+                    <TypeChargeListItem
+                      value={row.chargeType}
+                    />
                   </td>
                   <td style={{ textAlign: 'right' }}>
                     {row.amount}

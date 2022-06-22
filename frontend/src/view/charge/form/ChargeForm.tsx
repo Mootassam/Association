@@ -75,10 +75,10 @@ function ChargeForm(props) {
               <TypeChargeAutocompleteFormItem
                 name="chargeType"
                 label={i18n(
-                  'entities.projet.fields.typeProjet',
+                  'entities.typeCharge.fields.nom',
                 )}
                 placeholder={i18n(
-                  'entities.projet.placeholders.typeProjet',
+                  'entities.typeCharge.fields.nom',
                 )}
                 required={true}
                 showCreate={!props.modal}
