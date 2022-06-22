@@ -74,10 +74,10 @@ function EntreeForm(props) {
               <TypeRevenueAutocompleteFormItem
                 name="entreeType"
                 label={i18n(
-                  'entities.projet.fields.typeProjet',
+                  'entities.typeRevenue.fields.nom',
                 )}
                 placeholder={i18n(
-                  'entities.projet.placeholders.typeProjet',
+                  'entities.typeRevenue.placeholders.nom',
                 )}
                 required={true}
                 showCreate={!props.modal}
