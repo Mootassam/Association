@@ -1389,6 +1389,7 @@ const en = {
         status: {
           achieved: 'Achieved',
           waiting: 'Waiting',
+          progress: 'In progress',
         },
       },
       placeholders: {},

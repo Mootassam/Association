@@ -187,28 +187,32 @@ const fr = {
     },
 
     typeRevenue: {
-      name: 'typeRevenue',
-      label: 'TypeRevenues',
-      menu: 'TypeRevenues',
-      exporterFileName: 'typeRevenue_export',
+      name: 'type de chiffre daffaires',
+      label: 'type de chiffre daffaires',
+      menu: 'type de chiffre daffaires',
+      exporterFileName: 'type_de_chiffre_daffaires_export',
       list: {
         menu: 'TypeRevenues',
         title: 'TypeRevenues',
       },
       create: {
-        success: 'TypeRevenue successfully saved',
+        success:
+          'type de chiffre daffaires successfully saved',
       },
       update: {
-        success: 'TypeRevenue successfully saved',
+        success:
+          'type de chiffre daffaires successfully saved',
       },
       destroy: {
-        success: 'TypeRevenue successfully deleted',
+        success:
+          'type de chiffre daffaires successfully deleted',
       },
       destroyAll: {
-        success: 'TypeRevenue(s) successfully deleted',
+        success:
+          'type de chiffre daffaires(s) successfully deleted',
       },
       edit: {
-        title: 'Edit TypeRevenue',
+        title: 'Edit type de chiffre daffaires',
       },
       fields: {
         id: 'Id',
@@ -1539,6 +1543,7 @@ const fr = {
         status: {
           achieved: 'Terminé',
           waiting: 'En Attente',
+          progress: 'En cours',
         },
       },
       placeholders: {},

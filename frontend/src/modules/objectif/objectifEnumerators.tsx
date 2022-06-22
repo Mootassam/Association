@@ -1,8 +1,5 @@
 const objectifEnumerators = {
-  status: [
-    'achieved',
-    'waiting',
-  ],
+  status: ['achieved', 'waiting', 'progress'],
 };
 
 export default objectifEnumerators;
