@@ -1,7 +1,7 @@
 Visit https://docs.scaffoldhub.io for docs/instructions.
 Version: 2.7.8
 
-Auth : 
+Auth :  
 
 user : mootassame@gmail.com 
 password : 12345678
